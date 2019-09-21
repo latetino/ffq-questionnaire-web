@@ -17,6 +17,7 @@ import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { ResultsPageComponent } from './pages/results-page/results-page.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ErrorDialogPopupComponent,
     TextCardComponent,
     QuestionBlockComponent,
-    ResultsPageComponent
+    ResultsPageComponent,
+    AdminPageComponent
   ],
   imports: [
     BrowserModule,
