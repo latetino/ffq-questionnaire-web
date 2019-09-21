@@ -30,8 +30,8 @@ export class FoodItemService {
       }));
   }
 
-  calculateNutrientBreakdown(items: FFQItemCalcRequest[]): Observable<any> {
-    return this.http.post(`${this.endpoint}/calculate`, items).pipe(map(data => {
+  calculateNutrientBreakdown(id:string, items: FFQItemCalcRequest[]): Observable<any> {
+    return this.http.post(`${this.endpoint}/calculate/` + id, items).pipe(map(data => {
         return data;
       }
     ));

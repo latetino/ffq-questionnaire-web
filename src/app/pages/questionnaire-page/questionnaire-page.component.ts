@@ -33,6 +33,7 @@ export class QuestionnairePageComponent implements OnInit {
     'All open question blocks must be completely filled out before submitting the questionnaire.',
     'Click the submit button when finished.'
   ];
+  id: string;
   questionnaire: QuestionnaireResponse;
   hideSecondaryItems = false;
   dataLoaded: Promise<boolean>;
@@ -50,8 +51,8 @@ export class QuestionnairePageComponent implements OnInit {
               private modalService: NgbModal) {}
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(params => {
-        const id = params.get('id');
-        this.questService.getQuestionnaireId(id).subscribe((data: QuestionnaireResponse) => {
+        this.id = params.get('id');
+        this.questService.getQuestionnaireId(this.id).subscribe((data: QuestionnaireResponse) => {
           this.questionnaire = data;
           if (data.exists) {
             if (data.submitted) {
@@ -100,7 +101,8 @@ export class QuestionnairePageComponent implements OnInit {
           itemList.push(request);
         }
       }
-      this.foodService.calculateNutrientBreakdown(itemList)
+     
+      this.foodService.calculateNutrientBreakdown(this.id,itemList)
         .subscribe( (results) => {
             console.log(results);
             const dailyMap: Map<string, number> = new Map();
