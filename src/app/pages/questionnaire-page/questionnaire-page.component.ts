@@ -37,7 +37,7 @@ export class QuestionnairePageComponent implements OnInit {
   questionnaire: QuestionnaireResponse;
   hideSecondaryItems = false;
   dataLoaded: Promise<boolean>;
-
+  
   foodItems: FFQItem[] = [];
 
   constructor(public foodService: FoodItemService,
@@ -92,6 +92,7 @@ export class QuestionnairePageComponent implements OnInit {
       dialogRef.componentInstance.title = 'Questionnaire Incomplete';
       dialogRef.componentInstance.message = 'Please ensure all required fields are completed.';
     } else {
+      
       log('Questionnaire submitted successfully.');
       const itemList: FFQItemCalcRequest[] = [];
       for (const fooditem of this.foodItems) {
@@ -119,10 +120,11 @@ export class QuestionnairePageComponent implements OnInit {
               }
             }
             const ffqResult = new FFQResult(dailyMap, weeklyMap);
-
+            /*
             const modalRef = this.modalService.open(ResultsPageComponent);
             modalRef.componentInstance.results = ffqResult;
             console.log('OPENED MODAL');
+            */
 
             this.questService.submitQuestionnaire(this.questionnaire.id).subscribe((data: Questionnaire) => {
             this.router.navigateByUrl('/');
