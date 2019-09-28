@@ -19,6 +19,8 @@ import { ResultsPageComponent } from './pages/results-page/results-page.componen
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +48,8 @@ import { AdminPageComponent } from './pages/admin-page/admin-page.component';
     MatIconModule,
     FormsModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    AngularFontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
