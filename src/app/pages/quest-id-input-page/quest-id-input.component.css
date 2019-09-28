@@ -1,6 +1,7 @@
 .quest-id-container {
   display: flex;
   justify-content: center;
+  padding-top: 10%;
 }
 .quest-id-card {
   width: 60%;

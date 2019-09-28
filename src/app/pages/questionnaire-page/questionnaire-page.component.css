@@ -8,6 +8,10 @@ h2 {
   justify-content: center;
 }
 
+.questionnaire-container{
+  padding-top: 10%;
+}
+
 .skip-foods-div {
   display: flex;
   justify-content: center;
