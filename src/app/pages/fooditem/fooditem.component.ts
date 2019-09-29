@@ -41,6 +41,26 @@ dataLoaded: Promise<boolean>;
     sugaradded: new FormControl ('', Validators.required),
     servings: new FormControl ('', Validators.required),
     primary: new FormControl ('', Validators.required),
+
+    Retinol: new FormControl ('', Validators.required),
+    VitD: new FormControl ('', Validators.required),
+    VitE : new FormControl ('', Validators.required),
+    VitK: new FormControl ('', Validators.required),
+    VitC: new FormControl ('', Validators.required),
+    Thiamin: new FormControl ('', Validators.required),
+    Riboflavin : new FormControl ('', Validators.required),
+    Niacin: new FormControl ('', Validators.required),
+    PanthotenicAcid : new FormControl ('', Validators.required),
+    VitB6: new FormControl ('', Validators.required),
+    Folate : new FormControl ('', Validators.required),
+    VitB12: new FormControl ('', Validators.required),
+    Calcium: new FormControl ('', Validators.required),
+    Phosphorus: new FormControl ('', Validators.required),
+    Magnesium : new FormControl ('', Validators.required),
+    Iron: new FormControl ('', Validators.required),
+    Zinc : new FormControl ('', Validators.required),
+    Copper: new FormControl ('', Validators.required),
+    Potassium: new FormControl ('', Validators.required),
     });
   }
   private handleFoodServiceError(error: HttpErrorResponse) {
