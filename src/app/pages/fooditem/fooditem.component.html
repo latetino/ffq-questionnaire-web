@@ -3,9 +3,12 @@
     <div align="center"><i style="color: aliceblue" class="fa fa-cog fa-2x" aria-hidden="true"></i></div>
 </div>
 
-<div class="row">
-    <a class="btn btn=primary" routerLink="/admin">Back to List</a>
+<div class="container backtolist">
+    <div class="row">
+        <a class="btn btn=primary" routerLink="/admin">Back to List</a>
+    </div>
 </div>
+
 <div class="container frame-fooditem">
     <form [formGroup]="fooditemform" (ngSubmit)="submitRegistration()" novalidate>
       <div *ngIf="validMessage != ''">
