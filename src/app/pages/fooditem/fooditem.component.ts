@@ -34,12 +34,34 @@ foodNutrients: FFQFoodNutrientsResponse[] = [];
 dataLoaded: Promise<boolean>;
 
   ngOnInit() {
+    this.loadFoodsAndNutrients();
+    console.log( this.foodNutrients);
     this.fooditemform =new FormGroup({
     fooditemname: new FormControl ('', Validators.required),
     sugaradded: new FormControl ('', Validators.required),
     servings: new FormControl ('', Validators.required),
     primary: new FormControl ('', Validators.required),
     });
+  }
+  private handleFoodServiceError(error: HttpErrorResponse) {
+    console.error('Error occurred.\n' + error.message);
+    const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
+    dialogRef.componentInstance.title = 'Error Fetching Food Items';
+    dialogRef.componentInstance.message = error.message;
+    dialogRef.componentInstance.router = this.router;
+    dialogRef.afterClosed().subscribe(() => {
+      this.router.navigateByUrl('/');
+    });
+  }
+
+  private loadFoodsAndNutrients() {
+    this.foodService.getAllFoods().subscribe(data => {
+      data.map(response => {        
+        this.foodNutrients.push(response);
+      });
+      console.log(this.foodNutrients.length + ' foods and its nutrients were returned from server.');
+      this.dataLoaded = Promise.resolve(true);
+    }, (error: HttpErrorResponse) => this.handleFoodServiceError(error));
   }
 
 }
