@@ -1,14 +1,14 @@
-<div class="header1">
-    <h2 matDialogTitle>{{TITLE}}</h2>
-    <div align="center"><i style="color: aliceblue" class="fa fa-cog fa-2x" aria-hidden="true"></i></div>
-</div>
-
-<div class="container backtolist">
+<admin-header></admin-header>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="container top backtolist">
     <div class="row">
         <a class="btn btn=primary" routerLink="/admin">Back to List</a>
     </div>
 </div>
-
 <div class="container frame-fooditem">
     <form [formGroup]="fooditemform" (ngSubmit)="submitRegistration()" novalidate>
       <div *ngIf="validMessage != ''">
