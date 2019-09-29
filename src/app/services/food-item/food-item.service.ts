@@ -16,7 +16,15 @@ export class FoodItemService {
 
   endpoint = 'http://localhost:9090/ffq';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { }  
+
+  /* Return a specific food item (by name) and its list of nutrients*/
+  getFoodbyName(name: string): Observable<FFQFoodNutrientsResponse> {
+    return this.http.get(this.endpoint + '/foodNutrients/' + name).pipe(
+      map(((item: FFQFoodNutrientsResponse) => {
+          return item;
+        })));
+  }
 
   getAllFoods(): Observable<FFQFoodNutrientsResponse[]> {
     return this.http.get(this.endpoint + '/allfoodsnutrients').pipe(
