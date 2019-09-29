@@ -23,7 +23,7 @@ export class FoodItemService {
       map((res: any) => {
         return res.map(item => {
           return new FFQFoodNutrientsResponse(
-            item.foodItem, 
+            item.foodItem,
             item.nutrientList
           );
         });

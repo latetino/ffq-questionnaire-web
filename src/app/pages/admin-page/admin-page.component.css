@@ -8,4 +8,5 @@ h2 {
   width: 100%;
   height: 100px;
   padding-top: 20px;
+  position: fixed;
 }

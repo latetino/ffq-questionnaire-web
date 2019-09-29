@@ -18,8 +18,8 @@ import {HttpClientModule} from '@angular/common/http';
 import { ResultsPageComponent } from './pages/results-page/results-page.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AdminPageComponent } from './pages/admin-page/admin-page.component';
-
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { FooditemComponent } from './pages/fooditem/fooditem.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +30,8 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     TextCardComponent,
     QuestionBlockComponent,
     ResultsPageComponent,
-    AdminPageComponent
+    AdminPageComponent,
+    FooditemComponent
   ],
   imports: [
     BrowserModule,

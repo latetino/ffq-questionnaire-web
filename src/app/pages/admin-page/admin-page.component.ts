@@ -30,9 +30,11 @@ export class AdminPageComponent implements OnInit {
   
   foodNutrients: FFQFoodNutrientsResponse[] = [];
   dataLoaded: Promise<boolean>;
+
   
   ngOnInit() {
      this.loadFoodsAndNutrients();
+     console.log( this.foodNutrients);
   }
 
   private handleFoodServiceError(error: HttpErrorResponse) {
