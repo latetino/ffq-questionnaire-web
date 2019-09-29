@@ -4,10 +4,14 @@ import {AppComponent} from './app.component';
 import {QuestionnairePageComponent} from './pages/questionnaire-page/questionnaire-page.component';
 import {QuestIdInputComponent} from './pages/quest-id-input-page/quest-id-input.component';
 import { AdminPageComponent } from './pages/admin-page/admin-page.component';
+import {FooditemComponent} from './pages/fooditem/fooditem.component';
 
 const routes: Routes = [
   {
     path: 'admin', component: AdminPageComponent
+  },
+  {
+    path: 'admin/fooditem', component: FooditemComponent
   },
   {
     path: '', redirectTo: 'questionnaire-id', pathMatch: 'full'

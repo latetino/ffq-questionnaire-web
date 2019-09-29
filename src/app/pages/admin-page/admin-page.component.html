@@ -1,7 +1,16 @@
-<div class="header1" *ngIf=dataLoaded> 
-    <h2 matDialogTitle >{{TITLE}}</h2>
+<div class="header1" *ngIf=dataLoaded>
+    <h2 matDialogTitle>{{TITLE}}</h2>
     <div align="center"><i style="color: aliceblue" class="fa fa-cog fa-2x" aria-hidden="true"></i></div>
 </div>
-
-<!-- just for illustrative purposes, a component must be used not a div -->
-<div *ngFor="let item of foodNutrients"> {{item.fooditem.name}}</div>
+<div class="container">
+    <table class="table table-bordered table-inverse">
+        <tr>
+            <th> Food item name</th>
+            <th> Primary</th>
+        </tr>
+        <tr *ngFor="let item of foodNutrients">
+            <td>{{item.fooditem.name}}</td>
+            <td>{{item.fooditem.primary}}</td>
+        </tr>
+    </table>
+</div>

@@ -1,13 +1,13 @@
-import { FFQItem } from './ffqitem';
-import { FFQNutrientist } from './ffqnutrientlist';
+import { FFQFoodItem } from './ffqfooditem';
+import { FFQNutrientlist } from './ffqnutrientlist';
 import { FFQItemInput } from './ffqitem-input';
 import { FoodType } from './ffqitem-response';
 
 export class FFQFoodNutrientsResponse {
-    fooditem: FFQItem;
-    nutrientlist: FFQNutrientist;  
+    fooditem: FFQFoodItem;
+    nutrientlist: FFQNutrientlist;  
   
-    constructor(fooditem: FFQItem, nutrientlist: FFQNutrientist) {
+    constructor(fooditem:FFQFoodItem, nutrientlist: FFQNutrientlist) {
       this.fooditem = fooditem;
       this.nutrientlist = nutrientlist;
     }

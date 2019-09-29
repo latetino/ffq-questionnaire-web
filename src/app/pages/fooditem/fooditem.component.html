@@ -1,0 +1,43 @@
+<div class="header1">
+    <h2 matDialogTitle>{{TITLE}}</h2>
+    <div align="center"><i style="color: aliceblue" class="fa fa-cog fa-2x" aria-hidden="true"></i></div>
+</div>
+
+<div class="row">
+    <a class="btn btn=primary" routerLink="/admin">Back to List</a>
+</div>
+<div class="container frame-fooditem">
+    <form [formGroup]="fooditemform" (ngSubmit)="submitRegistration()" novalidate>
+      <div *ngIf="validMessage != ''">
+        <h3 class="has-info">{{validMessage}}</h3>
+      </div>
+    <h6>Food Item</h6>
+    <div class="row">
+      <div class="form-group col-3">
+        <label>Food Item Name</label>
+        <input type="text" class="form-control" formControlName="fooditemname" required autofocus/>
+      </div>
+      <div class="form-group col-3">
+        <label>Sugar added</label>
+        <input type="text" class="form-control" formControlName="sugaradded" required/>
+      </div>
+      <div class="form-group col-3">
+        <label>Servings</label>
+        <input type="text" class="form-control" formControlName="servings" required/>
+      </div>
+      <div class="form-group col-3">
+          <label>Primary</label>
+          <input type="text" class="form-control" formControlName="primary" required/>
+        </div>
+    </div>
+     
+    </form>
+  </div>
+  <div class="container frame-nutrients">
+    <h6>Nutrients</h6>
+
+
+  </div>
+  <div class="container">
+    <button type="submit" class="btn btn-primary col-3 margin" >Add/Update</button>
+ </div>
