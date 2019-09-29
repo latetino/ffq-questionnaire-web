@@ -39,6 +39,7 @@ dataLoaded: Promise<boolean>;
     this.fooditemform =new FormGroup({
     fooditemname: new FormControl ('', Validators.required),
     sugaradded: new FormControl ('', Validators.required),
+    teaspoon: new FormControl ('', Validators.required),
     servings: new FormControl ('', Validators.required),
     primary: new FormControl ('', Validators.required),
 
