@@ -14,6 +14,9 @@ const routes: Routes = [
     path: 'admin/fooditem', component: FooditemComponent
   },
   {
+    path: 'admin/fooditem/:id', component: FooditemComponent
+  },
+  {
     path: '', redirectTo: 'questionnaire-id', pathMatch: 'full'
   },
   {

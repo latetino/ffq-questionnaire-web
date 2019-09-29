@@ -9,7 +9,9 @@
             <th> Primary</th>
         </tr>
         <tr *ngFor="let item of foodNutrients">
-            <td>{{item.fooditem.name}}</td>
+            <td>
+                <a [routerLink]="['/admin/fooditem', item.fooditem.id]">{{item.fooditem.name}}</a>
+            </td>
             <td>{{item.fooditem.primary}}</td>
         </tr>
     </table>
