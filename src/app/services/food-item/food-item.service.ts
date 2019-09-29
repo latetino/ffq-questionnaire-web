@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {FFQItemResponse} from '../../models/ffqitem-response';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {FFQItemCalcRequest} from '../../models/ffqitem-calc-request';
 import { FFQFoodNutrientsResponse } from 'src/app/models/ffqfoodnutrients-response';
+
+const httOptions ={ headers: new HttpHeaders({'Content-Type':'aplication/json'})}
 
 @Injectable({
   providedIn: 'root'

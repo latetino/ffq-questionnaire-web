@@ -6,7 +6,7 @@ import {FoodItemService} from '../../services/food-item/food-item.service';
 import { FFQItem } from 'src/app/models/ffqitem';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorDialogPopupComponent } from 'src/app/components/error-dialog-popup/error-dialog-popup.component';
-import { FFQFoodNutrient } from 'src/app/models/ffqfoodnutrients';
+import { FFQFoodNutrientsResponse } from 'src/app/models/ffqfoodnutrients-response';
 
 @Component({
   selector: 'app-questionnaire-page',
@@ -28,7 +28,7 @@ export class AdminPageComponent implements OnInit {
               private modalService: NgbModal) {}
 
   
-  foodNutrients: FFQFoodNutrient[] = [];
+  foodNutrients: FFQFoodNutrientsResponse[] = [];
   dataLoaded: Promise<boolean>;
   
   ngOnInit() {
