@@ -1,4 +1,7 @@
-<div class="header1" *ngIf="true"> <!-- este true here is just temporary here goes whatever condition is needed for the page to show if any-->
+<div class="header1" *ngIf=dataLoaded> 
     <h2 matDialogTitle >{{TITLE}}</h2>
     <div align="center"><i style="color: aliceblue" class="fa fa-cog fa-2x" aria-hidden="true"></i></div>
 </div>
+
+<!-- just for illustrative purposes, a component must be used not a div -->
+<div *ngFor="let item of foodNutrients"> {{item.fooditem.name}}</div>

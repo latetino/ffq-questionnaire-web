@@ -4,6 +4,7 @@ import {FFQItemResponse} from '../../models/ffqitem-response';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {FFQItemCalcRequest} from '../../models/ffqitem-calc-request';
+import { FFQFoodNutrientsResponse } from 'src/app/models/ffqfoodnutrients-response';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,18 @@ export class FoodItemService {
   endpoint = 'http://localhost:9090/ffq';
 
   constructor(private http: HttpClient) { }
+
+  getAllFoods(): Observable<FFQFoodNutrientsResponse[]> {
+    return this.http.get(this.endpoint + '/allfoodsnutrients').pipe(
+      map((res: any) => {
+        return res.map(item => {
+          return new FFQFoodNutrientsResponse(
+            item.foodItem, 
+            item.nutrientList
+          );
+        });
+      }));
+  }
 
   getFoodItems(): Observable<FFQItemResponse[]> {
     return this.http.get(this.endpoint + '/fooditems').pipe(
