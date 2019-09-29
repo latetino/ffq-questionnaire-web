@@ -20,6 +20,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { FooditemComponent } from './pages/fooditem/fooditem.component';
+import{ ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { FooditemComponent } from './pages/fooditem/fooditem.component';
     HttpClientModule,
     NgbModule,
     AngularFontAwesomeModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
