@@ -2,12 +2,11 @@
     <h2 matDialogTitle>{{TITLE}}</h2>
     <div align="center"><i style="color: aliceblue" class="fa fa-cog fa-2x" aria-hidden="true"></i></div>
 </div>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<div class="container frame">
+
+<div class="row">
+    <a class="btn btn=primary" routerLink="/admin">Back to List</a>
+</div>
+<div class="container frame-fooditem">
     <form [formGroup]="fooditemform" (ngSubmit)="submitRegistration()" novalidate>
       <div *ngIf="validMessage != ''">
         <h3 class="has-info">{{validMessage}}</h3>
@@ -34,11 +33,11 @@
      
     </form>
   </div>
-  <div class="container frame">
+  <div class="container frame-nutrients">
     <h6>Nutrients</h6>
 
 
   </div>
   <div class="container">
-    <button type="submit" class="btn btn-primary col-3 margin" >Submit</button>
+    <button type="submit" class="btn btn-primary col-3 margin" >Add/Update</button>
  </div>
