@@ -1,6 +1,7 @@
 import {Component, Input} from '@angular/core';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { RouterModule } from '@angular/router';
+import {header} from '../../../assets/header.js';
 
 @Component({
   selector: 'admin-header',
@@ -9,4 +10,7 @@ import { RouterModule } from '@angular/router';
 })
 export class AdminHeaderComponent {
   TITLE = 'FFQR Admin Portal';
+
+ 
 }
+
