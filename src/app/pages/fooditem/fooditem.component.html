@@ -5,23 +5,25 @@
   <button class="tablink" routerLink="/admin">View results</button>
   <button class="tablink" routerLink="/admin">View recomendations</button>
 </div>
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-
+<br />
+<br />
+<br />
+<br />
+<br />
 <div class="container top ">
   <div class="container frame-fooditem">
-    <form #form="ngForm">
-     <h6>Food Item</h6>
+
+    <form [formGroup]="fooditemform" (ngSubmit)="submitRegistration()" novalidate>
+      <div *ngIf="validMessage != ''">
+        <h3 class="has-info">{{validMessage}}</h3>
+      </div>
+      <h6>Food Item</h6>
       <div class="row">
-
         <div class="form-group col-3">
-          <label for="food item name">food item name</label>
-          <input id="food item name" name= "food item name" class="form-control" [(ngModel)]="foodNutrientsItem[0].fooditem.name" />
+          <label>food item name</label>
+          <input type="text" class="form-control" formControlName="fooditemname"
+            [(ngModel)]="foodNutrientsItem[0].foodItem.name" required />
         </div>
-
         <div class="form-group ">
           <label>sugar? </label>
           <div class="row">
@@ -35,11 +37,10 @@
             </div>
           </div>
         </div>
-
         <div class="form-group col-2">
           <label>teaspoon</label>
           <input type="text" class="form-control" formControlName="teaspoons" required
-            [(ngModel)]="foodNutrientsItem[0].fooditem.servingsList" />
+            [(ngModel)]="foodNutrients[4].fooditem.servingsList" />
         </div>
         <div class="form-group col-3">
           <label>servings</label>
@@ -52,119 +53,108 @@
             [(ngModel)]="foodNutrients[4].fooditem.primary" />
         </div>
       </div>
-
     </form>
 
   </div>
-  <div class="container frame-nutrients">
-    <h6>Nutrients</h6>
-    <div class="row">
-      <div class="form-group col-3">
-        <label>Retinol (mcg)</label>
-        <input type="text" class="form-control" formControlName="Retinol" required
-          [(ngModel)]="foodNutrients[4].nutrientList" />
-      </div>
-      <div class="form-group col-3">
-        <label>Vit D (mcg)</label>
-        <input type="text" class="form-control" formControlName="VitD" required
-          [(ngModel)]="foodNutrients[4].nutrientList" />
-      </div>
-      <div class="form-group col-3">
-        <label>Vit E (mg)</label>
-        <input type="text" class="form-control" formControlName="VitE" required
-          [(ngModel)]="foodNutrients[4].nutrientList" />
-      </div>
-      <div class="form-group col-3">
-        <label>Vit K (mcg)</label>
-        <input type="text" class="form-control" formControlName="VitK" required
-          [(ngModel)]="foodNutrients[4].nutrientList" />
-      </div>
-    </div>
-    <div class="row">
-      <div class="form-group col-3">
-        <label>Vit C (mg)</label>
-        <input type="text" class="form-control" formControlName="VitC" required
-          [(ngModel)]="foodNutrients[4].nutrientList" />
-      </div>
-      <div class="form-group col-3">
-        <label>Thiamin (Vit B1) (mg)</label>
-        <input type="text" class="form-control" formControlName="Thiamin" required
-          [(ngModel)]="foodNutrients[4].nutrientList" />
-      </div>
-      <div class="form-group col-3">
-        <label>Riboflavin (Vit B2) (mg)</label>
-        <input type="text" class="form-control" formControlName="Riboflavin" required
-          [(ngModel)]="foodNutrients[4].nutrientList" />
-      </div>
-      <div class="form-group col-3">
-        <label>Niacin (Vit B3) (mg)</label>
-        <input type="text" class="form-control" formControlName="Niacin" required
-          [(ngModel)]="foodNutrients[4].nutrientList" />
-      </div>
-    </div>
-    <div class="row">
-      <div class="form-group col-3">
-        <label>Pantothenic Acid (mg)</label>
-        <input type="text" class="form-control" formControlName="PanthotenicAcid" required
-          [(ngModel)]="foodNutrients[4].nutrientList" />
-      </div>
-      <div class="form-group col-3">
-        <label>Vit B-6 (mg)</label>
-        <input type="text" class="form-control" formControlName="VitB6" required
-          [(ngModel)]="foodNutrients[4].nutrientList" />
-      </div>
-      <div class="form-group col-3">
-        <label>Folate (mcg)</label>
-        <input type="text" class="form-control" formControlName="Folate" required
-          [(ngModel)]="foodNutrients[4].nutrientList" />
-      </div>
-      <div class="form-group col-3">
-        <label>Vit B-12 (mcg)</label>
-        <input type="text" class="form-control" formControlName="VitB12" required
-          [(ngModel)]="foodNutrients[4].nutrientList" />
-      </div>
-    </div>
-    <div class="row">
-      <div class="form-group col-3">
-        <label>Calcium (mg)</label>
-        <input type="text" class="form-control" formControlName="Calcium" required
-          [(ngModel)]="foodNutrients[4].nutrientList" />
-      </div>
-      <div class="form-group col-3">
-        <label>Phosphorus (mg)</label>
-        <input type="text" class="form-control" formControlName="Phosphorus" required
-          [(ngModel)]="foodNutrients[4].nutrientList" />
-      </div>
-      <div class="form-group col-3">
-        <label>Magnesium (mg)</label>
-        <input type="text" class="form-control" formControlName="Magnesium" required
-          [(ngModel)]="foodNutrients[4].nutrientList" />
-      </div>
-      <div class="form-group col-3">
-        <label>Iron (mg)</label>
-        <input type="text" class="form-control" formControlName="Iron" required
-          [(ngModel)]="foodNutrients[4].nutrientList" />
-      </div>
-    </div>
-    <div class="row">
-      <div class="form-group col-3">
-        <label>Zinc (mg)</label>
-        <input type="text" class="form-control" formControlName="Zinc" required
-          [(ngModel)]="foodNutrients[4].nutrientList" />
-      </div>
-      <div class="form-group col-3">
-        <label>Copper (mg)</label>
-        <input type="text" class="form-control" formControlName="Copper" required
-          [(ngModel)]="foodNutrients[4].nutrientList" />
-      </div>
-      <div class="form-group col-3">
-        <label>Potassium (mg)</label>
-        <input type="text" class="form-control" formControlName="Potassium" required
-          [(ngModel)]="foodNutrients[4].nutrientList" />
-      </div>
-    </div>
+  <form>
+    <div class="container frame-nutrients">
+      <h6>Nutrients</h6>
+      <div class="row">
 
-  </div>
+        
+        <div class="form-group col-3">
+          <label>Retinol (mcg)</label>
+          <input type="text" class="form-control" formControlName="Retinol" required />
+        </div>
+        <div class="form-group col-3">
+          <label>Vit D (mcg)</label>
+          <input type="text" class="form-control" formControlName="VitD" required />
+        </div>
+        <div class="form-group col-3">
+          <label>Vit E (mg)</label>
+          <input type="text" class="form-control" formControlName="VitE" required />
+        </div>
+        <div class="form-group col-3">
+          <label>Vit K (mcg)</label>
+          <input type="text" class="form-control" formControlName="VitK" required />
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-3">
+          <label>Vit C (mg)</label>
+          <input type="text" class="form-control" formControlName="VitC" required />
+        </div>
+        <div class="form-group col-3">
+          <label>Thiamin (Vit B1) (mg)</label>
+          <input type="text" class="form-control" formControlName="Thiamin" required />
+        </div>
+        <div class="form-group col-3">
+          <label>Riboflavin (Vit B2) (mg)</label>
+          <input type="text" class="form-control" formControlName="Riboflavin" required />
+        </div>
+        <div class="form-group col-3">
+          <label>Niacin (Vit B3) (mg)</label>
+          <input type="text" class="form-control" formControlName="Niacin" required />
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-3">
+          <label>Pantothenic Acid (mg)</label>
+          <input type="text" class="form-control" formControlName="PanthotenicAcid" required />
+        </div>
+        <div class="form-group col-3">
+          <label>Vit B-6 (mg)</label>
+          <input type="text" class="form-control" formControlName="VitB6" required />
+        </div>
+        <div class="form-group col-3">
+          <label>Folate (mcg)</label>
+          <input type="text" class="form-control" formControlName="Folate" required />
+        </div>
+        <div class="form-group col-3">
+          <label>Vit B-12 (mcg)</label>
+          <input type="text" class="form-control" formControlName="VitB12" required />
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-3">
+          <label>Calcium (mg)</label>
+          <input type="text" class="form-control" formControlName="Calcium" required />
+        </div>
+        <div class="form-group col-3">
+          <label>Phosphorus (mg)</label>
+          <input type="text" class="form-control" formControlName="Phosphorus" required />
+        </div>
+        <div class="form-group col-3">
+          <label>Magnesium (mg)</label>
+          <input type="text" class="form-control" formControlName="Magnesium" required />
+        </div>
+        <div class="form-group col-3">
+          <label>Iron (mg)</label>
+          <input type="text" class="form-control" formControlName="Iron" required />
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-3">
+          <label>Zinc (mg)</label>
+          <input type="text" class="form-control" formControlName="Zinc" required />
+        </div>
+        <div class="form-group col-3" >
+          <label>Copper (mg)</label>
+          <input type="text" class="form-control" formControlName="Copper" required
+            [(ngModel)]="foodNutrientsItem[0].nutrientList.nutrientMap['Copper (mg)']" />
+        </div>
+
+        <div class="form-group col-3">
+          <label>Potassium (mg)</label>
+          <input class="form-control" formControlName="Potassium" required
+            [(ngModel)]="foodNutrientsItem[0].nutrientList.nutrientMap['Potassium (mg)']" />
+        </div>
+
+      </div>
+
+    </div>
+  </form>
+
   <div class="container">
     <button type="submit" class="btn btn-primary col-3 margin">Add/Update</button>
   </div>

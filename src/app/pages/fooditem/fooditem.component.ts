@@ -21,8 +21,10 @@ export class FooditemComponent implements OnInit {
 
   TITLE = 'FFQR Food Item Portal';
   fooditemform: FormGroup;
+  nutrientsform: FormGroup;
   validMessage: string ="";
   private routeSub: Subscription;
+  
   
   
   constructor(public foodService: FoodItemService,
@@ -40,11 +42,12 @@ foodNutrients: FFQFoodNutrientsResponse[] = [];
 foodNutrientsItem: FFQFoodNutrientsResponse[] = [];
 dataLoaded: Promise<boolean>;
 
+
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
     console.log(id);
     this.getFoodByName(id);
-    
+
     this.loadFoodsAndNutrients();
     console.log( this.foodNutrients);
     this.fooditemform =new FormGroup({
@@ -53,7 +56,8 @@ dataLoaded: Promise<boolean>;
     teaspoons: new FormControl ('', Validators.required),
     servings: new FormControl ('', Validators.required),
     primary: new FormControl ('', Validators.required),
-
+    });
+    this.nutrientsform =new FormGroup({
     Retinol: new FormControl ('', Validators.required),
     VitD: new FormControl ('', Validators.required),
     VitE : new FormControl ('', Validators.required),
@@ -75,6 +79,7 @@ dataLoaded: Promise<boolean>;
     Potassium: new FormControl ('', Validators.required),
     });
   }
+  
   private handleFoodServiceError(error: HttpErrorResponse) {
     console.error('Error occurred.\n' + error.message);
     const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
@@ -99,5 +104,6 @@ dataLoaded: Promise<boolean>;
     this.foodService.getFoodbyName(name).subscribe(data => {this.foodNutrientsItem.push(data)});
     this.dataLoaded = Promise.resolve(true);
   }
+  
 
 }
