@@ -8,6 +8,9 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorDialogPopupComponent } from 'src/app/components/error-dialog-popup/error-dialog-popup.component';
 import { FFQFoodNutrientsResponse } from 'src/app/models/ffqfoodnutrients-response';
 import { FormGroup, FormControl, Validators,  ReactiveFormsModule } from '@angular/forms';
+import { Subscription } from 'rxjs/internal/Subscription';
+
+
 
 @Component({
   selector: 'app-fooditem',
@@ -19,6 +22,8 @@ export class FooditemComponent implements OnInit {
   TITLE = 'FFQR Food Item Portal';
   fooditemform: FormGroup;
   validMessage: string ="";
+  private routeSub: Subscription;
+  
   
   constructor(public foodService: FoodItemService,
     private activatedRoute: ActivatedRoute,
@@ -27,13 +32,19 @@ export class FooditemComponent implements OnInit {
     private httpErrorDialog: MatDialog,
     private successDialog: MatDialog,
     private router: Router,
-    private modalService: NgbModal) {}
+    private modalService: NgbModal,
+    private route: ActivatedRoute) {}
 
 
 foodNutrients: FFQFoodNutrientsResponse[] = [];
+foodNutrientsItem: FFQFoodNutrientsResponse[] = [];
 dataLoaded: Promise<boolean>;
 
   ngOnInit() {
+    const id = this.route.snapshot.paramMap.get('id');
+    console.log(id);
+    this.getFoodByName(id);
+    
     this.loadFoodsAndNutrients();
     console.log( this.foodNutrients);
     this.fooditemform =new FormGroup({
@@ -83,6 +94,10 @@ dataLoaded: Promise<boolean>;
       console.log(this.foodNutrients.length + ' foods and its nutrients were returned from server.');
       this.dataLoaded = Promise.resolve(true);
     }, (error: HttpErrorResponse) => this.handleFoodServiceError(error));
+  }
+  private getFoodByName(name: string) {
+    this.foodService.getFoodbyName(name).subscribe(data => {this.foodNutrientsItem.push(data)});
+    this.dataLoaded = Promise.resolve(true);
   }
 
 }

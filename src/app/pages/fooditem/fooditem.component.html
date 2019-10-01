@@ -5,25 +5,23 @@
   <button class="tablink" routerLink="/admin">View results</button>
   <button class="tablink" routerLink="/admin">View recomendations</button>
 </div>
-<br />
-<br />
-<br />
-<br />
-<br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
 <div class="container top ">
   <div class="container frame-fooditem">
-    <form [formGroup]="fooditemform" (ngSubmit)="submitRegistration()" novalidate>
-      <div *ngIf="validMessage != ''">
-        <h3 class="has-info">{{validMessage}}</h3>
-      </div>
-
-      <h6>Food Item</h6>
+    <form #form="ngForm">
+     <h6>Food Item</h6>
       <div class="row">
+
         <div class="form-group col-3">
-          <label>food item name</label>
-          <input type="text" class="form-control" formControlName="fooditemname" required
-            [(ngModel)]="foodNutrients[4].fooditem.name" />
+          <label for="food item name">food item name</label>
+          <input id="food item name" name= "food item name" class="form-control" [(ngModel)]="foodNutrientsItem[0].fooditem.name" />
         </div>
+
         <div class="form-group ">
           <label>sugar? </label>
           <div class="row">
@@ -37,10 +35,11 @@
             </div>
           </div>
         </div>
+
         <div class="form-group col-2">
           <label>teaspoon</label>
           <input type="text" class="form-control" formControlName="teaspoons" required
-            [(ngModel)]="foodNutrients[4].fooditem.servingsList" />
+            [(ngModel)]="foodNutrientsItem[0].fooditem.servingsList" />
         </div>
         <div class="form-group col-3">
           <label>servings</label>
@@ -55,6 +54,7 @@
       </div>
 
     </form>
+
   </div>
   <div class="container frame-nutrients">
     <h6>Nutrients</h6>

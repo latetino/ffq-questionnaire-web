@@ -8,15 +8,15 @@ import {FooditemComponent} from './pages/fooditem/fooditem.component';
 
 const routes: Routes = [
   {
-    path: 'admin', component: AdminPageComponent
+    path: 'admin/fooditem/:id', component: FooditemComponent
   },
   {
     path: 'admin/fooditem', component: FooditemComponent
   },
   {
-    path: 'admin/fooditem/:id', component: FooditemComponent
+    path: 'admin', component: AdminPageComponent
   },
-  {
+    {
     path: '', redirectTo: 'questionnaire-id', pathMatch: 'full'
   },
   {
