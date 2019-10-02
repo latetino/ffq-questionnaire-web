@@ -1,23 +1,22 @@
 import {FFQItemInput} from './ffqitem-input';
 import {FFQItemResponse, FoodType} from './ffqitem-response';
 import {Serving} from './ffqitem-response';
+import { FFQSugar } from './ffqsugar';
 
 export class FFQFoodItem {
   id: string;
   name: string;
-  servingList: string[];
-  hasSugarSetting: boolean;
-  isPrimary: boolean;
+  servingsList: string;
+  sugar: FFQSugar;
+  primary: boolean;
   foodTypes: FoodType[];
 
-  constructor(name: string, id: string, servingList: string[], hasSugarSetting:boolean, isPrimary: boolean, foodTypes:FoodType[]) {
-    this.id= id;
+  constructor(name: string) {
+    this.id = "";
     this.name = name;
-    this.servingList = servingList;
-    this.hasSugarSetting = hasSugarSetting;
-    this.isPrimary = isPrimary;
-    this.foodTypes = foodTypes;
+    this.servingsList = "";
+    this.sugar = null;
+    this.primary = null;
+    this.foodTypes = [];
   }
-
- 
 }
