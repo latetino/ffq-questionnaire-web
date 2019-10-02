@@ -5,6 +5,8 @@ import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {FFQItemCalcRequest} from '../../models/ffqitem-calc-request';
 import { FFQFoodNutrientsResponse } from 'src/app/models/ffqfoodnutrients-response';
+import { FFQFoodItem } from 'src/app/models/ffqfooditem';
+import { ɵangular_packages_forms_forms_q } from '@angular/forms';
 
 const httOptions ={ headers: new HttpHeaders({'Content-Type':'aplication/json'})}
 
@@ -18,11 +20,14 @@ export class FoodItemService {
 
   constructor(private http: HttpClient) { }  
 
-  /* Return a specific food item (by name) and its list of nutrients*/
-  getFoodbyName(name: string): Observable<FFQFoodNutrientsResponse> {
-    return this.http.get(this.endpoint + '/foodNutrients/' + name).pipe(
-      map(((item: FFQFoodNutrientsResponse) => {
-          return item;
+  /* Return a specific food item (by object id) and its list of nutrients*/
+  getFoodbyName(objectId: string): Observable<FFQFoodNutrientsResponse> {
+    return this.http.get(this.endpoint + '/foodnutrients/' + objectId).pipe(
+      map(((item: any) => {
+          return new FFQFoodNutrientsResponse(
+            item.foodItem,
+            item.nutrientList
+          );
         })));
   }
 
