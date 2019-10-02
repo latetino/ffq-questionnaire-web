@@ -1,10 +1,4 @@
-<div class="header">
-  <h2 matDialogTitle>FFQR Admin Portal</h2>
-  <div align="center"><i style="color: aliceblue" class="fa fa-cog fa-2x" aria-hidden="true"></i></div>
-  <button class="tablink" routerLink='/admin'>Food item list</button>
-  <button class="tablink" routerLink="/admin">View results</button>
-  <button class="tablink" routerLink="/admin">View recomendations</button>
-</div>
+<admin-header></admin-header>
 
 <div class="container_page" *ngIf="dataLoaded">
   <div class="container frame-fooditem">    
@@ -14,22 +8,18 @@
           <label> Name </label>
           <input required type="text" class="form-control" [(ngModel)]="foodNutrientsItem[0].foodItem.name" />
         </div> 
-        <div class="form-group col-12">
+        <div class="form-group col-3">
           <input type="checkbox" required [(ngModel)]="foodNutrientsItem[0].foodItem.primary" id="isPrimary"/>
           <label class="form-check-label" for="isPrimary"> Is Primary? </label>
         </div>        
-        <div class="form-group col-4">  
+        <div class="form-group col-3">  
           <label></label>        
-          <input type="checkbox" id="additionalSugar" [(ngModel)]="foodNutrientsItem[0].foodItem.sugar.additionalSugar">
+          <input type="checkbox" id="additionalSugar" [(ngModel)] = foodNutrientsItem[0].foodItem.sugar.additionalSugar>
           <label for="additionalSugar"> Additional Sugar </label>          
         </div>
-        <div class="form-group col-4">
-          <label> Teaspoon(s) </label>
-          <input type="text" class="form-control"/>
-        </div>
-        <div class="col-4">
+        <div class="col-12">
           <label> Servings </label>
-          <input type="text" class="form-control"/>
+          <input type="text" class="form-control" [(ngModel)] = foodNutrientsItem[0].foodItem.servingsList/>
         </div>
       </div>
       <hr>
@@ -131,8 +121,8 @@
       </div>
       <!-- END nutrients fifth row -->
   </div>
+  <div class="container" align="right">
+      <button type="submit" class="btn btn-primary col-3 margin" (click)="submit()"> Update </button>
+  </div>
 </div>
 
-<div class="container">
-  <button type="submit" class="btn btn-primary col-3 margin"> Add/Update </button>
-</div>
