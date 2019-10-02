@@ -11,14 +11,14 @@
 <div class="container mt-3">
     <table class="table table-bordered table-inverse ">
         <tr>
-            <th> Food item name</th>
-            <th> Primary</th>
+            <th> Food Item Name</th>
+            <th> Primary </th>
         </tr>
         <tr *ngFor="let item of foodNutrients">
             <td>
-                <a [routerLink]="['/admin/fooditem', item.fooditem.id]">{{item.fooditem.name}}</a>
+                <a [routerLink]="['/admin/fooditem', item.foodItem.id]">{{item.foodItem.name}}</a>
             </td>
-            <td>{{item.fooditem.primary}}</td>
+            <td>{{item.foodItem.primary}}</td>
         </tr>
     </table>
 </div>

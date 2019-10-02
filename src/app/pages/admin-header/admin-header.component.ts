@@ -1,7 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import { RouterModule } from '@angular/router';
-import {header} from '../../../assets/header.js';
 
 @Component({
   selector: 'admin-header',
