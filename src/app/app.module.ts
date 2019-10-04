@@ -22,6 +22,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { FooditemComponent } from './pages/fooditem/fooditem.component';
 import{ ReactiveFormsModule} from '@angular/forms';
 import { AdminHeaderComponent } from './pages/admin-header/admin-header.component';
+import { QuestResultsComponent } from './pages/quest-results/quest-results.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { AdminHeaderComponent } from './pages/admin-header/admin-header.componen
     ResultsPageComponent,
     AdminPageComponent,
     FooditemComponent,
-    AdminHeaderComponent
+    AdminHeaderComponent,
+    QuestResultsComponent
   ],
   imports: [
     BrowserModule,
