@@ -23,6 +23,7 @@ import { FooditemComponent } from './pages/fooditem/fooditem.component';
 import{ ReactiveFormsModule} from '@angular/forms';
 import { AdminHeaderComponent } from './pages/admin-header/admin-header.component';
 import { QuestResultsComponent } from './pages/quest-results/quest-results.component';
+import { RecommendComponent } from './pages/recommend/recommend.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { QuestResultsComponent } from './pages/quest-results/quest-results.compo
     AdminPageComponent,
     FooditemComponent,
     AdminHeaderComponent,
-    QuestResultsComponent
+    QuestResultsComponent,
+    RecommendComponent
   ],
   imports: [
     BrowserModule,

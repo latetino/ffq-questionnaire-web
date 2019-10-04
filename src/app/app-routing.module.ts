@@ -6,6 +6,7 @@ import {QuestIdInputComponent} from './pages/quest-id-input-page/quest-id-input.
 import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 import {FooditemComponent} from './pages/fooditem/fooditem.component';
 import { QuestResultsComponent } from './pages/quest-results/quest-results.component';
+import { RecommendComponent } from './pages/recommend/recommend.component';
 
 const routes: Routes = [
   {
@@ -20,7 +21,10 @@ const routes: Routes = [
   {
     path: 'quest-results', component:  QuestResultsComponent
   },
-    {
+  {
+    path: 'recommend', component:   RecommendComponent
+  },
+  {
     path: '', redirectTo: 'questionnaire-id', pathMatch: 'full'
   },
   {
