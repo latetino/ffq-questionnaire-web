@@ -24,6 +24,8 @@ import{ ReactiveFormsModule} from '@angular/forms';
 import { AdminHeaderComponent } from './pages/admin-header/admin-header.component';
 import { QuestResultsComponent } from './pages/quest-results/quest-results.component';
 import { RecommendComponent } from './pages/recommend/recommend.component';
+import {PopupComponent} from "./components/popup/popup.component";
+
 
 
 @NgModule({
@@ -39,7 +41,10 @@ import { RecommendComponent } from './pages/recommend/recommend.component';
     FooditemComponent,
     AdminHeaderComponent,
     QuestResultsComponent,
-    RecommendComponent
+    RecommendComponent,
+    PopupComponent
+  
+    
   ],
   imports: [
     BrowserModule,
@@ -59,10 +64,11 @@ import { RecommendComponent } from './pages/recommend/recommend.component';
     HttpClientModule,
     NgbModule,
     AngularFontAwesomeModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [ErrorDialogPopupComponent, ResultsPageComponent]
+  entryComponents: [ErrorDialogPopupComponent, ResultsPageComponent,PopupComponent]
 })
 export class AppModule { }

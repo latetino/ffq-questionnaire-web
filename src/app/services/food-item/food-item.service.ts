@@ -65,4 +65,8 @@ export class FoodItemService {
     ));
   }
 
+  deleteFoodItem(id:string){
+
+  }
+
 }

@@ -6,19 +6,19 @@
 <br/>
 <br/>
 <div class="container color-button">
-        <button  routerLink='/admin/fooditem' type="submit" class="btn btn-success col-3">Add Food Item</button>
+        <button  routerLink='/admin/fooditem' type="submit" class="btn btn-primary col-3">Add Food Item</button>
 </div>
 <div class="container mt-3">
     <table class="table table-bordered table-inverse ">
         <tr>
             <th> Food Item Name</th>
-            <th> Primary </th>
+            <th> Delete </th>
         </tr>
         <tr *ngFor="let item of foodNutrients">
             <td>
                 <a [routerLink]="['/admin/fooditem', item.foodItem.id]">{{item.foodItem.name}}</a>
             </td>
-            <td>{{item.foodItem.primary}}</td>
+            <td><button class="button button3" (click)="onModalRequest()"><span class="fa fa-trash"></span></button></td>
         </tr>
     </table>
 </div>
