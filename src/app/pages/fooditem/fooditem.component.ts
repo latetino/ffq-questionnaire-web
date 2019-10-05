@@ -10,6 +10,7 @@ import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angula
 import { Subscription } from 'rxjs/internal/Subscription';
 import { FFQFoodNutrients } from 'src/app/models/ffqfoodnutrients';
 
+// fooditem page added by Daykel Muro 10/2/2019
 @Component({
   selector: 'app-fooditem',
   templateUrl: './fooditem.component.html',
