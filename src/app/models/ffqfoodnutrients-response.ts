@@ -10,8 +10,6 @@ export class FFQFoodNutrientsResponse {
     constructor(fooditem:FFQFoodItem, nutrientlist: FFQNutrientlist) {
       this.foodItem = fooditem;
       this.nutrientList = nutrientlist;
-    }
-
-    
+    }    
   }
   
