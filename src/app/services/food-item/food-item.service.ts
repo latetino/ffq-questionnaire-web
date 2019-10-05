@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {FFQItemResponse} from '../../models/ffqitem-response';
 import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {map, tap} from 'rxjs/operators';
 import {FFQItemCalcRequest} from '../../models/ffqitem-calc-request';
 import { FFQFoodNutrientsResponse } from 'src/app/models/ffqfoodnutrients-response';
 import { FFQFoodItem } from 'src/app/models/ffqfooditem';
@@ -18,7 +18,15 @@ export class FoodItemService {
 
   endpoint = 'http://localhost:9090/ffq';
 
-  constructor(private http: HttpClient) { }  
+  constructor(private http: HttpClient) { } 
+
+  addFoodNutrients(fooditem : FFQFoodNutrientsResponse): Observable<any> {
+    return this.http.post(this.endpoint + '/createfoodnutrients', fooditem).pipe(
+      tap( 
+        data => console.log(data),
+        error => console.log(error)
+      ));
+  }
 
   /* Return a specific food item (by object id) and its list of nutrients*/
   getFoodbyName(objectId: string): Observable<FFQFoodNutrientsResponse> {

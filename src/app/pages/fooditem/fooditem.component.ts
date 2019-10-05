@@ -49,6 +49,12 @@ export class FooditemComponent implements OnInit {
     });
     this.dataLoaded = Promise.resolve(true);
   }
+
+  private addFoodNutrients(){
+    this.foodService.addFoodNutrients(this.foodNutrientsItem[0]).subscribe(
+      data => this.router.navigateByUrl('/admin')
+    );
+  }
 }
 
 

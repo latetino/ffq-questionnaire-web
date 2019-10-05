@@ -27,14 +27,16 @@ export class FFQFoodNutrients {
             fooditem.sugar = sugar;
         }
 
-        var servingsString = "";
+        /*var servingsString = "";
 
         for (var serving  of response.foodItem.servingsList){
             console.log(serving['servingName']);
             servingsString += serving['servingName'] + ", ";
         }
 
-        fooditem.servingsList = servingsString;
+        fooditem.servingsList = servingsString;*/
+
+        fooditem.servingsList = response.foodItem.servingsList;
 
         const foodnutrients = new FFQFoodNutrients(fooditem, response.nutrientList);
 
