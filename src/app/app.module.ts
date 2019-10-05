@@ -22,6 +22,10 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { FooditemComponent } from './pages/fooditem/fooditem.component';
 import{ ReactiveFormsModule} from '@angular/forms';
 import { AdminHeaderComponent } from './pages/admin-header/admin-header.component';
+import { QuestResultsComponent } from './pages/quest-results/quest-results.component';
+import { RecommendComponent } from './pages/recommend/recommend.component';
+import {PopupComponent} from "./components/popup/popup.component";
+
 
 
 @NgModule({
@@ -35,7 +39,12 @@ import { AdminHeaderComponent } from './pages/admin-header/admin-header.componen
     ResultsPageComponent,
     AdminPageComponent,
     FooditemComponent,
-    AdminHeaderComponent
+    AdminHeaderComponent,
+    QuestResultsComponent,
+    RecommendComponent,
+    PopupComponent
+  
+    
   ],
   imports: [
     BrowserModule,
@@ -55,10 +64,11 @@ import { AdminHeaderComponent } from './pages/admin-header/admin-header.componen
     HttpClientModule,
     NgbModule,
     AngularFontAwesomeModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [ErrorDialogPopupComponent, ResultsPageComponent]
+  entryComponents: [ErrorDialogPopupComponent, ResultsPageComponent,PopupComponent]
 })
 export class AppModule { }
