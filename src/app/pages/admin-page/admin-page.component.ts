@@ -28,6 +28,7 @@ export class AdminPageComponent implements OnInit {
     private router: Router,
     private modalService: NgbModal) { }
 
+
   foodNutrients: FFQFoodNutrientsResponse[] = [];
   dataLoaded: Promise<boolean>;
 
