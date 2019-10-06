@@ -28,12 +28,10 @@ export class FFQFoodNutrients {
         }
 
         /*var servingsString = "";
-
         for (var serving  of response.foodItem.servingsList){
             console.log(serving['servingName']);
             servingsString += serving['servingName'] + ", ";
         }
-
         fooditem.servingsList = servingsString;*/
 
         fooditem.servingsList = response.foodItem.servingsList;
