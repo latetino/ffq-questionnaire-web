@@ -9,6 +9,8 @@ import { FFQFoodItem } from 'src/app/models/ffqfooditem';
 import { ɵangular_packages_forms_forms_q } from '@angular/forms';
 import { Http, Headers, Response, RequestOptions, RequestMethod } from '@angular/http';
 
+//Modified by Daykel Muro and Dariana Gonzalez on 10/5/2019
+
 const httOptions ={ headers: new HttpHeaders({'Content-Type':'aplication/json'})}
 
 @Injectable({
@@ -18,6 +20,7 @@ const httOptions ={ headers: new HttpHeaders({'Content-Type':'aplication/json'})
 export class FoodItemService {
 
   endpoint = 'http://localhost:9090/ffq';
+
 
   constructor(private http: HttpClient) { } 
 
@@ -75,8 +78,11 @@ export class FoodItemService {
     ));
   }
 
-  deleteFoodItem(id:string){
-
+  /*DELETE: delete food item from the database */
+  deleteFoodItem(objectId: string): Observable <any>{
+    console.log("here" + objectId);
+    return this.http.delete(this.endpoint + "/delete?id=" + objectId)
+  
   }
 
 }

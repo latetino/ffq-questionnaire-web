@@ -37,8 +37,7 @@ export class AdminPageComponent implements OnInit {
     this.loadFoodsAndNutrients();
     console.log(this.foodNutrients);
   }
-  template: '<button (click)="onModalRequest()">Open Modal</button>'
-  
+   
   private handleFoodServiceError(error: HttpErrorResponse) {
     console.error('Error occurred.\n' + error.message);
     const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
@@ -61,23 +60,9 @@ export class AdminPageComponent implements OnInit {
   }
 
 
-  onModalRequest(): void {
+  onModalRequest(id: string): void {
     const modalRef = this.modalService.open(PopupComponent);
-
-    modalRef.result.then((result) => {
-      console.log(result);
-      console.log('closed');
-    }).catch((result) => {
-      console.log(result);
-      console.log('cancelling');
-    });
+    modalRef.componentInstance.id = id;
   }
-
-
-
-  delFoodItem(id: string): void {
-
-  }
-
 }
 

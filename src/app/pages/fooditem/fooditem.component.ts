@@ -13,6 +13,7 @@ import { FFQFoodItem } from 'src/app/models/ffqfooditem';
 import { FFQNutrientlist } from 'src/app/models/ffqnutrientlist';
 import { NutrientConstants } from 'src/app/models/NutrientConstants';
 
+// fooditem page added by Daykel Muro 10/2/2019
 @Component({
   selector: 'app-fooditem',
   templateUrl: './fooditem.component.html',
