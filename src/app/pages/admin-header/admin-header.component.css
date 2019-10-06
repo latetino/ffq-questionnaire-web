@@ -3,12 +3,21 @@ h2 {
   color: aliceblue;
 }
 
+a {
+  text-decoration: none;
+}
+
 .header{
   background-color: #3f51b5;
   width: 100%;
   height: auto;
   position: fixed;
   z-index: 9999;
+  padding-top: 10px;
+}
+
+.links{
+  padding-top: 22px;
 }
 
 body, html {
@@ -19,23 +28,27 @@ body, html {
 
 /* Style tab links */
 .tab-link {
-  background-color: rgb(149, 67, 156);
+  margin-top: 10px;
+  background-color: #6573C3;
   color: white;
   float: left;
   border: none;
   outline: none;
   cursor: pointer;
-  padding: 14px 16px;
+  padding: 10px 16px;
   font-size: 17px;
-  width: 33.3%;
+  width: 33.33%;
   text-align:center;
 }
+
 .active{
-  background-color: #a03860;
+  background-color: #2C387E;
   color: white;
 }
 .tab-link:hover {
-  background-color: #3f51b5;
+  background-color: #B2B9E1;
+  color: #2C387E;
+  font-weight: bold;
 }
 
 /* Style the tab content (and add height:100% for full page content) */
