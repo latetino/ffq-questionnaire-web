@@ -13,7 +13,7 @@
             <td>
                 <a [routerLink]="['/admin/fooditem', item.foodItem.id]">{{item.foodItem.name}}</a>
             </td>
-            <td><div align="center"><a (click)="onModalRequest()"><span class="fa fa-trash"></span></a></div></td>
+            <td><div align="center"><a (click)="onModalRequest(item.foodItem.id)"><span class="fa fa-trash"></span></a></div></td>
         </tr>
         </table>
     </div>
