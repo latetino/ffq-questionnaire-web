@@ -17,7 +17,6 @@ export class PopupComponent {
 
     onClose(): void {
         console.log(this.id)
-        
         this.foodService.deleteFoodItem(this.id).subscribe((data)=>{
             console.log("success");
        });
