@@ -56,6 +56,24 @@ h2 {
     white-space: nowrap;
     overflow: hidden;
   }
+
+  ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: lightgrey;
+    opacity: 1; /* Firefox */
+    font-style: italic;
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: lightgrey;
+    opacity: 1; /* Firefox */
+    font-style: italic;
+  }
+  
+  ::-ms-input-placeholder { /* Microsoft Edge */
+    color: lightgrey;
+    opacity: 1; /* Firefox */
+    font-style: italic;
+  }
   
   
   

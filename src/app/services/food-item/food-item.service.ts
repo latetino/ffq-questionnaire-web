@@ -7,6 +7,7 @@ import {FFQItemCalcRequest} from '../../models/ffqitem-calc-request';
 import { FFQFoodNutrientsResponse } from 'src/app/models/ffqfoodnutrients-response';
 import { FFQFoodItem } from 'src/app/models/ffqfooditem';
 import { ɵangular_packages_forms_forms_q } from '@angular/forms';
+import { Http, Headers, Response, RequestOptions, RequestMethod } from '@angular/http';
 
 const httOptions ={ headers: new HttpHeaders({'Content-Type':'aplication/json'})}
 
@@ -21,7 +22,8 @@ export class FoodItemService {
   constructor(private http: HttpClient) { } 
 
   addFoodNutrients(fooditem : FFQFoodNutrientsResponse): Observable<any> {
-    return this.http.post(this.endpoint + '/createfoodnutrients', fooditem).pipe(
+    
+    return this.http.post(this.endpoint + '/createfoodnutrients', fooditem, {headers : new HttpHeaders({ 'Content-Type': 'application/json' })}).pipe(
       tap( 
         data => console.log(data),
         error => console.log(error)
