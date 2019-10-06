@@ -1,19 +1,24 @@
 <admin-header></admin-header>
 <div class="container_page">
-    <div class="container  mt-3" align="right">
-        <button routerLink='/admin/fooditem/new' type="submit" class="btn btn-primary col-3">Add Food Item</button>
+    <div class="container mt-3" align="right">
+        <button routerLink='/admin/fooditem/new' type="submit" class="btn btn-success col-3"> New Food Item </button>
     </div>
     <div class="container mt-3">
-        <table class="table table-bordered table-inverse ">
+        <span>{{foodNutrients.length}} food item(s)</span>
+        <table class="table table-bordered table-inverse">
         <tr>
-            <th> Food Item Name</th>
-            <th> Delete </th>
+            <th> Food Item Name </th>
+            <th> Nutrient List Id </th>
+            <th><div align="center"> Delete </div></th>
         </tr>
         <tr *ngFor="let item of foodNutrients">
-            <td>
-                <a [routerLink]="['/admin/fooditem', item.foodItem.id]">{{item.foodItem.name}}</a>
+            <td width="75%">
+                <a [routerLink]="['/admin/fooditem', item.foodItem.id]"> {{item.foodItem.name}} </a>
             </td>
-            <td><div align="center"><a (click)="onModalRequest(item.foodItem.id)"><span class="fa fa-trash"></span></a></div></td>
+            <td width="15%">
+                <div align="center"><span>{{item.foodItem.foodTypes[0].nutrientListID}}</span></div>
+            </td>
+            <td width="10%"><div align="center"><a (click)="onModalRequest(item.foodItem.id)"><span class="fa fa-trash"></span></a></div></td>
         </tr>
         </table>
     </div>
