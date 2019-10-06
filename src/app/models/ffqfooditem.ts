@@ -1,7 +1,8 @@
 import {FFQItemInput} from './ffqitem-input';
-import {FFQItemResponse, FoodType} from './ffqitem-response';
+import {FFQItemResponse} from './ffqitem-response';
 import {Serving} from './ffqitem-response';
 import { FFQSugar } from './ffqsugar';
+import { ObjectUnsubscribedError } from 'rxjs';
 
 export class FFQFoodItem {
   id: string;
@@ -10,13 +11,26 @@ export class FFQFoodItem {
   sugar: FFQSugar;
   primary: boolean;
   foodTypes: FoodType[];
+  nutrientId: string;
 
   constructor(name: string) {
-    this.id = "";
     this.name = name;
-    this.servingsList = "";
+    this.servingsList = null;
     this.sugar = null;
     this.primary = null;
     this.foodTypes = [];
+    this.nutrientId = "";
+    const foodtype = new FoodType("","");
+    this.foodTypes.push(foodtype);
+  }
+}
+
+export class FoodType {
+  typeName: string;
+  nutrientListID: string;
+
+  constructor(typeName: string, nutrientListID: string){
+    this.typeName = "";
+    this.nutrientListID = "";
   }
 }

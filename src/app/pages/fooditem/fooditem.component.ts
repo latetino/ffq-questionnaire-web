@@ -9,6 +9,9 @@ import { FFQFoodNutrientsResponse } from 'src/app/models/ffqfoodnutrients-respon
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { FFQFoodNutrients } from 'src/app/models/ffqfoodnutrients';
+import { FFQFoodItem } from 'src/app/models/ffqfooditem';
+import { FFQNutrientlist } from 'src/app/models/ffqnutrientlist';
+import { NutrientConstants } from 'src/app/models/NutrientConstants';
 
 // fooditem page added by Daykel Muro 10/2/2019
 @Component({
@@ -20,6 +23,8 @@ export class FooditemComponent implements OnInit {
 
   TITLE = 'FFQR Food Item Portal';
   private routeSub: Subscription;
+  private isNew: boolean;
+  private isUpdate: boolean;
 
   constructor(
     public foodService: FoodItemService,
@@ -35,13 +40,44 @@ export class FooditemComponent implements OnInit {
   foodNutrientsItem: FFQFoodNutrientsResponse[] = [];
   dataLoaded: Promise<boolean>;
 
+  ffqfoditem: FFQFoodItem;
+  ffqnutrientlist: FFQNutrientlist;
+  foodNutrientsResponse: FFQFoodNutrientsResponse;
+  ffqfoodnutrients: FFQFoodNutrients;
+
   ngOnInit() {
 
-    const getFoodByObjectId = this.route.snapshot.paramMap.get('id');
+    const FoodItemObjectId = this.route.snapshot.paramMap.get('id');
 
-    this.getFoodByObjectId(getFoodByObjectId);
+    if (FoodItemObjectId == "new"){
+      console.log("This is new");
+      this.isNew = true;
 
-    console.log(this.foodNutrientsItem);
+      this.ffqfoditem = new FFQFoodItem("");
+      this.ffqnutrientlist = new FFQNutrientlist("");
+      this.ffqnutrientlist.nutrientListID = "test";
+
+      //this.ffqnutrientlist.nutrientMap = new Map<String, number>();
+
+      //for (var nutrient  of NutrientConstants.NUTRIENT_NAMES){
+        //this.ffqnutrientlist.nutrientMap.set(nutrient,0);
+      //}
+
+      console.log(this.ffqnutrientlist.nutrientMap);
+      this.foodNutrientsResponse = new FFQFoodNutrientsResponse(this.ffqfoditem, this.ffqnutrientlist);
+      this.ffqfoodnutrients = FFQFoodNutrients.foodItemFromResponse(this.foodNutrientsResponse);
+      console.log(this.ffqfoodnutrients);
+
+      this.foodNutrientsItem.push(this.ffqfoodnutrients);
+      this.dataLoaded = Promise.resolve(true);
+
+    }
+    else{
+      this.isUpdate = true;
+      this.getFoodByObjectId(FoodItemObjectId);
+
+      console.log(this.foodNutrientsItem);
+    }
   }
 
   private getFoodByObjectId(name: string) {
@@ -51,10 +87,16 @@ export class FooditemComponent implements OnInit {
     this.dataLoaded = Promise.resolve(true);
   }
 
-  private addFoodNutrients(){
+  private addFoodNutrients(){    
+    this.foodNutrientsItem[0].nutrientList.nutrientListID = this.foodNutrientsItem[0].foodItem.foodTypes[0].nutrientListID;
+    this.foodNutrientsItem[0].foodItem.nutrientId = this.foodNutrientsItem[0].foodItem.foodTypes[0].nutrientListID;
     this.foodService.addFoodNutrients(this.foodNutrientsItem[0]).subscribe(
       data => this.router.navigateByUrl('/admin')
     );
+  }
+
+  trackByFn(item, id){
+    return item
   }
 }
 
