@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ResultsService } from 'src/app/services/results/results';
+import { FFQResultsResponse } from 'src/app/models/ffqresultsresponse';
 
 // Questionnaire reesults page added by Daykel Muro 09/30/2019
 @Component({
@@ -8,9 +10,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuestResultsComponent implements OnInit {
 
-  constructor() { }
+  results: FFQResultsResponse[] = [];
+
+  constructor(public resultsService: ResultsService
+
+  ) { }
 
   ngOnInit() {
+    this.getAllResults();
+    console.log(this.results);
+
+  }
+
+  private getAllResults() {
+    this.resultsService.getAllResults().subscribe(data => {
+      data.map(response => {
+        this.results.push(response);
+      });
+      console.log(this.results.length + ' foods and its nutrients were returned from server.');
+      //this.dataLoaded = Promise.resolve(true);
+    });
   }
 
 }
