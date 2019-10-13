@@ -3,6 +3,17 @@
     <text-card mainMessage="{{MAIN_MESSAGE}}" [bulletedMessages]="BULLETED_INSTRUCTIONS" [instructionsTitle]="INSTRUCTIONS_TITLE"></text-card>
     <br>
     <!--Question block per food item before button-->
+   
+    <div class="qb-container">
+      <mat-card class="qb-card">
+            <mat-label style="text-align:center" class="qb-row-item"><strong>Infant age</strong></mat-label>
+            <input class="quest-id-textfield"
+                   type= "number"
+                   placeholder= " In months "
+                   autocomplete="off" required>
+      </mat-card>
+    </div>
+        
     <div *ngFor="let item of foodItems">
       <question-block *ngIf="item.isPrimary" [foodItem]=item></question-block>
     </div>

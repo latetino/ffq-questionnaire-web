@@ -18,6 +18,7 @@ import { PopupComponent } from 'src/app/components/popup/popup.component';
 export class AdminPageComponent implements OnInit {
 
   TITLE = 'FFQR Admin Portal';
+ 
 
   constructor(public foodService: FoodItemService,
     private activatedRoute: ActivatedRoute,
@@ -36,7 +37,7 @@ export class AdminPageComponent implements OnInit {
   ngOnInit() {
     this.loadFoodsAndNutrients();
     console.log(this.foodNutrients);
-  }
+   }
    
   private handleFoodServiceError(error: HttpErrorResponse) {
     console.error('Error occurred.\n' + error.message);
@@ -64,5 +65,6 @@ export class AdminPageComponent implements OnInit {
     const modalRef = this.modalService.open(PopupComponent);
     modalRef.componentInstance.id = id;
   }
+  
 }
 
