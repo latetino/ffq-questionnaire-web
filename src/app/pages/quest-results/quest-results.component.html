@@ -5,7 +5,11 @@
 <br/>
 <br/>
 <br/>
-<!--Questionnaire results added by Daykel Muro  on 09/30/2019-->
-<div>
-  <h1> Questionnaire results goes here!</h1>
-</div>
+<!--Questionnaire results added by Daykel Muro  on 09/30/2019 MOdified 10/13/2019-->
+<div class="container_page">  
+    <mat-card  class="quest-id-card">
+      <mat-card-content>
+        <div *ngFor="let result of results"> {{result.questionnaireId}} </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
