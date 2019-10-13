@@ -119,6 +119,7 @@ export class QuestionnairePageComponent implements OnInit {
                 console.log('Nutrient: ' + nutrient + ', Weekly Value: ' + weeklyValue);
                 weeklyMap.set(nutrient, weeklyValue);
               }
+              console.log(this.infantage);
             }
             const ffqResult = new FFQResult(dailyMap, weeklyMap);
             /*
