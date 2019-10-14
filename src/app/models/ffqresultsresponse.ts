@@ -10,6 +10,7 @@ export class FFQResultsResponse {
     userChoices: any;
     weeklyTotals: any;  
     dailyAverages: any;
+  show: boolean;
   
     constructor(id: string, name: string, age: number, userChoices:any, weeklyTotals: any, dailyAverages: any ) {
       this.questionnaireId = id;

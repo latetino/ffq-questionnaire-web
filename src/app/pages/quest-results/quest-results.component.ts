@@ -9,8 +9,10 @@ import { FFQResultsResponse } from 'src/app/models/ffqresultsresponse';
   styleUrls: ["./quest-results.component.css"]
 })
 export class QuestResultsComponent implements OnInit {
-  public show: boolean = false;
-  public buttonName: any = "Show";
+
+   public show:boolean = false;
+
+  
   MESSAGE = "No questionnaires have been submitted yet!";
 
   results: FFQResultsResponse[] = [];
@@ -19,7 +21,7 @@ export class QuestResultsComponent implements OnInit {
 
   ngOnInit() {
     this.getAllResults();
-  }
+    }
 
   private getAllResults() {
     this.resultsService.getAllResults().subscribe(data => {
@@ -33,11 +35,10 @@ export class QuestResultsComponent implements OnInit {
       //this.dataLoaded = Promise.resolve(true);
     });
   }
-  toggle() {
-    this.show = !this.show;
+  toggle(index) {
+    console.log("helloooo" + this.results[index]);
+    this.results[index].show = !this.results[index].show;
 
-    // CHANGE THE NAME OF THE BUTTON.
-    if (this.show) this.buttonName = "Hide";
-    else this.buttonName = "Show";
+    
   }
 }
