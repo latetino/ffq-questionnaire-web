@@ -11,6 +11,7 @@ import { FFQResultsResponse } from 'src/app/models/ffqresultsresponse';
 export class QuestResultsComponent implements OnInit {
 
    public show:boolean = false;
+   public buttonName:any = 'Show results';
 
   
   MESSAGE = "No questionnaires have been submitted yet!";
@@ -36,9 +37,11 @@ export class QuestResultsComponent implements OnInit {
     });
   }
   toggle(index) {
-    console.log("helloooo" + this.results[index]);
+    
     this.results[index].show = !this.results[index].show;
 
-    
+    // CHANGE THE NAME OF THE BUTTON.
+    if (this.results[index].show) this.buttonName = "Hide results";
+    else this.buttonName = "Show results ";
   }
 }
