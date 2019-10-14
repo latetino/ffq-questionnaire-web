@@ -93,6 +93,7 @@ export class FooditemComponent implements OnInit {
     this.foodService.addFoodNutrients(this.foodNutrientsItem[0]).subscribe(
       data => this.router.navigateByUrl('/admin')
     );
+
   }
 
   trackByFn(item, id){

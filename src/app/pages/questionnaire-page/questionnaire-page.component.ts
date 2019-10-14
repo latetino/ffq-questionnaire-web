@@ -34,6 +34,7 @@ export class QuestionnairePageComponent implements OnInit {
     'Click the submit button when finished.'
   ];
   id: string;
+  infantage: number;
   questionnaire: QuestionnaireResponse;
   hideSecondaryItems = false;
   dataLoaded: Promise<boolean>;
@@ -103,7 +104,7 @@ export class QuestionnairePageComponent implements OnInit {
         }
       }
      
-      this.foodService.calculateNutrientBreakdown(this.id,itemList)
+      this.foodService.calculateNutrientBreakdown(this.id, this.infantage, itemList)
         .subscribe( (results) => {
             console.log(results);
             const dailyMap: Map<string, number> = new Map();
@@ -118,6 +119,7 @@ export class QuestionnairePageComponent implements OnInit {
                 console.log('Nutrient: ' + nutrient + ', Weekly Value: ' + weeklyValue);
                 weeklyMap.set(nutrient, weeklyValue);
               }
+              console.log(this.infantage);
             }
             const ffqResult = new FFQResult(dailyMap, weeklyMap);
             /*

@@ -28,6 +28,7 @@ import {PopupComponent} from "./components/popup/popup.component";
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,8 +43,8 @@ import {PopupComponent} from "./components/popup/popup.component";
     AdminHeaderComponent,
     QuestResultsComponent,
     RecommendComponent,
-    PopupComponent
-  
+    PopupComponent,
+   
     
   ],
   imports: [
