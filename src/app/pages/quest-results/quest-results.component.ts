@@ -10,7 +10,7 @@ import { FFQResultsResponse } from "src/app/models/ffqresultsresponse";
 })
 export class QuestResultsComponent implements OnInit {
   public show: boolean = false;
-  public buttonName: any = "Show results";
+  public buttonName: any = "Results";
 
   MESSAGE = "No questionnaires have been submitted yet!";
 
@@ -36,9 +36,8 @@ export class QuestResultsComponent implements OnInit {
   }
   toggle(index) {
     this.results[index].show = !this.results[index].show;
-
     // CHANGE THE NAME OF THE BUTTON.
-    if (this.results[index].show) this.buttonName = "Hide results";
-    else this.buttonName = "Show results ";
+    if (this.results[index].show) this.buttonName = "Results";
+    else this.buttonName = "Results ";
   }
 }
