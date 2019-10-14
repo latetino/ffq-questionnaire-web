@@ -1,0 +1,13 @@
+.container_page{
+    padding-top: 140px;
+    margin-bottom: 50px;
+}
+ 
+.quest-results-card {
+    width: 60%;
+    display: inline-flex;
+    justify-content: center;
+    align-content: center;
+    padding: 50px;
+    height: 200px;
+  }
