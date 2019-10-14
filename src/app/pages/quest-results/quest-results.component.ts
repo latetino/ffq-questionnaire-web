@@ -10,6 +10,9 @@ import { FFQResultsResponse } from 'src/app/models/ffqresultsresponse';
 })
 export class QuestResultsComponent implements OnInit {
 
+  public show:boolean = false;
+  public buttonName:any = 'Show';
+
   results: FFQResultsResponse[] = [];
 
   constructor(public resultsService: ResultsService
@@ -30,6 +33,15 @@ export class QuestResultsComponent implements OnInit {
       console.log(this.results.length + ' foods and its nutrients were returned from server.');
       //this.dataLoaded = Promise.resolve(true);
     });
+  }
+  toggle() {
+    this.show = !this.show;
+
+    // CHANGE THE NAME OF THE BUTTON.
+    if(this.show)  
+      this.buttonName = "Hide";
+    else
+      this.buttonName = "Show";
   }
 
 }
