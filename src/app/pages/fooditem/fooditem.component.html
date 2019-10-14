@@ -1,45 +1,54 @@
 <admin-header></admin-header>
 
-<div class="container_page" *ngIf="dataLoaded"> 
-  <div class="container" style="margin-top: 15px;"><a routerLink="/admin"><span class="fa fa-chevron-circle-left"></span> Back to Food Item(s)</a></div>
+<div class="container_page" *ngIf="dataLoaded">
+  <div class="container" style="margin-top: 15px;"><a routerLink="/admin"><span
+        class="fa fa-chevron-circle-left"></span> Back to Food Item(s)</a></div>
   <div *ngIf="isUpdate" class="container mt-3" align="right">
     <button type="submit" class="btn btn-primary col-3 margin" (click)="addFoodNutrients()"> Update Food Item </button>
   </div>
   <div *ngIf="isNew" class="container mt-3" align="right">
     <button type="submit" class="btn btn-primary col-3 margin" (click)="addFoodNutrients()"> Add Food Item </button>
-  </div>   
-  <div class="container frame-fooditem">           
-      <h6> Food Item </h6>        
-      <div class="row"> 
-        <div class="form-group col-8">
-          <label> Name </label>
-          <input placeholder="name" required type="text" class="form-control" [(ngModel)]="foodNutrientsItem[0].foodItem.name" />
-        </div> 
-        <div class="form-group col-4">
-          <label> Nutrient Id </label>
-          <input placeholder="nutrient id" required type="text" class="form-control" [(ngModel)]="foodNutrientsItem[0].foodItem.foodTypes[0].nutrientListID" />
-        </div>
-        <div class="form-group col-3 form-check" style="margin-left: 20px">
-          <input class="form-check-input" type="checkbox" [(ngModel)]="foodNutrientsItem[0].foodItem.primary" id="isPrimary"/>
-          <label class="form-check-label" for="isPrimary"> Is Primary? </label>
-        </div>        
-        <div class="form-group col-3 form-check">      
-          <input class="form-check-input" type="checkbox" [(ngModel)] = "foodNutrientsItem[0].foodItem.sugar.additionalSugar" id="additionalSugar">
-          <label class="form-check-label" for="additionalSugar"> Additional Sugar </label>          
-        </div>
-        <div class="col-12">
-          <label> Servings (Must be added...) </label>
-          <input placeholder="servings" type="text" class="form-control" [(ngModel)] = foodNutrientsItem[0].foodItem.servingsList/>
-        </div>
+  </div>
+  <div class="container frame-fooditem">
+    <h6> Food Item </h6>
+    <div class="row">
+      <div class="form-group col-8">
+        <label> Name </label>
+        <input placeholder="name" required type="text" class="form-control"
+          [(ngModel)]="foodNutrientsItem[0].foodItem.name" />
       </div>
-      <hr>
-      <h6>Nutrients</h6>      
-      <div class="row" *ngFor="let nutrient of foodNutrientsItem[0].nutrientList.nutrientMap | keyvalue; let i = index; trackBy: trackByFn" style="padding:5px">
-        <div class="col-1"></div>
-        <div class="col-5"><span class="slide">{{nutrient.key}}</span></div>
-        <div class="col-3"><input style="text-align: right" type="number" class="form-control" required [(ngModel)]="foodNutrientsItem[0].nutrientList.nutrientMap[nutrient.key]"/></div>
-      </div> 
-      <!-- nutrients first row 
+      <div class="form-group col-4">
+        <label> Nutrient Id </label>
+        <input placeholder="nutrient id" required type="text" class="form-control"
+          [(ngModel)]="foodNutrientsItem[0].foodItem.foodTypes[0].nutrientListID" />
+      </div>
+      <div class="form-group col-3 form-check" style="margin-left: 20px">
+        <input class="form-check-input" type="checkbox" [(ngModel)]="foodNutrientsItem[0].foodItem.primary"
+          id="isPrimary" />
+        <label class="form-check-label" for="isPrimary"> Is Primary? </label>
+      </div>
+      <div class="form-group col-3 form-check">
+        <input class="form-check-input" type="checkbox"
+          [(ngModel)]="foodNutrientsItem[0].foodItem.sugar.additionalSugar" id="additionalSugar">
+        <label class="form-check-label" for="additionalSugar"> Additional Sugar </label>
+      </div>
+      <div class="col-12">
+        <label> Servings (Must be added...) </label>
+        <input placeholder="servings" type="text" class="form-control"
+          [(ngModel)]=foodNutrientsItem[0].foodItem.servingsList />
+      </div>
+    </div>
+    <hr>
+    <h6>Nutrients</h6>
+    <div class="row"
+      *ngFor="let nutrient of foodNutrientsItem[0].nutrientList.nutrientMap | keyvalue; let i = index; trackBy: trackByFn"
+      style="padding:5px">
+      <div class="col-1"></div>
+      <div class="col-5"><span class="slide">{{nutrient.key}}</span></div>
+      <div class="col-3"><input style="text-align: right" type="number" class="form-control" required
+          [(ngModel)]="foodNutrientsItem[0].nutrientList.nutrientMap[nutrient.key]" /></div>
+    </div>
+    <!-- nutrients first row 
       <div class="row">         
         <div class="form-group col-3">
           <label>Retinol (mcg)</label>
@@ -59,7 +68,7 @@
         </div>
       </div>
       <!-- END nutrients first row -->
-      <!-- nutrients second row 
+    <!-- nutrients second row 
       <div class="row">
         <div class="form-group col-3">
           <label>Vit (ascorbic acid) C (mg)</label>
@@ -79,7 +88,7 @@
         </div>
       </div>
       <!-- END nutrients second row -->
-      <!-- nutrients third row 
+    <!-- nutrients third row 
       <div class="row">
         <div class="form-group col-3">
           <label>Pantothenic Acid (mg)</label>
@@ -99,7 +108,7 @@
         </div>
       </div>
       <!-- END nutrients third row -->
-      <!-- nutrients forth row 
+    <!-- nutrients forth row 
       <div class="row">
         <div class="form-group col-3">
           <label>Calcium (mg)</label>
@@ -119,7 +128,7 @@
         </div>
       </div>
       <!-- END nutrients forth row -->
-      <!-- nutrients fifth row 
+    <!-- nutrients fifth row 
       <div class="row">
         <div class="form-group col-3">
           <label>Zinc (mg)</label>
@@ -135,6 +144,5 @@
         </div>
       </div>
       <!-- END nutrients fifth row -->
-  </div>  
+  </div>
 </div>
-

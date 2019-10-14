@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ResultsService } from 'src/app/services/results/results';
-import { FFQResultsResponse } from 'src/app/models/ffqresultsresponse';
+import { Component, OnInit } from "@angular/core";
+import { ResultsService } from "src/app/services/results/results";
+import { FFQResultsResponse } from "src/app/models/ffqresultsresponse";
 
 // Questionnaire reesults page added by Daykel Muro 09/30/2019
 @Component({
@@ -9,11 +9,9 @@ import { FFQResultsResponse } from 'src/app/models/ffqresultsresponse';
   styleUrls: ["./quest-results.component.css"]
 })
 export class QuestResultsComponent implements OnInit {
+  public show: boolean = false;
+  public buttonName: any = "Show results";
 
-   public show:boolean = false;
-   public buttonName:any = 'Show results';
-
-  
   MESSAGE = "No questionnaires have been submitted yet!";
 
   results: FFQResultsResponse[] = [];
@@ -22,7 +20,7 @@ export class QuestResultsComponent implements OnInit {
 
   ngOnInit() {
     this.getAllResults();
-    }
+  }
 
   private getAllResults() {
     this.resultsService.getAllResults().subscribe(data => {
@@ -37,7 +35,6 @@ export class QuestResultsComponent implements OnInit {
     });
   }
   toggle(index) {
-    
     this.results[index].show = !this.results[index].show;
 
     // CHANGE THE NAME OF THE BUTTON.
