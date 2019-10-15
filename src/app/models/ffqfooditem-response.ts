@@ -4,10 +4,10 @@ import {Serving} from './ffqitem-response';
 import { FFQSugar } from './ffqsugar';
 import { ObjectUnsubscribedError } from 'rxjs';
 
-export class FFQFoodItem {
+export class FFQFoodItemResponse {
   id: string;
   name: string;
-  servingsList: string;
+  servingsList: string[];
   sugar: FFQSugar;
   primary: boolean;
   foodTypes: FoodType[];
@@ -17,15 +17,14 @@ export class FFQFoodItem {
   constructor(name: string) {
     this.name = name;
     this.servingsList = null;
-    this.sugar = new FFQSugar(false,0);
-    this.primary = false;
+    this.sugar = null;
+    this.primary = null;
     this.foodTypes = [];
     this.nutrientId = "";
     this.portionSize = "";
     const foodtype = new FoodType("","");
     this.foodTypes.push(foodtype);
   }
-
 }
 
 export class FoodType {
@@ -37,3 +36,4 @@ export class FoodType {
     this.nutrientListID = "";
   }
 }
+

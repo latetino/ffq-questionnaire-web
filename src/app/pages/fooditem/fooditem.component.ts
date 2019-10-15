@@ -37,12 +37,12 @@ export class FooditemComponent implements OnInit {
     private modalService: NgbModal,
     private route: ActivatedRoute) { }
 
-  foodNutrientsItem: FFQFoodNutrientsResponse[] = [];
+  foodNutrientsItem: FFQFoodNutrients[] = [];
   dataLoaded: Promise<boolean>;
 
   ffqfoditem: FFQFoodItem;
   ffqnutrientlist: FFQNutrientlist;
-  foodNutrientsResponse: FFQFoodNutrientsResponse;
+  foodNutrients: FFQFoodNutrients;
   ffqfoodnutrients: FFQFoodNutrients;
 
   ngOnInit() {
@@ -50,7 +50,7 @@ export class FooditemComponent implements OnInit {
     const FoodItemObjectId = this.route.snapshot.paramMap.get('id');
 
     if (FoodItemObjectId == "new"){
-      console.log("This is new");
+      
       this.isNew = true;
 
       this.ffqfoditem = new FFQFoodItem("");
@@ -64,11 +64,11 @@ export class FooditemComponent implements OnInit {
       //}
 
       console.log(this.ffqnutrientlist.nutrientMap);
-      this.foodNutrientsResponse = new FFQFoodNutrientsResponse(this.ffqfoditem, this.ffqnutrientlist);
-      this.ffqfoodnutrients = FFQFoodNutrients.foodItemFromResponse(this.foodNutrientsResponse);
-      console.log(this.ffqfoodnutrients);
+      this.foodNutrients = new FFQFoodNutrients(this.ffqfoditem, this.ffqnutrientlist);
+      //this.ffqfoodnutrients = FFQFoodNutrients.foodItemFromResponse(this.foodNutrientsResponse);
+      console.log(this.foodNutrients);
 
-      this.foodNutrientsItem.push(this.ffqfoodnutrients);
+      this.foodNutrientsItem.push(this.foodNutrients);
       this.dataLoaded = Promise.resolve(true);
 
     }
@@ -87,10 +87,11 @@ export class FooditemComponent implements OnInit {
     this.dataLoaded = Promise.resolve(true);
   }
 
-  private addFoodNutrients(){    
+  private addFoodNutrients(){  
+
     this.foodNutrientsItem[0].nutrientList.nutrientListID = this.foodNutrientsItem[0].foodItem.foodTypes[0].nutrientListID;
     this.foodNutrientsItem[0].foodItem.nutrientId = this.foodNutrientsItem[0].foodItem.foodTypes[0].nutrientListID;
-    this.foodService.addFoodNutrients(this.foodNutrientsItem[0]).subscribe(
+    this.foodService.addFoodNutrients(FFQFoodNutrients.foodItemToResponse(this.foodNutrientsItem[0])).subscribe(
       data => this.router.navigateByUrl('/admin')
     );
 
