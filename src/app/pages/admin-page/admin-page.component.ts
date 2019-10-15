@@ -8,6 +8,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorDialogPopupComponent } from 'src/app/components/error-dialog-popup/error-dialog-popup.component';
 import { FFQFoodNutrientsResponse } from 'src/app/models/ffqfoodnutrients-response';
 import { PopupComponent } from 'src/app/components/popup/popup.component';
+import { FlashMessagesService } from 'angular2-flash-messages';
+
 
 @Component({
   selector: 'app-questionnaire-page',
@@ -27,7 +29,8 @@ export class AdminPageComponent implements OnInit {
     private httpErrorDialog: MatDialog,
     private successDialog: MatDialog,
     private router: Router,
-    private modalService: NgbModal) { }
+    private modalService: NgbModal,
+    private flashMessage: FlashMessagesService) { }
 
 
   foodNutrients: FFQFoodNutrientsResponse[] = [];
@@ -65,6 +68,7 @@ export class AdminPageComponent implements OnInit {
     const modalRef = this.modalService.open(PopupComponent);
     modalRef.componentInstance.id = id;
   }
+  
   
 }
 
