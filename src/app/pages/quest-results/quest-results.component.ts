@@ -40,4 +40,5 @@ export class QuestResultsComponent implements OnInit {
     if (this.results[index].show) this.buttonName = "Results";
     else this.buttonName = "Results ";
   }
+    
 }

@@ -82,6 +82,48 @@
                 </div>
               </div>
             </div>
+            <hr />
+
+            <!-- Calculations breakdown -->
+            <div class="tableDiv">
+              <h6>Nutrient Breakdown</h6>
+              <div class="row">
+                <table class="col-10">
+                  <tr>
+                    <th>Nutrient</th>
+                    <th>Daily Average</th>
+                  </tr>
+                  <tr *ngFor="let item of result.dailyAverages | keyvalue">
+                    <td>{{item.key}}</td>
+                    <td>{{item.value| number: '1.5-5'}}</td>
+                  </tr>
+                </table>
+                <table class="col-2">
+                  <tr>
+                    <th>Weekly Total</th>
+                  </tr>
+                  <tr *ngFor="let week of result.weeklyTotals | keyvalue">
+                    <td>{{week.value| number: '1.5-5'}}</td>
+                  </tr>
+                </table>
+              </div>
+              <br>
+              <h6>Weekly Caloric Summary</h6>
+              <table>
+                <tr>
+                  <th>Total Calories</th>
+                  <th>% of Fat</th>
+                  <th>% of Carbs</th>
+                  <th>% of Protein</th>
+                </tr>
+                <tr>
+                  <td> </td>
+                  <td> {{result.weeklyTotals["% Calories from Fat"]| number: '1.5-5'}}</td>
+                  <td> {{result.weeklyTotals["% Calories from Carbs"]| number: '1.5-5'}}</td>
+                  <td> {{result.weeklyTotals["% Calories from Protein"]| number: '1.5-5'}}</td>
+                </tr>
+              </table>
+            </div>
           </ng-container>
         </mat-card-content>
       </mat-card>
