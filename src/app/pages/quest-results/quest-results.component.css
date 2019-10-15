@@ -1,6 +1,16 @@
-.container_page{
-    padding-top: 140px;
-    margin-bottom: 50px;
+.container{
+    padding-top: 20px;
+    margin-bottom: 20px;
+}
+
+.out-container{
+    padding-top: 160px;
+
+}
+.container-choices{
+    padding-top: 30px;
+    margin-bottom: 20px;
+    margin-left:40px;
 }
  
 .quest-results-card {
@@ -11,3 +21,23 @@
     padding: 50px;
     height: 200px;
   }
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #000000;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+  
+  .tableDiv {
+    padding: 35px;
+  }
+  
