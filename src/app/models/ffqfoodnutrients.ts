@@ -2,6 +2,7 @@ import { FFQFoodItem } from './ffqfooditem';
 import { FFQNutrientlist } from './ffqnutrientlist';
 import { FFQFoodNutrientsResponse } from './ffqfoodnutrients-response';
 import { FFQSugar } from './ffqsugar';
+import { FFQFoodItemResponse } from './ffqfooditem-response';
 
 export class FFQFoodNutrients {
     foodItem: FFQFoodItem;
@@ -12,6 +13,28 @@ export class FFQFoodNutrients {
         this.nutrientList = nutrientList;
     }
 
+    public static foodItemToResponse(fooditem: FFQFoodNutrients): FFQFoodNutrientsResponse
+    {
+        const foodItemResponse = new FFQFoodItemResponse(fooditem.foodItem.name);
+        
+        foodItemResponse.id = fooditem.foodItem.id;
+        foodItemResponse.primary = fooditem.foodItem.primary;
+        foodItemResponse.foodTypes = fooditem.foodItem.foodTypes;
+        foodItemResponse.sugar = fooditem.foodItem.sugar;
+        foodItemResponse.portionSize = fooditem.foodItem.portionSize;
+
+        if(fooditem.foodItem.sugar != null)
+        foodItemResponse.sugar = fooditem.foodItem.sugar;
+        else{
+            const sugar = new FFQSugar(false, 0);
+            foodItemResponse.sugar = sugar;
+        }
+
+        foodItemResponse.servingsList = fooditem.foodItem.servingsList.split(',');
+
+        const foodNutrientsResponse = new FFQFoodNutrientsResponse(foodItemResponse, fooditem.nutrientList);
+        return foodNutrientsResponse;
+    }
     public static foodItemFromResponse(response: FFQFoodNutrientsResponse): FFQFoodNutrients {
         
         const fooditem = new FFQFoodItem(response.foodItem.name);
@@ -19,6 +42,7 @@ export class FFQFoodNutrients {
         fooditem.id = response.foodItem.id;
         fooditem.primary = response.foodItem.primary;
         fooditem.foodTypes = response.foodItem.foodTypes;
+        fooditem.portionSize = response.foodItem.portionSize;
 
         if(response.foodItem.sugar != null)
             fooditem.sugar = response.foodItem.sugar;
@@ -27,14 +51,23 @@ export class FFQFoodNutrients {
             fooditem.sugar = sugar;
         }
 
-        /*var servingsString = "";
-        for (var serving  of response.foodItem.servingsList){
-            console.log(serving['servingName']);
-            servingsString += serving['servingName'] + ", ";
+        if(response.foodItem.servingsList != null){
+            var servingsString = "";
+            var index = response.foodItem.servingsList.length;
+            for (var serving  of response.foodItem.servingsList){
+                index--;
+                console.log(serving['servingName']);
+                if (index != 0)
+                    servingsString += serving['servingName'] + ", ";
+                else
+                    servingsString += serving['servingName'];
+            }
+            fooditem.servingsList = servingsString;
         }
-        fooditem.servingsList = servingsString;*/
 
-        fooditem.servingsList = response.foodItem.servingsList;
+        
+
+        //fooditem.servingsList = response.foodItem.servingsList;
 
         const foodnutrients = new FFQFoodNutrients(fooditem, response.nutrientList);
 
