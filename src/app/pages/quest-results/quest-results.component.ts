@@ -13,7 +13,6 @@ export class QuestResultsComponent implements OnInit {
   public buttonName: any = "Results";
 
   MESSAGE = "No questionnaires have been submitted yet!";
-
   
   results: FFQResultsResponse[] = [];
 

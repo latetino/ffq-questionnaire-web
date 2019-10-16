@@ -1,6 +1,26 @@
 .container{
+<<<<<<< HEAD
   padding-top: 20px;
   margin-bottom: 20px;
+=======
+<<<<<<< HEAD
+  padding-top: 20px;
+  margin-bottom: 20px;
+=======
+    padding-top: 20px;
+    margin-bottom: 20px;
+}
+
+.out-container{
+    padding-top: 160px;
+
+}
+.container-choices{
+    padding-top: 30px;
+    margin-bottom: 20px;
+    margin-left:40px;
+>>>>>>> 34f0ff8ca88f25b71eed21fb3f845739bf74df03
+>>>>>>> c411fcbbf306bb85dafc1d9633c34e2b21f1a278
 }
 
 .out-container{
@@ -14,6 +34,10 @@
 }
 
 .quest-results-card {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> c411fcbbf306bb85dafc1d9633c34e2b21f1a278
   width: 60%;
   display: inline-flex;
   justify-content: center;
@@ -40,3 +64,35 @@ tr:nth-child(even) {
 .tableDiv {
   padding: 35px;
 }
+<<<<<<< HEAD
+=======
+=======
+    width: 60%;
+    display: inline-flex;
+    justify-content: center;
+    align-content: center;
+    padding: 50px;
+    height: 200px;
+  }
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #000000;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+  
+  .tableDiv {
+    padding: 35px;
+  }
+  
+>>>>>>> 34f0ff8ca88f25b71eed21fb3f845739bf74df03
+>>>>>>> c411fcbbf306bb85dafc1d9633c34e2b21f1a278
