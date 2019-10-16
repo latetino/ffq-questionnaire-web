@@ -14,6 +14,7 @@ export class QuestResultsComponent implements OnInit {
 
   MESSAGE = "No questionnaires have been submitted yet!";
 
+  
   results: FFQResultsResponse[] = [];
 
   constructor(public resultsService: ResultsService) {}
