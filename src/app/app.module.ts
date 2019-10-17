@@ -28,6 +28,7 @@ import {PopupComponent} from "./components/popup/popup.component";
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { AlertModule } from '../../src/app/components/_alert/alert.module';
 import { MultiAlertsComponent } from '../app/components/multi-alerts';
+import { Routes, RouterModule } from '@angular/router';
 
 
 

@@ -81,7 +81,7 @@ export class FoodItemService {
   /*DELETE: delete food item from the database */
   deleteFoodItem(objectId: string): Observable <any>{
     console.log("here" + objectId);
-    return this.http.delete(this.endpoint + "/delete?id=" + objectId)
+    return this.http.delete(this.endpoint + "/delete?id=" + objectId, { responseType: 'text' })
   
   }
 
