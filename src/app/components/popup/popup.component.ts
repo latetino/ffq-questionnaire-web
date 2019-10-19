@@ -24,10 +24,9 @@ export class PopupComponent {
 
     onClose(): void {
         console.log(this.id);
-        const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
         this.foodService.deleteFoodItem(this.id).subscribe(newData => {
             this.data = newData;
-            dialogRef.componentInstance.title = 'Food item deleted succesfully!';
+            window.location.reload();
 
         });
         this.activeModal.close('closed');

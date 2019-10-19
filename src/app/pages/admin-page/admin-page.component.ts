@@ -71,6 +71,7 @@ export class AdminPageComponent implements OnInit {
   onModalRequest(id: string): void {
     const modalRef = this.modalService.open(PopupComponent);
     modalRef.componentInstance.id = id;
+    
   }
 
 
