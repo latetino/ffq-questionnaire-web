@@ -8,5 +8,5 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 })
 export class AppComponent {
   title = 'ffq-questionnaire-web';
-  
+
 }

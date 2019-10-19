@@ -21,7 +21,7 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 export class AdminPageComponent implements OnInit {
 
   TITLE = 'FFQR Admin Portal';
- 
+
 
   constructor(public foodService: FoodItemService,
     private activatedRoute: ActivatedRoute,
@@ -31,7 +31,9 @@ export class AdminPageComponent implements OnInit {
     private successDialog: MatDialog,
     private router: Router,
     private modalService: NgbModal,
-    private flashMessage: FlashMessagesService) { }
+    private flashMessage: FlashMessagesService,
+
+  ) { }
 
 
   foodNutrients: FFQFoodNutrientsResponse[] = [];
@@ -41,8 +43,9 @@ export class AdminPageComponent implements OnInit {
   ngOnInit() {
     this.loadFoodsAndNutrients();
     console.log(this.foodNutrients);
-   }
-   
+
+  }
+
   private handleFoodServiceError(error: HttpErrorResponse) {
     console.error('Error occurred.\n' + error.message);
     const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
@@ -69,7 +72,7 @@ export class AdminPageComponent implements OnInit {
     const modalRef = this.modalService.open(PopupComponent);
     modalRef.componentInstance.id = id;
   }
-  
-  
+
+
 }
 

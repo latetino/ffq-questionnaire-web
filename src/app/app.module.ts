@@ -26,8 +26,6 @@ import { QuestResultsComponent } from './pages/quest-results/quest-results.compo
 import { RecommendComponent } from './pages/recommend/recommend.component';
 import {PopupComponent} from "./components/popup/popup.component";
 import { FlashMessagesModule } from 'angular2-flash-messages';
-import { AlertModule } from '../../src/app/components/_alert/alert.module';
-import { MultiAlertsComponent } from '../app/components/multi-alerts';
 import { Routes, RouterModule } from '@angular/router';
 
 
@@ -48,7 +46,7 @@ import { Routes, RouterModule } from '@angular/router';
     QuestResultsComponent,
     RecommendComponent,
     PopupComponent,
-    MultiAlertsComponent
+  
     
       
   ],
@@ -73,8 +71,7 @@ import { Routes, RouterModule } from '@angular/router';
     ReactiveFormsModule,
     NgbModule.forRoot(),
     FlashMessagesModule.forRoot(),
-    AlertModule,
-  ],
+   ],
   providers: [],
   bootstrap: [AppComponent],
   entryComponents: [ErrorDialogPopupComponent, ResultsPageComponent,PopupComponent]

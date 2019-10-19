@@ -12,7 +12,7 @@ import { FFQFoodNutrients } from 'src/app/models/ffqfoodnutrients';
 import { FFQFoodItem } from 'src/app/models/ffqfooditem';
 import { FFQNutrientlist } from 'src/app/models/ffqnutrientlist';
 import { NutrientConstants } from 'src/app/models/NutrientConstants';
-import { AlertService } from '../../components/_alert';
+
 
 // fooditem page added by Daykel Muro 10/2/2019
 @Component({
@@ -38,7 +38,7 @@ export class FooditemComponent implements OnInit {
     private router: Router,
     private modalService: NgbModal,
     private route: ActivatedRoute,
-    private alertService: AlertService) { }
+    ) { }
 
   foodNutrientsItem: FFQFoodNutrients[] = [];
   dataLoaded: Promise<boolean>;
@@ -91,11 +91,11 @@ export class FooditemComponent implements OnInit {
   }
 
   private addFoodNutrients(){  
-
+    const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
     this.foodNutrientsItem[0].nutrientList.nutrientListID = this.foodNutrientsItem[0].foodItem.foodTypes[0].nutrientListID;
     this.foodNutrientsItem[0].foodItem.nutrientId = this.foodNutrientsItem[0].foodItem.foodTypes[0].nutrientListID;
     this.foodService.addFoodNutrients(FFQFoodNutrients.foodItemToResponse(this.foodNutrientsItem[0])).subscribe(
-      data => {this.router.navigateByUrl('/admin'); this.alertService.success("Food item added/updated");}
+      data => {this.router.navigateByUrl('/admin'); dialogRef.componentInstance.title = 'Food item added/updated succesfully!';}
     );
     
   }

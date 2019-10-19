@@ -1,5 +1,5 @@
-
 <!--Questionnaire results added by Daykel Muro  on 09/30/2019 MOdified 10/13/2019-->
+<admin-header></admin-header>
 <div class="container_page">
   <div class="container" *ngIf="results.length === 0">
     <mat-card class="quest-id-card">
@@ -117,7 +117,9 @@
                   <th>% calories from Protein</th>
                 </tr>
                 <tr>
-                  <td> </td>
+                  <td>
+                    {{result.weeklyTotals["% Calories from Fat"] + result.weeklyTotals["% Calories from Carbs"] + result.weeklyTotals["% Calories from Protein"] | number: '1.5-5' }}
+                  </td>
                   <td> {{result.weeklyTotals["% Calories from Fat"]| number: '1.5-5'}}</td>
                   <td> {{result.weeklyTotals["% Calories from Carbs"]| number: '1.5-5'}}</td>
                   <td> {{result.weeklyTotals["% Calories from Protein"]| number: '1.5-5'}}</td>
