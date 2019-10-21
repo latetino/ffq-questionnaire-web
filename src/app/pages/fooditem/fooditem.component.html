@@ -11,36 +11,53 @@
   <div class="container frame-fooditem">           
       <h6> Food Item </h6>        
       <div class="row"> 
-        <div class="form-group col-8">
-          <label> Name </label>
+        <div class="form-group col-12">
+          <label style="font-weight: bold"> Name </label>
           <input placeholder="name" required type="text" class="form-control" [(ngModel)]="foodNutrientsItem[0].foodItem.name" />
-        </div> 
-        <div class="form-group col-4">
-          <label> Nutrient Id </label>
-          <input placeholder="nutrient id" required type="text" class="form-control" [(ngModel)]="foodNutrientsItem[0].foodItem.foodTypes[0].nutrientListID" />
         </div>
         <div class="form-group col-3 form-check" style="margin-left: 20px">
           <input class="form-check-input" type="checkbox" [(ngModel)]="foodNutrientsItem[0].foodItem.primary" id="isPrimary"/>
-          <label class="form-check-label" for="isPrimary"> Is Primary? </label>
+          <label class="form-check-label" for="isPrimary"> Primary </label>
         </div>        
         <div class="form-group col-3 form-check">      
           <input class="form-check-input" type="checkbox" [(ngModel)] = "foodNutrientsItem[0].foodItem.sugar.additionalSugar" id="additionalSugar">
           <label class="form-check-label" for="additionalSugar"> Additional Sugar </label>          
         </div>
         <div class="col-12">
-          <label> Servings* (Enter the servings separated by commas i.e: 1 oz, 2 oz, 3 oz) </label><br>
-          <label style="font-style: italic"> *This are the servings the user will see/select when completing the questionnaire </label>
+          <label style="font-weight: bold"> Servings* </label> (Enter the servings separated by commas i.e: 1 oz, 2 oz, 3 oz) <br>
+          <label style="font-style: italic"> *Serving(s) the user will see/select for this food item when completing the questionnaire </label>
           <input placeholder="servings" type="text" class="form-control" [(ngModel)] = foodNutrientsItem[0].foodItem.servingsList/>
         </div>
       </div>
       <hr>
-      <h6>Nutrients*</h6>
+      <label style="font-weight: bold">Nutrients*</label>
       <div style="display: flex"><label style="padding: 10px; font-style: italic">*in Portion Size</label><input style="width: 150px; height: 35px" placeholder="portion size" type="text" class="form-control" [(ngModel)] = foodNutrientsItem[0].foodItem.portionSize/></div>
-      <div class="row" *ngFor="let nutrient of foodNutrientsItem[0].nutrientList.nutrientMap | keyvalue; let i = index; trackBy: trackByFn" style="padding:5px">
+      <div class="col-12">
+        <label style="font-weight: bold"> Food Type(s) - Total: <span>{{foodNutrientsItem[0].foodItem.foodTypes.length}} </span></label><br>
+        <div *ngFor="let foodtype of foodNutrientsItem[0].foodItem.foodTypes; let i = index">
+          <div style="margin: 10px 0 10px 0" class="row">
+            <div class="col-4">
+              <label class="form-check-label" for="fooditemname"> Name </label>
+              <input id="fooditemname" style="border-color: mediumblue; border-width: 0.05cm" placeholder="food type" type="text" class="form-control" [(ngModel)] = foodtype.typeName/>
+            </div>
+            <div class="col-4">
+              <label class="form-check-label" for="additionalSugar"> ID </label>
+              <input style="border-color: mediumblue; border-width: 0.05cm" placeholder="nutrient list id" type="text" class="form-control" [(ngModel)] = foodtype.nutrientListID/>
+            </div>
+          </div>
+          <div class="row" *ngFor="let nutrient1 of foodNutrientsItem[0].nutrientList[i].nutrientMap | keyvalue; let j = index; trackBy: trackByFn" style="padding:5px">
+            <div class="col-1"></div>
+            <div class="col-5">{{nutrient1.key}}</div>
+            <div class="col-2"><input class="form-control" required [(ngModel)]="foodNutrientsItem[0].nutrientList[i].nutrientMap[nutrient1.key]"></div>
+          </div>
+        </div>
+      </div>     
+      
+      <!-- <div class="row" *ngFor="let nutrient of foodNutrientsItem[0].nutrientList.nutrientMap | keyvalue; let i = index; trackBy: trackByFn" style="padding:5px">
         <div class="col-1"></div>
         <div class="col-5"><span class="slide">{{nutrient.key}}</span></div>
         <div class="col-3"><input type="number" class="form-control" required [(ngModel)]="foodNutrientsItem[0].nutrientList.nutrientMap[nutrient.key]"/></div>
-      </div> 
+      </div> -->
       <!-- nutrients first row 
       <div class="row">         
         <div class="form-group col-3">

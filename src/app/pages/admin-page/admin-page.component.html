@@ -4,21 +4,17 @@
         <button routerLink='/admin/fooditem/new' type="submit" class="btn btn-success col-3"> New Food Item </button>
     </div>
     <div class="container mt-3">
-        <span>{{foodNutrients.length}} food item(s)</span>
+        <span>{{foodItems.length}} food item(s)</span>
         <table class="table table-bordered table-inverse">
         <tr>
             <th> Food Item Name </th>
-            <th><div align="center"> Nutrient List Id </div></th>
             <th><div align="center"> Delete </div></th>
         </tr>
-        <tr *ngFor="let item of foodNutrients">
+        <tr *ngFor="let item of foodItems">
             <td width="75%">
-                <a [routerLink]="['/admin/fooditem', item.foodItem.id]"> {{item.foodItem.name}} </a>
+                <a [routerLink]="['/admin/fooditem', item.id]"> {{item.name}} </a>
             </td>
-            <td width="15%">
-                <div align="center"><span>{{item.foodItem.foodTypes[0].nutrientListID}}</span></div>
-            </td>
-            <td width="10%"><div align="center"><a (click)="onModalRequest(item.foodItem.id)"><span class="fa fa-trash"></span></a></div></td>
+            <td width="10%"><div align="center"><a (click)="onModalRequest(item.id)"><span class="fa fa-trash"></span></a></div></td>
         </tr>
         </table>
     </div>

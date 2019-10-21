@@ -6,18 +6,18 @@ import { FFQFoodItemResponse } from './ffqfooditem-response';
 
 export class FFQFoodNutrients {
     foodItem: FFQFoodItem;
-    nutrientList: FFQNutrientlist;  
+    nutrientList: Array<FFQNutrientlist>;  
   
-    constructor(foodItem: FFQFoodItem, nutrientList: FFQNutrientlist ) {
+    constructor(foodItem: FFQFoodItem, nutrientList: Array<FFQNutrientlist> ) {
         this.foodItem = foodItem;
         this.nutrientList = nutrientList;
     }
 
     public static foodItemToResponse(fooditem: FFQFoodNutrients): FFQFoodNutrientsResponse
     {
-        const foodItemResponse = new FFQFoodItemResponse(fooditem.foodItem.name);
+        const foodItemResponse = new FFQFoodItemResponse(fooditem.foodItem.name, fooditem.foodItem.id);
         
-        foodItemResponse.id = fooditem.foodItem.id;
+        //foodItemResponse.id = fooditem.foodItem.id;
         foodItemResponse.primary = fooditem.foodItem.primary;
         foodItemResponse.foodTypes = fooditem.foodItem.foodTypes;
         foodItemResponse.sugar = fooditem.foodItem.sugar;
@@ -32,10 +32,17 @@ export class FFQFoodNutrients {
 
         foodItemResponse.servingsList = fooditem.foodItem.servingsList.split(',');
 
+        for (var index in fooditem.nutrientList){
+            fooditem.nutrientList[index].nutrientListID = foodItemResponse.foodTypes[index].nutrientListID;
+        }
+
+        
+
         const foodNutrientsResponse = new FFQFoodNutrientsResponse(foodItemResponse, fooditem.nutrientList);
         return foodNutrientsResponse;
     }
     public static foodItemFromResponse(response: FFQFoodNutrientsResponse): FFQFoodNutrients {
+        console.log(response);
         
         const fooditem = new FFQFoodItem(response.foodItem.name);
 

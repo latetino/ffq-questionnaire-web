@@ -8,6 +8,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorDialogPopupComponent } from 'src/app/components/error-dialog-popup/error-dialog-popup.component';
 import { FFQFoodNutrientsResponse } from 'src/app/models/ffqfoodnutrients-response';
 import { PopupComponent } from 'src/app/components/popup/popup.component';
+import { FFQFoodItem } from 'src/app/models/ffqfooditem';
+import { FFQFoodItemResponse } from 'src/app/models/ffqfooditem-response';
 
 @Component({
   selector: 'app-questionnaire-page',
@@ -33,6 +35,8 @@ export class AdminPageComponent implements OnInit {
   foodNutrients: FFQFoodNutrientsResponse[] = [];
   dataLoaded: Promise<boolean>;
 
+  foodItems: FFQFoodItemResponse[] = [];
+
 
   ngOnInit() {
     this.loadFoodsAndNutrients();
@@ -53,8 +57,10 @@ export class AdminPageComponent implements OnInit {
   private loadFoodsAndNutrients() {
     this.foodService.getAllFoods().subscribe(data => {
       data.map(response => {
-        this.foodNutrients.push(response);
+        this.foodItems.push(response);
+        //this.foodNutrients.push(response);
       });
+      console.log(this.foodItems);
       console.log(this.foodNutrients.length + ' foods and its nutrients were returned from server.');
       this.dataLoaded = Promise.resolve(true);
     }, (error: HttpErrorResponse) => this.handleFoodServiceError(error));

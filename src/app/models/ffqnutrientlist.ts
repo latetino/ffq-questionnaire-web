@@ -8,9 +8,10 @@ export class FFQNutrientlist {
   nutrientListID: string;
   nutrientMap: any;
 
-  constructor(id: string) {
-    this.nutrientListID = "";
-    this.nutrientMap = new nutrientMap("","");
+  constructor(id: string, nutrientMap: any) {
+    console.log(nutrientMap);
+    this.nutrientListID = id;
+    this.nutrientMap = nutrientMap;
   }
 }
 

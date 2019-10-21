@@ -10,8 +10,9 @@ import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angula
 import { Subscription } from 'rxjs/internal/Subscription';
 import { FFQFoodNutrients } from 'src/app/models/ffqfoodnutrients';
 import { FFQFoodItem } from 'src/app/models/ffqfooditem';
-import { FFQNutrientlist } from 'src/app/models/ffqnutrientlist';
+import { FFQNutrientlist, nutrientMap } from 'src/app/models/ffqnutrientlist';
 import { NutrientConstants } from 'src/app/models/NutrientConstants';
+import { NutrientsService } from 'src/app/services/nutrients/nutrients-service';
 
 // fooditem page added by Daykel Muro 10/2/2019
 @Component({
@@ -28,6 +29,7 @@ export class FooditemComponent implements OnInit {
 
   constructor(
     public foodService: FoodItemService,
+    public nutrientsService: NutrientsService,
     private activatedRoute: ActivatedRoute,
     private errorDialog: MatDialog,
     private submissionErrorDialog: MatDialog,
@@ -37,13 +39,18 @@ export class FooditemComponent implements OnInit {
     private modalService: NgbModal,
     private route: ActivatedRoute) { }
 
+
+  nutrientsMap: Map<string,FFQNutrientlist> = new Map<string,FFQNutrientlist>();
+
   foodNutrientsItem: FFQFoodNutrients[] = [];
   dataLoaded: Promise<boolean>;
 
   ffqfoditem: FFQFoodItem;
-  ffqnutrientlist: FFQNutrientlist;
+  ffqnutrientlist: Array<FFQNutrientlist> = new Array<FFQNutrientlist>();
   foodNutrients: FFQFoodNutrients;
   ffqfoodnutrients: FFQFoodNutrients;
+
+  ffgNutrientMap: nutrientMap;
 
   ngOnInit() {
 
@@ -54,8 +61,8 @@ export class FooditemComponent implements OnInit {
       this.isNew = true;
 
       this.ffqfoditem = new FFQFoodItem("");
-      this.ffqnutrientlist = new FFQNutrientlist("");
-      this.ffqnutrientlist.nutrientListID = "test";
+      this.ffqnutrientlist.push(new FFQNutrientlist("", new nutrientMap("","")));
+      //this.ffqnutrientlist.nutrientListID = "test";
 
       //this.ffqnutrientlist.nutrientMap = new Map<String, number>();
 
@@ -63,7 +70,7 @@ export class FooditemComponent implements OnInit {
         //this.ffqnutrientlist.nutrientMap.set(nutrient,0);
       //}
 
-      console.log(this.ffqnutrientlist.nutrientMap);
+      //console.log(this.ffqnutrientlist.nutrientMap);
       this.foodNutrients = new FFQFoodNutrients(this.ffqfoditem, this.ffqnutrientlist);
       //this.ffqfoodnutrients = FFQFoodNutrients.foodItemFromResponse(this.foodNutrientsResponse);
       console.log(this.foodNutrients);
@@ -81,7 +88,22 @@ export class FooditemComponent implements OnInit {
   }
 
   private getFoodByObjectId(name: string) {
+
+    // retrieve the food item
     this.foodService.getFoodbyName(name).subscribe(data => {
+      
+      //retrieve the nutrients lists for each food item's food type
+      for (let i of data.foodItem.foodTypes) {
+        
+        this.nutrientsService.getNutrientsById(i.nutrientListID).subscribe(nutrientList => {
+
+          this.nutrientsMap.set(i.nutrientListID, nutrientList.nutrientMap);
+        });        
+      }
+      
+      console.log(this.nutrientsMap);
+      
+      
       this.foodNutrientsItem.push(FFQFoodNutrients.foodItemFromResponse(data))
     });
     this.dataLoaded = Promise.resolve(true);
@@ -89,16 +111,27 @@ export class FooditemComponent implements OnInit {
 
   private addFoodNutrients(){  
 
-    this.foodNutrientsItem[0].nutrientList.nutrientListID = this.foodNutrientsItem[0].foodItem.foodTypes[0].nutrientListID;
-    this.foodNutrientsItem[0].foodItem.nutrientId = this.foodNutrientsItem[0].foodItem.foodTypes[0].nutrientListID;
+    console.log(this.foodNutrientsItem[0]);
+    //this.foodNutrientsItem[0].nutrientList.nutrientListID = this.foodNutrientsItem[0].foodItem.foodTypes[0].nutrientListID;
+    //this.foodNutrientsItem[0].foodItem.nutrientId = this.foodNutrientsItem[0].foodItem.foodTypes[0].nutrientListID;
     this.foodService.addFoodNutrients(FFQFoodNutrients.foodItemToResponse(this.foodNutrientsItem[0])).subscribe(
-      data => this.router.navigateByUrl('/admin')
+     data => this.router.navigateByUrl('/admin')
     );
 
   }
 
   trackByFn(item, id){
     return item
+  }
+}
+
+export class FoodNutrientsMap {
+  typeName: string;
+  nutrientListID: string;
+
+  constructor(typeName: string, nutrientListID: string){
+    this.typeName = "";
+    this.nutrientListID = "";
   }
 }
 

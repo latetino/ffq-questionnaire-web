@@ -14,8 +14,9 @@ export class FFQFoodItemResponse {
   nutrientId: string;
   portionSize: string;
 
-  constructor(name: string) {
+  constructor(name: string, id: string) {
     this.name = name;
+    this.id = id;
     this.servingsList = null;
     this.sugar = null;
     this.primary = null;

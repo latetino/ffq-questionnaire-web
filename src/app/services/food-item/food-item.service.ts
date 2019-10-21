@@ -8,6 +8,7 @@ import { FFQFoodNutrientsResponse } from 'src/app/models/ffqfoodnutrients-respon
 import { FFQFoodItem } from 'src/app/models/ffqfooditem';
 import { ɵangular_packages_forms_forms_q } from '@angular/forms';
 import { Http, Headers, Response, RequestOptions, RequestMethod } from '@angular/http';
+import { FFQFoodItemResponse } from 'src/app/models/ffqfooditem-response';
 
 //Modified by Daykel Muro and Dariana Gonzalez on 10/5/2019
 
@@ -44,13 +45,13 @@ export class FoodItemService {
         })));
   }
 
-  getAllFoods(): Observable<FFQFoodNutrientsResponse[]> {
+  getAllFoods(): Observable<FFQFoodItemResponse[]> {
     return this.http.get(this.endpoint + '/allfoodsnutrients').pipe(
       map((res: any) => {
         return res.map(item => {
-          return new FFQFoodNutrientsResponse(
-            item.foodItem,
-            item.nutrientList
+          return new FFQFoodItemResponse(
+            item.name,
+            item.id
           );
         });
       }));
