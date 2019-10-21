@@ -118,7 +118,9 @@ export class FooditemComponent implements OnInit {
     //this.foodNutrientsItem[0].nutrientList.nutrientListID = this.foodNutrientsItem[0].foodItem.foodTypes[0].nutrientListID;
     //this.foodNutrientsItem[0].foodItem.nutrientId = this.foodNutrientsItem[0].foodItem.foodTypes[0].nutrientListID;
     this.foodService.addFoodNutrients(FFQFoodNutrients.foodItemToResponse(this.foodNutrientsItem[0])).subscribe(
-     data => this.router.navigateByUrl('/admin')
+     data => {this.router.navigateByUrl('/admin');
+     dialogRef.componentInstance.title = 'Food item added/updated succesfully!';}
+     
     );
     
   }
