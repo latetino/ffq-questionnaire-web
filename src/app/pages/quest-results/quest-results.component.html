@@ -1,7 +1,6 @@
-<admin-header></admin-header>
-
 <!--Questionnaire results added by Daykel Muro  on 09/30/2019 MOdified 10/13/2019-->
-<div class="out-container">
+<admin-header></admin-header>
+<div class="container_page">
   <div class="container" *ngIf="results.length === 0">
     <mat-card class="quest-id-card">
       <h2 matDialogTitle>{{MESSAGE}}</h2>
@@ -112,13 +111,15 @@
               <h6>Weekly Caloric Summary</h6>
               <table>
                 <tr>
-                  <th>Total Calories</th>
-                  <th>% of Fat</th>
-                  <th>% of Carbs</th>
-                  <th>% of Protein</th>
+                  <th>Total calories</th>
+                  <th>% calories from Fat</th>
+                  <th>% calories from Carbs</th>
+                  <th>% calories from Protein</th>
                 </tr>
                 <tr>
-                  <td> </td>
+                  <td>
+                    {{result.weeklyTotals["% Calories from Fat"] + result.weeklyTotals["% Calories from Carbs"] + result.weeklyTotals["% Calories from Protein"] | number: '1.5-5' }}
+                  </td>
                   <td> {{result.weeklyTotals["% Calories from Fat"]| number: '1.5-5'}}</td>
                   <td> {{result.weeklyTotals["% Calories from Carbs"]| number: '1.5-5'}}</td>
                   <td> {{result.weeklyTotals["% Calories from Protein"]| number: '1.5-5'}}</td>

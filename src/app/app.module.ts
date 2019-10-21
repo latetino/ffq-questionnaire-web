@@ -25,6 +25,8 @@ import { AdminHeaderComponent } from './pages/admin-header/admin-header.componen
 import { QuestResultsComponent } from './pages/quest-results/quest-results.component';
 import { RecommendComponent } from './pages/recommend/recommend.component';
 import {PopupComponent} from "./components/popup/popup.component";
+import { FlashMessagesModule } from 'angular2-flash-messages';
+import { Routes, RouterModule } from '@angular/router';
 
 
 
@@ -44,8 +46,9 @@ import {PopupComponent} from "./components/popup/popup.component";
     QuestResultsComponent,
     RecommendComponent,
     PopupComponent,
-   
+  
     
+      
   ],
   imports: [
     BrowserModule,
@@ -66,8 +69,9 @@ import {PopupComponent} from "./components/popup/popup.component";
     NgbModule,
     AngularFontAwesomeModule,
     ReactiveFormsModule,
-    NgbModule.forRoot()
-  ],
+    NgbModule.forRoot(),
+    FlashMessagesModule.forRoot(),
+   ],
   providers: [],
   bootstrap: [AppComponent],
   entryComponents: [ErrorDialogPopupComponent, ResultsPageComponent,PopupComponent]

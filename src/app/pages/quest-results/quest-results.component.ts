@@ -4,9 +4,9 @@ import { FFQResultsResponse } from "src/app/models/ffqresultsresponse";
 
 // Questionnaire reesults page added by Daykel Muro 09/30/2019
 @Component({
-  selector: 'app-quest-results',
-  templateUrl: './quest-results.component.html',
-  styleUrls: ['./quest-results.component.css']
+  selector: "app-quest-results",
+  templateUrl: "./quest-results.component.html",
+  styleUrls: ["./quest-results.component.css"]
 })
 export class QuestResultsComponent implements OnInit {
   public show: boolean = false;
@@ -14,16 +14,13 @@ export class QuestResultsComponent implements OnInit {
 
   MESSAGE = "No questionnaires have been submitted yet!";
 
+  
   results: FFQResultsResponse[] = [];
 
-  constructor(public resultsService: ResultsService
-
-  ) { }
+  constructor(public resultsService: ResultsService) {}
 
   ngOnInit() {
     this.getAllResults();
-    console.log(this.results);
-
   }
 
   private getAllResults() {
