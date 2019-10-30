@@ -6,6 +6,7 @@ import { ResultsPageComponent } from '../results-page/results-page.component';
 import { FFQResult } from 'src/app/models/FFQResult';
 import { RecommendModalComponent } from 'src/app/components/recommend-modal/recommend-modal.component';
 import { MatDialog } from '@angular/material';
+import { NutrientsRecommendationsService } from 'src/app/services/nutrients-recommendations/nutrients-recommendations.service';
 
 //Recommend page added by Daykel Muro 10/5/2019
 @Component({
@@ -17,11 +18,27 @@ export class RecommendComponent implements OnInit {
   results: FFQResultsResponse[] = [];
 
   constructor(public resultsService: ResultsService,
+    public nutrientsRecommendationsService: NutrientsRecommendationsService,
     private modalService: NgbModal,
     private errorDialog: MatDialog, ) { }
 
   ngOnInit() {
     this.getAllResults();
+    
+    // here you need to pass the questionnaire id as parameter
+    this.getNutrientsRecommendations("valid-5");
+  }
+
+  private getNutrientsRecommendations(questionnaireId: string){
+    this.nutrientsRecommendationsService.getNutrientsRecommendationsByQuestionnaireId(questionnaireId).subscribe(
+      data => { 
+        console.log(data);
+        // que pasa si es 200 y viene data   
+      },
+      error => {
+        // que pasa si es 500 y no viene data 
+      }
+    );
   }
 
   private getAllResults() {
