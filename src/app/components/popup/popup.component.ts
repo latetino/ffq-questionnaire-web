@@ -27,7 +27,6 @@ export class PopupComponent {
         this.foodService.deleteFoodItem(this.id).subscribe(newData => {
             this.data = newData;
             window.location.reload();
-
         });
         this.activeModal.close('closed');
     }

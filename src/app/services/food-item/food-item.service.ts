@@ -45,6 +45,7 @@ export class FoodItemService {
         })));
   }
 
+  // created by Dariana Gonzalez
   getAllFoods(): Observable<FFQFoodItemResponse[]> {
     return this.http.get(this.endpoint + '/allfoodsnutrients').pipe(
       map((res: any) => {
@@ -54,7 +55,7 @@ export class FoodItemService {
             item.id
           );
         });
-      }));
+    }));
   }
 
   getFoodItems(): Observable<FFQItemResponse[]> {
@@ -82,8 +83,7 @@ export class FoodItemService {
   /*DELETE: delete food item from the database */
   deleteFoodItem(objectId: string): Observable <any>{
     console.log("here" + objectId);
-    return this.http.delete(this.endpoint + "/delete?id=" + objectId, { responseType: 'text' })
-  
+    return this.http.delete(this.endpoint + "/delete?id=" + objectId)  
   }
 
 }
