@@ -26,13 +26,13 @@ export class RecommendComponent implements OnInit {
     this.getAllResults();
     
     // here you need to pass the questionnaire id as parameter
-    this.getNutrientsRecommendations("valid-5");
+    this.getNutrientsRecommendations("valid-25");
   }
 
   private getNutrientsRecommendations(questionnaireId: string){
     this.nutrientsRecommendationsService.getNutrientsRecommendationsByQuestionnaireId(questionnaireId).subscribe(
       data => { 
-        console.log(data);
+        console.log("Aqui ando"+ data);
         // que pasa si es 200 y viene data   
       },
       error => {
