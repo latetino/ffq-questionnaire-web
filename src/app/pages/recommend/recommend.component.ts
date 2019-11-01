@@ -24,21 +24,6 @@ export class RecommendComponent implements OnInit {
 
   ngOnInit() {
     this.getAllResults();
-    
-    // here you need to pass the questionnaire id as parameter
-    this.getNutrientsRecommendations("valid-25");
-  }
-
-  private getNutrientsRecommendations(questionnaireId: string){
-    this.nutrientsRecommendationsService.getNutrientsRecommendationsByQuestionnaireId(questionnaireId).subscribe(
-      data => { 
-        console.log("Aqui ando"+ data);
-        // que pasa si es 200 y viene data   
-      },
-      error => {
-        // que pasa si es 500 y no viene data 
-      }
-    );
   }
 
   private getAllResults() {
