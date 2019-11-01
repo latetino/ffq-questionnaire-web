@@ -35,6 +35,8 @@ export class QuestResultsComponent implements OnInit {
       //this.dataLoaded = Promise.resolve(true);
     });
   }
+
+  
   toggle(index) {
     this.results[index].show = !this.results[index].show;
     // CHANGE THE NAME OF THE BUTTON.

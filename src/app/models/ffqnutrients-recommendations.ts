@@ -10,6 +10,7 @@ export class FFQNutrientsRecommendations {
   patientAge: number;
   recommendationsList: Recommendation[];
 
+
   constructor(questionnaireId: string, patientName: string, patientAge: number, recommendationsList: Recommendation[]) {
     this.questionnaireId = questionnaireId;
     this.patientName = patientName;

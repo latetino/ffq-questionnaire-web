@@ -2,7 +2,7 @@
     width: 20%;
   }
   .error-container {
-    padding: 15px;
+    padding: 20px;
   }
 
   table {
@@ -14,7 +14,7 @@
 td, th {
   border: 1px solid #000000;
   text-align: left;
-  padding: 8px;
+  padding: 1px;
 }
 
 tr:nth-child(even) {
@@ -22,7 +22,7 @@ tr:nth-child(even) {
 }
 
 .tableDiv {
-  padding: 35px;
+  padding: 1px;
 }
   
   
