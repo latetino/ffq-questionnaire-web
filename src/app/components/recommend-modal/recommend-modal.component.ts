@@ -22,10 +22,9 @@ export class RecommendModalComponent {
     private errorDialog: MatDialog,
     private router: Router, ) { }
 
-    recommendedNutrients: FFQNutrientsRecommendations []=[];
+  recommendedNutrients: FFQNutrientsRecommendations[] = [];
 
   ngOnInit() {
-
     // here you need to pass the questionnaire id as parameter
     this.getNutrientsRecommendations(this.id);
     console.log("ID from recommend component:" + " " + this.id)
@@ -36,25 +35,8 @@ export class RecommendModalComponent {
       data => {
         console.log(data);
         // que pasa si es 200 y viene data 
-          this.recommendedNutrients.push(data);
-              
+        this.recommendedNutrients.push(data);
       },
-      error => {
-        // que pasa si es 500 y no viene data 
-        this.nutrientRecommendError(error);
-      }
     );
   }
-
-  private nutrientRecommendError(error: HttpErrorResponse) {
-    console.error('Error occurred.\n' + error.message);
-    const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
-    dialogRef.componentInstance.title = 'Error Fetching Nutrients Recommendations!';
-    dialogRef.componentInstance.message = error.message;
-    dialogRef.componentInstance.router = this.router;
-    dialogRef.afterClosed().subscribe(() => {
-      this.router.navigateByUrl('/admin');
-    });
-  }
-
 }
