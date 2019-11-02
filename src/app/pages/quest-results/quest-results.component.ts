@@ -28,18 +28,12 @@ export class QuestResultsComponent implements OnInit {
       data.map(response => {
         this.results.push(response);
       });
-      console.log(
-        this.results.length +
-          " foods and its nutrients were returned from server."
-      );
-      //this.dataLoaded = Promise.resolve(true);
     });
   }
 
-  
+
   toggle(index) {
     this.results[index].show = !this.results[index].show;
-    // CHANGE THE NAME OF THE BUTTON.
     if (this.results[index].show) this.buttonName = "Results";
     else this.buttonName = "Results ";
   }

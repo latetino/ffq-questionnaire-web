@@ -13,7 +13,9 @@
           <td>{{nutrient.nutrientName}}</td>
           <td style="text-align: center">{{nutrient.calculatedAmount| number: '1.3-3'}}</td>
           <td style="text-align: center">{{nutrient.recommendedAmount| number: '1.3-3'}}</td>
-          <td style="text-align: center">{{nutrient.status}}</td>
+          <td
+            [ngClass]="{'below': nutrient.calculatedAmount < nutrient.recommendedAmount, 'above': nutrient.calculatedAmount > nutrient.recommendedAmount, 'normal': nutrient.calculatedAmount == nutrient.recommendedAmount }"
+            style="text-align: center">{{nutrient.status}}</td>
         </tr>
       </table>
     </div>

@@ -25,16 +25,12 @@ export class RecommendModalComponent {
   recommendedNutrients: FFQNutrientsRecommendations[] = [];
 
   ngOnInit() {
-    // here you need to pass the questionnaire id as parameter
     this.getNutrientsRecommendations(this.id);
-    console.log("ID from recommend component:" + " " + this.id)
   }
 
   private getNutrientsRecommendations(questionnaireId: string) {
     this.nutrientsRecommendationsService.getNutrientsRecommendationsByQuestionnaireId(questionnaireId).subscribe(
       data => {
-        console.log(data);
-        // que pasa si es 200 y viene data 
         this.recommendedNutrients.push(data);
       },
     );

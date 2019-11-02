@@ -1,11 +1,14 @@
 .dialog-button {
     width: 20%;
-  }
-  .error-container {
-    padding: 20px;
-  }
+}
 
-  table {
+.error-container {
+    padding: 20px;
+    margin-top: 8%!important;
+    position: relative;
+}
+
+table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
@@ -24,5 +27,16 @@ tr:nth-child(even) {
 .tableDiv {
   padding: 1px;
 }
-  
+.normal {
+  color: green;
+}
+
+.below {
+  color:red;
+}
+
+.above {
+  color:rgb(133, 92, 5);
+}
+
   
