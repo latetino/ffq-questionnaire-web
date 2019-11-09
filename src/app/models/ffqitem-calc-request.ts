@@ -11,12 +11,14 @@ export class FFQItemCalcRequest {
   public static calcRequestFromFoodItem(item: FFQItem): FFQItemCalcRequest {
     const request = new FFQItemCalcRequest();
     const input = item.input;
-    let nameRaw = item.name;
-    const firstParen = nameRaw.indexOf('(');
-    if (firstParen > 0) {
-      nameRaw = nameRaw.substring(0, firstParen);
-    }
-    request.name = nameRaw;
+    // CHANGED 11/09: food item name must be consistent otherwise search by food item name will fail
+    //let nameRaw = item.name;
+    //const firstParen = nameRaw.indexOf('(');
+    //if (firstParen > 0) {
+      //nameRaw = nameRaw.substring(0, firstParen);
+    //}
+    //request.name = nameRaw;
+    request.name = item.name;
     request.frequency = input.frequency;
     request.frequencyType = input.frequencyType;
     request.sugar = input.sugar === null ? 0 : input.sugar;
