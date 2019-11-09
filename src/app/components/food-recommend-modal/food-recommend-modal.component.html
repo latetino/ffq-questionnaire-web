@@ -1,18 +1,18 @@
 <div class="container">
-  <h2 matDialogTitle>Nutrients Recommendations</h2>
+  <h2 matDialogTitle>Food Recommendations</h2>
   <mat-dialog-content>
     <div class="tableDiv">
       <table *ngFor="let result of recommendedNutrients">
         <tr>
-          <th>Nutrient name</th>
-          <th>User input calculations</th>
-          <th>Recommended value</th>
+          <th>Food Item</th>
+          <th>Calculations</th>
+          <th>Intake</th>
           <th>Indicator</th>
         </tr>
         <tr *ngFor="let nutrient of result.recommendationsList">
           <td>{{nutrient.nutrientName}}</td>
           <td style="text-align: center">{{nutrient.calculatedAmount| number: '1.2-2'}}</td>
-          <td style="text-align: center">{{nutrient.recommendedAmount| number: '1.0-0'}}</td>
+          <td style="text-align: center">{{nutrient.recommendedAmount| number: '1.1-1'}}</td>
           <td
             [ngClass]="{'below': nutrient.calculatedAmount < nutrient.recommendedAmount, 'above': nutrient.calculatedAmount > nutrient.recommendedAmount, 'normal': nutrient.calculatedAmount == nutrient.recommendedAmount }"
             style="text-align: center">{{nutrient.status}}</td>

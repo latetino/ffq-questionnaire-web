@@ -8,6 +8,8 @@ import { NutrientsRecommendationsService } from 'src/app/services/nutrients-reco
 import { FFQNutrientsRecommendations } from 'src/app/models/ffqnutrients-recommendations';
 import { ErrorDialogPopupComponent } from 'src/app/components/error-dialog-popup/error-dialog-popup.component';
 import { Router } from '@angular/router';
+import { FoodRecommendModalComponent } from 'src/app/components/food-recommend-modal/food-recommend-modal.component';
+import { FoodRecommendationsService } from 'src/app/services/food-recommendation-service/food-recommendations.service';
 
 
 //Recommend page added by Daykel Muro 10/5/2019
@@ -21,6 +23,7 @@ export class RecommendComponent implements OnInit {
 
   constructor(public resultsService: ResultsService,
     public nutrientsRecommendationsService: NutrientsRecommendationsService,
+    public foodRecommendationsService: FoodRecommendationsService,
     private modalService: NgbModal,
     private errorDialog: MatDialog,
     private router: Router, ) { }
@@ -44,6 +47,21 @@ export class RecommendComponent implements OnInit {
     );
   }
 
+  private getFoodRecommendations(questionnaireId: string) {
+    this.foodRecommendationsService.getFoodRecommendationsByQuestionnaireId(questionnaireId).subscribe(
+      data => {
+        this.onModalRequestFood(questionnaireId);
+      },
+      error => {
+        const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
+        dialogRef.componentInstance.title = error.error.message;
+        dialogRef.componentInstance.router = this.router;
+      }
+    );
+  }
+
+
+
   private getAllResults() {
     this.resultsService.getAllResults().subscribe(data => {
       data.map(response => {
@@ -54,6 +72,11 @@ export class RecommendComponent implements OnInit {
 
   onModalRequest(id: string): void {
     const modalRef = this.errorDialog.open(RecommendModalComponent);
+    modalRef.componentInstance.id = id;
+  }
+
+  onModalRequestFood(id: string): void {
+    const modalRef = this.errorDialog.open(FoodRecommendModalComponent);
     modalRef.componentInstance.id = id;
   }
 
