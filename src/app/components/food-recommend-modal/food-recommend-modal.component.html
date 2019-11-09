@@ -4,10 +4,10 @@
     <div class="tableDiv">
       <table *ngFor="let result of recommendedNutrients">
         <tr>
-          <th>Food Item</th>
-          <th>Calculations</th>
-          <th>Intake</th>
-          <th>Indicator</th>
+          <th> Food Item </th>
+          <th> Calculations </th>
+          <th> Recommended intake </th>
+          <th> Indicator</th>
         </tr>
         <tr *ngFor="let nutrient of result.recommendationsList">
           <td>{{nutrient.nutrientName}}</td>
