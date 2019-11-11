@@ -2,20 +2,20 @@
   <h2 matDialogTitle>Food Recommendations</h2>
   <mat-dialog-content>
     <div class="tableDiv">
-      <table *ngFor="let result of recommendedNutrients">
+      <table *ngFor="let result of recommendedFood">
         <tr>
           <th> Food Item </th>
-          <th> Calculations </th>
-          <th> Recommended intake </th>
-          <th> Indicator</th>
+          <th style="text-align: center"> From (Oz) </th>
+          <th style="text-align: center">  To (Oz) </th>
+          <th style="text-align: center"> Label </th>
+          <th> Calculated Amount (Oz) </th>
         </tr>
-        <tr *ngFor="let nutrient of result.recommendationsList">
-          <td>{{nutrient.nutrientName}}</td>
-          <td style="text-align: center">{{nutrient.calculatedAmount| number: '1.2-2'}}</td>
-          <td style="text-align: center">{{nutrient.recommendedAmount| number: '1.1-1'}}</td>
-          <td
-            [ngClass]="{'below': nutrient.calculatedAmount < nutrient.recommendedAmount, 'above': nutrient.calculatedAmount > nutrient.recommendedAmount, 'normal': nutrient.calculatedAmount == nutrient.recommendedAmount }"
-            style="text-align: center">{{nutrient.status}}</td>
+        <tr *ngFor="let food of result.foodCategoryRecList">
+          <td>{{food.categoryName}}</td>
+          <td  [ngClass]="{'concat': food.rangeTo ===1000000.00}"style="text-align: center">{{food.rangeFrom| number: '1.1-1'}}</td>
+          <td  [ngClass]="{'cover': food.rangeTo ===1000000.00}" style="text-align: center">{{food.rangeTo| number: '1.1-1'}}</td>
+          <td style="text-align: center">{{food.label}}</td>
+          <td style="text-align: center">{{food.calculatedAmount | number: '1.2-2'}}</td>
         </tr>
       </table>
     </div>

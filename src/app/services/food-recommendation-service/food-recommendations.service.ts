@@ -10,6 +10,7 @@ import { ɵangular_packages_forms_forms_q } from '@angular/forms';
 import { Http, Headers, Response, RequestOptions, RequestMethod } from '@angular/http';
 import { FFQNutrientlist } from 'src/app/models/ffqnutrientlist';
 import { FFQNutrientsRecommendations } from 'src/app/models/ffqnutrients-recommendations';
+import { FFQFoodRecommendations } from 'src/app/models/ffqfood-recommendations';
 
 const httOptions ={ headers: new HttpHeaders({'Content-Type':'aplication/json'})}
 
@@ -24,14 +25,14 @@ export class FoodRecommendationsService {
   constructor(private http: HttpClient) { } 
 
   /* Return the nutrients recommendations given a questionnaire id*/
-  getFoodRecommendationsByQuestionnaireId(questionnaireId: string): Observable<FFQNutrientsRecommendations> {
-    return this.http.get(this.endpoint + '/nutrientsrecommendations/calculate/' + questionnaireId).pipe(
-      map(((item: FFQNutrientsRecommendations) => {
-          return new FFQNutrientsRecommendations(
+  getFoodRecommendationsByQuestionnaireId(questionnaireId: string): Observable<FFQFoodRecommendations> {
+    return this.http.get(this.endpoint + '/foodrecommendations/calculate/' + questionnaireId).pipe(
+      map(((item: FFQFoodRecommendations) => {
+          return new FFQFoodRecommendations(
             item.questionnaireId,
             item.patientName,
             item.patientAge,
-            item.recommendationsList
+            item.foodCategoryRecList,
           );
         }))
     );
