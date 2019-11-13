@@ -124,7 +124,7 @@ export class FooditemComponent implements OnInit {
     },
     error =>{
       const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
-      dialogRef.componentInstance.title = 'Please check all red fields!';
+      dialogRef.componentInstance.title = error.error.message;
     }
      
     );
