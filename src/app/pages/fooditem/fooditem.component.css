@@ -74,6 +74,11 @@ h2 {
     opacity: 1; /* Firefox */
     font-style: italic;
   }
+
+  .field-error {
+    border:2px solid red;
+  
+  }
   
   
   
