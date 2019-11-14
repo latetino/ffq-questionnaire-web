@@ -121,7 +121,7 @@ export class FooditemComponent implements OnInit {
      this.foodService.addFoodNutrients(FFQFoodNutrients.foodItemToResponse(this.foodNutrientsItem[0])).subscribe(
      data => {this.router.navigateByUrl('/admin');
      const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
-     dialogRef.componentInstance.title = 'Food item added succesfully!';
+     dialogRef.componentInstance.title = 'Food item added successfully!';
     },
     error =>{
       const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
@@ -139,7 +139,7 @@ export class FooditemComponent implements OnInit {
     this.foodService.updateFoodNutrients(FFQFoodNutrients.foodItemToResponse(this.foodNutrientsItem[0])).subscribe(
      data => {this.router.navigateByUrl('/admin');
      const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
-     dialogRef.componentInstance.title = 'Food item updated succesfully!';}
+     dialogRef.componentInstance.title = 'Food item updated successfully!';}
      
     );
     

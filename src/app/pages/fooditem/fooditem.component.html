@@ -18,7 +18,7 @@
         <h6> Food Item </h6>
         <div class="row">
           <div class="form-group col-12">
-            <label style="font-weight: bold"> Name </label><label style="font-style: italic; font-size: small; margin-left: 10px"> required </label>
+            <label style="font-weight: bold"> Name </label><label style="font-style: italic; font-size: small; margin-left: 10px"> *required </label>
             <input placeholder="name" style="border-color: mediumblue; border-width: 0.05cm" name="name" type="text"
               class="form-control" [(ngModel)]="foodNutrientsItem[0].foodItem.name" required #nameField="ngModel" />
 
@@ -35,7 +35,7 @@
           </div>
           <div class="form-group col-12 form-check">
             <label style="font-weight: bold"> Servings* </label> (Enter the servings separated by commas i.e: 1 oz, 2
-            oz, 3 oz)<label style="font-style: italic; font-size: small; margin-left: 10px;font-weight: bold"> required </label> <br>
+            oz, 3 oz)<label style="font-style: italic; font-size: small; margin-left: 10px;font-weight: bold"> *required </label> <br>
             <label style="font-style: italic"> *Serving(s) the user will see/select for this food item when completing
               the questionnaire </label> 
             <input placeholder="servings" name="servings" type="text" class="form-control"
@@ -57,14 +57,14 @@
             <div style="margin: 10px 0 10px 0" class="row">
 
               <div class="col-4">
-                <label style="font-weight: bold" class="form-check-label" for="fooditemname"> Name </label><label style="font-style: italic; font-size: small; margin-left: 10px;"> required </label>
+                <label style="font-weight: bold" class="form-check-label" for="fooditemname"> Name </label><label style="font-style: italic; font-size: small; margin-left: 10px;"> *required </label>
                 <input id="fooditemname" style="border-color: mediumblue; border-width: 0.05cm" placeholder="food type"
                   type="text" class="form-control" name="nutrientname" required #nutrientnameField="ngModel"
                   [(ngModel)]=foodtype.typeName />
               </div>
 
               <div class="col-4">
-                <label class="form-check-label" style="font-weight: bold" for="additionalSugar"> ID </label><label style="font-style: italic; font-size: small; margin-left: 10px;"> required </label>
+                <label class="form-check-label" style="font-weight: bold" for="additionalSugar"> ID </label><label style="font-style: italic; font-size: small; margin-left: 10px;"> *required </label>
                 <input placeholder="nutrient list id" type="text" style="border-color: mediumblue; border-width: 0.05cm"
                   class="form-control" name="addsugar" [(ngModel)]=foodtype.nutrientListID required
                   #idField="ngModel" />
