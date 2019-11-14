@@ -3,7 +3,7 @@
 <div class="container_page" *ngIf="dataLoaded"> 
   <div class="container" style="margin-top: 15px;"><a routerLink="/admin"><span class="fa fa-chevron-circle-left"></span> Back to Food Item(s)</a></div>
   <div *ngIf="isUpdate" class="container mt-3" align="right">
-    <button type="submit" class="btn btn-primary col-3 margin" (click)="addFoodNutrients()"> Update Food Item </button>
+    <button type="submit" class="btn btn-primary col-3 margin" (click)="updateFoodNutrients()"> Update Food Item </button>
   </div>
   <div *ngIf="isNew" class="container mt-3" align="right">
     <button type="submit" class="btn btn-primary col-3 margin" (click)="addFoodNutrients()"> Add Food Item </button>

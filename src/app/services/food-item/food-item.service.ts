@@ -34,6 +34,15 @@ export class FoodItemService {
       ));
   }
 
+  updateFoodNutrients(fooditem : FFQFoodNutrientsResponse): Observable<any> {
+    
+    return this.http.put(this.endpoint + '/updatefoodnutrients', fooditem, {headers : new HttpHeaders({ 'Content-Type': 'application/json' })}).pipe(
+      tap( 
+        data => console.log(data),
+        error => console.log(error)
+      ));
+  }
+
   /* Return a specific food item (by object id) and its list of nutrients*/
   getFoodbyName(objectId: string): Observable<FFQFoodNutrientsResponse> {
     return this.http.get(this.endpoint + '/foodnutrients/' + objectId).pipe(
