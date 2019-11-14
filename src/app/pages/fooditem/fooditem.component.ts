@@ -131,6 +131,19 @@ export class FooditemComponent implements OnInit {
     
   }
 
+  private updateFoodNutrients(){  
+    const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
+    console.log(this.foodNutrientsItem[0]);
+    //this.foodNutrientsItem[0].nutrientList.nutrientListID = this.foodNutrientsItem[0].foodItem.foodTypes[0].nutrientListID;
+    //this.foodNutrientsItem[0].foodItem.nutrientId = this.foodNutrientsItem[0].foodItem.foodTypes[0].nutrientListID;
+    this.foodService.updateFoodNutrients(FFQFoodNutrients.foodItemToResponse(this.foodNutrientsItem[0])).subscribe(
+     data => {this.router.navigateByUrl('/admin');
+     dialogRef.componentInstance.title = 'Food item added/updated succesfully!';}
+     
+    );
+    
+  }
+
   trackByFn(item, id){
     return item
   }

@@ -1,5 +1,6 @@
 <admin-header></admin-header>
 
+<<<<<<< HEAD
 <form #form="ngForm" (ngSubmit)="addFoodNutrients(form)">
   <div class="form-group">
     <div class="container_page" *ngIf="dataLoaded">
@@ -43,6 +44,31 @@
               [(ngModel)]="foodNutrientsItem[0].foodItem.servingsList" required #servingField="ngModel"
               [class.field-error]="form.submitted && servingField.invalid"  />
           </div>
+=======
+<div class="container_page" *ngIf="dataLoaded"> 
+  <div class="container" style="margin-top: 15px;"><a routerLink="/admin"><span class="fa fa-chevron-circle-left"></span> Back to Food Item(s)</a></div>
+  <div *ngIf="isUpdate" class="container mt-3" align="right">
+    <button type="submit" class="btn btn-primary col-3 margin" (click)="updateFoodNutrients()"> Update Food Item </button>
+  </div>
+  <div *ngIf="isNew" class="container mt-3" align="right">
+    <button type="submit" class="btn btn-primary col-3 margin" (click)="addFoodNutrients()"> Add Food Item </button>
+    
+  </div>   
+  <div class="container frame-fooditem">           
+      <h6> Food Item </h6>        
+      <div class="row"> 
+        <div class="form-group col-12">
+          <label style="font-weight: bold"> Name </label>
+          <input placeholder="name" required type="text" class="form-control" [(ngModel)]="foodNutrientsItem[0].foodItem.name" />
+        </div>
+        <div class="form-group col-3 form-check" style="margin-left: 20px">
+          <input class="form-check-input" type="checkbox" [(ngModel)]="foodNutrientsItem[0].foodItem.primary" id="isPrimary"/>
+          <label class="form-check-label" for="isPrimary"> Primary </label>
+        </div>        
+        <div class="form-group col-3 form-check">      
+          <input class="form-check-input" type="checkbox" [(ngModel)] = "foodNutrientsItem[0].foodItem.sugar.additionalSugar" id="additionalSugar">
+          <label class="form-check-label" for="additionalSugar"> Additional Sugar </label>          
+>>>>>>> adddc8d668984ae59e44f25c7f9e0337097cca48
         </div>
         <hr>
         <label style="font-weight: bold">Nutrients*</label>
