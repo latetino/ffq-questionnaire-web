@@ -4,10 +4,8 @@
 
 .container {
     padding: 20px;
-    margin-top: 12%!important;
     background-position:fixed;
-    
-}
+ }
 
 table {
   font-family: arial, sans-serif;
@@ -18,26 +16,26 @@ table {
 td, th {
   border: 1px solid #000000;
   text-align: left;
-  padding: 5px;
+  padding: 7px;
+  margin-right: 5px;
 }
-
 tr:nth-child(even) {
   background-color: #dddddd;
 }
-
 .tableDiv {
   padding: 1px;
 }
-.normal {
-  color: green;
+.cover{
+  text-indent: -9999px;
+	line-height:0;
+}
+.cover::after{
+  text-indent:0;
+	content:"--";
+	display:block;
+	line-height: initial;
 }
 
-.below {
-  color:red;
+.concat::before{
+  content: '>= ';
 }
-
-.above {
-  color:rgb(133, 92, 5);
-}
-
-  

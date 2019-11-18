@@ -1,8 +1,4 @@
-import {FFQItemInput} from './ffqitem-input';
-import {FFQItemResponse} from './ffqitem-response';
-import {Serving} from './ffqitem-response';
-import { FFQSugar } from './ffqsugar';
-import { ObjectUnsubscribedError } from 'rxjs';
+
 
 export class FFQNutrientsRecommendations {
   questionnaireId: string;

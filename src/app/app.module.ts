@@ -28,6 +28,7 @@ import {PopupComponent} from "./components/popup/popup.component";
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { Routes, RouterModule } from '@angular/router';
 import { RecommendModalComponent } from './components/recommend-modal/recommend-modal.component';
+import { FoodRecommendModalComponent } from './components/food-recommend-modal/food-recommend-modal.component';
 
 
 
@@ -47,7 +48,8 @@ import { RecommendModalComponent } from './components/recommend-modal/recommend-
     QuestResultsComponent,
     RecommendComponent,
     PopupComponent,
-    RecommendModalComponent
+    RecommendModalComponent,
+    FoodRecommendModalComponent
   
     
       
@@ -76,6 +78,6 @@ import { RecommendModalComponent } from './components/recommend-modal/recommend-
    ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [ErrorDialogPopupComponent, ResultsPageComponent,PopupComponent,RecommendModalComponent]
+  entryComponents: [ErrorDialogPopupComponent, ResultsPageComponent,PopupComponent,RecommendModalComponent,FoodRecommendModalComponent]
 })
 export class AppModule { }

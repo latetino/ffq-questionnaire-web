@@ -14,10 +14,9 @@ h2 {
   justify-content: center;
   margin-bottom: 10px;
 }
-.quest-id-textfield {
- border-width:0px;
- border-bottom: 0.05px solid black !important;
- margin-left:20px;
+.qb-row-item {
+  padding: 0 20px;
+  width: 100%;
 }
 
 .quest-id-span {
@@ -58,3 +57,4 @@ h2 {
   margin-bottom: 5px;
   cursor: pointer;
 }
+

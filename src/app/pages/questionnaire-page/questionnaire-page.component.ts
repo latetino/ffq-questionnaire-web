@@ -14,6 +14,7 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ResultsPageComponent} from '../results-page/results-page.component';
 import {FFQResult} from '../../models/FFQResult';
 import {NutrientConstants} from '../../models/NutrientConstants';
+import { Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-questionnaire-page',
@@ -40,6 +41,9 @@ export class QuestionnairePageComponent implements OnInit {
   dataLoaded: Promise<boolean>;
   
   foodItems: FFQItem[] = [];
+  
+
+  
 
   constructor(public foodService: FoodItemService,
               public questService: QuestionnaireValidatorService,
@@ -50,6 +54,7 @@ export class QuestionnairePageComponent implements OnInit {
               private successDialog: MatDialog,
               private router: Router,
               private modalService: NgbModal) {}
+
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(params => {
         this.id = params.get('id');
@@ -74,6 +79,7 @@ export class QuestionnairePageComponent implements OnInit {
   }
 
   submitQuestionnaire() {
+    
     let pageHasErrors = false;
     for (const foodItem of this.foodItems) {
       if (this.hideSecondaryItems && !foodItem.isPrimary) {
@@ -92,6 +98,7 @@ export class QuestionnairePageComponent implements OnInit {
       const  dialogRef  = this.submissionErrorDialog.open(ErrorDialogPopupComponent);
       dialogRef.componentInstance.title = 'Questionnaire Incomplete';
       dialogRef.componentInstance.message = 'Please ensure all required fields are completed.';
+            
     } else {
       
       log('Questionnaire submitted successfully.');
@@ -180,5 +187,6 @@ export class QuestionnairePageComponent implements OnInit {
     dialogRef.componentInstance.title = 'Error Submitting Questionnaire';
     dialogRef.componentInstance.message = error.message + '. Try again or contact administrator.';
   }
+  
 }
 
