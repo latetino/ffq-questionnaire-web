@@ -35,4 +35,17 @@ export class RecommendModalComponent {
       },
     );
   }
+
+  color(a: string) {
+    const b = a.split(' ', 1);
+    if (b[0] === "Below") {
+      return "below";
+    }
+    else if (b[0] === "Above") {
+      return "above";
+    }
+    else if (b[0] === "Normal") {
+      return "normal";
+    }
+  }
 }
