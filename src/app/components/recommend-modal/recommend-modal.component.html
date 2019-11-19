@@ -7,12 +7,12 @@
           <th>Nutrient name</th>
           <th>User input calculations</th>
           <th>Recommended value</th>
-          <th>Indicator</th>
+          <th style="text-align: center">Indicator</th>
         </tr>
         <tr *ngFor="let nutrient of result.recommendationsList">
           <td>{{nutrient.nutrientName}}</td>
           <td style="text-align: center">{{nutrient.calculatedAmount| number: '1.2-2'}}</td>
-          <td style="text-align: center">{{nutrient.recommendedAmount| number: '1.0-0'}}</td>
+          <td style="text-align: center">{{nutrient.recommendedAmount| number: '1.1-1'}}</td>
           <td
             [ngClass]="{'below': nutrient.status==='Below', 'above':  nutrient.status==='Above', 'normal':  nutrient.status==='Normal (±10% Recommended Value)' }"
             style="text-align: center">{{nutrient.status}}</td>
