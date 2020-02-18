@@ -14,7 +14,7 @@ import {Observable} from 'rxjs';
   styleUrls: ['./quest-id-input.component.css']
 })
 export class QuestIdInputComponent {
-
+  TITLE = 'Parent Portal';
   questionnaire: QuestionnaireResponse;
 
   constructor(
