@@ -29,6 +29,7 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
 import { Routes, RouterModule } from '@angular/router';
 import { RecommendModalComponent } from './components/recommend-modal/recommend-modal.component';
 import { FoodRecommendModalComponent } from './components/food-recommend-modal/food-recommend-modal.component';
+import { ParentalHeaderComponent } from './pages/parental-header/parental-header.component';
 
 
 
@@ -49,7 +50,8 @@ import { FoodRecommendModalComponent } from './components/food-recommend-modal/f
     RecommendComponent,
     PopupComponent,
     RecommendModalComponent,
-    FoodRecommendModalComponent
+    FoodRecommendModalComponent,
+    ParentalHeaderComponent
   
     
       
