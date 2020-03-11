@@ -67,6 +67,10 @@ export class QuestResultsComponent implements OnInit {
     return 0;
   }
 
+  private returnZero(){
+    return 0;
+  }
+
   toggle(index) {
     this.results[index].show = !this.results[index].show;
     if (this.results[index].show) this.buttonName = "Results";
