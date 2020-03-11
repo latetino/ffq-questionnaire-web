@@ -27,7 +27,8 @@ export class ResultsPageComponent {
     this.results.dailyAverages.forEach((value: number, key: string) => {
       list.push(key);
     });
-    list.sort((a, b) => {
+    //Commented code below because it serves no purpose
+    /*list.sort((a, b) => {
       if (a < b) {
         return -1;
       } else if (a > b) {
@@ -35,7 +36,7 @@ export class ResultsPageComponent {
       } else {
         return 0;
       }
-    });
+    });*/
     return list;
   }
 

@@ -10,9 +10,9 @@ export class FFQResultsResponse {
     userChoices: any;
     weeklyTotals: any;  
     dailyAverages: any;
-  show: boolean;
+    show: boolean;
   
-    constructor(id: string, name: string, age: number, userChoices:any, weeklyTotals: any, dailyAverages: any ) {
+    constructor(id: string, name: string, age: number, userChoices:any, weeklyTotals: Map<string, number>, dailyAverages: any) {
       this.questionnaireId = id;
       this.patientName = name;
       this.ageInMonths = age;
@@ -20,5 +20,12 @@ export class FFQResultsResponse {
       this.weeklyTotals = weeklyTotals;
       this.dailyAverages = dailyAverages;
     }    
+/*
+    public getWeekly(){
+      return this.weeklyTotals;
+    }
+*/
+  
+
   }
   

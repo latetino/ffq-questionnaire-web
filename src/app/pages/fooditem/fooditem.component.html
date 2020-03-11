@@ -77,7 +77,9 @@
               style="padding:5px">
               <div class="col-1"></div>
               <div class="col-5">{{nutrient1.key}}</div>
-              <div class="col-2"><input class="form-control" name="nutrients"
+              <!-- <div class="col-2"><input class="form-control" name="nutrients" -->
+              <!-- Parental group added the code above without adding comments, what was the reason for this change?-->
+              <div class="col-2"><input class="form-control" [ngModelOptions]="{standalone: true}"
                   [(ngModel)]="foodNutrientsItem[0].nutrientList[i].nutrientMap[nutrient1.key]"></div>
             </div>
             
