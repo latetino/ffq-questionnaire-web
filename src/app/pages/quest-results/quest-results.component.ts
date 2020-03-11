@@ -16,14 +16,14 @@ import { NutrientConstants } from 'src/app/models/NutrientConstants';
 export class QuestResultsComponent implements OnInit {
   public show: boolean = false;
   public buttonName: any = "Results";
-
+  
   MESSAGE = "No questionnaires have been submitted yet!";
 
 
   results: FFQResultsResponse[] = [];
 
   constructor(public resultsService: ResultsService) {}
-
+  
   ngOnInit() {
     this.getAllResults();
   }
@@ -58,6 +58,10 @@ export class QuestResultsComponent implements OnInit {
    )
 
  }
+
+  private returnZero(){
+    return 0;
+  }
 
   private returnZero(){
     return 0;
