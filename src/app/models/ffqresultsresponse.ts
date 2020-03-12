@@ -24,11 +24,4 @@ export class FFQResultsResponse {
 */
   
 
-/*
-    public getWeekly(){
-      return this.weeklyTotals;
-    }
-*/
-  
-
   }
