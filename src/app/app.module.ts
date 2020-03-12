@@ -32,6 +32,7 @@ import { FoodRecommendModalComponent } from './components/food-recommend-modal/f
 import { ClinicalPortalComponent } from './pages/clinical-portal/clinical-portal.component';
 import { ClinicalHeaderComponent } from './pages/clinical-header/clinical-header.component';
 import { ParentalHeaderComponent } from './pages/parental-header/parental-header.component';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
 
 
 
@@ -55,7 +56,8 @@ import { ParentalHeaderComponent } from './pages/parental-header/parental-header
     FoodRecommendModalComponent,
     ClinicalPortalComponent,
     ClinicalHeaderComponent,
-    ParentalHeaderComponent
+    ParentalHeaderComponent,
+    LoginPageComponent
   
     
       
