@@ -88,7 +88,7 @@
             <div class="tableDiv">
               <h6>Nutrient Breakdown</h6>
               <div class="row">
-                <table class="col-10">
+                <table class="col-12">
                   <tr>
                     <th>Nutrient</th>
                     <th>Daily Average</th>
@@ -96,14 +96,6 @@
                   <tr *ngFor="let item of result.dailyAverages | keyvalue; let i=index">
                     <td *ngIf="i != 0 && i != 1 && i != 2">{{item.key}}</td>
                     <td *ngIf="i != 0 && i != 1 && i != 2">{{item.value| number: '1.5-5'}}</td>
-                  </tr>
-                </table>
-                <table class="col-2">
-                  <tr>
-                    <th>Weekly Total</th>
-                  </tr>
-                  <tr *ngFor="let week of result.weeklyTotals | keyvalue; let i=index">
-                    <td *ngIf="i != 0 && i != 1 && i != 2">{{week.value| number: '1.5-5'}}</td>
                   </tr>
                 </table>
               </div>
