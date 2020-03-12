@@ -20,12 +20,5 @@ export class FFQResultsResponse {
       this.weeklyTotals = weeklyTotals;
       this.dailyAverages = dailyAverages;
     }    
-/*
-    public getWeekly(){
-      return this.weeklyTotals;
-    }
-*/
-  
-
   }
   
