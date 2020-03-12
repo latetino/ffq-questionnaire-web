@@ -7,6 +7,7 @@ import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 import {FooditemComponent} from './pages/fooditem/fooditem.component';
 import { QuestResultsComponent } from './pages/quest-results/quest-results.component';
 import { RecommendComponent } from './pages/recommend/recommend.component';
+import { ClinicalPortalComponent} from './pages/clinical-portal/clinical-portal.component';
 
 const routes: Routes = [
   {
@@ -32,7 +33,10 @@ const routes: Routes = [
   },
   {
     path: 'questionnaire/:id', component: QuestionnairePageComponent
-  }  
+  }, 
+  {
+    path: 'clinical-portal', component: ClinicalPortalComponent
+  }
 ];
 
 @NgModule({

@@ -1,5 +1,9 @@
 export class NutrientConstants {
   static readonly NUTRIENT_NAMES: string[] = [
+    //Changed nutrients in accordance to the new database given by the PO
+    //Will show weird display if you still have the old database but
+    //it is no indication of any errors
+    /*
     'Maltitol (g)',
     'Beta-Carotene (provitamin A carotenoid) (mcg)',
     'Beta-Cryptoxanthin (provitamin A carotenoid) (mcg)',
@@ -128,5 +132,52 @@ export class NutrientConstants {
     'Tyrosine (g)',
     'Iron (mg)',
     'Phenylalanine (g)',
+    */
+   "Energy (kcal)",
+        "Total Protein (g)",
+        "Total Carbohydrate (g)",
+        "Total Fat (g)",
+        "% Calories from Protein",
+        "% Calories from Carbs",
+        "% Calories from Fat",
+        "Animal Protein (g)",
+        "Vegetable Protein (g)",
+        "Total Dietary Fiber (g)",
+        "Total Sugars (g)",
+        "Added Sugars (by Total Sugars) (g)",
+        "Fructose (g)",
+        "Lactose (g)",
+        "Starch (g)",
+        "Total Grains (ounce equivalents)",
+        "Whole Grains (ounce equivalents)",
+        "Refined Grains (ounce equivalents)",
+        "Total Saturated Fatty Acids (SFA) (g)",
+        "Total Monounsaturated Fatty Acids (MUFA) (g)",
+        "Total Polyunsaturated Fatty Acids (PUFA) (g)",
+        "Omega-3 Fatty Acids (g)",
+        "Water (g)",
+        "Caffeine (mg)",
+        "Thiamin (vitamin B1) (mg)",
+        "Riboflavin (vitamin B2) (mg)",
+        "Niacin (vitamin B3) (mg)",
+        "Pantothenic Acid (vitamin B5) (mg)",
+        "Vitamin B-6 (pyridoxine, pyridoxyl, & pyridoxamine) (mg)",
+        "Total Folate (vitamin B9) (mcg)",
+        "Vitamin B-12 (cobalamin) (mcg)",
+        "Vitamin C (ascorbic acid) (mg)",
+        "Total Vitamin A Activity (Retinol Activity Equivalents) (mcg)",
+        "Vitamin D (calciferol) (mcg)",
+        "Vitamin E (Total Alpha-Tocopherol) (mg)",
+        "Vitamin K (phylloquinone) (mcg)",
+        "Calcium (mg)",
+        "Copper (mg)",
+        "Iron (mg)",
+        "Manganese (mg)",
+        "Magnesium (mg)",
+        "Phosphorus (mg)",
+        "Potassium (mg)",
+        "Selenium (mcg)",
+        "Sodium (mg)",
+        "Zinc (mg)"
   ];
 }

@@ -9,7 +9,7 @@ export class FFQResult {
   dailyAverages: Map<string, number>;
   weeklyTotals: Map<string, number>;
   calorieSummary: Map<string, number>;
-
+ 
   constructor(dailyAverages: Map<string, number>, weeklyTotals: Map<string, number>) {
     this.dailyAverages = dailyAverages;
     this.dailyAverages.delete(FFQResult.CAL_PERC_CARB);
@@ -70,7 +70,7 @@ export class CalorieRow {
 
   constructor(total: number, carb: number, fat: number, protein: number) {
     this.total = total;
-    this.carb = carb;
+    this.carb = carb;  
     this.fat = fat;
     this.protein = protein;
   }

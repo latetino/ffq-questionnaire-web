@@ -93,9 +93,11 @@
                     <th>Nutrient</th>
                     <th>Daily Average</th>
                   </tr>
-                  <tr *ngFor="let item of result.dailyAverages | keyvalue; let i=index">
-                    <td *ngIf="i != 0 && i != 1 && i != 2">{{item.key}}</td>
-                    <td *ngIf="i != 0 && i != 1 && i != 2">{{item.value| number: '1.5-5'}}</td>
+                  <!-- Below code changed to show requested digits by PO-->
+                  <tr *ngFor="let item of result.dailyAverages | keyvalue : returnZero; let i=index">
+                    <!--td *ngIf="i != 0 && i != 1 && i != 2"--><td>{{item.key}}</td>
+                    <!--Khalid, changed item.value to display 3 digits-->
+                    <!--td *ngIf="i != 0 && i != 1 && i != 2"--><td>{{item.value}}</td>
                   </tr>
                 </table>
               </div>
@@ -109,12 +111,11 @@
                   <th>% calories from Protein</th>
                 </tr>
                 <tr>
-                  <td>
-                    {{result.weeklyTotals["% Calories from Fat"] + result.weeklyTotals["% Calories from Carbs"] + result.weeklyTotals["% Calories from Protein"] | number: '1.5-5' }}
-                  </td>
-                  <td> {{result.weeklyTotals["% Calories from Fat"]| number: '1.5-5'}}</td>
-                  <td> {{result.weeklyTotals["% Calories from Carbs"]| number: '1.5-5'}}</td>
-                  <td> {{result.weeklyTotals["% Calories from Protein"]| number: '1.5-5'}}</td>
+                  <!--Khalid Alamoudi - modified code below to print value only (fix was done in the calculator)-->
+                  <td> {{result.weeklyTotals["Energy (kcal)"]}}</td>
+                  <td> {{result.weeklyTotals["% Calories from Fat"]}}</td>
+                  <td> {{result.weeklyTotals["% Calories from Carbs"]}}</td>
+                  <td> {{result.weeklyTotals["% Calories from Protein"]}}</td>
                 </tr>
               </table>
             </div>
