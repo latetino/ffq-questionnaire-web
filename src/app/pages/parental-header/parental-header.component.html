@@ -2,11 +2,11 @@
   <h2 matDialogTitle>{{TITLE}}</h2>
 
   <div class="login-button">
-    <button mat-raised-button routerLink="/login" routerLinkActive="active">Login</button>
+    <button mat-raised-button (click)="logout()">Logout</button>
   </div>
 
   <div align="center"><i style="color: aliceblue" class="fa fa-users fa-2x" aria-hidden="true"></i></div>  
-    <a class="tab-link" routerLink="" routerLinkActive="active">Questionnaire</a>
+    <a class="tab-link" routerLink="/questionnaire-id" routerLinkActive="active">Questionnaire</a>
     <a class="tab-link" routerLink="" routerLinkActive="active">History</a>
     <a class="tab-link" routerLink="" routerLinkActive="active">Recommendations</a>
     <a class="tab-link" routerLink="" routerLinkActive="active">Tracking</a>

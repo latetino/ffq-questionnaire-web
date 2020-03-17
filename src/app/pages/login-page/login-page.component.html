@@ -2,7 +2,7 @@
   <mat-card class="card">
       <h1 matDialogTitle>Parental Portal Login</h1>
       <mat-card-content class="card-body">
-          <form [formGroup]="loginForm">
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
               <div class="form-group">
                   <input type="text" formControlName="username" placeholder="Username" class="form-control"/>
               </div>
