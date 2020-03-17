@@ -14,7 +14,7 @@ import { ErrorDialogPopupComponent } from './components/error-dialog-popup/error
 import { TextCardComponent } from './components/text-card/text-card.component';
 import { QuestionBlockComponent } from './components/question-block/question-block.component';
 import {FormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { ResultsPageComponent } from './pages/results-page/results-page.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AdminPageComponent } from './pages/admin-page/admin-page.component';
@@ -32,6 +32,9 @@ import { FoodRecommendModalComponent } from './components/food-recommend-modal/f
 import { ClinicalPortalComponent } from './pages/clinical-portal/clinical-portal.component';
 import { ClinicalHeaderComponent } from './pages/clinical-header/clinical-header.component';
 import { ParentalHeaderComponent } from './pages/parental-header/parental-header.component';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { JwtInterceptor } from './services/authentication/jwt.interceptor';
+import { fakeBackendProvider } from './services/authentication/temp-backend';
 
 
 
@@ -55,7 +58,8 @@ import { ParentalHeaderComponent } from './pages/parental-header/parental-header
     FoodRecommendModalComponent,
     ClinicalPortalComponent,
     ClinicalHeaderComponent,
-    ParentalHeaderComponent
+    ParentalHeaderComponent,
+    LoginPageComponent
   
     
       
@@ -82,7 +86,12 @@ import { ParentalHeaderComponent } from './pages/parental-header/parental-header
     NgbModule.forRoot(),
     FlashMessagesModule.forRoot(),
    ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+
+    // provider used to create fake backend
+    //fakeBackendProvider
+  ],
   bootstrap: [AppComponent],
   entryComponents: [ErrorDialogPopupComponent, ResultsPageComponent,PopupComponent,RecommendModalComponent,FoodRecommendModalComponent]
 })
