@@ -6,8 +6,8 @@ import { FFQFoodItemResponse } from './ffqfooditem-response';
 
 export class FFQFoodNutrients {
     foodItem: FFQFoodItem;
-    nutrientList: Array<FFQNutrientlist>;  
-  
+    nutrientList: Array<FFQNutrientlist>;
+
     constructor(foodItem: FFQFoodItem, nutrientList: Array<FFQNutrientlist> ) {
         this.foodItem = foodItem;
         this.nutrientList = nutrientList;
@@ -16,7 +16,7 @@ export class FFQFoodNutrients {
     public static foodItemToResponse(fooditem: FFQFoodNutrients): FFQFoodNutrientsResponse
     {
         const foodItemResponse = new FFQFoodItemResponse(fooditem.foodItem.name, fooditem.foodItem.id);
-        
+
         //foodItemResponse.id = fooditem.foodItem.id;
         foodItemResponse.primary = fooditem.foodItem.primary;
         foodItemResponse.foodTypes = fooditem.foodItem.foodTypes;
@@ -36,14 +36,14 @@ export class FFQFoodNutrients {
             fooditem.nutrientList[index].nutrientListID = foodItemResponse.foodTypes[index].nutrientListID;
         }
 
-        
+
 
         const foodNutrientsResponse = new FFQFoodNutrientsResponse(foodItemResponse, fooditem.nutrientList);
         return foodNutrientsResponse;
     }
     public static foodItemFromResponse(response: FFQFoodNutrientsResponse): FFQFoodNutrients {
         console.log(response);
-        
+
         const fooditem = new FFQFoodItem(response.foodItem.name);
 
         fooditem.id = response.foodItem.id;
@@ -72,7 +72,7 @@ export class FFQFoodNutrients {
             fooditem.servingsList = servingsString;
         }
 
-        
+
 
         //fooditem.servingsList = response.foodItem.servingsList;
 

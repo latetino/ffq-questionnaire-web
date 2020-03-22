@@ -26,14 +26,14 @@ export class AdminPageComponent implements OnInit {
 
 
   constructor(public foodService: FoodItemService,
-    private activatedRoute: ActivatedRoute,
-    private errorDialog: MatDialog,
-    private submissionErrorDialog: MatDialog,
-    private httpErrorDialog: MatDialog,
-    private successDialog: MatDialog,
-    private router: Router,
-    private modalService: NgbModal,
-    private flashMessage: FlashMessagesService,
+              private activatedRoute: ActivatedRoute,
+              private errorDialog: MatDialog,
+              private submissionErrorDialog: MatDialog,
+              private httpErrorDialog: MatDialog,
+              private successDialog: MatDialog,
+              private router: Router,
+              private modalService: NgbModal,
+              private flashMessage: FlashMessagesService,
 
   ) { }
 
@@ -65,7 +65,7 @@ export class AdminPageComponent implements OnInit {
     this.foodService.getAllFoods().subscribe(data => {
       data.map(response => {
         this.foodItems.push(response);
-        //this.foodNutrients.push(response);
+        // this.foodNutrients.push(response);
       });
       console.log(this.foodItems);
       console.log(this.foodNutrients.length + ' foods and its nutrients were returned from server.');
@@ -77,7 +77,7 @@ export class AdminPageComponent implements OnInit {
   onModalRequest(id: string): void {
     const modalRef = this.modalService.open(PopupComponent);
     modalRef.componentInstance.id = id;
-    
+
   }
 
 

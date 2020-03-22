@@ -11,8 +11,6 @@ import { Router } from '@angular/router';
 import { FoodRecommendModalComponent } from 'src/app/components/food-recommend-modal/food-recommend-modal.component';
 import { FoodRecommendationsService } from 'src/app/services/food-recommendation-service/food-recommendations.service';
 
-
-//Recommend page added by Daykel Muro 10/5/2019
 @Component({
   selector: 'app-recommend',
   templateUrl: './recommend.component.html',
@@ -22,11 +20,11 @@ export class RecommendComponent implements OnInit {
   results: FFQResultsResponse[] = [];
 
   constructor(public resultsService: ResultsService,
-    public nutrientsRecommendationsService: NutrientsRecommendationsService,
-    public foodRecommendationsService: FoodRecommendationsService,
-    private modalService: NgbModal,
-    private errorDialog: MatDialog,
-    private router: Router, ) { }
+              public nutrientsRecommendationsService: NutrientsRecommendationsService,
+              public foodRecommendationsService: FoodRecommendationsService,
+              private modalService: NgbModal,
+              private errorDialog: MatDialog,
+              private router: Router, ) { }
 
   recommendedNutrients: FFQNutrientsRecommendations[] = [];
 

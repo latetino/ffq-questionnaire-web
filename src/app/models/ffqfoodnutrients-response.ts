@@ -6,11 +6,11 @@ import { FFQFoodItemResponse } from './ffqfooditem-response';
 
 export class FFQFoodNutrientsResponse {
     foodItem: FFQFoodItemResponse;
-    nutrientList: Array<FFQNutrientlist>;  
-  
-    constructor(fooditem:FFQFoodItemResponse, nutrientlist: Array<FFQNutrientlist>) {
+    nutrientList: Array<FFQNutrientlist>;
+
+    constructor(fooditem: FFQFoodItemResponse, nutrientlist: Array<FFQNutrientlist>) {
       this.foodItem = fooditem;
       this.nutrientList = nutrientlist;
-    }    
+    }
   }
-  
+

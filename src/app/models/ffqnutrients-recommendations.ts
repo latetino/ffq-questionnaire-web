@@ -11,7 +11,7 @@ export class FFQNutrientsRecommendations {
     this.questionnaireId = questionnaireId;
     this.patientName = patientName;
     this.patientAge = patientAge;
-    this.recommendationsList = recommendationsList;    
+    this.recommendationsList = recommendationsList;
   }
 }
 
@@ -21,7 +21,7 @@ export class Recommendation {
   recommendedAmount: number;
   status: string;
 
-  constructor(nutrientName: string, calculatedAmount: number, recommendedAmount: number, status: string){
+  constructor(nutrientName: string, calculatedAmount: number, recommendedAmount: number, status: string) {
     this.nutrientName = nutrientName;
     this.calculatedAmount = calculatedAmount;
     this.recommendedAmount = recommendedAmount;

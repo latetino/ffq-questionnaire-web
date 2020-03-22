@@ -39,11 +39,11 @@ export class QuestionnairePageComponent implements OnInit {
   questionnaire: QuestionnaireResponse;
   hideSecondaryItems = false;
   dataLoaded: Promise<boolean>;
-  
-  foodItems: FFQItem[] = [];
-  
 
-  
+  foodItems: FFQItem[] = [];
+
+
+
 
   constructor(public foodService: FoodItemService,
               public questService: QuestionnaireValidatorService,
@@ -79,7 +79,7 @@ export class QuestionnairePageComponent implements OnInit {
   }
 
   submitQuestionnaire() {
-    
+
     let pageHasErrors = false;
     for (const foodItem of this.foodItems) {
       if (this.hideSecondaryItems && !foodItem.isPrimary) {
@@ -98,9 +98,9 @@ export class QuestionnairePageComponent implements OnInit {
       const  dialogRef  = this.submissionErrorDialog.open(ErrorDialogPopupComponent);
       dialogRef.componentInstance.title = 'Questionnaire Incomplete';
       dialogRef.componentInstance.message = 'Please ensure all required fields are completed.';
-            
+
     } else {
-      
+
       log('Questionnaire submitted successfully.');
       const itemList: FFQItemCalcRequest[] = [];
       for (const fooditem of this.foodItems) {
@@ -110,7 +110,7 @@ export class QuestionnairePageComponent implements OnInit {
           itemList.push(request);
         }
       }
-     
+
       this.foodService.calculateNutrientBreakdown(this.id, this.infantage, itemList)
         .subscribe( (results) => {
             console.log(results);
@@ -187,6 +187,6 @@ export class QuestionnairePageComponent implements OnInit {
     dialogRef.componentInstance.title = 'Error Submitting Questionnaire';
     dialogRef.componentInstance.message = error.message + '. Try again or contact administrator.';
   }
-  
+
 }
 
