@@ -35,6 +35,7 @@ import { ParentalHeaderComponent } from './pages/parental-header/parental-header
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { JwtInterceptor } from './services/authentication/jwt.interceptor';
 import { fakeBackendProvider } from './services/authentication/temp-backend';
+import { RecommendParentalComponent } from './pages/recommend-parental/recommend-parental.component';
 import { FoodDescriptionModalComponent } from './components/food-description-modal/food-description-modal.component';
 
 
@@ -60,7 +61,12 @@ import { FoodDescriptionModalComponent } from './components/food-description-mod
     ClinicalPortalComponent,
     ClinicalHeaderComponent,
     ParentalHeaderComponent,
+      
+  
+    
+      
     LoginPageComponent,
+    RecommendParentalComponent,
     FoodDescriptionModalComponent
 
 

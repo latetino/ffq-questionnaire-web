@@ -10,6 +10,7 @@ import { RecommendComponent } from './pages/parental-header/recommend/recommend.
 import { ClinicalPortalComponent} from './pages/clinical-portal/clinical-portal.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { AuthGuard } from './services/authentication/auth.guard';
+import { RecommendParentalComponent } from './pages/recommend-parental/recommend-parental.component';
 
 
 
@@ -28,6 +29,9 @@ const routes: Routes = [
   },
   {
     path: 'recommend', component:   RecommendComponent
+  },
+  {
+    path: 'recommend-parental', component:   RecommendParentalComponent
   },
   {
     path: '', redirectTo: 'questionnaire-id', pathMatch: 'full'
