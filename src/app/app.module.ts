@@ -38,6 +38,7 @@ import { fakeBackendProvider } from './services/authentication/temp-backend';
 import { RecommendParentalComponent } from './pages/recommend-parental/recommend-parental.component';
 import { FoodDescriptionModalComponent } from './components/food-description-modal/food-description-modal.component';
 import { TrackerPageComponent } from './pages/tracker-page/tracker-page.component';
+import { TrackerBlockComponent } from './components/tracker-block/tracker-block.component';
 
 
 
@@ -65,7 +66,8 @@ import { TrackerPageComponent } from './pages/tracker-page/tracker-page.componen
     LoginPageComponent,
     RecommendParentalComponent,
     FoodDescriptionModalComponent,
-    TrackerPageComponent
+    TrackerPageComponent,
+    TrackerBlockComponent
   
   ],
   imports: [
