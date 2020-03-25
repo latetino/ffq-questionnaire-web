@@ -1,1 +1,50 @@
 <app-parental-header></app-parental-header>
+
+<div class="rec-container">
+  <mat-card>
+    <mat-radio-group aria-label="Select an option">
+      <mat-radio-button (click)="showFirst()" value="1">0-5.9 Months</mat-radio-button>
+      <mat-radio-button (click)="showSecond()" value="2">6-11.9 Months</mat-radio-button>
+      <mat-radio-button (click)="showThird()" value="3">12-24 Months</mat-radio-button>
+    </mat-radio-group>
+  </mat-card>
+  <mat-card>
+    <div class="item-container">
+      <img class="image" src="assets/food.jpg">
+      <div>
+        <label><strong>Breastmilk – Formula – Cow’s Milk – Other</strong></label><br>
+        <label *ngIf="showBracketFirst">16 – 24 fl oz / day</label>
+        <label *ngIf="showBracketSecond">10 – 28 fl oz / day</label>
+        <label *ngIf="showBracketThird">8 – 18 fl oz / day</label>
+        <br>
+        <label>
+          Breastmilk or iron-fortified infant formula is
+          recommended until age 12 months. Do not
+          use low-iron milk, such as cow or soy, even in
+          infant cereal. Do not serve 1% (low-fat) or
+          skim (non-fat) milks before age 24 months.
+        </label>
+      </div>
+    </div>
+  </mat-card>
+  <mat-card>
+    <div class="item-container">
+      <img class="image" src="assets/food.jpg">
+      <div>
+        <label><strong>Breastmilk – Formula – Cow’s Milk – Other</strong></label><br>
+        <label *ngIf="showBracketFirst">16 – 24 fl oz / day</label>
+        <label *ngIf="showBracketSecond">10 – 28 fl oz / day</label>
+        <label *ngIf="showBracketThird">8 – 18 fl oz / day</label>
+        <br>
+        <label>
+          Breastmilk or iron-fortified infant formula is
+          recommended until age 12 months. Do not
+          use low-iron milk, such as cow or soy, even in
+          infant cereal. Do not serve 1% (low-fat) or
+          skim (non-fat) milks before age 24 months.
+        </label>
+      </div>
+    </div>
+  </mat-card>
+ 
+</div>
