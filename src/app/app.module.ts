@@ -35,6 +35,7 @@ import { ParentalHeaderComponent } from './pages/parental-header/parental-header
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { JwtInterceptor } from './services/authentication/jwt.interceptor';
 import { fakeBackendProvider } from './services/authentication/temp-backend';
+import { FoodDescriptionModalComponent } from './components/food-description-modal/food-description-modal.component';
 
 
 
@@ -59,7 +60,8 @@ import { fakeBackendProvider } from './services/authentication/temp-backend';
     ClinicalPortalComponent,
     ClinicalHeaderComponent,
     ParentalHeaderComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    FoodDescriptionModalComponent
 
 
 
@@ -93,6 +95,6 @@ import { fakeBackendProvider } from './services/authentication/temp-backend';
     //fakeBackendProvider
   ],
   bootstrap: [AppComponent],
-  entryComponents: [ErrorDialogPopupComponent, ResultsPageComponent,PopupComponent,RecommendModalComponent,FoodRecommendModalComponent]
+  entryComponents: [ErrorDialogPopupComponent, ResultsPageComponent,PopupComponent,RecommendModalComponent,FoodRecommendModalComponent,FoodDescriptionModalComponent]
 })
 export class AppModule { }

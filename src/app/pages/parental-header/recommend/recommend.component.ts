@@ -10,6 +10,8 @@ import { ErrorDialogPopupComponent } from 'src/app/components/error-dialog-popup
 import { Router } from '@angular/router';
 import { FoodRecommendModalComponent } from 'src/app/components/food-recommend-modal/food-recommend-modal.component';
 import { FoodRecommendationsService } from 'src/app/services/food-recommendation-service/food-recommendations.service';
+import { FoodDescriptionModalComponent } from 'src/app/components/food-description-modal/food-description-modal.component';
+import { FoodDescriptionService } from 'src/app/services/food-description/food-description.service';
 
 @Component({
   selector: 'app-recommend',
@@ -22,6 +24,7 @@ export class RecommendComponent implements OnInit {
   constructor(public resultsService: ResultsService,
               public nutrientsRecommendationsService: NutrientsRecommendationsService,
               public foodRecommendationsService: FoodRecommendationsService,
+              public foodDescriptionService: FoodDescriptionService,
               private modalService: NgbModal,
               private errorDialog: MatDialog,
               private router: Router, ) { }
@@ -58,7 +61,18 @@ export class RecommendComponent implements OnInit {
     );
   }
 
-
+  private getFoodItemByGroupName(questionnaireId: string) {
+    this.foodDescriptionService.getFoodItemByGroupName(questionnaireId).subscribe(
+      data => {
+        this.onModalRequestFood(questionnaireId);
+      },
+      error => {
+        const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
+        dialogRef.componentInstance.title = error.error.message;
+        dialogRef.componentInstance.router = this.router;
+        }
+      );
+  }
 
   private getAllResults() {
     this.resultsService.getAllResults().subscribe(data => {
@@ -68,6 +82,14 @@ export class RecommendComponent implements OnInit {
     });
   }
 
+  //private getAllFoodItems() {
+ //   this.foodDescriptionService.getAllFoodItems().subscribe(data => {
+  //    data.map(response => {
+  //      this.results.push(response);
+ //     });
+  //  });
+ // }
+
   onModalRequest(id: string): void {
     const modalRef = this.errorDialog.open(RecommendModalComponent);
     modalRef.componentInstance.id = id;
@@ -75,6 +97,11 @@ export class RecommendComponent implements OnInit {
 
   onModalRequestFood(id: string): void {
     const modalRef = this.errorDialog.open(FoodRecommendModalComponent);
+    modalRef.componentInstance.id = id;
+  }
+
+  onModalRequestFoodDescription(id: string): void {
+    const modalRef = this.errorDialog.open(FoodDescriptionModalComponent);
     modalRef.componentInstance.id = id;
   }
 

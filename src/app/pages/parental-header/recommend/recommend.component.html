@@ -1,6 +1,6 @@
 <admin-header></admin-header>
 <div class="container_page">
-    
+
     <div class="container mt-3">
         <span></span>
         <table class="table table-bordered table-inverse">
@@ -9,7 +9,8 @@
             <th><div align="center"> Patient name </div></th>
             <th><div align="center"> Infant age (in months) </div></th>
             <th><div align="center"> Nutrients </div></th>
-            <th><div align="center"> Food items </div></th>
+            <th><div align="center"> Food Items </div></th>
+            <th><div align="center"> Food Item Description </div></th>
         </tr>
         <tr *ngFor="let result of results; let i = index">
             <td >
@@ -25,6 +26,7 @@
             </td>
             <td width="10%"><div align="center"><a (click)="getNutrientsRecommendations(result.questionnaireId)"><i title="nutrients" class="fa fa-flask"></i></a></div></td>
             <td width="10%"><div align="center"><a (click)="getFoodRecommendations(result.questionnaireId)"><i title="fooditems" class="fa fa-cutlery"></i></a></div></td>
+            <td width="10%"><div align="center"><i title="Food Description"><button class='btn btn-primary'(click)="getFoodRecommendations(result.questionnaireId)">Show Description</button></i></div></td>
         </tr>
         </table>
 
