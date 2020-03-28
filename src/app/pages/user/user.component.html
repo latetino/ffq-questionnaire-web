@@ -1,0 +1,72 @@
+<admin-header></admin-header>
+
+<form #myForm="ngForm">
+  <div class="form-group">
+    <div class="container_page" *ngIf="dataLoaded">
+      <div class="container" style="margin-top: 15px;"><a routerLink="/admin/users"><span
+            class="fa fa-chevron-circle-left"></span> Back to Users </a></div>
+      <div *ngIf="isUpdate" class="container mt-3" align="right">
+        <button type="submit" class="btn btn-primary col-3 margin" (click)="updateFoodNutrients()"
+          [disabled]="!myForm.form.valid"> Update User </button>
+      </div>
+      <div *ngIf="isNew" class="container mt-3" align="right">
+        <button type="submit" class="btn btn-primary col-3 margin" (click)="addUser()"
+          [disabled]="!myForm.form.valid"> Add User(s) </button>
+      </div>
+      
+      <div class="container frame-fooditem">
+        <h6> New User(s) </h6>
+
+        <div class="form-group col-12">
+          <label style="font-weight: bold"> Account Type </label>
+          <br>  
+          <mat-radio-group aria-label="Select an option">
+            <mat-radio-button value="parent" (change)="changeToParent($event)" color="primary">Parent</mat-radio-button>
+            <br>
+            <mat-radio-button value="clinician" (change)="changeToClinician($event)" color="primary">Clinician</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <div class="optional_container" *ngIf="createParents">
+          <div class="form-group col-12">
+            <hr>
+            <label style="font-weight: bold"> Amount </label><label style="font-style: italic; font-size: small; margin-left: 10px"> *required </label>
+            <input placeholder="Amount of Users (1 - 100)" width="25" style="border-color: mediumblue; border-width: 0.05cm" type="text"
+              class="form-control" name="amount" [(ngModel)]="amountToAdd" required #nameField="ngModel" />
+              <br>
+              <label style="margin-left: 10px">Choose Clinic to assign to:</label>
+              <br>
+              <mat-form-field>
+                <select matNativeControl required>
+                  <option value="1">Clinic 001</option>
+                  <option value="2">Clinic 002</option>
+                  <option value="3">Clinic 003</option>
+                  <option value="4">Clinic 004</option>
+                </select>
+              </mat-form-field>
+
+          </div>
+        </div>
+
+        <div class="optional_container" *ngIf="createClincian">
+          <div class="form-group col-12">
+            <hr>
+            <label style="margin-left: 10px">Choose Clinic to assign to:</label>
+            <br>
+            <mat-form-field>
+              <select matNativeControl required>
+                <option value="1">Clinic 001</option>
+                <option value="2">Clinic 002</option>
+                <option value="3">Clinic 003</option>
+                <option value="4">Clinic 004</option>
+              </select>
+            </mat-form-field>
+        </div>
+        
+      </div>
+
+        
+      </div>
+    </div>
+  </div>
+</form>

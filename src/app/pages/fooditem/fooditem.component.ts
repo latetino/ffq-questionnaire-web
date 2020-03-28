@@ -22,6 +22,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './fooditem.component.html',
   styleUrls: ['./fooditem.component.css']
 })
+
 export class FooditemComponent implements OnInit {
 
   TITLE = 'FFQR Food Item Portal';
@@ -55,6 +56,7 @@ export class FooditemComponent implements OnInit {
   ffqfoodnutrients: FFQFoodNutrients;
 
   ffgNutrientMap: nutrientMap;
+
 
   ngOnInit() {
 
@@ -142,6 +144,7 @@ export class FooditemComponent implements OnInit {
      dialogRef.componentInstance.title = 'Food item updated successfully!';}
      
     );
+    
     
   }
 

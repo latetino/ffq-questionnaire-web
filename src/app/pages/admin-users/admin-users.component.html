@@ -1,0 +1,22 @@
+<admin-header></admin-header>
+
+<div class="container_page">
+    <div class="container mt-3" align="right">
+        <button routerLink='/admin/user/new' type="submit" class="btn btn-success col-3">New User(s)...</button>
+    </div>
+    <div class="container mt-3">
+        <span>{{users.length}} user(s)</span>
+        <table class="table table-bordered table-inverse">
+        <tr>
+            <th> Users </th>
+            <th><div align="center"> Delete </div></th>
+        </tr>
+        <tr *ngFor="let item of users">
+            <td width="75%">
+                <a [routerLink]="['/admin/users', item.userId]"> {{item.username}} </a>
+            </td>
+            <td width="10%"><div align="center"><a (click)="onModalRequest(item.username)"><span class="fa fa-trash"></span></a></div></td>
+        </tr>
+        </table>
+       
+</div>

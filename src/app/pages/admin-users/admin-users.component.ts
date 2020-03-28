@@ -12,28 +12,29 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 
 import { FFQFoodItem } from 'src/app/models/ffqfooditem';
 import { FFQFoodItemResponse } from 'src/app/models/ffqfooditem-response';
+import { UserService } from 'src/app/services/user/user-service';
+import { FFQUserResponse } from 'src/app/models/ffquser-response';
 
 
 @Component({
-  selector: 'app-questionnaire-page',
-  templateUrl: './admin-page.component.html',
-  styleUrls: ['./admin-page.component.css']
+  templateUrl: './admin-users.component.html',
+  styleUrls: ['./admin-users.component.css']
 })
 
-export class AdminPageComponent implements OnInit {
+export class AdminUsersComponent implements OnInit {
 
   TITLE = 'FFQR Admin Portal';
 
 
-  constructor(public foodService: FoodItemService,
-              private activatedRoute: ActivatedRoute,
-              private errorDialog: MatDialog,
-              private submissionErrorDialog: MatDialog,
-              private httpErrorDialog: MatDialog,
-              private successDialog: MatDialog,
-              private router: Router,
-              private modalService: NgbModal,
-              private flashMessage: FlashMessagesService,
+  constructor(public userService: UserService,
+    private activatedRoute: ActivatedRoute,
+    private errorDialog: MatDialog,
+    private submissionErrorDialog: MatDialog,
+    private httpErrorDialog: MatDialog,
+    private successDialog: MatDialog,
+    private router: Router,
+    private modalService: NgbModal,
+    private flashMessage: FlashMessagesService,
 
   ) { }
 
@@ -41,11 +42,11 @@ export class AdminPageComponent implements OnInit {
   foodNutrients: FFQFoodNutrientsResponse[] = [];
   dataLoaded: Promise<boolean>;
 
-  foodItems: FFQFoodItemResponse[] = [];
+  users: FFQUserResponse[] = [];
 
 
   ngOnInit() {
-    this.loadFoodsAndNutrients();
+    this.loadUsersForTest();
     console.log(this.foodNutrients);
 
   }
@@ -61,14 +62,14 @@ export class AdminPageComponent implements OnInit {
     });
   }
 
-  private loadFoodsAndNutrients() {
-    this.foodService.getAllFoods().subscribe(data => {
+  private loadUsersForTest() {
+    this.userService.getAllUsers().subscribe(data => {
       data.map(response => {
-        this.foodItems.push(response);
-        // this.foodNutrients.push(response);
+        this.users.push(response);
+        //this.foodNutrients.push(response);
       });
-      console.log(this.foodItems);
-      console.log(this.foodNutrients.length + ' foods and its nutrients were returned from server.');
+      console.log(this.users);
+   //   console.log(this.foodNutrients.length + ' foods and its nutrients were returned from server.');
       this.dataLoaded = Promise.resolve(true);
     }, (error: HttpErrorResponse) => this.handleFoodServiceError(error));
   }
@@ -77,10 +78,9 @@ export class AdminPageComponent implements OnInit {
   onModalRequest(id: string): void {
     const modalRef = this.modalService.open(PopupComponent);
     modalRef.componentInstance.id = id;
-    modalRef.componentInstance.service = this.foodService;
+    modalRef.componentInstance.service = this.userService;
     
   }
-
+  
 
 }
-

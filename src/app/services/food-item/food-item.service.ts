@@ -9,7 +9,8 @@ import { FFQFoodItem } from 'src/app/models/ffqfooditem';
 import { ɵangular_packages_forms_forms_q } from '@angular/forms';
 import { Http, Headers, Response, RequestOptions, RequestMethod } from '@angular/http';
 import { FFQFoodItemResponse } from 'src/app/models/ffqfooditem-response';
-
+//const mongoose = require('mongoose');
+//declare var require: any
 //Modified by Daykel Muro and Dariana Gonzalez on 10/5/2019
 
 const httOptions ={ headers: new HttpHeaders({'Content-Type':'aplication/json'})}
@@ -18,10 +19,12 @@ const httOptions ={ headers: new HttpHeaders({'Content-Type':'aplication/json'})
   providedIn: 'root'
 })
 
+
+
 export class FoodItemService {
 
   endpoint = 'http://localhost:9090/ffq';
-
+  
 
   constructor(private http: HttpClient) { } 
 
@@ -56,6 +59,7 @@ export class FoodItemService {
 
   // created by Dariana Gonzalez
   getAllFoods(): Observable<FFQFoodItemResponse[]> {
+   // getMongoUsers();
     return this.http.get(this.endpoint + '/allfoodsnutrients').pipe(
       map((res: any) => {
         return res.map(item => {
@@ -90,9 +94,23 @@ export class FoodItemService {
   }
 
   /*DELETE: delete food item from the database */
-  deleteFoodItem(objectId: string): Observable <any>{
+  deleteItem(objectId: string): Observable <any>{
     console.log("here" + objectId);
     return this.http.delete(this.endpoint + "/delete?id=" + objectId,  { responseType: 'text' })  
   }
 
+
 }
+
+/*export async function getMongoUsers() {  //test function to get users from mongoDB
+  
+  const MongoClient = require('mongodb').MongoClient; 
+  const url = "mongodb://localhost:27017/"; 
+  const db = await MongoClient.connect(url);
+  const dbo = db.db("ffq_database");
+  var user = await dbo.collection("users").find().toArray();    //[{1, Admin}, {2, Khalid}]
+  console.log(user);
+  
+}*/
+
+
