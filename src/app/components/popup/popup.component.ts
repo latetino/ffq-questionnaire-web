@@ -14,6 +14,7 @@ import { ErrorDialogPopupComponent } from '../error-dialog-popup/error-dialog-po
 export class PopupComponent {
 
     @Input() id;
+    @Input() service;
     data: any;
 
     constructor(public activeModal: NgbActiveModal,
@@ -24,7 +25,7 @@ export class PopupComponent {
 
     onClose(): void {
         console.log(this.id);
-        this.foodService.deleteFoodItem(this.id).subscribe(newData => {
+        this.service.deleteItem(this.id).subscribe(newData => {
             this.data = newData;
             window.location.reload();
         });
