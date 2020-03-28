@@ -14,6 +14,10 @@ import { RecommendParentalComponent } from './pages/recommend-parental/recommend
 import { TrackerPageComponent } from './pages/tracker-page/tracker-page.component';
 import { TrackerHistoryPageComponent } from './pages/tracker-history-page/tracker-history-page.component';
 import { HistoryParentalComponent } from './pages/history-parental/history-parental.component';
+import { LoginComponent } from './pages/login';
+import { LoginHeaderComponent } from './pages/login-header';
+import { AdminUsersComponent } from './pages/admin-users';
+import { UserComponent } from './pages/user/user.component';
 
 
 
@@ -49,9 +53,6 @@ const routes: Routes = [
     path: 'clinical-portal', component: ClinicalPortalComponent
   },
   {
-    path: 'login', component: LoginPageComponent
-  },
-  {
     path: 'tracker', component: TrackerPageComponent
   },
   {
@@ -59,7 +60,20 @@ const routes: Routes = [
   },
   {
     path: 'history-parental', component: HistoryParentalComponent
+  },
+  {
+    path: 'login', component: LoginComponent
+  },
+  {
+    path: 'login-page', component: LoginPageComponent
+  },
+  {
+    path: 'admin/user/:id', component: UserComponent
+  },
+  {
+    path: 'admin/users', component: AdminUsersComponent
   }
+
 ];
 
 @NgModule({
