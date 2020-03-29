@@ -68,7 +68,7 @@ export class ParentService {
   // created by Dariana Gonzalez
   getAllUsers(): Observable<FFQParentResponse[]> {
    // getMongoUsers();
-    return this.http.get(this.endpoint + '/parents').pipe(
+    return this.http.get(this.endpoint + '/all').pipe(
       map((res: any) => {
         return res.map(item => {
           return new FFQParentResponse(

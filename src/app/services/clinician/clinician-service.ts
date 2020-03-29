@@ -68,7 +68,7 @@ export class ClinicianService {
   // created by Dariana Gonzalez
   getAllUsers(): Observable<FFQClinicianResponse[]> {
    // getMongoUsers();
-    return this.http.get(this.endpoint + '/clinicians').pipe(
+    return this.http.get(this.endpoint + '/all').pipe(
       map((res: any) => {
         return res.map(item => {
           return new FFQClinicianResponse(

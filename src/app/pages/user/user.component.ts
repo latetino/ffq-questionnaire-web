@@ -18,6 +18,11 @@ import { FFQUser } from 'src/app/models/ffquser';
 import { UserService } from 'src/app/services/user/user-service';
 import { FFQUserResponse } from 'src/app/models/ffquser-response';
 import { Observable } from 'rxjs';
+import { ParentService } from 'src/app/services/parent/parent-service';
+import { ClinicianService } from 'src/app/services/clinician/clinician-service';
+import { FFQClinicianResponse } from 'src/app/models/ffqclinician-response';
+import { FFQParent } from 'src/app/models/ffqparent';
+import { FFQClinician } from 'src/app/models/ffqclinician';
 
 
 // fooditem page added by Daykel Muro 10/2/2019
@@ -38,6 +43,8 @@ export class UserComponent implements OnInit {
 
   constructor(
     public userService: UserService,
+    public parentService: ParentService,
+    public clinicianService: ClinicianService,
     public nutrientsService: NutrientsService,
     private activatedRoute: ActivatedRoute,
     private errorDialog: MatDialog,
@@ -57,6 +64,8 @@ export class UserComponent implements OnInit {
   dataLoaded: Promise<boolean>;
 
   ffquser: FFQUser;
+  ffqclinician: FFQClinician;
+  ffqParent: FFQParent;
   amountToAdd: number;
   /*ffqnutrientlist: Array<FFQNutrientlist> = new Array<FFQNutrientlist>();
   foodNutrients: FFQFoodNutrients;
@@ -67,6 +76,7 @@ export class UserComponent implements OnInit {
     
   ngOnInit() {
     
+    this.addClinician();
     this.amountToAdd;
     console.log("Loaded users are: " + this.users);
     this.isNew = true;
@@ -129,8 +139,7 @@ export class UserComponent implements OnInit {
     userList.subscribe(data => {
       var i = 1;
       data.forEach((element: FFQUserResponse)  => {
-        console.log("Element " + i + ": " + element);
-        
+        console.log("Element " + i + ": " + element)     
       });
       console.log(data[0]);
       console.log(data[0].username);
@@ -140,13 +149,23 @@ export class UserComponent implements OnInit {
 
   }
 
-  private nextClinician(): number{
+  private addClinician(){
     
-    
+   // if(this.createClincian == true){
+      var clinicianList: Observable<FFQClinicianResponse[]> = this.clinicianService.getAllUsers();
+
+      clinicianList.subscribe(data => {
+        var numberOfClinicians = data.length;
+        console.log("Number of clinicians is: " + numberOfClinicians);
+          ffq
+
+      });
+
+   // }
 
 
 
-    return 5;
+   
   }
 
 }

@@ -1,22 +1,22 @@
 import {FFQItemResponse} from './ffqitem-response';
 import { ObjectUnsubscribedError } from 'rxjs';
 
-export class FFQUser {
+export class FFQParent {
   userId: string;
   username: string;
   userpassword: string;
   firstname: string;
   lastname: string;
-  isAdmin: boolean;
+  assignedClinician: string;
 
 
-  constructor(userId: string, username: string, userpassword: string, firstname: string, lastname: string, isAdmin: boolean) {
+  constructor(userId: string, username: string, userpassword: string, firstname: string, lastname: string, assignedClinician: string) {
     this.userId = userId;
     this.username = username;
     this.userpassword = userpassword;
     this.firstname = firstname;
     this.lastname = lastname;
-    this.isAdmin = isAdmin;
+    this.assignedClinician = assignedClinician;
   }
 
 }

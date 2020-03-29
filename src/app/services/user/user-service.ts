@@ -67,7 +67,7 @@ export class UserService {
   // created by Dariana Gonzalez
   getAllUsers(): Observable<FFQUserResponse[]> {
    // getMongoUsers();
-    return this.http.get(this.endpoint + '/users').pipe(
+    return this.http.get(this.endpoint + '/all').pipe(
       map((res: any) => {
         return res.map(item => {
           return new FFQUserResponse(
