@@ -30,7 +30,7 @@ export class ClinicianService {
 
   constructor(private http: HttpClient) { } 
 
-  addUser(user : FFQClinicianResponse): Observable<any> {
+  addClinician(user : FFQClinicianResponse): Observable<any> {
     
     return this.http.post(this.endpoint + '/createclinician', user, {headers : new HttpHeaders({ 'Content-Type': 'application/json' })}).pipe(
       tap( 
@@ -40,7 +40,7 @@ export class ClinicianService {
   }
 
   //Still not implemented
-  updateUser(user : FFQClinicianResponse): Observable<any> {
+  updateClinician(user : FFQClinicianResponse): Observable<any> {
     
     return this.http.put(this.endpoint + '/updateclinician', user, {headers : new HttpHeaders({ 'Content-Type': 'application/json' })}).pipe(
       tap( 
@@ -50,8 +50,8 @@ export class ClinicianService {
   }
 
   //To be implemented
-  getUser(clinicianId: string): Observable<FFQClinicianResponse> {
-    return this.http.get(this.endpoint + '/clinicians/' + clinicianId).pipe(
+  getClinician(clinicianId: string): Observable<FFQClinicianResponse> {
+    return this.http.get(this.endpoint + '/' + clinicianId).pipe(
       map(((item: any) => {
           return new FFQClinicianResponse(
             item.userId,
@@ -66,7 +66,7 @@ export class ClinicianService {
   }
 
   // created by Dariana Gonzalez
-  getAllUsers(): Observable<FFQClinicianResponse[]> {
+  getAllClinicians(): Observable<FFQClinicianResponse[]> {
    // getMongoUsers();
     return this.http.get(this.endpoint + '/all').pipe(
       map((res: any) => {

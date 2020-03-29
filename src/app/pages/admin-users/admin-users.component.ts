@@ -14,6 +14,10 @@ import { FFQFoodItem } from 'src/app/models/ffqfooditem';
 import { FFQFoodItemResponse } from 'src/app/models/ffqfooditem-response';
 import { UserService } from 'src/app/services/user/user-service';
 import { FFQUserResponse } from 'src/app/models/ffquser-response';
+import { ClinicianService } from 'src/app/services/clinician/clinician-service';
+import { ParentService } from 'src/app/services/parent/parent-service';
+import { FFQClinicianResponse } from 'src/app/models/ffqclinician-response';
+import { FFQParentResponse } from 'src/app/models/ffqparent-response';
 
 
 @Component({
@@ -26,7 +30,10 @@ export class AdminUsersComponent implements OnInit {
   TITLE = 'FFQR Admin Portal';
 
 
-  constructor(public userService: UserService,
+  constructor(
+    public userService: UserService,
+    public clinicianService: ClinicianService,
+    public parentService: ParentService,
     private activatedRoute: ActivatedRoute,
     private errorDialog: MatDialog,
     private submissionErrorDialog: MatDialog,
@@ -43,6 +50,8 @@ export class AdminUsersComponent implements OnInit {
   dataLoaded: Promise<boolean>;
 
   users: FFQUserResponse[] = [];
+  clinicians: FFQClinicianResponse[] = [];
+  parents: FFQParentResponse[] = [];
 
 
   ngOnInit() {
@@ -63,12 +72,12 @@ export class AdminUsersComponent implements OnInit {
   }
 
   private loadUsersForTest() {
-    this.userService.getAllUsers().subscribe(data => {
+    this.clinicianService.getAllClinicians().subscribe(data => {
       data.map(response => {
-        this.users.push(response);
+        this.clinicians.push(response);
         //this.foodNutrients.push(response);
       });
-      console.log(this.users);
+      console.log(this.clinicians);
    //   console.log(this.foodNutrients.length + ' foods and its nutrients were returned from server.');
       this.dataLoaded = Promise.resolve(true);
     }, (error: HttpErrorResponse) => this.handleFoodServiceError(error));

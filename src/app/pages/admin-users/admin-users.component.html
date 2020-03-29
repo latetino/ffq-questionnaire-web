@@ -11,9 +11,9 @@
             <th> Users </th>
             <th><div align="center"> Delete </div></th>
         </tr>
-        <tr *ngFor="let item of users">
+        <tr *ngFor="let item of clinicians">
             <td width="75%">
-                <a [routerLink]="['/admin/users', item.userId]"> {{item.username}} </a>
+                <a [routerLink]="['/admin/users', item.clinicianId]"> {{item.username}} </a>
             </td>
             <td width="10%"><div align="center"><a (click)="onModalRequest(item.username)"><span class="fa fa-trash"></span></a></div></td>
         </tr>

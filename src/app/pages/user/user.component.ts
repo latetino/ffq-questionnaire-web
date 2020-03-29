@@ -23,6 +23,7 @@ import { ClinicianService } from 'src/app/services/clinician/clinician-service';
 import { FFQClinicianResponse } from 'src/app/models/ffqclinician-response';
 import { FFQParent } from 'src/app/models/ffqparent';
 import { FFQClinician } from 'src/app/models/ffqclinician';
+import { FFQParentResponse } from 'src/app/models/ffqparent-response';
 
 
 // fooditem page added by Daykel Muro 10/2/2019
@@ -57,6 +58,8 @@ export class UserComponent implements OnInit {
     ) { }
 
   users: FFQUserResponse[] = [];
+  clinicians: FFQClinicianResponse[] = [];
+  parents: FFQParentResponse[] = [];
 
   nutrientsMap: Map<string,FFQNutrientlist> = new Map<string,FFQNutrientlist>();
 
@@ -76,23 +79,19 @@ export class UserComponent implements OnInit {
     
   ngOnInit() {
     
-    this.addClinician();
-    this.amountToAdd;
-    console.log("Loaded users are: " + this.users);
     this.isNew = true;
     this.createParents = false;
     this.createClincian = false;
 
     if(this.createParents = true){
-      this.loadUsersForTest(false, true);
+     // this.addClinician();
     }
     if(this.createClincian = true){
-      this.loadUsersForTest(true, false);
+      
     }
 
-
     this.dataLoaded = Promise.resolve(true);
-    //addUser()
+   // this.addClinician();
 
   }
 
@@ -112,18 +111,32 @@ export class UserComponent implements OnInit {
 
   private addUser(form:NgForm){  
     
-     console.log(this.ffquser);
-     this.userService.addUser(this.ffquser).subscribe(
-     data => {this.router.navigateByUrl('/admin/users');
-     const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
-     dialogRef.componentInstance.title = 'Users were added!';
-    },
-    error =>{
-      const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
-      dialogRef.componentInstance.title = error.error.message;
-    }
-     
-    );
+     if(this.createClincian == true){
+       
+      var clinicianList: Observable<FFQClinicianResponse[]> = this.clinicianService.getAllClinicians();
+
+      clinicianList.subscribe(data => {
+        var numberOfClinicians = (data.length+1).toString();
+        //console.log("Number of clinicians is: " + numberOfClinicians);
+        var newClincianId = "C00"+numberOfClinicians;
+        var newClincianUsername = "clinician"+numberOfClinicians;
+        this.ffqclinician = new FFQClinician(newClincianId, newClincianUsername, newClincianUsername, "", "", 0 );
+        console.log(this.ffquser);
+
+        this.clinicianService.addClinician(this.ffqclinician).subscribe(data => {
+            this.router.navigateByUrl('/admin/users');
+            const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
+            dialogRef.componentInstance.title = 'Users were added!';
+        },
+        error =>{
+            const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
+            dialogRef.componentInstance.title = error.error.message;
+        }); 
+
+      });
+
+
+     }
     
   }
 
@@ -149,15 +162,28 @@ export class UserComponent implements OnInit {
 
   }
 
-  private addClinician(){
+  private addClinician(form:NgForm){
     
    // if(this.createClincian == true){
-      var clinicianList: Observable<FFQClinicianResponse[]> = this.clinicianService.getAllUsers();
+      var clinicianList: Observable<FFQClinicianResponse[]> = this.clinicianService.getAllClinicians();
 
       clinicianList.subscribe(data => {
-        var numberOfClinicians = data.length;
-        console.log("Number of clinicians is: " + numberOfClinicians);
-          ffq
+        var numberOfClinicians = (data.length+1).toString();
+        //console.log("Number of clinicians is: " + numberOfClinicians);
+        var newClincianId = "C00"+numberOfClinicians;
+        var newClincianUsername = "clinician"+numberOfClinicians;
+        this.ffqclinician = new FFQClinician(newClincianId, newClincianUsername, newClincianUsername, "", "", 0 );
+        console.log(this.ffquser);
+
+        this.clinicianService.addClinician(this.ffqclinician).subscribe(data => {
+            this.router.navigateByUrl('/admin/users');
+            const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
+            dialogRef.componentInstance.title = 'Users were added!';
+        },
+        error =>{
+            const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
+            dialogRef.componentInstance.title = error.error.message;
+        }); 
 
       });
 

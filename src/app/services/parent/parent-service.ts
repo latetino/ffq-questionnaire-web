@@ -30,7 +30,7 @@ export class ParentService {
 
   constructor(private http: HttpClient) { } 
 
-  addUser(user : FFQParentResponse): Observable<any> {
+  addParent(user : FFQParentResponse): Observable<any> {
     
     return this.http.post(this.endpoint + '/createparent', user, {headers : new HttpHeaders({ 'Content-Type': 'application/json' })}).pipe(
       tap( 
@@ -40,7 +40,7 @@ export class ParentService {
   }
 
   //Still not implemented
-  updateUser(user : FFQParentResponse): Observable<any> {
+  updateParent(user : FFQParentResponse): Observable<any> {
     
     return this.http.put(this.endpoint + '/updateparent', user, {headers : new HttpHeaders({ 'Content-Type': 'application/json' })}).pipe(
       tap( 
@@ -50,8 +50,8 @@ export class ParentService {
   }
 
   //To be implemented
-  getUser(parentId: string): Observable<FFQParentResponse> {
-    return this.http.get(this.endpoint + '/parents/' + parentId).pipe(
+  getParent(parentId: string): Observable<FFQParentResponse> {
+    return this.http.get(this.endpoint + '/' + parentId).pipe(
       map(((item: any) => {
           return new FFQParentResponse(
             item.userId,
@@ -66,7 +66,7 @@ export class ParentService {
   }
 
   // created by Dariana Gonzalez
-  getAllUsers(): Observable<FFQParentResponse[]> {
+  getAllParents(): Observable<FFQParentResponse[]> {
    // getMongoUsers();
     return this.http.get(this.endpoint + '/all').pipe(
       map((res: any) => {
