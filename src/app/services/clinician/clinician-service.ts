@@ -10,6 +10,7 @@ import { ɵangular_packages_forms_forms_q } from '@angular/forms';
 import { Http, Headers, Response, RequestOptions, RequestMethod } from '@angular/http';
 import { FFQFoodItemResponse } from 'src/app/models/ffqfooditem-response';
 import { FFQUserResponse } from 'src/app/models/ffquser-response';
+import { FFQClinicianResponse } from 'src/app/models/ffqclinician-response';
 //const mongoose = require('mongoose');
 //declare var require: any
 //Created by Khalid Alamoudi 
@@ -22,16 +23,16 @@ const httOptions ={ headers: new HttpHeaders({'Content-Type':'aplication/json'})
 
 
 
-export class UserService {
+export class ClinicianService {
 
-  endpoint = 'http://localhost:9070/ffq/users';
+  endpoint = 'http://localhost:9070/ffq/clinicians';
   
 
   constructor(private http: HttpClient) { } 
 
-  addUser(user : FFQUserResponse): Observable<any> {
+  addUser(user : FFQClinicianResponse): Observable<any> {
     
-    return this.http.post(this.endpoint + '/createuser', user, {headers : new HttpHeaders({ 'Content-Type': 'application/json' })}).pipe(
+    return this.http.post(this.endpoint + '/createclinician', user, {headers : new HttpHeaders({ 'Content-Type': 'application/json' })}).pipe(
       tap( 
         data => console.log(data),
         error => console.log(error)
@@ -39,9 +40,9 @@ export class UserService {
   }
 
   //Still not implemented
-  updateUser(user : FFQUserResponse): Observable<any> {
+  updateUser(user : FFQClinicianResponse): Observable<any> {
     
-    return this.http.put(this.endpoint + '/updateuser', user, {headers : new HttpHeaders({ 'Content-Type': 'application/json' })}).pipe(
+    return this.http.put(this.endpoint + '/updateclinician', user, {headers : new HttpHeaders({ 'Content-Type': 'application/json' })}).pipe(
       tap( 
         data => console.log(data),
         error => console.log(error)
@@ -49,34 +50,34 @@ export class UserService {
   }
 
   //To be implemented
-  getUser(userId: string): Observable<FFQUserResponse> {
-    return this.http.get(this.endpoint + '/users/' + userId).pipe(
+  getUser(clinicianId: string): Observable<FFQClinicianResponse> {
+    return this.http.get(this.endpoint + '/clinicians/' + clinicianId).pipe(
       map(((item: any) => {
-          return new FFQUserResponse(
+          return new FFQClinicianResponse(
             item.userId,
             item.username,
             item.userpassword,
             item.firstname,
             item.lastname,
-            item.isAdmin
+            item.assignedClinic
           );
       }))
     );
   }
 
   // created by Dariana Gonzalez
-  getAllUsers(): Observable<FFQUserResponse[]> {
+  getAllUsers(): Observable<FFQClinicianResponse[]> {
    // getMongoUsers();
-    return this.http.get(this.endpoint + '/users').pipe(
+    return this.http.get(this.endpoint + '/clinicians').pipe(
       map((res: any) => {
         return res.map(item => {
-          return new FFQUserResponse(
+          return new FFQClinicianResponse(
             item.userId,
             item.username,
             item.userpassword,
             item.firstname,
             item.lastname,
-            item.isAdmin
+            item.assignedClinic
           );
         });
       })

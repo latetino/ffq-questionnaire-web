@@ -5,19 +5,17 @@ export class FFQUserResponse {
   userId: string;
   username: string;
   userpassword: string;
-  isEnabled: boolean;
-  isClinician: boolean;
-  isParent: boolean;
+  firstname: string;
+  lastname: string;
   isAdmin: boolean;
 
 
-  constructor(userId: string, username: string, userpassword: string, isEnabled: boolean, isClinician: boolean, isParent: boolean, isAdmin: boolean) {
+  constructor(userId: string, username: string, userpassword: string, firstname: string, lastname: string, isAdmin: boolean) {
     this.userId = userId;
     this.username = username;
     this.userpassword = userpassword;
-    this.isEnabled = isEnabled;
-    this.isClinician = isClinician;
-    this.isParent = isParent;
+    this.firstname = firstname;
+    this.lastname = lastname;
     this.isAdmin = isAdmin;
   }
 

@@ -66,19 +66,20 @@ export class UserComponent implements OnInit {
 
     
   ngOnInit() {
+    
     this.amountToAdd;
-    this.loadUsersForTest()
-    console.log("Loaded users are: " + this.users[0]);
+    console.log("Loaded users are: " + this.users);
     this.isNew = true;
     this.createParents = false;
     this.createClincian = false;
 
     if(this.createParents = true){
-      this.ffquser = new FFQUser("", "", "", false, false ,true, false);
+      this.loadUsersForTest(false, true);
     }
     if(this.createClincian = true){
-      this.ffquser = new FFQUser("we", "wew", "wew", false, true ,false, false);
+      this.loadUsersForTest(true, false);
     }
+
 
     this.dataLoaded = Promise.resolve(true);
     //addUser()
@@ -122,14 +123,21 @@ export class UserComponent implements OnInit {
     return item
   }
 
-  private loadUsersForTest() {
-    const userList: Observable<FFQUserResponse[]> = this.userService.getAllUsers();
+  private loadUsersForTest(isClinic, isParent) {
+    var userList: Observable<FFQUserResponse[]> = this.userService.getAllUsers();
+    var users: FFQUserResponse[] = []
     userList.subscribe(data => {
-      console.log(data);
-
+      var i = 1;
+      data.forEach((element: FFQUserResponse)  => {
+        console.log("Element " + i + ": " + element);
+        
+      });
+      console.log(data[0]);
+      console.log(data[0].username);
+      console.log("this.users has: " + this.users[0]);
 
     });
-  
+
   }
 
   private nextClinician(): number{
