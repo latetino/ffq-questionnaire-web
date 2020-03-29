@@ -2,7 +2,7 @@ import {FFQItemResponse} from './ffqitem-response';
 import { ObjectUnsubscribedError } from 'rxjs';
 
 export class FFQParent {
-  userId: string;
+  parentId: string;
   username: string;
   userpassword: string;
   firstname: string;
@@ -10,8 +10,8 @@ export class FFQParent {
   assignedClinician: string;
 
 
-  constructor(userId: string, username: string, userpassword: string, firstname: string, lastname: string, assignedClinician: string) {
-    this.userId = userId;
+  constructor(parentId: string, username: string, userpassword: string, firstname: string, lastname: string, assignedClinician: string) {
+    this.parentId = parentId;
     this.username = username;
     this.userpassword = userpassword;
     this.firstname = firstname;
