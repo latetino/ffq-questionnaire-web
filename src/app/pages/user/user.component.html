@@ -38,7 +38,7 @@
               <br>
               <mat-form-field>
                 <select matNativeControl required>
-                  <option value="1">Clinic 001</option>
+                  <option value="1" >Clinic 001</option>
                   <option value="2">Clinic 002</option>
                   <option value="3">Clinic 003</option>
                   <option value="4">Clinic 004</option>
@@ -54,12 +54,12 @@
             <label style="margin-left: 10px">Choose Clinic to assign to:</label>
             <br>
             <mat-form-field>
-              <select matNativeControl required>
-                <option value="1">Clinic 001</option>
-                <option value="2">Clinic 002</option>
-                <option value="3">Clinic 003</option>
-                <option value="4">Clinic 004</option>
-              </select>
+              <mat-select [(ngModel)]="clinicnumber" name="clinic">
+                <mat-option value="1">Clinic 001</mat-option>
+                <mat-option value="2">Clinic 002</mat-option>
+                <mat-option value="3">Clinic 003</mat-option>
+                <mat-option value="4">Clinic 004</mat-option>
+              </mat-select>
             </mat-form-field>
         </div>
         

@@ -70,6 +70,8 @@ export class UserComponent implements OnInit {
   ffqclinician: FFQClinician;
   ffqParent: FFQParent;
   amountToAdd: number;
+  clinicnumber: number;
+  clinic: number;
   /*ffqnutrientlist: Array<FFQNutrientlist> = new Array<FFQNutrientlist>();
   foodNutrients: FFQFoodNutrients;
   ffqfoodnutrients: FFQFoodNutrients;
@@ -89,6 +91,7 @@ export class UserComponent implements OnInit {
     if(this.createClincian = true){
       
     }
+    this.clinicnumber = this.clinic;
 
     this.dataLoaded = Promise.resolve(true);
    // this.addClinician();
@@ -112,7 +115,7 @@ export class UserComponent implements OnInit {
   private addUser(form:NgForm){  
     
      if(this.createClincian == true){
-       
+
       var clinicianList: Observable<FFQClinicianResponse[]> = this.clinicianService.getAllClinicians();
 
       clinicianList.subscribe(data => {
@@ -120,13 +123,13 @@ export class UserComponent implements OnInit {
         //console.log("Number of clinicians is: " + numberOfClinicians);
         var newClincianId = "C00"+numberOfClinicians;
         var newClincianUsername = "clinician"+numberOfClinicians;
-        this.ffqclinician = new FFQClinician(newClincianId, newClincianUsername, newClincianUsername, "", "", 0 );
-        console.log(this.ffquser);
+        this.ffqclinician = new FFQClinician(newClincianId, newClincianUsername, newClincianUsername, "", "", this.clinicnumber);
+        console.log(this.ffqclinician);
 
         this.clinicianService.addClinician(this.ffqclinician).subscribe(data => {
             this.router.navigateByUrl('/admin/users');
             const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
-            dialogRef.componentInstance.title = 'Users were added!';
+            dialogRef.componentInstance.title = newClincianUsername + ' was added!';
         },
         error =>{
             const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
@@ -134,9 +137,9 @@ export class UserComponent implements OnInit {
         }); 
 
       });
-
-
      }
+
+
     
   }
 
