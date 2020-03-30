@@ -11,7 +11,7 @@ import { Http, Headers, Response, RequestOptions, RequestMethod } from '@angular
 import { FFQFoodItemResponse } from 'src/app/models/ffqfooditem-response';
 import { FFQUserResponse } from 'src/app/models/ffquser-response';
 import { FFQClinicianResponse } from 'src/app/models/ffqclinician-response';
-import { FFQClinicResponse } from 'src/app/models/ffqclinic-respose';
+import { FFQClinicResponse } from 'src/app/models/ffqclinic-response';
 //const mongoose = require('mongoose');
 //declare var require: any
 //Created by Khalid Alamoudi 
@@ -24,14 +24,14 @@ const httOptions ={ headers: new HttpHeaders({'Content-Type':'aplication/json'})
 
 
 
-export class CliniciService {
+export class ClinicService {
 
   endpoint = 'http://localhost:9070/ffq/clinics';
   
 
   constructor(private http: HttpClient) { } 
 
-  addClinician(user : FFQClinicResponse): Observable<any> {
+  addClinic(user : FFQClinicResponse): Observable<any> {
     
     return this.http.post(this.endpoint + '/createclinic', user, {headers : new HttpHeaders({ 'Content-Type': 'application/json' })}).pipe(
       tap( 
@@ -41,7 +41,7 @@ export class CliniciService {
   }
 
   //Still not implemented
-  updateClinician(user : FFQClinicResponse): Observable<any> {
+  updateClinic(user : FFQClinicResponse): Observable<any> {
     
     return this.http.put(this.endpoint + '/updateclinic', user, {headers : new HttpHeaders({ 'Content-Type': 'application/json' })}).pipe(
       tap( 
@@ -51,36 +51,36 @@ export class CliniciService {
   }
 
   //To be implemented
-  getClinician(clinicianId: string): Observable<FFQClinicResponse> {
-    return this.http.get(this.endpoint + '/' + clinicianId).pipe(
+  getClinic(clinicId: number): Observable<FFQClinicResponse> {
+    return this.http.get(this.endpoint + '/' + clinicId).pipe(
       map((item: any) => {
           return new FFQClinicResponse(
             item.clinicId,
             item.address,
-            item.dateBuilt
+            item.dateBuilt,
+            item.clinicName
           );
       })
     );
   }
 
   // created by Dariana Gonzalez
-  getAllClinicians(): Observable<FFQClinicResponse[]> {
+  getAllClinics(): Observable<FFQClinicResponse[]> {
    // getMongoUsers();
+  // debugger;
     return this.http.get(this.endpoint + '/all').pipe(
       map((res: any) => {
         return res.map(item => {
           return new FFQClinicResponse(
             item.clinicId,
             item.address,
-            item.dateBuilt
+            item.datebuilt,
+            item.clinicname
           );
         });
       })
     );
   }
-
- 
-
 
   /*DELETE: delete food item from the database */
   deleteItem(username: string): Observable <any>{

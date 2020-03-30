@@ -49,7 +49,7 @@ export class UserService {
   }
 
   //To be implemented
-  getUser(userId: string): Observable<FFQUserResponse> {
+  getUser(userId: number): Observable<FFQUserResponse> {
     return this.http.get(this.endpoint + '/users/' + userId).pipe(
       map(((item: any) => {
           return new FFQUserResponse(

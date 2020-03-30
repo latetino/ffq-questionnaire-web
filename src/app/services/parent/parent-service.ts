@@ -50,16 +50,16 @@ export class ParentService {
   }
 
   //To be implemented
-  getParent(parentId: string): Observable<FFQParentResponse> {
+  getParent(parentId: number): Observable<FFQParentResponse> {
     return this.http.get(this.endpoint + '/' + parentId).pipe(
       map(((item: any) => {
           return new FFQParentResponse(
-            item.userId,
+            item.parentId,
             item.username,
             item.userpassword,
             item.firstname,
             item.lastname,
-            item.assignedClinician
+            item.assignedclinician
           );
       }))
     );
@@ -72,12 +72,12 @@ export class ParentService {
       map((res: any) => {
         return res.map(item => {
           return new FFQParentResponse(
-            item.userId,
+            item.parentId,
             item.username,
             item.userpassword,
             item.firstname,
             item.lastname,
-            item.assignedClinician
+            item.assignedclinician
           );
         });
       })

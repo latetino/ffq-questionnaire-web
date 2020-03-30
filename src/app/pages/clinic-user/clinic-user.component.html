@@ -1,0 +1,83 @@
+<clinical-header></clinical-header>
+
+<form #myForm="ngForm">
+  <div class="form-group">
+    <div class="container_page" *ngIf="dataLoaded">
+      <div class="container" style="margin-top: 15px;"><a routerLink="/clinic/home" style="color:#7E1608" ><span
+            class="fa fa-chevron-circle-left"></span> Back to Home </a></div>
+
+
+      <div class="container mt-3">
+        <div align="right">  
+          <button type="submit" class="btn btn-danger"(click)="updateFoodNutrients()"
+            [disabled]="!myForm.form.valid"> Update User </button>
+        </div>
+        <div class="container frame-fooditem">
+          <h6> Update User </h6>
+          <div class="form-group col-12">
+            <label style="font-weight: bold"> Account Type </label>
+            <br>  
+            <mat-radio-group aria-label="Select an option">
+              <mat-radio-button value="parent" (change)="changeToParent($event)" color="warn">Parent</mat-radio-button>
+              <br>
+              <mat-radio-button value="clinician" (change)="changeToClinician($event)" color="warn">Clinician</mat-radio-button>
+            </mat-radio-group>
+
+            <br>
+
+            <!-- Update Parent starts here -->
+
+            <div class="optional_container" *ngIf="parent">
+              <hr>
+              <div class="form-group col-12">
+                
+                <label style="font-weight: bold"> Username </label>
+                <input style="border-color: gray; border-width: 0.05cm" type="text" class="form-control" readonly/>
+                <br>
+                <label style="font-weight: bold"> Name of Parent </label>
+                <input style="border-width: 0.05cm" placeholder="Name" type="text" class="form-control"/>
+                <br>
+                <label style="font-weight: bold"> Assigned Clinician </label>
+                <br>
+                <mat-form-field>
+                  <mat-label appearance="fill">Select Clinician...</mat-label>
+                  <select matNativeControl>
+                    <option value="1">Smith</option>
+                    <option value="2">Romero</option>
+                    <option value="3">Goldberg</option>
+                  </select>
+              </mat-form-field>
+    
+              </div>
+            </div>
+
+            <!-- Update Parent ends here -->
+
+            <!-- Update Clinician starts here -->
+    
+            <div class="optional_container" *ngIf="clinician">
+              <hr>
+              <div class="form-group col-12">
+                
+                <label style="font-weight: bold"> Username </label>
+                <input style="border-color: gray; border-width: 0.05cm" type="text" class="form-control" readonly/>
+                <br>
+                <label style="font-weight: bold"> Role / Abbreviation </label>
+                <input style="border-width: 0.05cm" placeholder="Role" type="text" class="form-control"/>
+                <br>
+                <label style="font-weight: bold"> Name </label>
+                <input style="border-width: 0.05cm" placeholder="Name" type="text" class="form-control"/>
+
+              </div>
+
+            </div>
+
+            <!-- Update Clinician ends here -->
+          </div>
+
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</form>

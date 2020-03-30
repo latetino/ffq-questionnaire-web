@@ -59,7 +59,7 @@ export class ClinicianService {
             item.userpassword,
             item.firstname,
             item.lastname,
-            item.assignedClinic
+            item.assignedclinic
           );
       })
     );
@@ -77,7 +77,7 @@ export class ClinicianService {
             item.userpassword,
             item.firstname,
             item.lastname,
-            item.assignedClinic
+            item.assignedclinic
           );
         });
       })

@@ -5,18 +5,50 @@
         <button routerLink='/admin/user/new' type="submit" class="btn btn-success col-3">New User(s)...</button>
     </div>
     <div class="container mt-3">
-        <span>{{users.length}} user(s)</span>
+        <span>{{ user_list.length }} user(s)</span>
+
+        <div>
+            <mat-checkbox (change)="toggleSelectAll($event)" color="primary"> Select All </mat-checkbox>
+            <span style="color:gray; margin-left: 20px; margin-right: 20px; font-size: x-large;"> | </span>
+            <mat-checkbox (change)="toggleParents($event)" [checked]="true" color="primary"> Show Parents </mat-checkbox>
+            <span style="color:gray; margin-left: 20px; margin-right: 20px; font-size: x-large;"> | </span>
+            <mat-checkbox (change)="toggleClinicians($event)" [checked]="true" color="primary"> Show Clinicians </mat-checkbox>
+            <span style="color:gray; margin-left: 20px; margin-right: 20px; font-size: x-large;"> | </span>
+            <mat-checkbox (change)="toggleAdmins($event)" [checked]="true" color="primary"> Show Admins </mat-checkbox>
+            <span style="color:gray; margin-left: 20px; margin-right: 20px; font-size: x-large;"> | </span>
+            <mat-form-field>
+                <mat-label appearance="fill">Filter by Clinic...</mat-label>
+                <mat-select matNativeControl multiple>
+                  <mat-option *ngFor="let c of clinic_list" [value]="c.name" (change)="filterByClinic(c.name)">{{ c.name }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <button style="font-family: Roboto; margin-left: 10px;"> OK </button>
+            <span style="color:gray; margin-left: 20px; margin-right: 20px; font-size: x-large;"> | </span>
+            <button style="font-family: Roboto"><i class="fa fa-trash"></i> Delete </button>
+        </div>
+        
         <table class="table table-bordered table-inverse">
-        <tr>
-            <th> Users </th>
-            <th><div align="center"> Delete </div></th>
-        </tr>
-        <tr *ngFor="let item of clinicians">
-            <td width="75%">
-                <a [routerLink]="['/admin/users', item.clinicianId]"> {{item.username}} </a>
-            </td>
-            <td width="10%"><div align="center"><a (click)="onModalRequest(item.username)"><span class="fa fa-trash"></span></a></div></td>
-        </tr>
+            <tr>
+                <th width="5%"> Select </th>
+                <th width="25%"> Username </th>
+                <th width="15%"> Account Type </th>
+                <th width="55%"> Clinic </th>
+            </tr>
+     <!--   <tr *ngFor="let u of ffqclinicianList" [hidden]="(!showParents && u.account_type === 'Parent') || (!showClinicians && u.account_type === 'Clinician') || (!showAdmins && u.account_type === 'Admin')"> --> 
+            <tr *ngFor="let u of ffqclinicianList; index as i" [hidden]="!showClinicians">
+                <td align="center"><mat-checkbox [checked]="toggleAll" color="primary"></mat-checkbox></td>
+                <td><a [routerLink]="['/admin/user', u.username]"> {{ u.username }} </a></td>
+                <td> Clinician </td>
+                <td> {{ clinicianClinicNames[i] }} </td>
+            </tr>
+   <!--    <tr *ngFor="let u of ffqparentList" [hidden]="(!showParents && u.account_type === 'Parent') || (!showClinicians && u.account_type === 'Clinician') || (!showAdmins && u.account_type === 'Admin')">  -->
+            <tr *ngFor="let u of ffqparentList; index as i" [hidden]="!showParents">   
+                 <td align="center"><mat-checkbox [checked]="toggleAll" color="primary"></mat-checkbox></td>
+                 <td><a [routerLink]="['/admin/user', u.username]"> {{ u.username }} </a></td>
+                 <td> Parent </td>
+                 <td> {{ parentClinicNames[i] }} </td>
+            </tr>
         </table>
        
+    </div>
 </div>

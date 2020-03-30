@@ -6,16 +6,9 @@ import { AppComponent } from './app.component';
 import { QuestIdInputComponent } from './pages/quest-id-input-page/quest-id-input.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MatButtonModule} from '@angular/material/button';
-import { MatCardModule} from '@angular/material/card'
-import { MatFormFieldModule} from '@angular/material/form-field';
-import { MatInputModule} from '@angular/material/input';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatListModule } from '@angular/material/list';
-import { MatSelectModule } from '@angular/material/select';
-import { MatRadioModule } from '@angular/material/radio';
-import { MatIconModule } from '@angular/material/icon';
-
+import { MatButtonModule, MatCardModule, MatFormFieldModule,
+  MatInputModule, MatDialogModule, MatListModule, MatSelectModule,
+  MatOptionModule, MatRadioModule, MatIconModule } from '@angular/material';
 import { QuestionnairePageComponent } from './pages/questionnaire-page/questionnaire-page.component';
 import { ErrorDialogPopupComponent } from './components/error-dialog-popup/error-dialog-popup.component';
 import { TextCardComponent } from './components/text-card/text-card.component';
@@ -50,13 +43,15 @@ import { TrackerHistoryPageComponent } from './pages/tracker-history-page/tracke
 import { HistoryParentalComponent } from './pages/history-parental/history-parental.component';
 import { MatOptionModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+
 import { LoginComponent } from './pages/login';
 import { LoginHeaderComponent } from './pages/login-header';
+import { ClinicQuestResultsComponent } from './pages/clinic-quest-results';
+import { ClinicRecommendComponent } from './pages/clinic-recommend';
+
 import { AdminUsersComponent } from './pages/admin-users';
 import { UserComponent } from './pages/user/user.component';
-
-
-
+import { ClinicUserComponent } from './pages/clinic-user/clinic-user.component';
 
 @NgModule({
   declarations: [
@@ -86,8 +81,13 @@ import { UserComponent } from './pages/user/user.component';
     HistoryParentalComponent,
     LoginComponent,
     LoginHeaderComponent,
+    ClinicQuestResultsComponent,
+    ClinicRecommendComponent,
     AdminUsersComponent,
-    UserComponent  ],
+    UserComponent,
+    ClinicUserComponent
+      
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -108,9 +108,9 @@ import { UserComponent } from './pages/user/user.component';
     NgbModule,
     AngularFontAwesomeModule,
     ReactiveFormsModule,
-    //NgbModule.forRoot(),
+    MatCheckboxModule,
+    NgbModule.forRoot(),
     FlashMessagesModule.forRoot(),
-    MatCheckboxModule
    ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

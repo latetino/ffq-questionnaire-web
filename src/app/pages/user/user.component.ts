@@ -121,7 +121,7 @@ export class UserComponent implements OnInit {
       clinicianList.subscribe(data => {
         var numberOfClinicians = (data.length+1).toString();
         //console.log("Number of clinicians is: " + numberOfClinicians);
-        var newClincianId = "C00"+numberOfClinicians;
+        var newClincianId = data.length+1;
         var newClincianUsername = "clinician"+numberOfClinicians;
         this.ffqclinician = new FFQClinician(newClincianId, newClincianUsername, newClincianUsername, "", "", this.clinicnumber);
         console.log(this.ffqclinician);
@@ -173,7 +173,7 @@ export class UserComponent implements OnInit {
       clinicianList.subscribe(data => {
         var numberOfClinicians = (data.length+1).toString();
         //console.log("Number of clinicians is: " + numberOfClinicians);
-        var newClincianId = "C00"+numberOfClinicians;
+        var newClincianId = data.length+1;
         var newClincianUsername = "clinician"+numberOfClinicians;
         this.ffqclinician = new FFQClinician(newClincianId, newClincianUsername, newClincianUsername, "", "", 0 );
         console.log(this.ffquser);

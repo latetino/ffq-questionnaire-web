@@ -2,15 +2,17 @@ import {FFQItemResponse} from './ffqitem-response';
 import { ObjectUnsubscribedError } from 'rxjs';
 
 export class FFQClinicResponse {
-  cliniciId: string;
+  cliniciId: number;
   address: string;
-  dateBuilt: string;
+  datebuilt: string;
+  clinicname: string
 
 
-  constructor(cliniciId: string, address: string, dateBuilt: string) {
+  constructor(cliniciId: number, address: string, datebuilt: string, clinicname: string) {
     this.cliniciId = cliniciId;
     this.address = address;
-    this.dateBuilt = dateBuilt;
+    this.datebuilt = datebuilt;
+    this.clinicname = clinicname;
   }
 
 }

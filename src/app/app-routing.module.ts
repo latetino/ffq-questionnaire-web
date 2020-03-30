@@ -16,8 +16,11 @@ import { TrackerHistoryPageComponent } from './pages/tracker-history-page/tracke
 import { HistoryParentalComponent } from './pages/history-parental/history-parental.component';
 import { LoginComponent } from './pages/login';
 import { LoginHeaderComponent } from './pages/login-header';
+import { ClinicQuestResultsComponent } from './pages/clinic-quest-results';
+import { ClinicRecommendComponent } from './pages/clinic-recommend';
 import { AdminUsersComponent } from './pages/admin-users';
 import { UserComponent } from './pages/user/user.component';
+import { ClinicUserComponent } from './pages/clinic-user/clinic-user.component';
 
 
 
@@ -29,28 +32,38 @@ const routes: Routes = [
     path: 'admin/fooditem', component: FooditemComponent
   },
   {
-    path: 'admin', component: AdminPageComponent
+    path: 'admin/user/:id', component: UserComponent
   },
   {
-    path: 'quest-results', component:  QuestResultsComponent
+    path: 'admin/user', component: UserComponent
   },
   {
-    path: 'recommend', component:   RecommendComponent
+    path: 'admin/home', component: AdminPageComponent
   },
   {
     path: 'recommend-parental', component:   RecommendParentalComponent
   },
   {
     path: '', redirectTo: 'questionnaire-id', pathMatch: 'full'
+    path: 'admin/users', component: AdminUsersComponent
   },
   {
-    path: 'questionnaire-id', component: QuestIdInputComponent, canActivate: [AuthGuard]
+    path: 'admin/results', component:  QuestResultsComponent
+  },
+  {
+    path: 'admin/recommend', component:   RecommendComponent
+  },
+  {
+    path: '', redirectTo: 'login', pathMatch: 'full'
+  },
+  {
+    path: 'questionnaire-id', component: QuestIdInputComponent/*, canActivate: [AuthGuard]*/
   },
   {
     path: 'questionnaire/:id', component: QuestionnairePageComponent
   },
   {
-    path: 'clinical-portal', component: ClinicalPortalComponent
+    path: 'clinic/home', component: ClinicalPortalComponent
   },
   {
     path: 'tracker', component: TrackerPageComponent
@@ -65,15 +78,23 @@ const routes: Routes = [
     path: 'login', component: LoginComponent
   },
   {
-    path: 'login-page', component: LoginPageComponent
+    path: 'clinic/results', component: ClinicQuestResultsComponent
   },
   {
-    path: 'admin/user/:id', component: UserComponent
+    path: 'clinic/recommend', component: ClinicRecommendComponent
   },
   {
-    path: 'admin/users', component: AdminUsersComponent
+    path: 'clinic/user/:id', component: ClinicUserComponent
+  },
+  {
+    path: 'clinic/user', component: ClinicUserComponent
   }
-
+  {
+    path: 'login', component: LoginComponent
+  },
+  {
+    path: '*', redirectTo: 'login'
+  }
 ];
 
 @NgModule({
