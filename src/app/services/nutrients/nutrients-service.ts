@@ -10,7 +10,7 @@ import { ɵangular_packages_forms_forms_q } from '@angular/forms';
 import { Http, Headers, Response, RequestOptions, RequestMethod } from '@angular/http';
 import { FFQNutrientlist } from 'src/app/models/ffqnutrientlist';
 
-const httOptions ={ headers: new HttpHeaders({'Content-Type':'aplication/json'})}
+const httpOptions = { headers: new HttpHeaders({'Content-Type': 'application/json'})};
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +20,7 @@ export class NutrientsService {
 
   endpoint = 'http://localhost:9090/ffq';
 
-  constructor(private http: HttpClient) { } 
+  constructor(private http: HttpClient) { }
 
   /* Return a specific nutrients list (by object id)*/
   getNutrientsById(objectId: string): Observable<FFQNutrientlist> {

@@ -6,10 +6,11 @@ import {QuestIdInputComponent} from './pages/quest-id-input-page/quest-id-input.
 import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 import {FooditemComponent} from './pages/fooditem/fooditem.component';
 import { QuestResultsComponent } from './pages/quest-results/quest-results.component';
-import { RecommendComponent } from './pages/recommend/recommend.component';
+import { RecommendComponent } from './pages/parental-header/recommend/recommend.component';
 import { ClinicalPortalComponent} from './pages/clinical-portal/clinical-portal.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { AuthGuard } from './services/authentication/auth.guard';
+import { RecommendParentalComponent } from './pages/recommend-parental/recommend-parental.component';
 
 
 
@@ -30,6 +31,9 @@ const routes: Routes = [
     path: 'recommend', component:   RecommendComponent
   },
   {
+    path: 'recommend-parental', component:   RecommendParentalComponent
+  },
+  {
     path: '', redirectTo: 'questionnaire-id', pathMatch: 'full'
   },
   {
@@ -37,13 +41,13 @@ const routes: Routes = [
   },
   {
     path: 'questionnaire/:id', component: QuestionnairePageComponent
-  }, 
+  },
   {
     path: 'clinical-portal', component: ClinicalPortalComponent
   },
   {
     path: 'login', component: LoginPageComponent
-  } 
+  }
 ];
 
 @NgModule({

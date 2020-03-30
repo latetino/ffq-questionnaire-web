@@ -16,53 +16,48 @@ import { NutrientConstants } from 'src/app/models/NutrientConstants';
 export class QuestResultsComponent implements OnInit {
   public show: boolean = false;
   public buttonName: any = "Results";
-  
+
   MESSAGE = "No questionnaires have been submitted yet!";
 
-  
+
   results: FFQResultsResponse[] = [];
 
   constructor(public resultsService: ResultsService) {}
-  
+
   ngOnInit() {
     this.getAllResults();
   }
 
   //(Khalid)Changed below code to sort the list in the nutient view page
   private getAllResults() {
-     const oldList: Observable<FFQResultsResponse[]> = this.resultsService.getAllResults();
-     const reqList: string[] = NutrientConstants.NUTRIENT_NAMES;
-     const newWeeklyMap = new Map<string, number>();
-     const newDailyMap = new Map<string, number>();
+    const oldList: Observable<FFQResultsResponse[]> = this.resultsService.getAllResults();
+    const reqList: string[] = NutrientConstants.NUTRIENT_NAMES;
 
-     oldList.subscribe(m => {
+    oldList.subscribe(m => {
 
-      const weeklyMap = m[0].weeklyTotals;
-      const dailyMap = m[0].dailyAverages;
-      reqList.forEach(a =>  {
-       newWeeklyMap.set(a, weeklyMap[a]);
-       newDailyMap.set(a, dailyMap[a]);
+      m.forEach(element => {
+       const newWeeklyMap = new Map<string, number>();
+       const newDailyMap = new Map<string, number>();
+
+       const weeklyMap = element.weeklyTotals;
+       const dailyMap = element.dailyAverages;
+
+       reqList.forEach(a =>  {
+           newWeeklyMap.set(a, weeklyMap[a]);
+           newDailyMap.set(a, dailyMap[a]);
        })
-      //console.log(newWeeklyMap);
 
-       m.forEach(element => {
-         
-         element.weeklyTotals = newWeeklyMap;
-         element.dailyAverages = newDailyMap;
-         //element.dailyAverages = newDailyMap;
+       element.weeklyTotals = newWeeklyMap;
+       element.dailyAverages = newDailyMap;
+       })
 
-        })
-        
-        console.log(m);
-        this.results = m;
-     }
-     
-    )     
-    
-  }
+       console.log(m);
+       this.results = m;
+    }
 
-  
-  //p = this.results;
+   )
+
+ }
 
   private returnZero(){
     return 0;
@@ -73,5 +68,5 @@ export class QuestResultsComponent implements OnInit {
     if (this.results[index].show) this.buttonName = "Results";
     else this.buttonName = "Results ";
   }
-    
+
 }

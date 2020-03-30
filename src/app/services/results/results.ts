@@ -4,9 +4,9 @@ import {Observable} from 'rxjs';
 import {map, tap} from 'rxjs/operators';
 import { FFQResultsResponse } from 'src/app/models/ffqresultsresponse';
 
-//Added by Dariana Gonzalez on 10/13/2019
+// Added by Dariana Gonzalez on 10/13/2019
 
-const httOptions ={ headers: new HttpHeaders({'Content-Type':'aplication/json'})}
+const httpOptions = { headers: new HttpHeaders({'Content-Type': 'application/json'})};
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +16,8 @@ export class ResultsService {
 
   endpoint = 'http://localhost:9090/ffq';
 
-  constructor(private http: HttpClient) { } 
- 
+  constructor(private http: HttpClient) { }
+
   getAllResults(): Observable<FFQResultsResponse[]> {
     return this.http.get(this.endpoint + '/results/all').pipe(
       map((res: any) => {
@@ -32,5 +32,5 @@ export class ResultsService {
           );
         });
       }));
-    }   
+    }
   }

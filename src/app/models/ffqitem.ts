@@ -33,8 +33,9 @@ export class FFQItem {
     item.foodTypes = response.foodTypes;
     item.types =
       response.foodTypes.length > 1 ? this.handleFoodTypesList(response.foodTypes) : [];
-    if (response.sugar != null)
+    if (response.sugar != null) {
       item.hasSugarSetting = response.sugar.additionalSugar;
+    }
     item.isPrimary = response.primary;
     return item;
   }

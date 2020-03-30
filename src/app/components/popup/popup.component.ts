@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FoodItemService } from 'src/app/services/food-item/food-item.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
@@ -17,9 +17,9 @@ export class PopupComponent {
     data: any;
 
     constructor(public activeModal: NgbActiveModal,
-        public foodService: FoodItemService,
-        private router: Router,
-        private errorDialog: MatDialog, ) {
+                public foodService: FoodItemService,
+                private router: Router,
+                private errorDialog: MatDialog, ) {
     }
 
     onClose(): void {

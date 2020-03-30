@@ -23,7 +23,7 @@ import { FooditemComponent } from './pages/fooditem/fooditem.component';
 import{ ReactiveFormsModule} from '@angular/forms';
 import { AdminHeaderComponent } from './pages/admin-header/admin-header.component';
 import { QuestResultsComponent } from './pages/quest-results/quest-results.component';
-import { RecommendComponent } from './pages/recommend/recommend.component';
+import { RecommendComponent } from './pages/parental-header/recommend/recommend.component';
 import {PopupComponent} from "./components/popup/popup.component";
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { Routes, RouterModule } from '@angular/router';
@@ -35,6 +35,8 @@ import { ParentalHeaderComponent } from './pages/parental-header/parental-header
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { JwtInterceptor } from './services/authentication/jwt.interceptor';
 import { fakeBackendProvider } from './services/authentication/temp-backend';
+import { RecommendParentalComponent } from './pages/recommend-parental/recommend-parental.component';
+import { FoodDescriptionModalComponent } from './components/food-description-modal/food-description-modal.component';
 
 
 
@@ -59,10 +61,16 @@ import { fakeBackendProvider } from './services/authentication/temp-backend';
     ClinicalPortalComponent,
     ClinicalHeaderComponent,
     ParentalHeaderComponent,
-    LoginPageComponent
-  
-    
-      
+
+
+
+
+    LoginPageComponent,
+    RecommendParentalComponent,
+    FoodDescriptionModalComponent
+
+
+
   ],
   imports: [
     BrowserModule,
@@ -93,6 +101,6 @@ import { fakeBackendProvider } from './services/authentication/temp-backend';
     //fakeBackendProvider
   ],
   bootstrap: [AppComponent],
-  entryComponents: [ErrorDialogPopupComponent, ResultsPageComponent,PopupComponent,RecommendModalComponent,FoodRecommendModalComponent]
+  entryComponents: [ErrorDialogPopupComponent, ResultsPageComponent,PopupComponent,RecommendModalComponent,FoodRecommendModalComponent,FoodDescriptionModalComponent]
 })
 export class AppModule { }

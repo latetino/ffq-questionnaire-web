@@ -11,7 +11,7 @@ import { Http, Headers, Response, RequestOptions, RequestMethod } from '@angular
 import { FFQNutrientlist } from 'src/app/models/ffqnutrientlist';
 import { FFQNutrientsRecommendations } from 'src/app/models/ffqnutrients-recommendations';
 
-const httOptions ={ headers: new HttpHeaders({'Content-Type':'aplication/json'})}
+const httpOptions = { headers: new HttpHeaders({'Content-Type': 'application/json'})};
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,7 @@ export class NutrientsRecommendationsService {
 
   endpoint = 'http://localhost:9090/ffq';
 
-  constructor(private http: HttpClient) { } 
+  constructor(private http: HttpClient) { }
 
   /* Return the nutrients recommendations given a questionnaire id*/
   getNutrientsRecommendationsByQuestionnaireId(questionnaireId: string): Observable<FFQNutrientsRecommendations> {
