@@ -61,10 +61,10 @@ import { FoodDescriptionModalComponent } from './components/food-description-mod
     ClinicalPortalComponent,
     ClinicalHeaderComponent,
     ParentalHeaderComponent,
-      
-  
-    
-      
+
+
+
+
     LoginPageComponent,
     RecommendParentalComponent,
     FoodDescriptionModalComponent

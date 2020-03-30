@@ -24,25 +24,28 @@ export class FoodDescriptionService {
           return new Description(
             item.imageUrl,
             item.foodItemGroupName,
-            item.dailyFoodIntake,
+            item.firstBracketIntake,
+            item.secondBracketIntake,
+            item.thirdBracketIntake,
             item.description,
           );
         }))
     );
   }
 
-  getAllFoodItems(foodItemGroupName: string): Observable<Description> {
-    return this.http.get(this.endpoint + '/fooddescription/' + 'all').pipe(
-      map(((item: Description) => {
+  getAllFoodItems(): Observable<Description[]> {
+    return this.http.get(this.endpoint + '/fooddescription/all').pipe(
+      map((res: any) => {
+        return res.map(item => {
           return new Description(
             item.imageUrl,
             item.foodItemGroupName,
-            item.dailyFoodIntake,
+            item.firstBracketIntake,
+            item.secondBracketIntake,
+            item.thirdBracketIntake,
             item.description,
           );
-        }))
-    );
+        });
+      }));
   }
 }
-
-

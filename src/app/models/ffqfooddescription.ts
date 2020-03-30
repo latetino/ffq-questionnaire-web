@@ -1,13 +1,18 @@
 export class Description {
   imageUrl: string;
   foodItemGroupName: string;
-  dailyFoodIntake: string;
+  firstBracketIntake: string;
+  secondBracketIntake: string;
+  thirdBracketIntake: string;
   description: string;
 
-  constructor(imageUrl: string, foodItemGroupName: string, dailyFoodIntake: string, description: string) {
+  constructor(imageUrl: string, foodItemGroupName: string, firstBracketIntake: string, secondBracketIntake: string,
+    thirdBracketIntake: string, description: string) {
     this.imageUrl = imageUrl;
     this.foodItemGroupName = foodItemGroupName;
-    this.dailyFoodIntake = dailyFoodIntake;
+    this.firstBracketIntake = firstBracketIntake;
+    this.secondBracketIntake = secondBracketIntake;
+    this.thirdBracketIntake = thirdBracketIntake;
     this.description = description;
   }
 }
