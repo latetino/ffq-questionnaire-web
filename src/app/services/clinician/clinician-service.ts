@@ -50,7 +50,7 @@ export class ClinicianService {
   }
 
   //To be implemented
-  getClinician(clinicianId: string): Observable<FFQClinicianResponse> {
+  getClinician(clinicianId: number): Observable<FFQClinicianResponse> {
     return this.http.get(this.endpoint + '/' + clinicianId).pipe(
       map((item: any) => {
           return new FFQClinicianResponse(

@@ -102,7 +102,7 @@ export class UserComponent implements OnInit {
     else
     {
       this.isUpdate = true;
-      this.getUserById(UserID);
+      this.getUserById(parseInt(UserID));
     }
 
     var clinicList: Observable<FFQClinicResponse[]> = this.clinicService.getAllClinics();
@@ -127,6 +127,11 @@ export class UserComponent implements OnInit {
     this.createClinician = false;
   }
 
+  setClinic(clinicNo: number)
+  {
+    this.clinic = clinicNo;
+    console.log("this.clinic " + this.clinic);
+  }
 
 
   private addUser(form:NgForm){  
@@ -222,7 +227,7 @@ export class UserComponent implements OnInit {
     
    }
 
-   private getUserById(id: string)
+   private getUserById(id: number)
    {
 
     if(id[0] == '5')
