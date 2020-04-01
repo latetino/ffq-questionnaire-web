@@ -75,15 +75,15 @@ export class ClinicUserComponent implements OnInit {
 
     const UserID = this.route.snapshot.paramMap.get('id');
 
-    this.getUserById(UserID);
+    this.getUserById(parseInt(UserID));
 
     console.log(this.userAttributes);
   }
  
-  private getUserById(id: string)
+  private getUserById(id: number)
    {
 
-    if(id[0] == '5')
+    if(id.toString()[0] == '5')
     {
       this.isParent = true;
       this.parentService.getParent(id).subscribe(data => {  
@@ -92,7 +92,7 @@ export class ClinicUserComponent implements OnInit {
       });
       this.dataLoaded = Promise.resolve(true);  
     }
-    else if(id[0] == '7')
+    else if(id.toString()[0] == '7')
     {
       this.isClinician = true;
       this.clinicianService.getClinician(id).subscribe(data => {  

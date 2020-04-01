@@ -34,10 +34,10 @@ const routes: Routes = [
     path: 'admin/fooditem', component: FooditemComponent
   },
   {
-    path: 'admin/user/:id', component: UserComponent
+    path: 'admin/user/:type/:id', component: UserComponent
   },
   {
-    path: 'admin/user', component: UserComponent
+    path: 'admin/user/:id', component: UserComponent
   },
   {
     path: 'admin/home', component: AdminPageComponent

@@ -91,7 +91,10 @@ export class UserComponent implements OnInit {
     this.isParent = false;
     this.isClinician = false;
 
+    const UserType = this.route.snapshot.paramMap.get('type');
     const UserID = this.route.snapshot.paramMap.get('id');
+    console.log(UserID);
+
     if (UserID == "new"){
     
       this.isNew = true;
@@ -102,7 +105,15 @@ export class UserComponent implements OnInit {
     else
     {
       this.isUpdate = true;
-      this.getUserById(UserID);
+      //this.getUserById(parseInt(UserID));
+      if(UserType == "p")
+      {
+        this.getParentByID(parseInt(UserID));
+      }
+      else
+      {
+        this.getClinicianByID(parseInt(UserID));
+      }
     }
 
     var clinicList: Observable<FFQClinicResponse[]> = this.clinicService.getAllClinics();
@@ -143,7 +154,7 @@ export class UserComponent implements OnInit {
       clinicianList.subscribe(data => {
         var numberOfClinicians = (data.length+1).toString();
         //console.log("Number of clinicians is: " + numberOfClinicians);
-        var newClincianId = 700 + data.length+1;
+        var newClincianId = data.length+1;
         var newClincianUsername = "clinician"+numberOfClinicians;
         this.ffqclinician = new FFQClinician(newClincianId, newClincianUsername, newClincianUsername, "", "", this.clinicnumber);
         console.log(this.ffqclinician);
@@ -167,7 +178,7 @@ export class UserComponent implements OnInit {
       parentList.subscribe(data => {
         var numberOfParents = (data.length+1).toString();
         //console.log("Number of clinicians is: " + numberOfClinicians);
-        var newParentId = 500 + data.length+1;
+        var newParentId = data.length+1;
         var newParentUsername = "parent"+numberOfParents;
         this.ffqParent = new FFQParent(newParentId, newParentUsername, newParentUsername, "", "", "0");
 
@@ -188,13 +199,6 @@ export class UserComponent implements OnInit {
     
   }
 
-
-
-  trackByFn(item, id){
-    return item
-  }
-  
-
   private addParent(form:NgForm){
     
     // if(this.createClincian == true){
@@ -203,7 +207,7 @@ export class UserComponent implements OnInit {
        parentList.subscribe(data => {
          var numberOfParents = (data.length+1).toString();
          //console.log("Number of clinicians is: " + numberOfClinicians);
-         var newParentId = 500 + data.length+1;
+         var newParentId = data.length+1;
          var newParentUsername = "parent"+numberOfParents;
          this.ffqParent = new FFQParent(newParentId, newParentUsername, newParentUsername, "", "", "");
          //console.log(this.ffquser);
@@ -227,31 +231,25 @@ export class UserComponent implements OnInit {
     
    }
 
-   private getUserById(id: string)
-   {
-
-    if(id[0] == '5')
-    {
-      this.isParent = true;
-      console.log("IS PARENT!!!");
-      this.parentService.getParent(id).subscribe(data => {  
-        console.log("got data");
-        this.userAttributes.push(data)
-        console.log("pushed data");
-        console.log(this.userAttributes);
-      });
-      this.dataLoaded = Promise.resolve(true);  
-    }
-    else if(id[0] == '7')
-    {
-      this.isClinician = true;
-      this.clinicianService.getClinician(id).subscribe(data => {  
-      
-        this.userAttributes.push(data)
-      });
-      this.dataLoaded = Promise.resolve(true);  
-    }
+  getParentByID(id: number)
+  {
+    this.isParent = true;
+    this.parentService.getParent(id).subscribe(data => {  
+       this.userAttributes.push(data)
+    });
+    this.dataLoaded = Promise.resolve(true); 
   }
+
+  getClinicianByID(id: number)
+  {
+    this.isClinician = true;
+    this.clinicianService.getClinician(id).subscribe(data => {  
+      this.userAttributes.push(data)
+    });
+    this.dataLoaded = Promise.resolve(true); 
+  }
+
+  
 }
 
 
