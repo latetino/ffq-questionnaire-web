@@ -1,0 +1,43 @@
+h2 {
+    text-align: center;
+}
+
+.tracker-container {
+    padding-top: 140px;
+    margin-bottom: 50px;
+}
+
+.footer {
+  margin-top: 50px;
+  margin-bottom: 100px;
+  display: flex;
+  justify-content: center;
+}
+
+/* items */
+
+.trackeritem-container {
+  display: flex;
+  justify-content: center;
+}
+
+.tracker-card {
+  width: 50%;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.tracker-buttons {
+  float: right;
+  /* padding-right: 20px; */
+}
+
+mat-button-toggle-group {
+  display: flex; 
+  flex-direction: column;
+  width: 50px;
+}
+
+.mat-button-toggle-checked {
+  background-color: #6880EE;
+}

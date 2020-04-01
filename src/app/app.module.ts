@@ -37,6 +37,10 @@ import { JwtInterceptor } from './services/authentication/jwt.interceptor';
 import { fakeBackendProvider } from './services/authentication/temp-backend';
 import { RecommendParentalComponent } from './pages/recommend-parental/recommend-parental.component';
 import { FoodDescriptionModalComponent } from './components/food-description-modal/food-description-modal.component';
+import { TrackerPageComponent } from './pages/tracker-page/tracker-page.component';
+import { TrackerBlockComponent } from './components/tracker-block/tracker-block.component';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { TrackerHistoryPageComponent } from './pages/tracker-history-page/tracker-history-page.component';
 
 
 
@@ -61,22 +65,20 @@ import { FoodDescriptionModalComponent } from './components/food-description-mod
     ClinicalPortalComponent,
     ClinicalHeaderComponent,
     ParentalHeaderComponent,
-
-
-
-
     LoginPageComponent,
     RecommendParentalComponent,
-    FoodDescriptionModalComponent
-
-
-
+    FoodDescriptionModalComponent,
+    TrackerPageComponent,
+    TrackerBlockComponent,
+    TrackerHistoryPageComponent
+  
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatButtonModule,
+    MatButtonToggleModule,
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
