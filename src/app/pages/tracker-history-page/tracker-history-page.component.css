@@ -1,0 +1,15 @@
+.tracker-container {
+    padding-top: 140px;
+    margin-bottom: 50px;
+}
+
+.trackeritem-container {
+    display: flex;
+    justify-content: center;
+  }
+  
+.tracker-card {
+    width: 50%;
+    justify-content: center;
+    margin-bottom: 10px;
+}
