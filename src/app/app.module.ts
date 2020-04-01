@@ -39,6 +39,8 @@ import { RecommendParentalComponent } from './pages/recommend-parental/recommend
 import { FoodDescriptionModalComponent } from './components/food-description-modal/food-description-modal.component';
 import { TrackerPageComponent } from './pages/tracker-page/tracker-page.component';
 import { TrackerBlockComponent } from './components/tracker-block/tracker-block.component';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { TrackerHistoryPageComponent } from './pages/tracker-history-page/tracker-history-page.component';
 
 
 
@@ -67,7 +69,8 @@ import { TrackerBlockComponent } from './components/tracker-block/tracker-block.
     RecommendParentalComponent,
     FoodDescriptionModalComponent,
     TrackerPageComponent,
-    TrackerBlockComponent
+    TrackerBlockComponent,
+    TrackerHistoryPageComponent
   
   ],
   imports: [
@@ -75,6 +78,7 @@ import { TrackerBlockComponent } from './components/tracker-block/tracker-block.
     AppRoutingModule,
     BrowserAnimationsModule,
     MatButtonModule,
+    MatButtonToggleModule,
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
