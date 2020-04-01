@@ -21,6 +21,8 @@ import { ClinicRecommendComponent } from './pages/clinic-recommend';
 import { AdminUsersComponent } from './pages/admin-users';
 import { UserComponent } from './pages/user/user.component';
 import { ClinicUserComponent } from './pages/clinic-user/clinic-user.component';
+import { AdminClinicsComponent } from './pages/admin-clinics';
+import { ClinicComponent } from './pages/clinic/clinic.component';
 
 
 
@@ -52,6 +54,15 @@ const routes: Routes = [
   },
   {
     path: 'admin/recommend', component:   RecommendComponent
+  },
+  {
+    path: 'admin/clinics', component: AdminClinicsComponent
+  },
+  {
+    path: 'admin/clinic', component: ClinicComponent
+  },
+  {
+    path: 'admin/clinic/:id', component: ClinicComponent
   },
   {
     path: '', redirectTo: 'login', pathMatch: 'full'

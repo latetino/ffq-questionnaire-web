@@ -14,7 +14,6 @@ import { FFQFoodItem } from 'src/app/models/ffqfooditem';
 import { FFQFoodItemResponse } from 'src/app/models/ffqfooditem-response';
 
 //test
-import { User } from 'src/app/models/user';
 import { FFQUser } from 'src/app/models/ffquser';
 import { FFQClinician } from 'src/app/models/ffqclinician';
 import { FFQParent } from 'src/app/models/ffqparent';
@@ -74,12 +73,6 @@ export class ClinicalPortalComponent implements OnInit  {
   clinicianNames: string[] = [];
   numberOfPatients: number[] = [];
   
-  // test
-
-  public user_list: User[] = [];
-
-  
-//end test
 
   ngOnInit() {
    
@@ -92,6 +85,8 @@ export class ClinicalPortalComponent implements OnInit  {
 
 
     this.loadAllUsers();
+
+    console.log(this.clinicianNames);
   
   }
 

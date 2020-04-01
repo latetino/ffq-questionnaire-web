@@ -1,7 +1,5 @@
 <clinical-header></clinical-header>
 
-<!-- Designed by Javier Romero -->
-
 <div class="container_page">
     <div class="container mt-3">
         <h4>{{TITLE}}</h4>
@@ -27,26 +25,19 @@
                     <th width="5%"> Select </th>
                     <th width="25%"> Username </th>
                     <th width="11.5%"> Role / Abbrev. </th>
-                    <th width="43.5%"> Full Name </th>
+                    <th width="43.5%"> Name </th>
                     <th width="15%"> No. of Patients </th>
-                    <th width="25%"> Assigned Clinic </th>
                 </tr>
-                <tr *ngFor="let u of ffqclinicianList; index as i"> <!-- [hidden]="u.account_type != 'Clinician'"> -->
+                <tr *ngFor="let u of ffqclinicianList; index as i">
                     <td align="center"><mat-checkbox [checked]="toggleAllClinicians"></mat-checkbox></td>
-                    <td><a [routerLink]="['/clinic/user', u.username]"> {{ u.username }} </a></td>
+                    <td><a [routerLink]="['/clinic/user', u.clinicianId]"> {{ u.username }} </a></td>
                     <td> {{ u.abbrev }} </td>
                     <td> {{ u.firstname }} {{ u.lastname }}</td>
                     <td> {{ numberOfPatients[i] }} </td>
-                    <td> {{ clinicNames[i] }} </td>
-                    <td> <!-- coming soon --> </td>
                 </tr>
             </table>
         </div>
         <!-- Clinicians ends here -->
-        
-        <div *ngIf="showClinicians && showParents">
-            <hr>
-        </div>
 
         <!-- Parents starts here -->
 
@@ -61,7 +52,7 @@
                 <mat-form-field>
                     <mat-label appearance="fill">Assign to Clinician...</mat-label>
                     <select matNativeControl>
-                      <option *ngFor="let u of user_list" [value]="u.name" [hidden]="u.account_type != 'Clinician'">{{ u.name }}</option>
+                      <option *ngFor="let u of ffqclinicianList">{{ u.abbrev }} {{ u.lastname }}</option>
                     </select>
                 </mat-form-field>
                 <button style="font-family: Roboto; margin-left: 10px;"> OK </button>
@@ -76,11 +67,11 @@
                     <th width="45%"> Parent Name </th>
                     <th width="25%"> Assigned Clinician </th>
                 </tr>
-                <tr *ngFor="let u of ffqparentList; index as i"> <!-- [hidden]="hideUnassigned && !u.name || u.account_type != 'Parent'"> -->
+                <tr *ngFor="let u of ffqparentList; index as i" [hidden]="hideUnassigned && !clinicianNames[i]">
                     <td align="center"><mat-checkbox [checked]="toggleAllParents"></mat-checkbox></td>
-                    <td><a [routerLink]="['/clinic/user', u.username]"> {{ u.username }} </a></td>
+                    <td><a [routerLink]="['/clinic/user', u.parentId]"> {{ u.username }} </a></td>
                     <td> {{ u.firstname }} {{ u.lastname }}</td>
-                    <td> {{ clinicianNames[i] }} </td>
+                    <td> {{ clinicianNames[i] }}</td>
                 </tr>
             </table>
 

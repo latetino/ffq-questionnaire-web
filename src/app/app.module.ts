@@ -52,6 +52,8 @@ import { ClinicRecommendComponent } from './pages/clinic-recommend';
 import { AdminUsersComponent } from './pages/admin-users';
 import { UserComponent } from './pages/user/user.component';
 import { ClinicUserComponent } from './pages/clinic-user/clinic-user.component';
+import { AdminClinicsComponent } from './pages/admin-clinics/';
+import { ClinicComponent } from './pages/clinic/clinic.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +87,9 @@ import { ClinicUserComponent } from './pages/clinic-user/clinic-user.component';
     ClinicRecommendComponent,
     AdminUsersComponent,
     UserComponent,
-    ClinicUserComponent
+    ClinicUserComponent,
+    AdminClinicsComponent,
+    ClinicComponent
       
   ],
   imports: [

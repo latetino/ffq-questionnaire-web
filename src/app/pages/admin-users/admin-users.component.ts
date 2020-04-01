@@ -14,8 +14,6 @@ import { FFQFoodItem } from 'src/app/models/ffqfooditem';
 import { FFQFoodItemResponse } from 'src/app/models/ffqfooditem-response';
 
 //test
-import { User } from 'src/app/models/user';
-import { Clinic } from 'src/app/models/clinic';
 import { FFQUser } from 'src/app/models/ffquser';
 import { FFQClinician } from 'src/app/models/ffqclinician';
 import { FFQParent } from 'src/app/models/ffqparent';
@@ -75,10 +73,9 @@ clinicianClinicNames: string[] = [];
 parentClinicNames: string[] = [];
 
 
+ public filtered: boolean;
 
-
- public user_list: User[] = [];
- public clinic_list: Clinic[] = [];
+ public filtered_clinics: String[] = [];
 
  
 //end test
@@ -91,25 +88,8 @@ parentClinicNames: string[] = [];
     this.showParents = true;
     this.showClinicians = true;
     this.showAdmins = true;
+    this.filtered = false;
     this.loadAllUsers();
-    /*
-    this.user_list.push(this.user1);
-    this.user_list.push(this.user2);
-    this.user_list.push(this.user3);
-    this.user_list.push(this.user4);
-    this.user_list.push(this.user5);
-    this.user_list.push(this.user6);
-    this.user_list.push(this.user7);
-    this.user_list.push(this.user8);
-    
-
-    this.clinic_list.push(this.clinic1);
-    this.clinic_list.push(this.clinic2);
-    */
-
-
-
-
   }
 
   toggleSelectAll()
@@ -134,7 +114,23 @@ parentClinicNames: string[] = [];
 
   filterByClinic(clinic_name: string)
   {
-    console.log(clinic_name);
+    const index = this.filtered_clinics.indexOf(clinic_name);
+    if(index === -1)
+    {
+      this.filtered_clinics.push(clinic_name);
+    }
+    else
+    {
+      this.filtered_clinics.splice(index, 1);
+    }
+    if(this.filtered_clinics.length == 0)
+    {
+      this.filtered = false;
+    }
+    else
+    {
+      this.filtered = true;
+    }
   }
 
   private loadAllUsers() {
@@ -186,85 +182,5 @@ parentClinicNames: string[] = [];
     });
 
   }
- public clinic1: Clinic = {
-
-  name: "FIU Clinic"
- }
-
- public clinic2: Clinic = {
-   name: "Mercy Hospital"
- }
-
- public user1: User = {
-   username: "C000_C000",
-   account_type: "Clinician",
-   abbrev: "Dr.",
-   name: "Smith",
-   assigned_clinician: null,
-   clinic: "FIU Clinic"
- };
-
- public user2: User = {
-   username: "C000_C001",
-   account_type: "Clinician",
-   abbrev: "RN",
-   name: "Giraldo",
-   assigned_clinician: null,
-   clinic: "FIU Clinic"
- };
-
- public user3: User = {
-   username: "C000_P000",
-   account_type: "Parent",
-   abbrev: null,
-   name: "John Doe",
-   assigned_clinician: "Smith",
-   clinic: "FIU Clinic"
- };
-
- public user4: User = {
-   username: "C000_P001",
-   account_type: "Parent",
-   abbrev: null,
-   name: null,
-   assigned_clinician: null,
-   clinic: "Mercy Hospital"
- };
-
- public user5: User = {
-   username: "C000_C002",
-   account_type: "Clinician",
-   abbrev: "Dr.",
-   name: "J",
-   assigned_clinician: null,
-   clinic: "FIU Clinic"
- };
-
- public user6: User = {
-   username: "C000_C003",
-   account_type: "Clinician",
-   abbrev: "RN",
-   name: "Laura",
-   assigned_clinician: null,
-   clinic: "FIU Clinic"
- };
-
- public user7: User = {
-   username: "C000_P002",
-   account_type: "Parent",
-   abbrev: null,
-   name: "Jim Johnson",
-   assigned_clinician: "Laura",
-   clinic: "FIU Clinic"
- };
-
- public user8: User = {
-   username: "C000_P003",
-   account_type: "Parent",
-   abbrev: null,
-   name: null,
-   assigned_clinician: null,
-   clinic: "Mercy Hospital"
- };
 
 }

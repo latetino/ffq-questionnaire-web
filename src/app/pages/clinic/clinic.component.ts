@@ -32,17 +32,14 @@ import { FFQClinic } from 'src/app/models/ffqclinic';
 // fooditem page added by Daykel Muro 10/2/2019
 @Component({
   selector: 'app-fooditem',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css']
+  templateUrl: './clinic.component.html',
+  styleUrls: ['./clinic.component.css']
 })
-export class UserComponent implements OnInit {
+export class ClinicComponent implements OnInit {
 
-  TITLE = 'FFQR Food Item Portal';
   private routeSub: Subscription;
   private isNew: boolean;
   private isUpdate: boolean;
-  private createParents: boolean;
-  private createClinician: boolean;
   showMsg: boolean = false;
 
   constructor(
@@ -68,6 +65,7 @@ export class UserComponent implements OnInit {
 
   nutrientsMap: Map<string,FFQNutrientlist> = new Map<string,FFQNutrientlist>();
 
+  //foodNutrientsItem: FFQFoodNutrients[] = [];
   userAttributes: object[] = [];
   dataLoaded: Promise<boolean>;
 
@@ -79,6 +77,11 @@ export class UserComponent implements OnInit {
   clinic: number;
   isParent: boolean;
   isClinician: boolean;
+  /*ffqnutrientlist: Array<FFQNutrientlist> = new Array<FFQNutrientlist>();
+  foodNutrients: FFQFoodNutrients;
+  ffqfoodnutrients: FFQFoodNutrients;
+
+  ffgNutrientMap: nutrientMap;*/
 
   public ffqclinicList: FFQClinic[] = [];
   clinicNames: string[] = [];
@@ -86,8 +89,6 @@ export class UserComponent implements OnInit {
     
   ngOnInit() {
 
-    this.createParents = false;
-    this.createClinician = false;
     this.isParent = false;
     this.isClinician = false;
 
@@ -105,33 +106,12 @@ export class UserComponent implements OnInit {
       this.getUserById(UserID);
     }
 
-    var clinicList: Observable<FFQClinicResponse[]> = this.clinicService.getAllClinics();
-      clinicList.subscribe(a => {
-      this.ffqclinicList = a;
-      for (let i = 0; i < a.length; i++) {
-        this.clinicNames.push(a[i].clinicname);
-      }
-    });
 
   }
-
-  changeToClinician($event)
-  {
-    this.createClinician = true;
-    this.createParents = false;
-  }
-
-  changeToParent($event)
-  {
-    this.createParents = true;
-    this.createClinician = false;
-  }
-
 
 
   private addUser(form:NgForm){  
     
-     if(this.createClinician == true){
 
       var clinicianList: Observable<FFQClinicianResponse[]> = this.clinicianService.getAllClinicians();
 
@@ -154,30 +134,7 @@ export class UserComponent implements OnInit {
         }); 
 
       });
-     }
-     else
-     {
-      var parentList: Observable<FFQParentResponse[]> = this.parentService.getAllParents();
-
-      parentList.subscribe(data => {
-        var numberOfParents = (data.length+1).toString();
-        //console.log("Number of clinicians is: " + numberOfClinicians);
-        var newParentId = 500 + data.length+1;
-        var newParentUsername = "parent"+numberOfParents;
-        this.ffqParent = new FFQParent(newParentId, newParentUsername, newParentUsername, "", "", "0");
-
-        this.parentService.addParent(this.ffqParent).subscribe(data => {
-            this.router.navigateByUrl('/admin/users');
-            const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
-            dialogRef.componentInstance.title = newParentUsername + ' was added!';
-        },
-        error =>{
-            const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
-            dialogRef.componentInstance.title = error.error.message;
-        }); 
-
-      });
-     }
+     
 
 
     
@@ -188,39 +145,6 @@ export class UserComponent implements OnInit {
   trackByFn(item, id){
     return item
   }
-  
-
-  private addParent(form:NgForm){
-    
-    // if(this.createClincian == true){
-       var parentList: Observable<FFQParentResponse[]> = this.parentService.getAllParents();
- 
-       parentList.subscribe(data => {
-         var numberOfParents = (data.length+1).toString();
-         //console.log("Number of clinicians is: " + numberOfClinicians);
-         var newParentId = 500 + data.length+1;
-         var newParentUsername = "parent"+numberOfParents;
-         this.ffqParent = new FFQParent(newParentId, newParentUsername, newParentUsername, "", "", "");
-         //console.log(this.ffquser);
- 
-         this.parentService.addParent(this.ffqParent).subscribe(data => {
-             this.router.navigateByUrl('/admin/users');
-             const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
-             dialogRef.componentInstance.title = 'Users were added!';
-         },
-         error =>{
-             const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
-             dialogRef.componentInstance.title = error.error.message;
-         }); 
- 
-       });
- 
-    // }
- 
- 
- 
-    
-   }
 
    private getUserById(id: string)
    {
@@ -228,12 +152,9 @@ export class UserComponent implements OnInit {
     if(id[0] == '5')
     {
       this.isParent = true;
-      console.log("IS PARENT!!!");
       this.parentService.getParent(id).subscribe(data => {  
-        console.log("got data");
+      
         this.userAttributes.push(data)
-        console.log("pushed data");
-        console.log(this.userAttributes);
       });
       this.dataLoaded = Promise.resolve(true);  
     }
