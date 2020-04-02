@@ -80,7 +80,7 @@
                 <mat-form-field>
                   <mat-label appearance="fill">Choose Clinic...</mat-label>
                   <mat-select matNativeControl required>
-                    <mat-option *ngFor="let c of ffqclinicList" [value]="c.clinicname">{{ c.clinicname }}</mat-option>
+                    <mat-option *ngFor="let c of ffqclinicList" [value]="c.clinicname" (click)="setClinic(c.cliniciId)">{{ c.clinicname }}</mat-option>
                   </mat-select>
                 </mat-form-field>
   

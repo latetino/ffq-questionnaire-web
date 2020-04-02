@@ -10,7 +10,18 @@ import { RouterModule } from '@angular/router';
 
 export class ClinicalHeaderComponent{
 
+  router: Router;
+
+  constructor(router: Router)
+  {
+    this.router = router;
+  }
+
   TITLE = 'Clinician Portal';
+
+  logout() {
+    this.router.navigate(['/login']);
+}
 
 }
 

@@ -70,7 +70,6 @@ export class UserComponent implements OnInit {
   ffqParent: FFQParent;
   amountToAdd: number;
   clinicnumber: number;
-  clinic: number;
   isParent: boolean;
   isClinician: boolean;
 
@@ -92,7 +91,6 @@ export class UserComponent implements OnInit {
     if (UserID == "new"){
     
       this.isNew = true;
-      this.clinicnumber = this.clinic;
       this.dataLoaded = Promise.resolve(true);
    // this.addClinician();
     }
@@ -134,8 +132,7 @@ export class UserComponent implements OnInit {
 
   setClinic(clinicNo: number)
   {
-    this.clinic = clinicNo;
-    console.log("this.clinic " + this.clinic);
+    this.clinicnumber = clinicNo;
   }
 
 
@@ -200,7 +197,6 @@ export class UserComponent implements OnInit {
  
        parentList.subscribe(data => {
          var numberOfParents = (data.length+1).toString();
-         //console.log("Number of clinicians is: " + numberOfClinicians);
          var newParentId = (data.length+1).toString();
          var newParentUsername = "parent"+numberOfParents;
          this.ffqParent = new FFQParent(newParentId, newParentUsername, newParentUsername, "", "", "", []);
@@ -217,11 +213,6 @@ export class UserComponent implements OnInit {
          }); 
  
        });
- 
-    // }
- 
- 
- 
     
    }
 

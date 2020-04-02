@@ -74,33 +74,38 @@ export class ClinicUserComponent implements OnInit {
     this.isClinician = false;
 
     const UserID = this.route.snapshot.paramMap.get('id');
+    const UserType = this.route.snapshot.paramMap.get('type');
 
-    this.getUserById(UserID);
+    if(UserType == "p")
+    {
+      this.getParentByID(parseInt(UserID));
+    }
+    else
+    {
+      this.getClinicianByID(parseInt(UserID));
+    }
 
     console.log(this.userAttributes);
   }
- 
-  private getUserById(id: string)
-   {
 
-    if(id.toString()[0] == '5')
-    {
-      this.isParent = true;
-      this.parentService.getParent(id).subscribe(data => {  
-        this.userAttributes.push(data)
-        console.log(this.userAttributes);
-      });
-      this.dataLoaded = Promise.resolve(true);  
-    }
-    else if(id.toString()[0] == '7')
-    {
-      this.isClinician = true;
-      this.clinicianService.getClinician(id).subscribe(data => {  
-      
-        this.userAttributes.push(data)
-      });
-      this.dataLoaded = Promise.resolve(true);  
-    }
+  getParentByID(id: number)
+  {
+    this.isParent = true;
+    this.parentService.getParent(id).subscribe(data => {  
+      this.userAttributes.push(data)
+      console.log(this.userAttributes);
+    });
+    this.dataLoaded = Promise.resolve(true); 
+  }
+
+  getClinicianByID(id: number)
+  {
+    this.isClinician = true;
+    this.clinicianService.getClinician(id).subscribe(data => {  
+      this.userAttributes.push(data)
+      console.log(this.userAttributes);
+    });
+    this.dataLoaded = Promise.resolve(true); 
   }
 
 

@@ -62,10 +62,10 @@ export class ClinicComponent implements OnInit {
   nutrientsMap: Map<string,FFQNutrientlist> = new Map<string,FFQNutrientlist>();
 
   //foodNutrientsItem: FFQFoodNutrients[] = [];
-  userAttributes: object[] = [];
+  clinicAttributes: object[] = [];
   dataLoaded: Promise<boolean>;
 
-  ffqclinician: FFQClinician;
+  ffqclinic: FFQClinic;
   ffqParent: FFQParent;
   amountToAdd: number;
   clinicnumber: number;
@@ -78,14 +78,11 @@ export class ClinicComponent implements OnInit {
 
   ffgNutrientMap: nutrientMap;*/
 
-  public ffqclinicList: FFQClinic[] = [];
+  public ffqclinicianList: FFQClinician[] = [];
   clinicNames: string[] = [];
 
     
   ngOnInit() {
-
-    this.isParent = false;
-    this.isClinician = false;
 
     const UserID = this.route.snapshot.paramMap.get('id');
     if (UserID == "new"){
@@ -98,70 +95,51 @@ export class ClinicComponent implements OnInit {
     else
     {
       this.isUpdate = true;
-      this.getUserById(UserID);
+      this.getClinicById(parseInt(UserID));
     }
 
+    console.log(this.clinicAttributes);
+
+    var clinicianList: Observable<FFQClinicianResponse[]> = this.clinicianService.getAllClinicians();
+      clinicianList.subscribe(a => {
+      this.ffqclinicianList = a;
+      for (let i = 0; i < a.length; i++) {
+        this.clinicNames.push(a[i].lastname);
+      }
+    });
 
   }
 
+  private addClinic(form:NgForm){  
 
-  private addUser(form:NgForm){  
-    
+    var clinicList: Observable<FFQClinicResponse[]> = this.clinicService.getAllClinics();
 
-      var clinicianList: Observable<FFQClinicianResponse[]> = this.clinicianService.getAllClinicians();
+    clinicList.subscribe(data => {
+      //console.log("Number of clinics is: " + data.length);
+      var newClinicId = data.length+1;
+      this.ffqclinic = new FFQClinic(newClinicId, "", "", "FIU Medicine");
+      console.log(this.ffqclinic);
 
-      clinicianList.subscribe(data => {
-        var numberOfClinicians = (data.length+1).toString();
-        //console.log("Number of clinicians is: " + numberOfClinicians);
-        var newClincianId = (700 + data.length+1).toString();
-        var newClincianUsername = "clinician"+numberOfClinicians;
-        this.ffqclinician = new FFQClinician(newClincianId, newClincianUsername, newClincianUsername, "", "", this.clinicnumber, []);
-        console.log(this.ffqclinician);
+      this.clinicService.addClinic(this.ffqclinic).subscribe(data => {
+          this.router.navigateByUrl('/admin/clinics');
+          const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
+          dialogRef.componentInstance.title = newClinicId + ' was added!';
+      },
+      error =>{
+          const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
+          dialogRef.componentInstance.title = error.error.message;
+      }); 
 
-        this.clinicianService.addClinician(this.ffqclinician).subscribe(data => {
-            this.router.navigateByUrl('/admin/users');
-            const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
-            dialogRef.componentInstance.title = newClincianUsername + ' was added!';
-        },
-        error =>{
-            const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
-            dialogRef.componentInstance.title = error.error.message;
-        }); 
+    });
+}
 
-      });
-     
-
-
-    
-  }
-
-
-
-  trackByFn(item, id){
-    return item
-  }
-
-   private getUserById(id: string)
-   {
-
-    if(id.toString()[0] == '5')
-    {
-      this.isParent = true;
-      this.parentService.getParent(id).subscribe(data => {  
+  private getClinicById(id: number)
+  {
+      this.clinicService.getClinic(id).subscribe(data => {  
       
-        this.userAttributes.push(data)
+        this.clinicAttributes.push(data)
       });
-      this.dataLoaded = Promise.resolve(true);  
-    }
-    else if(id.toString()[0] == '7')
-    {
-      this.isClinician = true;
-      this.clinicianService.getClinician(id).subscribe(data => {  
-      
-        this.userAttributes.push(data)
-      });
-      this.dataLoaded = Promise.resolve(true);  
-    }
+      this.dataLoaded = Promise.resolve(true);
   }
 }
 

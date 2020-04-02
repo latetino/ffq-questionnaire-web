@@ -68,6 +68,8 @@ export class ClinicalPortalComponent implements OnInit  {
   clinicNames: string[] = [];
   clinicianNames: string[] = [];
   numberOfPatients: number[] = [];
+  public filtered_clinicians: String[] = [];
+  public filtered: boolean;
   
 
   ngOnInit() {
@@ -109,6 +111,28 @@ export class ClinicalPortalComponent implements OnInit  {
   toggleUnassigned($event)
   {
     this.hideUnassigned = !this.hideUnassigned;
+  }
+
+  filterByClinician(clinician_name: string)
+  {
+    const index = this.filtered_clinicians.indexOf(clinician_name);
+    if(index === -1)
+    {
+      this.filtered_clinicians.push(clinician_name);
+    }
+    else
+    {
+      this.filtered_clinicians.splice(index, 1);
+    }
+    if(this.filtered_clinicians.length == 0)
+    {
+      this.filtered = false;
+    }
+    else
+    {
+      this.filtered = true;
+    }
+    console.log(this.filtered_clinicians);
   }
 
 

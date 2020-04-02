@@ -56,6 +56,7 @@ export class AdminClinicsComponent implements OnInit {
     var clinicList: Observable<FFQClinicResponse[]> = this.clinicService.getAllClinics();
     clinicList.subscribe(a => {
       this.ffqclinicList = a;
+      console.log(a);
     });
     
   }

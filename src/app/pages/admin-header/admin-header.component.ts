@@ -9,7 +9,16 @@ import { RouterModule } from '@angular/router';
 })
 export class AdminHeaderComponent {
   TITLE = 'FFQR Admin Portal';
+  router: Router;
 
+  constructor(router: Router)
+  {
+    this.router = router;
+  }
+
+  logout() {
+    this.router.navigate(['/login']);
+}
  
 }
 

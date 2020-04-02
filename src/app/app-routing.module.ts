@@ -100,7 +100,7 @@ const routes: Routes = [
     path: 'clinic/recommend', component: ClinicRecommendComponent
   },
   {
-    path: 'clinic/user/:id', component: ClinicUserComponent
+    path: 'clinic/user/:type/:id', component: ClinicUserComponent
   },
   {
     path: 'clinic/user', component: ClinicUserComponent
