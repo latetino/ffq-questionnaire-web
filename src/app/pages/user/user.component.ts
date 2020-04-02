@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { FoodItemService } from '../../services/food-item/food-item.service';
-import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorDialogPopupComponent } from 'src/app/components/error-dialog-popup/error-dialog-popup.component';
-import { FFQFoodNutrientsResponse } from 'src/app/models/ffqfoodnutrients-response';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule, NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { FFQFoodNutrients } from 'src/app/models/ffqfoodnutrients';
@@ -26,7 +22,6 @@ import { ClinicService } from 'src/app/services/clinic/clinic-service';
 import { FFQClinic } from 'src/app/models/ffqclinic';
 
 
-// fooditem page added by Daykel Muro 10/2/2019
 @Component({
   selector: 'app-fooditem',
   templateUrl: './user.component.html',
@@ -45,14 +40,8 @@ export class UserComponent implements OnInit {
   constructor(
     public parentService: ParentService,
     public clinicianService: ClinicianService,
-    public nutrientsService: NutrientsService,
-    private activatedRoute: ActivatedRoute,
     private errorDialog: MatDialog,
-    private submissionErrorDialog: MatDialog,
-    private httpErrorDialog: MatDialog,
-    private successDialog: MatDialog,
     private router: Router,
-    private modalService: NgbModal,
     private route: ActivatedRoute,
     public clinicService: ClinicService
 
@@ -88,16 +77,14 @@ export class UserComponent implements OnInit {
     const UserID = this.route.snapshot.paramMap.get('id');
     console.log(UserID);
 
-    if (UserID == "new"){
-    
+    if (UserID == "new")
+    {
       this.isNew = true;
       this.dataLoaded = Promise.resolve(true);
-   // this.addClinician();
     }
     else
     {
       this.isUpdate = true;
-      //this.getUserById(parseInt(UserID));
       if(UserType == "p")
       {
         this.getParentByID(UserID);
@@ -191,8 +178,7 @@ export class UserComponent implements OnInit {
   }
 
   private addParent(form:NgForm){
-    
-    // if(this.createClincian == true){
+  
        var parentList: Observable<FFQParentResponse[]> = this.parentService.getAllParents();
  
        parentList.subscribe(data => {

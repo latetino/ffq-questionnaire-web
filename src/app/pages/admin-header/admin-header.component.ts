@@ -1,6 +1,5 @@
 import {Component, Input} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'admin-header',
@@ -8,7 +7,7 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./admin-header.component.css']
 })
 export class AdminHeaderComponent {
-  TITLE = 'FFQR Admin Portal';
+  
   router: Router;
 
   constructor(router: Router)

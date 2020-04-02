@@ -20,7 +20,6 @@ import { FFQClinic } from 'src/app/models/ffqclinic';
 import { FFQUserMap } from 'src/app/models/ffqusermap';
 import { ParentService } from 'src/app/services/parent/parent-service';
 import { ClinicianService } from 'src/app/services/clinician/clinician-service';
-import { NutrientsService } from 'src/app/services/nutrients/nutrients-service';
 import { ClinicService } from 'src/app/services/clinic/clinic-service';
 import { Observable } from 'rxjs';
 import { FFQClinicianResponse } from 'src/app/models/ffqclinician-response';
@@ -48,23 +47,13 @@ export class ClinicalPortalComponent implements OnInit  {
   constructor(
     public parentService: ParentService,
     public clinicianService: ClinicianService,
-    public nutrientsService: NutrientsService,
     public clinicService: ClinicService,
-    private activatedRoute: ActivatedRoute,
-    private errorDialog: MatDialog,
-    private submissionErrorDialog: MatDialog,
-    private httpErrorDialog: MatDialog,
-    private successDialog: MatDialog,
-    private router: Router,
-    private modalService: NgbModal,
-    private route: ActivatedRoute,
     ) { }
 
-  
+
   ffqclinicianList: FFQClinician[] = [];
   ffqparentList: FFQParent[] = [];
   ffqclinicList: FFQClinic[] = [];
-  ffqusermap: FFQUserMap;
   clinicNames: string[] = [];
   clinicianNames: string[] = [];
   numberOfPatients: number[] = [];
@@ -83,8 +72,6 @@ export class ClinicalPortalComponent implements OnInit  {
 
 
     this.loadAllUsers();
-
-    console.log(this.clinicianNames);
   
   }
 
@@ -132,7 +119,6 @@ export class ClinicalPortalComponent implements OnInit  {
     {
       this.filtered = true;
     }
-    console.log(this.filtered_clinicians);
   }
 
 

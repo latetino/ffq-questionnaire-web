@@ -12,7 +12,6 @@ import { FoodRecommendModalComponent } from 'src/app/components/food-recommend-m
 import { FoodRecommendationsService } from 'src/app/services/food-recommendation-service/food-recommendations.service';
 
 
-//Recommend page added by Daykel Muro 10/5/2019
 @Component({
   selector: 'app-recommend',
   templateUrl: './clinic-recommend.component.html',
@@ -24,11 +23,8 @@ export class ClinicRecommendComponent implements OnInit {
   constructor(public resultsService: ResultsService,
     public nutrientsRecommendationsService: NutrientsRecommendationsService,
     public foodRecommendationsService: FoodRecommendationsService,
-    private modalService: NgbModal,
     private errorDialog: MatDialog,
     private router: Router, ) { }
-
-  recommendedNutrients: FFQNutrientsRecommendations[] = [];
 
   ngOnInit() {
     this.getAllResults();

@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'clinical-header',
@@ -16,8 +15,6 @@ export class ClinicalHeaderComponent{
   {
     this.router = router;
   }
-
-  TITLE = 'Clinician Portal';
 
   logout() {
     this.router.navigate(['/login']);

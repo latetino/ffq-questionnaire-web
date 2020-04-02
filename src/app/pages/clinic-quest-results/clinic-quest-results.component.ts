@@ -1,14 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { ResultsService } from "src/app/services/results/results";
 import { FFQResultsResponse } from "src/app/models/ffqresultsresponse";
-import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {map, tap} from 'rxjs/operators';
 import { NutrientConstants } from 'src/app/models/NutrientConstants';
-import {MatCheckboxModule} from '@angular/material/checkbox';
 
-// Questionnaire reesults page added by Daykel Muro 09/30/2019
 @Component({
   selector: "app-quest-results",
   templateUrl: "./clinic-quest-results.component.html",

@@ -25,9 +25,6 @@ import { FFQParentResponse } from 'src/app/models/ffqparent-response';
 import { FFQClinicResponse } from 'src/app/models/ffqclinic-response';
 import { ClinicService } from 'src/app/services/clinic/clinic-service';
 import { FFQClinic } from 'src/app/models/ffqclinic';
-import { FFQUserMap } from 'src/app/models/ffqusermap';
-
-
 
 @Component({
   templateUrl: './admin-users.component.html',
@@ -44,38 +41,17 @@ export class AdminUsersComponent implements OnInit {
   constructor(
     public parentService: ParentService,
     public clinicianService: ClinicianService,
-    public nutrientsService: NutrientsService,
     public clinicService: ClinicService,
-    private activatedRoute: ActivatedRoute,
-    private errorDialog: MatDialog,
-    private submissionErrorDialog: MatDialog,
-    private httpErrorDialog: MatDialog,
-    private successDialog: MatDialog,
-    private router: Router,
-    private modalService: NgbModal,
-    private route: ActivatedRoute,
     ) { }
 
- // test
 
-//ffquserList: FFQUser[] = [];
-ffqclinicianList: FFQClinician[] = [];
-ffqparentList: FFQParent[] = [];
-ffqclinicList: FFQClinic[] = [];
-ffqusermap: FFQUserMap;
-ffquserList: Array<FFQClinic|FFQClinician|FFQParent>;
-exampleArr: Array<{ clinic: FFQClinic, clinician: FFQClinician, parent: FFQParent}>;
-clinicianClinicNames: string[] = [];
-parentClinicNames: string[] = [];
-
-
- public filtered: boolean;
-
- public filtered_clinics: String[] = [];
-
- 
-//end test
-
+  ffqclinicianList: FFQClinician[] = [];
+  ffqparentList: FFQParent[] = [];
+  ffqclinicList: FFQClinic[] = [];
+  clinicianClinicNames: string[] = [];
+  parentClinicNames: string[] = [];
+  public filtered: boolean;
+  public filtered_clinics: String[] = [];
 
   ngOnInit() {
 
@@ -137,8 +113,6 @@ parentClinicNames: string[] = [];
     clinicList.subscribe(a => {
       this.ffqclinicList = a;
       console.log(a);
-      
-
 
        clinicianList.subscribe(b => {
          this.ffqclinicianList = b;
@@ -153,8 +127,6 @@ parentClinicNames: string[] = [];
           this.clinicianClinicNames.push(clinicianClinicName);
 
         });
- 
-
 
           parentList.subscribe(c => {
           this.ffqparentList = c;
@@ -169,10 +141,7 @@ parentClinicNames: string[] = [];
               }
             }
             this.parentClinicNames.push(parentClinicName);
-          });
-          
-                  
-
+          });    
           });
        });
     });
