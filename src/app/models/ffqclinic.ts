@@ -2,7 +2,7 @@ import {FFQItemResponse} from './ffqitem-response';
 import { ObjectUnsubscribedError } from 'rxjs';
 
 export class FFQClinic {
-  cliniciId: number;
+  clinicId: number;
   address: string;
   datebuilt: string;
   clinicname: string

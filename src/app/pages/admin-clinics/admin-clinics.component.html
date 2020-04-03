@@ -29,7 +29,7 @@
         </tr>
         <tr *ngFor="let c of ffqclinicList">
             <td align="center"><mat-checkbox [checked]="toggleAll" color="primary" ></mat-checkbox></td>
-            <td><a [routerLink]="['/admin/clinic/', c.cliniciId]"> {{ c.clinicname }} </a></td>
+            <td><a [routerLink]="['/admin/clinic/', c.clinicId]"> {{ c.clinicname }} </a></td>
             <td> </td>
             <td> {{ c.address }} </td>
             <td> {{ c.datebuilt }} </td>

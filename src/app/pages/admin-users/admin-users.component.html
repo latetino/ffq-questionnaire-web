@@ -41,11 +41,11 @@
                 <td> {{ clinicianClinicNames[i] }} </td>
             </tr>
    <!--    <tr *ngFor="let u of ffqparentList" [hidden]="(!showParents && u.account_type === 'Parent') || (!showClinicians && u.account_type === 'Clinician') || (!showAdmins && u.account_type === 'Admin')">  -->
-            <tr *ngFor="let u of ffqparentList; index as i" [hidden]="!showParents || (filtered && filtered_clinics.indexOf(parentClinicNames[i]) === -1)">   
+            <tr *ngFor="let u of ffqparentList" [hidden]="!showParents || (filtered && filtered_clinics.indexOf(u.clinic) === -1)">   
                  <td align="center"><mat-checkbox [checked]="toggleAll" color="primary"></mat-checkbox></td>
                  <td><a [routerLink]="['/admin/user/p', u.parentId]"> {{ u.username }} </a></td>
                  <td> Parent </td>
-                 <td> {{ parentClinicNames[i] }} </td>
+                 <td> {{ u.clinic }} </td>
             </tr>
         </table>
        

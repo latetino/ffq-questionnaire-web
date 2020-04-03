@@ -5,6 +5,7 @@ export class FFQClinician {
   userId: string;
   username: string;
   userpassword: string;
+  role: string;
   firstname: string;
   lastname: string;
   assignedClinic: number;
@@ -15,6 +16,7 @@ export class FFQClinician {
     this.userId = userId;
     this.username = username;
     this.userpassword = userpassword;
+    this.role = role;
     this.firstname = firstname;
     this.lastname = lastname;
     this.assignedClinic = assignedClinic;

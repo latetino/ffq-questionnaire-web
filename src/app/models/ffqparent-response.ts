@@ -7,6 +7,7 @@ export class FFQParentResponse {
   userpassword: string;
   firstname: string;
   lastname: string;
+  assignedClinic: number;
   assignedClinician: string;
   childrenNames: any;
 
@@ -17,6 +18,7 @@ export class FFQParentResponse {
     this.userpassword = userpassword;
     this.firstname = firstname;
     this.lastname = lastname;
+    this.assignedClinic = assignedClinic;
     this.assignedClinician = assignedClinician;
     this.childrenNames = childrenNames
   }

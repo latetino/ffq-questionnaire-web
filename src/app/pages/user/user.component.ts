@@ -36,6 +36,7 @@ export class UserComponent implements OnInit {
   private createParents: boolean;
   private createClinician: boolean;
   showMsg: boolean = false;
+  selectedClinic: string;
 
   constructor(
     public parentService: ParentService,
@@ -155,7 +156,6 @@ export class UserComponent implements OnInit {
 
       parentList.subscribe(data => {
         var numberOfParents = (data.length+1).toString();
-        //console.log("Number of clinicians is: " + numberOfClinicians);
         var newParentId = (data.length+1).toString();
         var newParentUsername = "parent"+numberOfParents;
         this.ffqParent = new FFQParent(newParentId, newParentUsername, newParentUsername, "", "", "0", []);

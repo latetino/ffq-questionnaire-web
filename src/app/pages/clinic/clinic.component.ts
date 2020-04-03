@@ -30,6 +30,8 @@ export class ClinicComponent implements OnInit {
   private isNew: boolean;
   private isUpdate: boolean;
   showMsg: boolean = false;
+  name_of_clinic: string;
+  location: string;
 
   constructor(
     public parentService: ParentService,
@@ -91,7 +93,7 @@ export class ClinicComponent implements OnInit {
 
     clinicList.subscribe(data => {
       var newClinicId = data.length+1;
-      this.ffqclinic = new FFQClinic(newClinicId, "", "", "FIU Medicine");
+      this.ffqclinic = new FFQClinic(newClinicId, this.location, "", this.name_of_clinic);
       console.log(this.ffqclinic);
 
       this.clinicService.addClinic(this.ffqclinic).subscribe(data => {

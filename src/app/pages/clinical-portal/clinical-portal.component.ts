@@ -135,7 +135,7 @@ export class ClinicalPortalComponent implements OnInit  {
          console.log(a);
          b.forEach(clinician =>  {
            //Code below to get the assigned clinic for each clinician
-           var clinic = a.find(n => n.cliniciId == clinician.assignedClinic);
+           var clinic = a.find(n => n.clinicId == clinician.assignedClinic);
            if(!!clinic){
             var clinicName = clinic.clinicname;
            }

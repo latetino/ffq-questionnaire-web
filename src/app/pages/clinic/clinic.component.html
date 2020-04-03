@@ -19,7 +19,7 @@
             <br>
             <label style="font-weight: bold"> Clinic ID </label>
             <input style="border-color: gray; border-width: 0.05cm" type="text"
-                class="form-control" readonly name="username" [(ngModel)]="clinicAttributes[0].cliniciId">
+                class="form-control" readonly name="username" [(ngModel)]="clinicAttributes[0].clinicId">
             <br>
             <label style="font-weight: bold"> Name </label><label style="font-style: italic; font-size: small; margin-left: 10px"> *required </label>
             <input placeholder="Name of Clinic" width="25" style="border-color: mediumblue; border-width: 0.05cm" type="text"
@@ -34,7 +34,7 @@
             <mat-form-field>
                 <mat-label appearance="fill">Choose...</mat-label>
                 <mat-select matNativeControl>
-                  <mat-option *ngFor="let u of ffqclinicianList" [value]="u.lastname" [hidden]="u.assignedClinic != clinicAttributes[0].cliniciId">{{ u.lastname }}</mat-option>
+                  <mat-option *ngFor="let u of ffqclinicianList" [value]="u.lastname" [hidden]="u.assignedClinic != clinicAttributes[0].clinicId">{{ u.role }} {{ u.firstname }} {{ u.lastname }}</mat-option>
                 </mat-select>
             </mat-form-field>
             
@@ -61,11 +61,11 @@
             <div class="form-group col-12">
                 <label style="font-weight: bold"> Name </label><label style="font-style: italic; font-size: small; margin-left: 10px"> *required </label>
                 <input placeholder="Name of Clinic" width="25" style="border-color: mediumblue; border-width: 0.05cm" type="text"
-                    class="form-control" required/>
+                    class="form-control" name="name_of_clinic" [(ngModel)]="name_of_clinic" required/>
                 <br>
                 <label style="font-weight: bold"> Location </label>
                 <input placeholder="Address" width="25" style="border-color: mediumblue; border-width: 0.05cm" type="text"
-                    class="form-control"/>
+                    class="form-control" name="location" [(ngModel)]="location"/>
   
             </div>
           </div>

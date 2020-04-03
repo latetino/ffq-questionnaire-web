@@ -38,10 +38,12 @@ export class ClinicUserComponent implements OnInit {
 
     if(UserType == "p")
     {
+      this.isParent = true;
       this.getParentByID(parseInt(UserID));
     }
     else
     {
+      this.isClinician = true;
       this.getClinicianByID(parseInt(UserID));
     }
 

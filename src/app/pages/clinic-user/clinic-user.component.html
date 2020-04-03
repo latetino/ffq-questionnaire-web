@@ -40,12 +40,12 @@
                 <br>
                 <label style="font-weight: bold"> Assigned Clinician </label>
                 <br>
-                <mat-form-field>
+                <!--<mat-form-field>
                   <mat-label appearance="fill">Choose Clinician...</mat-label>
-                  <!--<mat-select matNativeControl [(value)]="clinicNames[userAttributes[0].assignedClinic - 1]" required>
+                  <mat-select matNativeControl [(value)]="clinicNames[userAttributes[0].assignedClinic - 1]" required>
                     <mat-option *ngFor="let c of ffqclinicList" [value]="c.clinicname">{{ c.clinicname }}</mat-option>
-                  </mat-select>-->
-                </mat-form-field>
+                  </mat-select>
+                </mat-form-field>-->
     
               </div>
             </div>
@@ -63,7 +63,7 @@
                   class="form-control" readonly name="username" [(ngModel)]="userAttributes[0].username">
                 <br>
                 <label style="font-weight: bold"> Role / Abbreviation </label>
-                <input style="border-width: 0.05cm" placeholder="Role" type="text" class="form-control"/>
+                <input style="border-width: 0.05cm" placeholder="Role" type="text" class="form-control" name="role" [(ngModel)]="userAttributes[0].role"/>
                 <br>
                 <label style="font-weight: bold"> Name </label>
                 <input style="border-width: 0.05cm" placeholder="First Name" type="text" class="form-control" name="firstname" [(ngModel)]="userAttributes[0].firstname"/>
