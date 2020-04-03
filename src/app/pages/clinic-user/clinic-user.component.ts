@@ -1,8 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog } from '@angular/material';
+import { ErrorDialogPopupComponent } from 'src/app/components/error-dialog-popup/error-dialog-popup.component';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule, NgForm } from '@angular/forms';
 import { ParentService } from 'src/app/services/parent/parent-service';
 import { ClinicianService } from 'src/app/services/clinician/clinician-service';
+import { FFQParent } from 'src/app/models/ffqparent';
+import { FFQParentResponse } from 'src/app/models/ffqparent-response';
+import { FFQClinician } from 'src/app/models/ffqclinician';
+import { FFQClinicianResponse } from 'src/app/models/ffqclinician-response';
 
 @Component({
   selector: 'app-fooditem',
@@ -21,7 +27,9 @@ export class ClinicUserComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     public parentService: ParentService,
-    public clinicianService: ClinicianService
+    public clinicianService: ClinicianService,
+    private router: Router,
+    private errorDialog: MatDialog,
     ) { }
 
   dataLoaded: Promise<boolean>;
@@ -52,7 +60,6 @@ export class ClinicUserComponent implements OnInit {
 
   getParentByID(id: number)
   {
-    this.isParent = true;
     this.parentService.getParent(id).subscribe(data => {  
       this.userAttributes.push(data)
       console.log(this.userAttributes);
@@ -62,11 +69,44 @@ export class ClinicUserComponent implements OnInit {
 
   getClinicianByID(id: number)
   {
-    this.isClinician = true;
     this.clinicianService.getClinician(id).subscribe(data => {  
       this.userAttributes.push(data)
       console.log(this.userAttributes);
     });
     this.dataLoaded = Promise.resolve(true); 
+  }
+
+  updateUser()
+  {
+    if(this.isParent)
+    {
+      this.updateParent();
+    }
+    else
+    {
+      this.updateClinician();
+    }
+  }
+
+  updateParent()
+  { 
+    console.log(this.userAttributes[0]);
+    this.parentService.updateParent(<FFQParentResponse>this.userAttributes[0]).subscribe(
+     data => {this.router.navigateByUrl('/clinic/home');
+     const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
+     dialogRef.componentInstance.title = 'Parent successfully updated!';}
+     
+    );
+  }
+
+  updateClinician()
+  { 
+    console.log(this.userAttributes[0]);
+    this.clinicianService.updateClinician(<FFQClinicianResponse>this.userAttributes[0]).subscribe(
+     data => {this.router.navigateByUrl('/clinic/home');
+     const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
+     dialogRef.componentInstance.title = 'Clinician successfully updated!';}
+     
+    );
   }
 }

@@ -38,7 +38,6 @@ export class ClinicianService {
       ));
   }
 
-  //Still not implemented
   updateClinician(user : FFQClinicianResponse): Observable<any> {
     
     return this.http.put(this.endpoint + '/updateclinician', user, {headers : new HttpHeaders({ 'Content-Type': 'application/json' })}).pipe(
@@ -48,7 +47,6 @@ export class ClinicianService {
       ));
   }
 
-  //To be implemented
   getClinician(clinicianId: string): Observable<FFQClinicianResponse> {
     return this.http.get(this.endpoint + '/' + clinicianId).pipe(
       map((item: any) => {

@@ -72,6 +72,7 @@ export class UserComponent implements OnInit {
     this.createClinician = false;
     this.isParent = false;
     this.isClinician = false;
+    this.clinicNames.push("");
 
     const UserType = this.route.snapshot.paramMap.get('type');
     const UserID = this.route.snapshot.paramMap.get('id');
@@ -116,11 +117,24 @@ export class UserComponent implements OnInit {
     this.createClinician = false;
   }
 
-  private addUser(form:NgForm){  
-    
-     if(this.createClinician == true){
+  private addUser()
+  {  
+     if(this.createClinician == true)
+     {
+        this.addClinician();
+     }
+     else
+     {
+        //for(var count: number = 1; count <= this.amountToAdd; count++)
+        //{
+          this.addParent();
+        //}
+     }
+  }
 
-      var clinicianList: Observable<FFQClinicianResponse[]> = this.clinicianService.getAllClinicians();
+  addClinician()
+  {
+    var clinicianList: Observable<FFQClinicianResponse[]> = this.clinicianService.getAllClinicians();
 
       clinicianList.subscribe(data => {
         var numberOfClinicians = (data.length+1).toString();
@@ -141,10 +155,11 @@ export class UserComponent implements OnInit {
         }); 
 
       });
-     }
-     else
-     {
-      var parentList: Observable<FFQParentResponse[]> = this.parentService.getAllParents();
+  }
+
+  addParent()
+  {
+    var parentList: Observable<FFQParentResponse[]> = this.parentService.getAllParents();
 
       parentList.subscribe(data => {
         var numberOfParents = (data.length+1).toString();
@@ -163,10 +178,6 @@ export class UserComponent implements OnInit {
         }); 
 
       });
-     }
-
-
-    
   }
 
   private addParent(form:NgForm){

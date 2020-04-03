@@ -53,16 +53,31 @@ export class AdminUsersComponent implements OnInit {
   clinicNames: string[] = [];
   public filtered: boolean;
   public filtered_clinics: String[] = [];
+  checked_users: string[] = [];
 
   ngOnInit() {
 
-
+    this.clinicNames.push("");
     this.toggleAll = false;
     this.showParents = true;
     this.showClinicians = true;
     this.showAdmins = true;
     this.filtered = false;
     this.loadAllUsers();
+  }
+
+  checkedUsers(username: string)
+  {
+    const index = this.checked_users.indexOf(username);
+    if(index === -1)
+    {
+      this.checked_users.push(username);
+    }
+    else
+    {
+      this.checked_users.splice(index, 1);
+    }
+    console.log(this.checked_users);
   }
 
   toggleSelectAll()

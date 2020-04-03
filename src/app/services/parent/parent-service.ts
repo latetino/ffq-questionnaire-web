@@ -38,7 +38,6 @@ export class ParentService {
       ));
   }
 
-  //Still not implemented
   updateParent(user : FFQParentResponse): Observable<any> {
     
     return this.http.put(this.endpoint + '/updateparent', user, {headers : new HttpHeaders({ 'Content-Type': 'application/json' })}).pipe(
