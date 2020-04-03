@@ -59,7 +59,6 @@ export class UserComponent implements OnInit {
   ffqclinician: FFQClinician;
   ffqParent: FFQParent;
   amountToAdd: number;
-  clinicnumber: number;
   isParent: boolean;
   isClinician: boolean;
 
@@ -76,7 +75,6 @@ export class UserComponent implements OnInit {
 
     const UserType = this.route.snapshot.paramMap.get('type');
     const UserID = this.route.snapshot.paramMap.get('id');
-    console.log(UserID);
 
     if (UserID == "new")
     {
@@ -117,12 +115,6 @@ export class UserComponent implements OnInit {
     this.createParents = true;
     this.createClinician = false;
   }
-
-  setClinic(clinicNo: number)
-  {
-    this.clinicnumber = clinicNo;
-  }
-
 
   private addUser(form:NgForm){  
     

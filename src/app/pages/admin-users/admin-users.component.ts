@@ -48,8 +48,9 @@ export class AdminUsersComponent implements OnInit {
   ffqclinicianList: FFQClinician[] = [];
   ffqparentList: FFQParent[] = [];
   ffqclinicList: FFQClinic[] = [];
-  clinicianClinicNames: string[] = [];
-  parentClinicNames: string[] = [];
+  //clinicianClinicNames: string[] = [];
+  //parentClinicNames: string[] = [];
+  clinicNames: string[] = [];
   public filtered: boolean;
   public filtered_clinics: String[] = [];
 
@@ -112,7 +113,10 @@ export class AdminUsersComponent implements OnInit {
 
     clinicList.subscribe(a => {
       this.ffqclinicList = a;
-      console.log(a);
+      
+      a.forEach(clinic =>{
+        this.clinicNames.push(clinic.clinicname);
+      });
 
        clinicianList.subscribe(b => {
          this.ffqclinicianList = b;
@@ -124,7 +128,7 @@ export class AdminUsersComponent implements OnInit {
           if(!!clinicianClinic){
             var clinicianClinicName = clinicianClinic.clinicname;
           }
-          this.clinicianClinicNames.push(clinicianClinicName);
+          //this.clinicianClinicNames.push(clinicianClinicName);
 
         });
 
@@ -140,7 +144,7 @@ export class AdminUsersComponent implements OnInit {
                 var parentClinicName = parentClinic.clinicname;
               }
             }
-            this.parentClinicNames.push(parentClinicName);
+            //this.parentClinicNames.push(parentClinicName);
           });    
           });
        });

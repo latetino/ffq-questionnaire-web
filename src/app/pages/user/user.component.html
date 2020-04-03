@@ -79,11 +79,10 @@
                 <br>
                 <mat-form-field>
                   <mat-label appearance="fill">Choose Clinic...</mat-label>
-                  <mat-select matNativeControl [(ngModel)]="this.selectedClinic" required>
+                  <mat-select matNativeControl required name="selectedClinic" [(ngModel)]="selectedClinic">
                     <mat-option *ngFor="let c of ffqclinicList" [value]="c.clinicname" >{{ c.clinicname }}</mat-option>
                   </mat-select>
                 </mat-form-field>
-                <h1>{{selectedClinic}}</h1>
   
             </div>
           </div>
