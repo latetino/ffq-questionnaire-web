@@ -10,7 +10,6 @@ import { ErrorDialogPopupComponent } from 'src/app/components/error-dialog-popup
 import { Router } from '@angular/router';
 import { FoodRecommendModalComponent } from 'src/app/components/food-recommend-modal/food-recommend-modal.component';
 import { FoodRecommendationsService } from 'src/app/services/food-recommendation-service/food-recommendations.service';
-import { FoodDescriptionModalComponent } from 'src/app/components/food-description-modal/food-description-modal.component';
 import { FoodDescriptionService } from 'src/app/services/food-description/food-description.service';
 
 @Component({
@@ -61,19 +60,6 @@ export class RecommendComponent implements OnInit {
     );
   }
 
-  private getFoodItemByGroupName(questionnaireId: string) {
-    this.foodDescriptionService.getFoodItemByGroupName(questionnaireId).subscribe(
-      data => {
-        this.onModalRequestFood(questionnaireId);
-      },
-      error => {
-        const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
-        dialogRef.componentInstance.title = error.error.message;
-        dialogRef.componentInstance.router = this.router;
-        }
-      );
-  }
-
   private getAllResults() {
     this.resultsService.getAllResults().subscribe(data => {
       data.map(response => {
@@ -97,11 +83,6 @@ export class RecommendComponent implements OnInit {
 
   onModalRequestFood(id: string): void {
     const modalRef = this.errorDialog.open(FoodRecommendModalComponent);
-    modalRef.componentInstance.id = id;
-  }
-
-  onModalRequestFoodDescription(id: string): void {
-    const modalRef = this.errorDialog.open(FoodDescriptionModalComponent);
     modalRef.componentInstance.id = id;
   }
 

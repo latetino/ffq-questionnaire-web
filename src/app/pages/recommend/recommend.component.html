@@ -26,8 +26,8 @@
             </td>
             <td width="10%"><div align="center"><a (click)="getNutrientsRecommendations(result.questionnaireId)"><i title="nutrients" class="fa fa-flask"></i></a></div></td>
             <td width="10%"><div align="center"><a (click)="getFoodRecommendations(result.questionnaireId)"><i title="fooditems" class="fa fa-cutlery"></i></a></div></td>
-            <td width="10%"><div align="center"><i title="Food Description"><button class='btn btn-primary'(click)="getFoodRecommendations(result.questionnaireId)">Show Description</button></i></div></td>
-        </tr>
+            <td width="10%"><div align="center"><i title="Food Description"><button class="btn btn-primary"[routerLink]="['/recommend-parental']" routerLinkActive="active">Show Description</button></i></div></td>
+          </tr>
         </table>
 
 </div>

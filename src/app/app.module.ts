@@ -23,7 +23,7 @@ import { FooditemComponent } from './pages/fooditem/fooditem.component';
 import{ ReactiveFormsModule} from '@angular/forms';
 import { AdminHeaderComponent } from './pages/admin-header/admin-header.component';
 import { QuestResultsComponent } from './pages/quest-results/quest-results.component';
-import { RecommendComponent } from './pages/parental-header/recommend/recommend.component';
+import { RecommendComponent } from './pages/recommend/recommend.component';
 import {PopupComponent} from "./components/popup/popup.component";
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { Routes, RouterModule } from '@angular/router';
@@ -36,7 +36,6 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { JwtInterceptor } from './services/authentication/jwt.interceptor';
 import { fakeBackendProvider } from './services/authentication/temp-backend';
 import { RecommendParentalComponent } from './pages/recommend-parental/recommend-parental.component';
-import { FoodDescriptionModalComponent } from './components/food-description-modal/food-description-modal.component';
 import { TrackerPageComponent } from './pages/tracker-page/tracker-page.component';
 import { TrackerBlockComponent } from './components/tracker-block/tracker-block.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -67,11 +66,10 @@ import { TrackerHistoryPageComponent } from './pages/tracker-history-page/tracke
     ParentalHeaderComponent,
     LoginPageComponent,
     RecommendParentalComponent,
-    FoodDescriptionModalComponent,
     TrackerPageComponent,
     TrackerBlockComponent,
     TrackerHistoryPageComponent
-  
+
   ],
   imports: [
     BrowserModule,
@@ -103,6 +101,6 @@ import { TrackerHistoryPageComponent } from './pages/tracker-history-page/tracke
     //fakeBackendProvider
   ],
   bootstrap: [AppComponent],
-  entryComponents: [ErrorDialogPopupComponent, ResultsPageComponent,PopupComponent,RecommendModalComponent,FoodRecommendModalComponent,FoodDescriptionModalComponent]
+  entryComponents: [ErrorDialogPopupComponent, ResultsPageComponent,PopupComponent,RecommendModalComponent,FoodRecommendModalComponent]
 })
 export class AppModule { }

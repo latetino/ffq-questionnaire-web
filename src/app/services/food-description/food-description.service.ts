@@ -3,6 +3,9 @@ import {Observable} from 'rxjs';
 import {map, tap} from 'rxjs/operators';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Description } from 'src/app/models/ffqfooddescription';
+import { Questionnaire } from 'src/app/models/Questionnaire';
+import { QuestResultsComponent } from 'src/app/pages/quest-results/quest-results.component';
+import { isNgTemplate } from '@angular/compiler';
 
 
 const httpOptions = { headers: new HttpHeaders({'Content-Type': 'application/json'})};
@@ -18,8 +21,8 @@ export class FoodDescriptionService {
   constructor(private http: HttpClient) { }
 
   /* Return the food descriptions given a questionnaire id*/
-  getFoodItemByGroupName(foodItemGroupName: string): Observable<Description> {
-    return this.http.get(this.endpoint + '/fooddescription/' + foodItemGroupName).pipe(
+  getFoodItemByQuestionnaireId(questionnaireId: string): Observable<Description> {
+    return this.http.get(this.endpoint + '/fooddescription/' + questionnaireId).pipe(
       map(((item: Description) => {
           return new Description(
             item.imageUrl,
