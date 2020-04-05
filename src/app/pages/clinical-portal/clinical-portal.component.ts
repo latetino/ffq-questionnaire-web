@@ -25,6 +25,7 @@ import { Observable } from 'rxjs';
 import { FFQClinicianResponse } from 'src/app/models/ffqclinician-response';
 import { FFQParentResponse } from 'src/app/models/ffqparent-response';
 import { FFQClinicResponse } from 'src/app/models/ffqclinic-response';
+import { PatientPipe } from 'src/app/pipes/patientFilter.pipe';
 
 
 @Component({
@@ -150,7 +151,7 @@ export class ClinicalPortalComponent implements OnInit  {
             //Code below to get the assigned clinician name for each parent
             var clinician = b.find(n => n.username == parent.assignedClinician);
             if(!!clinician){
-               var clinicianName = clinician.firstname + " " + clinician.lastname;
+               var clinicianName = clinician.role + " " + clinician.firstname + " " + clinician.lastname;
             }
             this.clinicianNames.push(clinicianName);
           });

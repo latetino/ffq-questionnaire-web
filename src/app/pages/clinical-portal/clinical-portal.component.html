@@ -33,7 +33,7 @@
                     <td><a [routerLink]="['/clinic/user/c', u.clinicianId]"> {{ u.username }} </a></td>
                     <td> {{ u.role }} </td>
                     <td> {{ u.firstname }} {{ u.lastname }}</td>
-                    <td>  </td>
+                    <td> {{ (ffqparentList | patientFilter: u.username).length }} </td>
                 </tr>
             </table>
         </div>
@@ -54,7 +54,7 @@
                 <mat-form-field>
                     <mat-label appearance="fill">Assign to Clinician...</mat-label>
                     <mat-select matNativeControl>
-                      <mat-option *ngFor="let u of ffqclinicianList">{{ u.role}} {{ u.lastname }}</mat-option>
+                      <mat-option *ngFor="let u of ffqclinicianList">{{u.role}} {{u.firstname }} {{ u.lastname }}</mat-option>
                     </mat-select>
                 </mat-form-field>
                 <button style="font-family: Roboto; margin-left: 10px;"> OK </button>
@@ -62,7 +62,7 @@
                 <mat-form-field>
                     <mat-label appearance="fill">Filter by Clinician...</mat-label>
                     <mat-select matNativeControl multiple>
-                      <mat-option *ngFor="let u of ffqclinicianList" (click)="filterByClinician(u.firstname + ' ' + u.lastname)">{{ u.role }} {{ u.lastname }}</mat-option>
+                      <mat-option *ngFor="let u of ffqclinicianList" (click)="filterByClinician(u.role + ' ' + u.firstname + ' ' + u.lastname)">{{ u.role }} {{ u.firstname }} {{ u.lastname }}</mat-option>
                     </mat-select>
                 </mat-form-field>
                 <span style="color:gray; margin-left: 20px; margin-right: 20px; font-size: x-large;"> | </span>

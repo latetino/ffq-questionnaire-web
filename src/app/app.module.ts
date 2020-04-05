@@ -55,6 +55,9 @@ import { ClinicUserComponent } from './pages/clinic-user/clinic-user.component';
 import { AdminClinicsComponent } from './pages/admin-clinics/';
 import { ClinicComponent } from './pages/clinic/clinic.component';
 import { LogoutComponent } from './pages/logout/logout.component';
+import { ClinicianPipe } from './pipes/clinicianFilter.pipe';
+import { ParentPipe } from './pipes/parentFilter.pipe';
+import { PatientPipe } from './pipes/patientFilter.pipe';
 
 @NgModule({
   declarations: [
@@ -91,7 +94,10 @@ import { LogoutComponent } from './pages/logout/logout.component';
     ClinicUserComponent,
     AdminClinicsComponent,
     ClinicComponent,
-    LogoutComponent
+    LogoutComponent,
+    ClinicianPipe,
+    ParentPipe,
+    PatientPipe
       
   ],
   imports: [
