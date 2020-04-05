@@ -26,6 +26,7 @@ import { FFQClinicianResponse } from 'src/app/models/ffqclinician-response';
 import { FFQParentResponse } from 'src/app/models/ffqparent-response';
 import { FFQClinicResponse } from 'src/app/models/ffqclinic-response';
 import { PatientPipe } from 'src/app/pipes/patientFilter.pipe';
+import { SearchPipe } from 'src/app/pipes/searchFilter.pipe';
 
 
 @Component({
@@ -42,7 +43,10 @@ export class ClinicalPortalComponent implements OnInit  {
   private showParents: boolean;
   private toggleAllClinicians: boolean;
   private toggleAllParents: boolean;
-  private hideUnassigned: boolean;
+  private hideUnassignedParents: boolean;
+  private hideUnassignedClinicians: boolean;
+  p_search: string;
+  c_search: string;
 
 
   constructor(
@@ -68,7 +72,8 @@ export class ClinicalPortalComponent implements OnInit  {
     this.showParents = true;
     this.toggleAllClinicians = false;
     this.toggleAllParents = false;
-    this.hideUnassigned = false;
+    this.hideUnassignedParents = false;
+    this.hideUnassignedClinicians = false;
 
 
 
@@ -96,9 +101,14 @@ export class ClinicalPortalComponent implements OnInit  {
     this.toggleAllParents = !this.toggleAllParents;
   }
 
-  toggleUnassigned($event)
+  toggleUnassignedParents($event)
   {
-    this.hideUnassigned = !this.hideUnassigned;
+    this.hideUnassignedParents = !this.hideUnassignedParents;
+  }
+
+  toggleUnassignedClinicians($event)
+  {
+    this.hideUnassignedClinicians = !this.hideUnassignedClinicians;
   }
 
   filterByClinician(clinician_name: string)

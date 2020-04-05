@@ -58,6 +58,7 @@ import { LogoutComponent } from './pages/logout/logout.component';
 import { ClinicianPipe } from './pipes/clinicianFilter.pipe';
 import { ParentPipe } from './pipes/parentFilter.pipe';
 import { PatientPipe } from './pipes/patientFilter.pipe';
+import { SearchPipe } from './pipes/searchFilter.pipe';
 
 @NgModule({
   declarations: [
@@ -97,7 +98,8 @@ import { PatientPipe } from './pipes/patientFilter.pipe';
     LogoutComponent,
     ClinicianPipe,
     ParentPipe,
-    PatientPipe
+    PatientPipe,
+    SearchPipe
       
   ],
   imports: [
