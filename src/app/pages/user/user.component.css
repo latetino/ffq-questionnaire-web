@@ -84,5 +84,13 @@
     
     }
     
-    
+    .mat-raised-button{
+      background-color: #B64D3E;
+      color: white;
+    }
+      
+    .delete{
+      background-color: red;
+      color: white;
+    }
     

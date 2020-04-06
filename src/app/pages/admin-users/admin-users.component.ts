@@ -25,6 +25,7 @@ import { FFQParentResponse } from 'src/app/models/ffqparent-response';
 import { FFQClinicResponse } from 'src/app/models/ffqclinic-response';
 import { ClinicService } from 'src/app/services/clinic/clinic-service';
 import { FFQClinic } from 'src/app/models/ffqclinic';
+import { SearchPipe } from 'src/app/pipes/searchFilter.pipe';
 
 @Component({
   templateUrl: './admin-users.component.html',
@@ -33,10 +34,10 @@ import { FFQClinic } from 'src/app/models/ffqclinic';
 
 export class AdminUsersComponent implements OnInit {
 
-  private toggleAll: boolean
   private showParents: boolean;
   private showClinicians: boolean;
   private showAdmins: boolean;
+  search: string;
 
   constructor(
     public parentService: ParentService,
@@ -58,7 +59,6 @@ export class AdminUsersComponent implements OnInit {
   ngOnInit() {
 
     this.clinicNames.push("");
-    this.toggleAll = false;
     this.showParents = true;
     this.showClinicians = true;
     this.showAdmins = true;
@@ -79,12 +79,7 @@ export class AdminUsersComponent implements OnInit {
     }
     console.log(this.checked_users);
   }
-
-  toggleSelectAll()
-  {
-    this.toggleAll = !this.toggleAll;
-  }
-
+  
   toggleParents()
   {
     this.showParents = !this.showParents;

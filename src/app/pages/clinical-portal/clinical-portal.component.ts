@@ -43,8 +43,6 @@ export class ClinicalPortalComponent implements OnInit  {
   TITLE = 'FIU Clinic';
   private showClinicians: boolean;
   private showParents: boolean;
-  private toggleAllClinicians: boolean;
-  private toggleAllParents: boolean;
   private hideUnassignedParents: boolean;
   private hideUnassignedClinicians: boolean;
   p_search: string;
@@ -75,8 +73,6 @@ export class ClinicalPortalComponent implements OnInit  {
    
     this.showClinicians = true;
     this.showParents = true;
-    this.toggleAllClinicians = false;
-    this.toggleAllParents = false;
     this.hideUnassignedParents = false;
     this.hideUnassignedClinicians = false;
 
@@ -95,16 +91,6 @@ export class ClinicalPortalComponent implements OnInit  {
   toggleParents($event)
   {
     this.showParents = !this.showParents;
-  }
-
-  selectAllClinicians($event)
-  {
-    this.toggleAllClinicians = !this.toggleAllClinicians;
-  }
-
-  selectAllParents($event)
-  {
-    this.toggleAllParents = !this.toggleAllParents;
   }
 
   toggleUnassignedParents($event)
