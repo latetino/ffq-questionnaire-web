@@ -48,12 +48,10 @@ const routes: Routes = [
     path: 'admin/home', component: AdminPageComponent
   },
   {
-    path: 'recommend-parental', component:   RecommendParentalComponent
+    path: 'admin/users', component: AdminUsersComponent, canActivate: [AuthGuard],
   },
   {
-    path: '', redirectTo: 'questionnaire-id', pathMatch: 'full'
-    path: 'admin/users', component: AdminUsersComponent
-  },
+    path: 'recommend-parental', component:   RecommendParentalComponent  },
   {
     path: 'admin/results', component:  QuestResultsComponent
   },
@@ -70,10 +68,10 @@ const routes: Routes = [
     path: 'admin/clinic/:id', component: ClinicComponent
   },
   {
-    path: '', redirectTo: 'login', pathMatch: 'full'
+    path: '', redirectTo: 'login-page', pathMatch: 'full'
   },
   {
-    path: 'questionnaire-id', component: QuestIdInputComponent/*, canActivate: [AuthGuard]*/
+    path: 'questionnaire-id', component: QuestIdInputComponent, canActivate: [AuthGuard]
   },
   {
     path: 'questionnaire/:id', component: QuestionnairePageComponent

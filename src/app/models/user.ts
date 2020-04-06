@@ -5,17 +5,15 @@ import { FFQAdmin } from './ffqadmin';
 
 export class User {
   id: string;
-  ffqclinician: FFQClinician;
-  ffqparent: FFQParent;
-  ffqadmin: FFQAdmin;
+  username: string;
+  userpassword: string;
   userType: string;
-  token: string;
+  token?: string;
 
-  constructor(id: string, ffqclinician: FFQClinician, ffqparent: FFQParent, ffqadmin: FFQAdmin, userType: string, token: string) {
+  constructor(id: string, username: string, userpassword: string, userType: string, token?: string) {
     this.id = id;
-    this.ffqclinician = ffqclinician;
-    this.ffqparent = ffqparent;
-    this.ffqadmin = ffqadmin;
+    this.username = username;
+    this.userpassword = userpassword;
     this.userType = userType;
     this.token = token;
   }

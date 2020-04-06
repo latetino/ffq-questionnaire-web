@@ -36,46 +36,9 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         // route functions
 
         function authenticate() {
-            //const { username, password } = body;
-            const inputUser = body;
-            var userz = users.filter(x => x.userType === inputUser.userType);
-            var user;
-            var userName;
-                var passWord;
-                if(inputUser.userType == "parent"){
-
-                    user = userz.find(x => x.ffqparent.username === inputUser.ffqparent.username && x.ffqparent.userpassword === inputUser.ffqparent.password)
-                }
-                else if(inputUser.userType == "clinician"){
-                    user = userz.find(x => x.ffqclinician.username === inputUser.ffqclinician.username && x.ffqclinician.userpassword === inputUser.ffqclinician.password)
-                    
-                }
-                else if(inputUser.userType == "admin"){
-                    user = userz.find(x => x.ffqadmin.username === inputUser.ffqadmin.username && x.ffqadmin.userpassword === inputUser.ffqadmin.password)
-                }
-            //user = user.find(x => userName === userz. && passWord === password)
-            /*const user = users.find(x =>{   
-                var userName;
-                var passWord;
-                if(x.userType == "parent"){
-                    userName = x.ffqparent.username;
-                    passWord = x.ffqparent.userpassword;
-                }
-                else if(x.userType == "clinician"){
-                    userName = x.ffqclinician.username;
-                    passWord = x.ffqclinician.userpassword;
-                    
-                }
-                else if(x.userType == "admin"){
-                    userName = x.ffqadmin.username;
-                    passWord = x.ffqadmin.userpassword;
-                }
-            
-                
-                
-                userName === username && passWord === password
-                
-             });*/
+            const { username, password } = body;
+            const user = users.find(x => x.ffqadmin.username === username && x.ffqadmin.userpassword === password)
+    
                 
             if (!user) return error('Username or password is incorrect');
             return ok({

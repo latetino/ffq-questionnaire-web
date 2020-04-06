@@ -27,6 +27,8 @@ import { FFQParentResponse } from 'src/app/models/ffqparent-response';
 import { FFQClinicResponse } from 'src/app/models/ffqclinic-response';
 import { PatientPipe } from 'src/app/pipes/patientFilter.pipe';
 import { SearchPipe } from 'src/app/pipes/searchFilter.pipe';
+import { AllUsers } from 'src/app/models/all-users';
+import { User } from 'src/app/models/user';
 
 
 @Component({
@@ -47,6 +49,7 @@ export class ClinicalPortalComponent implements OnInit  {
   private hideUnassignedClinicians: boolean;
   p_search: string;
   c_search: string;
+  public allusrs: AllUsers = new AllUsers();
 
 
   constructor(
@@ -64,6 +67,8 @@ export class ClinicalPortalComponent implements OnInit  {
   numberOfPatients: number[] = [];
   public filtered_clinicians: String[] = [];
   public filtered: boolean;
+
+  public UserList: User[];
   
 
   ngOnInit() {
@@ -76,8 +81,9 @@ export class ClinicalPortalComponent implements OnInit  {
     this.hideUnassignedClinicians = false;
 
 
-
+   // this.UserList = this.allusrs.generateUserClass();
     this.loadAllUsers();
+
   
   }
 

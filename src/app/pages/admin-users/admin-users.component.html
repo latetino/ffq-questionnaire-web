@@ -37,14 +37,14 @@
      <!--   <tr *ngFor="let u of ffqclinicianList" [hidden]="(!showParents && u.account_type === 'Parent') || (!showClinicians && u.account_type === 'Clinician') || (!showAdmins && u.account_type === 'Admin')"> --> 
             <tr *ngFor="let u of ffqclinicianList; index as i" [hidden]="!showClinicians || (filtered && filtered_clinics.indexOf(clinicNames[u.assignedClinic]) === -1)">
                 <td align="center"><mat-checkbox [checked]="toggleAll" (change)="checkedUsers(u.username)" color="primary"></mat-checkbox></td>
-                <td><a [routerLink]="['/admin/user/c', u.clinicianId]"> {{ u.username }} </a></td>
+                <td><a [routerLink]="['/admin/user/c', u.userId]"> {{ u.username }} </a></td>
                 <td> Clinician </td>
                 <td> {{ clinicNames[u.assignedClinic] }} </td>
             </tr>
    <!--    <tr *ngFor="let u of ffqparentList" [hidden]="(!showParents && u.account_type === 'Parent') || (!showClinicians && u.account_type === 'Clinician') || (!showAdmins && u.account_type === 'Admin')">  -->
             <tr *ngFor="let u of ffqparentList; index as i" [hidden]="!showParents || (filtered && filtered_clinics.indexOf(clinicNames[u.assignedClinic]) === -1)">   
                  <td align="center"><mat-checkbox [checked]="toggleAll" (change)="checkedUsers(u.username)" color="primary"></mat-checkbox></td>
-                 <td><a [routerLink]="['/admin/user/p', u.parentId]"> {{ u.username }} </a></td>
+                 <td><a [routerLink]="['/admin/user/p', u.userId]"> {{ u.username }} </a></td>
                  <td> Parent </td>
                  <td> {{ clinicNames[u.assignedClinic] }} </td>
             </tr>

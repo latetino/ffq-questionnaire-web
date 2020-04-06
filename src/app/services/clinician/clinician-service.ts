@@ -10,8 +10,6 @@ import { ɵangular_packages_forms_forms_q } from '@angular/forms';
 import { Http, Headers, Response, RequestOptions, RequestMethod } from '@angular/http';
 import { FFQFoodItemResponse } from 'src/app/models/ffqfooditem-response';
 import { FFQClinicianResponse } from 'src/app/models/ffqclinician-response';
-//const mongoose = require('mongoose');
-//declare var require: any
 //Created by Khalid Alamoudi 
 
 const httOptions ={ headers: new HttpHeaders({'Content-Type':'aplication/json'})}
@@ -47,8 +45,9 @@ export class ClinicianService {
       ));
   }
 
-  getClinician(clinicianId: string): Observable<FFQClinicianResponse> {
     return this.http.get(this.endpoint + '/' + clinicianId).pipe(
+  getClinician(userId: string): Observable<FFQClinicianResponse> {
+    return this.http.get(this.endpoint + '/' + userId).pipe(
       map((item: any) => {
           return new FFQClinicianResponse(
             item.userId,
@@ -64,7 +63,7 @@ export class ClinicianService {
     );
   }
 
-  // created by Dariana Gonzalez
+ 
   getAllClinicians(): Observable<FFQClinicianResponse[]> {
    // getMongoUsers();
     return this.http.get(this.endpoint + '/all').pipe(
@@ -98,15 +97,6 @@ export class ClinicianService {
 }
 
 
-/*export async function getMongoUsers() {  //test function to get users from mongoDB
-  
-  const MongoClient = require('mongodb').MongoClient; 
-  const url = "mongodb://localhost:27017/"; 
-  const db = await MongoClient.connect(url);
-  const dbo = db.db("ffq_database");
-  var user = await dbo.collection("users").find().toArray();    //[{1, Admin}, {2, Khalid}]
-  console.log(user);
-  
-}*/
+
 
 
