@@ -13,16 +13,13 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 import { FFQFoodItem } from 'src/app/models/ffqfooditem';
 import { FFQFoodItemResponse } from 'src/app/models/ffqfooditem-response';
 
-//test
-import { FFQUser } from 'src/app/models/ffquser';
+//test;
 import { FFQClinician } from 'src/app/models/ffqclinician';
 import { FFQParent } from 'src/app/models/ffqparent';
 import { FFQClinicianResponse } from 'src/app/models/ffqclinician-response';
-import { UserService } from 'src/app/services/user/user-service';
 import { ParentService } from 'src/app/services/parent/parent-service';
 import { ClinicianService } from 'src/app/services/clinician/clinician-service';
 import { NutrientsService } from 'src/app/services/nutrients/nutrients-service';
-import { FFQUserResponse } from 'src/app/models/ffquser-response';
 import { Observable } from 'rxjs';
 import { FFQParentResponse } from 'src/app/models/ffqparent-response';
 import { FFQClinicResponse } from 'src/app/models/ffqclinic-response';
@@ -45,7 +42,6 @@ export class AdminUsersComponent implements OnInit {
   private showAdmins: boolean;
 
   constructor(
-    public userService: UserService,
     public parentService: ParentService,
     public clinicianService: ClinicianService,
     public nutrientsService: NutrientsService,

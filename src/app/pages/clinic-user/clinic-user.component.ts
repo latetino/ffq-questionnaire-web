@@ -75,12 +75,12 @@ export class ClinicUserComponent implements OnInit {
 
     const UserID = this.route.snapshot.paramMap.get('id');
 
-    this.getUserById(parseInt(UserID));
+    this.getUserById(UserID);
 
     console.log(this.userAttributes);
   }
  
-  private getUserById(id: number)
+  private getUserById(id: string)
    {
 
     if(id.toString()[0] == '5')

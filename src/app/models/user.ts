@@ -1,20 +1,23 @@
 import { ObjectUnsubscribedError } from 'rxjs';
+import { FFQClinician } from './ffqclinician';
+import { FFQParent } from './ffqparent';
+import { FFQAdmin } from './ffqadmin';
 
 export class User {
-  username: string;
-  account_type: string;
-  abbrev: string;
-  name: string;
-  assigned_clinician: string;
-  clinic: string;
+  id: string;
+  ffqclinician: FFQClinician;
+  ffqparent: FFQParent;
+  ffqadmin: FFQAdmin;
+  userType: string;
+  token: string;
 
-  constructor(username: string, account_type: string, abbrev: string, name: string, assigned_clinician: string, clinic: string) {
-    this.username = username;
-    this.account_type = account_type;
-    this.abbrev = abbrev;
-    this.name = name;
-    this.assigned_clinician = assigned_clinician;
-    this.clinic = clinic;
+  constructor(id: string, ffqclinician: FFQClinician, ffqparent: FFQParent, ffqadmin: FFQAdmin, userType: string, token: string) {
+    this.id = id;
+    this.ffqclinician = ffqclinician;
+    this.ffqparent = ffqparent;
+    this.ffqadmin = ffqadmin;
+    this.userType = userType;
+    this.token = token;
   }
 }
 

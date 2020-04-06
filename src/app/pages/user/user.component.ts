@@ -14,9 +14,6 @@ import { FFQNutrientlist, nutrientMap } from 'src/app/models/ffqnutrientlist';
 import { NutrientConstants } from 'src/app/models/NutrientConstants';
 import { NutrientsService } from 'src/app/services/nutrients/nutrients-service';
 import { FormsModule } from '@angular/forms';
-import { FFQUser } from 'src/app/models/ffquser';
-import { UserService } from 'src/app/services/user/user-service';
-import { FFQUserResponse } from 'src/app/models/ffquser-response';
 import { Observable } from 'rxjs';
 import { ParentService } from 'src/app/services/parent/parent-service';
 import { ClinicianService } from 'src/app/services/clinician/clinician-service';
@@ -46,7 +43,6 @@ export class UserComponent implements OnInit {
   showMsg: boolean = false;
 
   constructor(
-    public userService: UserService,
     public parentService: ParentService,
     public clinicianService: ClinicianService,
     public nutrientsService: NutrientsService,
@@ -62,7 +58,6 @@ export class UserComponent implements OnInit {
 
     ) { }
 
-  users: FFQUserResponse[] = [];
   clinicians: FFQClinicianResponse[] = [];
   parents: FFQParentResponse[] = [];
 
@@ -71,7 +66,6 @@ export class UserComponent implements OnInit {
   userAttributes: object[] = [];
   dataLoaded: Promise<boolean>;
 
-  ffquser: FFQUser;
   ffqclinician: FFQClinician;
   ffqParent: FFQParent;
   amountToAdd: number;
@@ -108,11 +102,11 @@ export class UserComponent implements OnInit {
       //this.getUserById(parseInt(UserID));
       if(UserType == "p")
       {
-        this.getParentByID(parseInt(UserID));
+        this.getParentByID(UserID);
       }
       else
       {
-        this.getClinicianByID(parseInt(UserID));
+        this.getClinicianByID(UserID);
       }
     }
 
@@ -154,9 +148,9 @@ export class UserComponent implements OnInit {
       clinicianList.subscribe(data => {
         var numberOfClinicians = (data.length+1).toString();
         //console.log("Number of clinicians is: " + numberOfClinicians);
-        var newClincianId = data.length+1;
+        var newClincianId = (data.length+1).toString();
         var newClincianUsername = "clinician"+numberOfClinicians;
-        this.ffqclinician = new FFQClinician(newClincianId, newClincianUsername, newClincianUsername, "", "", this.clinicnumber);
+        this.ffqclinician = new FFQClinician(newClincianId, newClincianUsername, newClincianUsername, "", "", this.clinicnumber, []);
         console.log(this.ffqclinician);
 
         this.clinicianService.addClinician(this.ffqclinician).subscribe(data => {
@@ -178,9 +172,9 @@ export class UserComponent implements OnInit {
       parentList.subscribe(data => {
         var numberOfParents = (data.length+1).toString();
         //console.log("Number of clinicians is: " + numberOfClinicians);
-        var newParentId = data.length+1;
+        var newParentId = (data.length+1).toString();
         var newParentUsername = "parent"+numberOfParents;
-        this.ffqParent = new FFQParent(newParentId, newParentUsername, newParentUsername, "", "", "0");
+        this.ffqParent = new FFQParent(newParentId, newParentUsername, newParentUsername, "", "", "0", []);
 
         this.parentService.addParent(this.ffqParent).subscribe(data => {
             this.router.navigateByUrl('/admin/users');
@@ -207,9 +201,9 @@ export class UserComponent implements OnInit {
        parentList.subscribe(data => {
          var numberOfParents = (data.length+1).toString();
          //console.log("Number of clinicians is: " + numberOfClinicians);
-         var newParentId = data.length+1;
+         var newParentId = (data.length+1).toString();
          var newParentUsername = "parent"+numberOfParents;
-         this.ffqParent = new FFQParent(newParentId, newParentUsername, newParentUsername, "", "", "");
+         this.ffqParent = new FFQParent(newParentId, newParentUsername, newParentUsername, "", "", "", []);
          //console.log(this.ffquser);
  
          this.parentService.addParent(this.ffqParent).subscribe(data => {
@@ -231,7 +225,7 @@ export class UserComponent implements OnInit {
     
    }
 
-  getParentByID(id: number)
+  getParentByID(id: string)
   {
     this.isParent = true;
     this.parentService.getParent(id).subscribe(data => {  
@@ -240,7 +234,7 @@ export class UserComponent implements OnInit {
     this.dataLoaded = Promise.resolve(true); 
   }
 
-  getClinicianByID(id: number)
+  getClinicianByID(id: string)
   {
     this.isClinician = true;
     this.clinicianService.getClinician(id).subscribe(data => {  

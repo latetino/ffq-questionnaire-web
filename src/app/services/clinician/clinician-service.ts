@@ -9,7 +9,6 @@ import { FFQFoodItem } from 'src/app/models/ffqfooditem';
 import { ɵangular_packages_forms_forms_q } from '@angular/forms';
 import { Http, Headers, Response, RequestOptions, RequestMethod } from '@angular/http';
 import { FFQFoodItemResponse } from 'src/app/models/ffqfooditem-response';
-import { FFQUserResponse } from 'src/app/models/ffquser-response';
 import { FFQClinicianResponse } from 'src/app/models/ffqclinician-response';
 //const mongoose = require('mongoose');
 //declare var require: any
@@ -50,16 +49,17 @@ export class ClinicianService {
   }
 
   //To be implemented
-  getClinician(clinicianId: number): Observable<FFQClinicianResponse> {
+  getClinician(clinicianId: string): Observable<FFQClinicianResponse> {
     return this.http.get(this.endpoint + '/' + clinicianId).pipe(
       map((item: any) => {
           return new FFQClinicianResponse(
-            item.clinicianId,
+            item.userId,
             item.username,
             item.userpassword,
             item.firstname,
             item.lastname,
-            item.assignedclinic
+            item.assignedclinic,
+            item.previousclinics
           );
       })
     );
@@ -72,12 +72,13 @@ export class ClinicianService {
       map((res: any) => {
         return res.map(item => {
           return new FFQClinicianResponse(
-            item.clinicianId,
+            item.userId,
             item.username,
             item.userpassword,
             item.firstname,
             item.lastname,
-            item.assignedclinic
+            item.assignedclinic,
+            item.previousclinics
           );
         });
       })

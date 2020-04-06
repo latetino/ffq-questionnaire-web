@@ -33,8 +33,8 @@ import { ClinicalPortalComponent } from './pages/clinical-portal/clinical-portal
 import { ClinicalHeaderComponent } from './pages/clinical-header/clinical-header.component';
 import { ParentalHeaderComponent } from './pages/parental-header/parental-header.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
-import { JwtInterceptor } from './services/authentication/jwt.interceptor';
-import { fakeBackendProvider } from './services/authentication/temp-backend';
+//import { JwtInterceptor } from './services/authentication/jwt.interceptor';
+//import { fakeBackendProvider } from './services/authentication/temp-backend';
 import { RecommendParentalComponent } from './pages/recommend-parental/recommend-parental.component';
 import { TrackerPageComponent } from './pages/tracker-page/tracker-page.component';
 import { TrackerBlockComponent } from './components/tracker-block/tracker-block.component';
@@ -54,6 +54,7 @@ import { UserComponent } from './pages/user/user.component';
 import { ClinicUserComponent } from './pages/clinic-user/clinic-user.component';
 import { AdminClinicsComponent } from './pages/admin-clinics/';
 import { ClinicComponent } from './pages/clinic/clinic.component';
+import { LogoutComponent } from './pages/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -89,7 +90,8 @@ import { ClinicComponent } from './pages/clinic/clinic.component';
     UserComponent,
     ClinicUserComponent,
     AdminClinicsComponent,
-    ClinicComponent
+    ClinicComponent,
+    LogoutComponent
       
   ],
   imports: [
@@ -116,12 +118,13 @@ import { ClinicComponent } from './pages/clinic/clinic.component';
     NgbModule.forRoot(),
     FlashMessagesModule.forRoot(),
    ],
+   /*
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
 
     // provider used to create fake backend
     //fakeBackendProvider
-  ],
+  ],*/
   bootstrap: [AppComponent],
   entryComponents: [ErrorDialogPopupComponent, ResultsPageComponent,PopupComponent,RecommendModalComponent,FoodRecommendModalComponent]
 })

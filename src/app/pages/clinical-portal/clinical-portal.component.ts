@@ -14,12 +14,10 @@ import { FFQFoodItem } from 'src/app/models/ffqfooditem';
 import { FFQFoodItemResponse } from 'src/app/models/ffqfooditem-response';
 
 //test
-import { FFQUser } from 'src/app/models/ffquser';
 import { FFQClinician } from 'src/app/models/ffqclinician';
 import { FFQParent } from 'src/app/models/ffqparent';
 import { FFQClinic } from 'src/app/models/ffqclinic';
 import { FFQUserMap } from 'src/app/models/ffqusermap';
-import { UserService } from 'src/app/services/user/user-service';
 import { ParentService } from 'src/app/services/parent/parent-service';
 import { ClinicianService } from 'src/app/services/clinician/clinician-service';
 import { NutrientsService } from 'src/app/services/nutrients/nutrients-service';
@@ -48,7 +46,6 @@ export class ClinicalPortalComponent implements OnInit  {
 
 
   constructor(
-    public userService: UserService,
     public parentService: ParentService,
     public clinicianService: ClinicianService,
     public nutrientsService: NutrientsService,
@@ -64,7 +61,6 @@ export class ClinicalPortalComponent implements OnInit  {
     ) { }
 
   
-  ffquserList: FFQUser[] = [];
   ffqclinicianList: FFQClinician[] = [];
   ffqparentList: FFQParent[] = [];
   ffqclinicList: FFQClinic[] = [];

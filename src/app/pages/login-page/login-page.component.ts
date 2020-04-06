@@ -12,6 +12,8 @@ import { AuthenticationService } from 'src/app/services/authentication/authentic
   styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent implements OnInit {
+
+    
     loginForm: FormGroup;
     loading = false;
     submitted = false;

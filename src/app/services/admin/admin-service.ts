@@ -9,7 +9,7 @@ import { FFQFoodItem } from 'src/app/models/ffqfooditem';
 import { ɵangular_packages_forms_forms_q } from '@angular/forms';
 import { Http, Headers, Response, RequestOptions, RequestMethod } from '@angular/http';
 import { FFQFoodItemResponse } from 'src/app/models/ffqfooditem-response';
-import { FFQUserResponse } from 'src/app/models/ffquser-response';
+import { FFQAdminResponse } from 'src/app/models/ffqadmin-response';
 //const mongoose = require('mongoose');
 //declare var require: any
 //Created by Khalid Alamoudi 
@@ -22,14 +22,14 @@ const httOptions ={ headers: new HttpHeaders({'Content-Type':'aplication/json'})
 
 
 
-export class UserService {
+export class AdminService {
 
-  endpoint = 'http://localhost:9070/ffq/users';
+  endpoint = 'http://localhost:9070/ffq/admins';
   
 
   constructor(private http: HttpClient) { } 
 
-  addUser(user : FFQUserResponse): Observable<any> {
+  addUser(user : FFQAdminResponse): Observable<any> {
     
     return this.http.post(this.endpoint + '/createuser', user, {headers : new HttpHeaders({ 'Content-Type': 'application/json' })}).pipe(
       tap( 
@@ -39,7 +39,7 @@ export class UserService {
   }
 
   //Still not implemented
-  updateUser(user : FFQUserResponse): Observable<any> {
+  updateUser(user : FFQAdminResponse): Observable<any> {
     
     return this.http.put(this.endpoint + '/updateuser', user, {headers : new HttpHeaders({ 'Content-Type': 'application/json' })}).pipe(
       tap( 
@@ -49,34 +49,32 @@ export class UserService {
   }
 
   //To be implemented
-  getUser(userId: number): Observable<FFQUserResponse> {
+  getUser(userId: string): Observable<FFQAdminResponse> {
     return this.http.get(this.endpoint + '/users/' + userId).pipe(
       map(((item: any) => {
-          return new FFQUserResponse(
+          return new FFQAdminResponse(
             item.userId,
             item.username,
             item.userpassword,
             item.firstname,
-            item.lastname,
-            item.isAdmin
+            item.lastname
           );
       }))
     );
   }
 
   // created by Dariana Gonzalez
-  getAllUsers(): Observable<FFQUserResponse[]> {
+  getAllUsers(): Observable<FFQAdminResponse[]> {
    // getMongoUsers();
     return this.http.get(this.endpoint + '/all').pipe(
       map((res: any) => {
         return res.map(item => {
-          return new FFQUserResponse(
+          return new FFQAdminResponse(
             item.userId,
             item.username,
             item.userpassword,
             item.firstname,
-            item.lastname,
-            item.isAdmin
+            item.lastname
           );
         });
       })

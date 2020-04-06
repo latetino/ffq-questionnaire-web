@@ -23,6 +23,11 @@ import { UserComponent } from './pages/user/user.component';
 import { ClinicUserComponent } from './pages/clinic-user/clinic-user.component';
 import { AdminClinicsComponent } from './pages/admin-clinics';
 import { ClinicComponent } from './pages/clinic/clinic.component';
+import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { LogoutComponent } from './pages/logout/logout.component';
+//import { AuthGaurdService } from './services/authentication/auth.guard';
 
 
 
@@ -105,11 +110,17 @@ const routes: Routes = [
   },
   {
     path: '*', redirectTo: 'login'
+  },
+  { 
+    path: 'logout', component: LogoutComponent
+  },
+  { 
+    path: 'login-page', component: LoginPageComponent
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })],
+  imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' }),],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

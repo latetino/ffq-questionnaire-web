@@ -14,9 +14,6 @@ import { FFQNutrientlist, nutrientMap } from 'src/app/models/ffqnutrientlist';
 import { NutrientConstants } from 'src/app/models/NutrientConstants';
 import { NutrientsService } from 'src/app/services/nutrients/nutrients-service';
 import { FormsModule } from '@angular/forms';
-import { FFQUser } from 'src/app/models/ffquser';
-import { UserService } from 'src/app/services/user/user-service';
-import { FFQUserResponse } from 'src/app/models/ffquser-response';
 import { Observable } from 'rxjs';
 import { ParentService } from 'src/app/services/parent/parent-service';
 import { ClinicianService } from 'src/app/services/clinician/clinician-service';
@@ -43,7 +40,6 @@ export class ClinicComponent implements OnInit {
   showMsg: boolean = false;
 
   constructor(
-    public userService: UserService,
     public parentService: ParentService,
     public clinicianService: ClinicianService,
     public nutrientsService: NutrientsService,
@@ -59,7 +55,7 @@ export class ClinicComponent implements OnInit {
 
     ) { }
 
-  users: FFQUserResponse[] = [];
+
   clinicians: FFQClinicianResponse[] = [];
   parents: FFQParentResponse[] = [];
 
@@ -69,7 +65,6 @@ export class ClinicComponent implements OnInit {
   userAttributes: object[] = [];
   dataLoaded: Promise<boolean>;
 
-  ffquser: FFQUser;
   ffqclinician: FFQClinician;
   ffqParent: FFQParent;
   amountToAdd: number;
@@ -103,7 +98,7 @@ export class ClinicComponent implements OnInit {
     else
     {
       this.isUpdate = true;
-      this.getUserById(parseInt(UserID));
+      this.getUserById(UserID);
     }
 
 
@@ -118,9 +113,9 @@ export class ClinicComponent implements OnInit {
       clinicianList.subscribe(data => {
         var numberOfClinicians = (data.length+1).toString();
         //console.log("Number of clinicians is: " + numberOfClinicians);
-        var newClincianId = 700 + data.length+1;
+        var newClincianId = (700 + data.length+1).toString();
         var newClincianUsername = "clinician"+numberOfClinicians;
-        this.ffqclinician = new FFQClinician(newClincianId, newClincianUsername, newClincianUsername, "", "", this.clinicnumber);
+        this.ffqclinician = new FFQClinician(newClincianId, newClincianUsername, newClincianUsername, "", "", this.clinicnumber, []);
         console.log(this.ffqclinician);
 
         this.clinicianService.addClinician(this.ffqclinician).subscribe(data => {
@@ -146,7 +141,7 @@ export class ClinicComponent implements OnInit {
     return item
   }
 
-   private getUserById(id: number)
+   private getUserById(id: string)
    {
 
     if(id.toString()[0] == '5')

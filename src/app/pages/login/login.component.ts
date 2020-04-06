@@ -1,31 +1,20 @@
-/*import { Component } from '@angular/core';
-import {MatCheckboxModule} from '@angular/material';
-
-@Component({ 
-    templateUrl: 'login.component.html',
-    styleUrls: ['./login.component.css'] 
-})
-export class LoginComponent {
-
-    TITLE = 'Login Page';
-
-}*/
-
-//--------------------------------------------------
-
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
+
 
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 
 
 @Component({
+  selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent /*implements OnInit */{
+export class LoginComponent implements OnInit {
+
+    
     loginForm: FormGroup;
     loading = false;
     submitted = false;

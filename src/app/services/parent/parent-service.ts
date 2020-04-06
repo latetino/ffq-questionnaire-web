@@ -9,7 +9,6 @@ import { FFQFoodItem } from 'src/app/models/ffqfooditem';
 import { ɵangular_packages_forms_forms_q } from '@angular/forms';
 import { Http, Headers, Response, RequestOptions, RequestMethod } from '@angular/http';
 import { FFQFoodItemResponse } from 'src/app/models/ffqfooditem-response';
-import { FFQUserResponse } from 'src/app/models/ffquser-response';
 import { FFQParentResponse } from 'src/app/models/ffqparent-response';
 //const mongoose = require('mongoose');
 //declare var require: any
@@ -53,12 +52,13 @@ export class ParentService {
     return this.http.get(this.endpoint + '/' + parentId).pipe(
       map((item: any) => {
           return new FFQParentResponse(
-            item.parentId,
+            item.userId,
             item.username,
             item.userpassword,
             item.firstname,
             item.lastname,
-            item.assignedclinician
+            item.assignedclinician,
+            item.childrennames
           );
       })
     );
@@ -71,12 +71,13 @@ export class ParentService {
       map((res: any) => {
         return res.map(item => {
           return new FFQParentResponse(
-            item.parentId,
+            item.userId,
             item.username,
             item.userpassword,
             item.firstname,
             item.lastname,
-            item.assignedclinician
+            item.assignedclinician,
+            item.childrennames
           );
         });
       })

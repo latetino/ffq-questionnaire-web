@@ -6,13 +6,17 @@ export class FFQClinicResponse {
   address: string;
   datebuilt: string;
   clinicname: string
+  headclinician: string;
+  isActive: boolean;
 
 
-  constructor(cliniciId: number, address: string, datebuilt: string, clinicname: string) {
+  constructor(cliniciId: number, address: string, datebuilt: string, clinicname: string, headclinician: string, isActive: boolean, ) {
     this.cliniciId = cliniciId;
     this.address = address;
     this.datebuilt = datebuilt;
     this.clinicname = clinicname;
+    this.headclinician = headclinician;
+    this.isActive = isActive;
   }
 
 }
