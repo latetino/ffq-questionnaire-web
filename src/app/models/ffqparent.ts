@@ -7,12 +7,12 @@ export class FFQParent {
   userpassword: string;
   firstname: string;
   lastname: string;
-  assignedClinic: number;
+  assignedClinic: string;
   assignedClinician: string;
   childrenNames: any;
 
 
-  constructor(userId: string, username: string, userpassword: string, firstname: string, lastname: string, assignedClinician: string, childrenNames: any) {
+  constructor(userId: string, username: string, userpassword: string, firstname: string, lastname: string, assignedClinic: string, assignedClinician: string, childrenNames: any) {
     this.userId = userId;
     this.username = username;
     this.userpassword = userpassword;

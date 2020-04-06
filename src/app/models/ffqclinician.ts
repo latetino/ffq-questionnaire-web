@@ -8,11 +8,11 @@ export class FFQClinician {
   role: string;
   firstname: string;
   lastname: string;
-  assignedClinic: number;
+  assignedClinic: string;
   previousClinics: any;
 
 
-  constructor(userId: string, username: string, userpassword: string, firstname: string, lastname: string, assignedClinic: number, previousClinics: any) {
+  constructor(userId: string, username: string, userpassword: string, abbreviation: string, firstname: string, lastname: string, assignedClinic: string, previousClinics: any) {
     this.userId = userId;
     this.username = username;
     this.userpassword = userpassword;

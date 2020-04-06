@@ -34,12 +34,12 @@
                     <th width="43.5%"> Name </th>
                     <th width="15%"> No. of Patients </th>
                 </tr>
-                <tr *ngFor="let u of ffqclinicianList | searchFilter: c_search" [hidden]="hideUnassignedClinicians && (!u.firstname || !u.lastname)">
+                <tr *ngFor="let u of ffqclinicianList | searchFilter: c_search; index as i" [hidden]="hideUnassignedClinicians && (!u.firstname || !u.lastname)">
                     <!--<td align="center"><mat-checkbox [checked]="toggleAllClinicians"></mat-checkbox></td>-->
                     <td><a [routerLink]="['/clinic/user/c', u.clinicianId]"> {{ u.username }} </a></td>
                     <td> {{ u.role }} </td>
                     <td> {{ u.firstname }} {{ u.lastname }}</td>
-                    <td> {{ (ffqparentList | patientFilter: u.username).length }} </td>
+                    <td> {{ numberOfPatients[i] }} </td>
                 </tr>
             </table>
         </div>

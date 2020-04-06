@@ -92,7 +92,7 @@ export class ClinicComponent implements OnInit {
     var clinicList: Observable<FFQClinicResponse[]> = this.clinicService.getAllClinics();
 
     clinicList.subscribe(data => {
-      var newClinicId = data.length+1;
+      var newClinicId = (data.length+1).toString();
       this.ffqclinic = new FFQClinic(newClinicId, this.location, "", this.name_of_clinic);
       console.log(this.ffqclinic);
 

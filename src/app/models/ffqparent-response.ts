@@ -10,9 +10,10 @@ export class FFQParentResponse {
   assignedClinic: number;
   assignedClinician: string;
   childrenNames: any;
+  assignedClinic: string;
 
 
-  constructor(userId: string, username: string, userpassword: string, firstname: string, lastname: string, assignedClinician: string, childrenNames: any) {
+  constructor(userId: string, username: string, userpassword: string, firstname: string, lastname: string, assignedClinic: string, assignedClinician: string, childrenNames: any) {
     this.userId = userId;
     this.username = username;
     this.userpassword = userpassword;

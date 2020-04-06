@@ -56,6 +56,7 @@ export class ParentService {
             item.userpassword,
             item.firstname,
             item.lastname,
+            item.assignedclinic,
             item.assignedclinician,
             item.childrennames
           );
@@ -75,6 +76,7 @@ export class ParentService {
             item.userpassword,
             item.firstname,
             item.lastname,
+            item.assignedclinic,
             item.assignedclinician,
             item.childrennames
           );

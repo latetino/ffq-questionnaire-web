@@ -147,9 +147,14 @@ export class ClinicalPortalComponent implements OnInit  {
          b.forEach(clinician =>  {
            //Code below to get the assigned clinic for each clinician
            var clinic = a.find(n => n.clinicId == clinician.assignedClinic);
+           var clinicName
            if(!!clinic){
-            var clinicName = clinic.clinicname;
+              clinicName = clinic.clinicname;
            }
+           else{
+              clinicName = "";
+           }
+           
            this.clinicNames.push(clinicName);
 
          });
@@ -159,9 +164,9 @@ export class ClinicalPortalComponent implements OnInit  {
           console.log(a);
           c.forEach(parent =>   {
             //Code below to get the assigned clinician name for each parent
-            var clinician = b.find(n => n.username == parent.assignedClinician);
+            var clinician = b.find(n => n.userId == parent.assignedClinician);
             if(!!clinician){
-               var clinicianName = clinician.role + " " + clinician.firstname + " " + clinician.lastname;
+               var clinicianName = clinician.abbreviation + ". " + clinician.firstname + " " + clinician.lastname;
             }
             this.clinicianNames.push(clinicianName);
           });
@@ -169,16 +174,16 @@ export class ClinicalPortalComponent implements OnInit  {
           b.forEach(clinician =>  {
             //Code below to get the number of patients for each clinician
             var i = 0;
-            var numberOfPatient = c.find(n => n.assignedClinician == clinician.username);
-
+            var numberOfPatient = c.find(n => n.assignedClinician == clinician.userId);
+            var numberOfPatientName;
             if(!!numberOfPatient){
-              var numberOfPatientName = numberOfPatient.username;
+              numberOfPatientName = numberOfPatient.userId;
               i++;
-              console.log("number of patients for " + clinician.username + " is " + i);
+              console.log("number of patients for " + clinician.userId + " is " + i);
             }
             this.numberOfPatients.push(i);
           });
-          console.log(this.clinicNames);
+          console.log(this.numberOfPatients);
           });
        });
     });
