@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { FFQClinicianResponse } from '../models/ffqclinician-response';
 
 @Pipe({
   name: 'searchFilter'
@@ -23,5 +24,6 @@ export class SearchPipe implements PipeTransform {
         || lastname_firstname.toLowerCase().includes(term.toLowerCase());
     });
   }
+
 
 }

@@ -29,6 +29,7 @@ import { PatientPipe } from 'src/app/pipes/patientFilter.pipe';
 import { SearchPipe } from 'src/app/pipes/searchFilter.pipe';
 import { AllUsers } from 'src/app/models/all-users';
 import { User } from 'src/app/models/user';
+import { AdminService } from 'src/app/services/admin/admin-service';
 
 
 @Component({
@@ -47,13 +48,14 @@ export class ClinicalPortalComponent implements OnInit  {
   private hideUnassignedClinicians: boolean;
   p_search: string;
   c_search: string;
-  public allusrs: AllUsers = new AllUsers();
+  
 
 
   constructor(
     public parentService: ParentService,
     public clinicianService: ClinicianService,
     public clinicService: ClinicService,
+    public adminService: AdminService
     ) { }
 
 
@@ -77,7 +79,8 @@ export class ClinicalPortalComponent implements OnInit  {
     this.hideUnassignedClinicians = false;
 
 
-   // this.UserList = this.allusrs.generateUserClass();
+    this.UserList = this.allusrs.generateUserClass();
+    console.log(this.UserList);
     this.loadAllUsers();
 
   

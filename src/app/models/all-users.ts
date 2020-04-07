@@ -14,15 +14,17 @@ import { FFQParentResponse } from './ffqparent-response';
 
 
 export class AllUsers {
-  clinicianService: ClinicianService;
-  adminService: AdminService;
-  parentService: ParentService;
+
   UserList: User[] = [];
   //AdminList: FFQAdmin[] = [];
  // ParentList: FFQParent[] = [];
  // ClinicianList: FFQClinician[] = [];
 
-  constructor() {
+  constructor(
+      public clinicianService: ClinicianService,
+      public adminService: AdminService,
+      public parentService: ParentService
+  ) {
 
   }
 
@@ -56,7 +58,7 @@ export class AllUsers {
             this.UserList.push(user);
             index++;
         });
-        //console.log("AllUsers are: " + this.UserList);
+        console.log("AllUsers are: " + this.UserList);
     });
 
     return this.UserList;

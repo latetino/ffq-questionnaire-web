@@ -12,37 +12,6 @@ import { User } from 'src/app/models/user';
      providedIn: 'root' 
     })
 export class AuthenticationService {
-/*
-    endpoint: string = 'http://localhost:9070/ffq/users/'
-   
-     constructor(
-        private httpClient:HttpClient
-     ) { }
-   
-     authenticate(F) {
-        const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
-        return this.httpClient.get(this.endpoint + '/validateLogin',{headers}).pipe(
-         map(
-           userData => {
-            sessionStorage.setItem('username',username);
-            return userData;
-           }
-         )
-    
-        );
-    }
-   
-     isUserLoggedIn() {
-       let user = sessionStorage.getItem('username')
-       console.log(!(user === null))
-       return !(user === null)
-     }
-   
-     logOut() {
-       sessionStorage.removeItem('username')
-     }
-   
-}*/
 
     private currentUserSubject: BehaviorSubject<User>;
     public currentUser: Observable<User>;
