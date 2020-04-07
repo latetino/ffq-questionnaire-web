@@ -16,15 +16,18 @@
                     <input type="userType" formControlName="userType" placeholder="Type of User" class="form-control" [(ngModel)]="userType"/>
                 </div>
                 -->
+                <!--
                 <mat-form-field>
                     <mat-label appearance="fill">Choose Account Type</mat-label>
                     <mat-select matNativeControl [(value)]="userType" formControlName="userType" required>
                       <mat-option *ngFor="let c of accountList; index as i " [value]="c">{{ dropDownName[i] }}</mat-option>
                     </mat-select>
                   </mat-form-field>
+                  -->
                 <button mat-raised-button class="login-button" >Login</button>
-                <mat-checkbox>Keep me signed in</mat-checkbox>
+              <!--  <mat-checkbox>Keep me signed in</mat-checkbox> -->
                 
+
             </form>
         </mat-card-content>
     </mat-card>
