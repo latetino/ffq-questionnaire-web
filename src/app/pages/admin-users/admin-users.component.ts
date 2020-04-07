@@ -19,13 +19,14 @@ import { FFQParent } from 'src/app/models/ffqparent';
 import { FFQClinicianResponse } from 'src/app/models/ffqclinician-response';
 import { ParentService } from 'src/app/services/parent/parent-service';
 import { ClinicianService } from 'src/app/services/clinician/clinician-service';
-import { NutrientsService } from 'src/app/services/nutrients/nutrients-service';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { FFQParentResponse } from 'src/app/models/ffqparent-response';
 import { FFQClinicResponse } from 'src/app/models/ffqclinic-response';
 import { ClinicService } from 'src/app/services/clinic/clinic-service';
 import { FFQClinic } from 'src/app/models/ffqclinic';
 import { SearchPipe } from 'src/app/pipes/searchFilter.pipe';
+import { User } from 'src/app/models/user';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   templateUrl: './admin-users.component.html',
@@ -37,13 +38,21 @@ export class AdminUsersComponent implements OnInit {
   private showParents: boolean;
   private showClinicians: boolean;
   private showAdmins: boolean;
+  private currentUserSubject: BehaviorSubject<User>;
+  public currentUser: Observable<User>;
+
   search: string;
 
   constructor(
     public parentService: ParentService,
     public clinicianService: ClinicianService,
     public clinicService: ClinicService,
-    ) { }
+    private httpClient: HttpClient,
+    
+    ) { 
+      this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+      this.currentUser = this.currentUserSubject.asObservable();
+    }
 
 
   ffqclinicianList: FFQClinician[] = [];
@@ -58,6 +67,7 @@ export class AdminUsersComponent implements OnInit {
 
   ngOnInit() {
 
+    console.log(this.currentUserSubject.value);
     this.clinicNames.push("");
     this.showParents = true;
     this.showClinicians = true;

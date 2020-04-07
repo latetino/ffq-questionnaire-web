@@ -20,6 +20,10 @@ export class LoginComponent implements OnInit {
     submitted = false;
     returnUrl: string;
     error = '';
+    accountList: string[] = ["admins", "clinicians", "parents"];
+    dropDownName: string[] = ["Admin", "Clinician", "Parent"];
+
+
     //userType: string;
 
     constructor(
@@ -68,5 +72,7 @@ export class LoginComponent implements OnInit {
                     this.loading = false;
                 });
     }
+
+
 
 }
