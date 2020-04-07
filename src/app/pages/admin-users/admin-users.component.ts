@@ -135,18 +135,18 @@ export class AdminUsersComponent implements OnInit {
       this.ffqclinicList = a;
       
       a.forEach(clinic =>{
-        this.clinicNames.push(clinic.clinicname);
+        this.clinicNames.push(clinic.clinicName);
       });
 
        clinicianList.subscribe(b => {
          this.ffqclinicianList = b;
-         console.log(a);
+         //console.log(a);
 
          b.forEach(clinician =>  {
           //Code below to get the assigned clinic for each clinician
           var clinicianClinic = a.find(n => n.clinicId == clinician.assignedClinic);
           if(!!clinicianClinic){
-            var clinicianClinicName = clinicianClinic.clinicname;
+            var clinicianClinicName = clinicianClinic.clinicName;
           }
           //this.clinicianClinicNames.push(clinicianClinicName);
 
@@ -154,14 +154,14 @@ export class AdminUsersComponent implements OnInit {
 
           parentList.subscribe(c => {
           this.ffqparentList = c;
-          console.log(a);
+          //console.log(a);
           
           c.forEach(parent => {
             var clinicians = b.find(n => n.username == parent.assignedClinician);
             if(!!clinicians){
               var parentClinic = a.find(n => n.clinicId == clinicians.assignedClinic);
               if(!!parentClinic){
-                var parentClinicName = parentClinic.clinicname;
+                var parentClinicName = parentClinic.clinicName;
               }
             }
             //this.parentClinicNames.push(parentClinicName);

@@ -99,7 +99,7 @@ export class UserComponent implements OnInit {
       clinicList.subscribe(a => {
       this.ffqclinicList = a;
       for (let i = 0; i < a.length; i++) {
-        this.clinicNames.push(a[i].clinicname);
+        this.clinicNames.push(a[i].clinicName);
       }
     });
 
@@ -142,6 +142,7 @@ export class UserComponent implements OnInit {
         var newClincianId = (data.length+1).toString();
         var newClincianUsername = "clinician"+numberOfClinicians;
         this.ffqclinician = new FFQClinician(newClincianId, newClincianUsername, newClincianUsername, "", "", this.clinicnumber, []);
+        console.log("LOOK HERE!!! " + this.clinicNames.indexOf(this.selectedClinic).toString());
         console.log(this.ffqclinician);
 
         this.clinicianService.addClinician(this.ffqclinician).subscribe(data => {
@@ -221,6 +222,40 @@ export class UserComponent implements OnInit {
       this.userAttributes.push(data)
     });
     this.dataLoaded = Promise.resolve(true); 
+  }
+
+  updateUser()
+  {
+    if(this.isParent)
+    {
+      this.updateParent();
+    }
+    else
+    {
+      this.updateClinician();
+    }
+  }
+
+  updateParent()
+  { 
+    console.log(this.userAttributes[0]);
+    this.parentService.updateParent(<FFQParentResponse>this.userAttributes[0]).subscribe(
+     data => {this.router.navigateByUrl('/admin/users');
+     const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
+     dialogRef.componentInstance.title = 'Parent successfully updated!';}
+     
+    );
+  }
+
+  updateClinician()
+  { 
+    console.log(this.userAttributes[0]);
+    this.clinicianService.updateClinician(<FFQClinicianResponse>this.userAttributes[0]).subscribe(
+     data => {this.router.navigateByUrl('/admin/users');
+     const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
+     dialogRef.componentInstance.title = 'Clinician successfully updated!';}
+     
+    );
   }
 
   

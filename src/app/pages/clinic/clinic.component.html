@@ -9,8 +9,9 @@
       <!-- Update Clinic starts here -->    
 
       <div *ngIf="isUpdate" class="container mt-3">
-        <div align="right">  
-          <button type="submit" class="btn btn-primary col-3 margin" (click)="updateFoodNutrients()"
+        <div align="right">
+          <button mat-raised-button class="delete" style="margin-right: 20px;"> Delete </button>
+          <button mat-raised-button class="update" (click)="updateClinic()"
             [disabled]="!myForm.form.valid"> Update Clinic </button>
         </div>
         <div class="container frame-fooditem">
@@ -23,7 +24,7 @@
             <br>
             <label style="font-weight: bold"> Name </label><label style="font-style: italic; font-size: small; margin-left: 10px"> *required </label>
             <input placeholder="Name of Clinic" width="25" style="border-color: mediumblue; border-width: 0.05cm" type="text"
-                class="form-control" name="clinicname" [(ngModel)]="clinicAttributes[0].clinicname" required/>
+                class="form-control" name="clinicName" [(ngModel)]="clinicAttributes[0].clinicName" required/>
             <br>
             <label style="font-weight: bold"> Location </label>
             <input placeholder="Address" width="25" style="border-color: mediumblue; border-width: 0.05cm" type="text"
@@ -34,7 +35,7 @@
             <mat-form-field>
                 <mat-label appearance="fill">Choose...</mat-label>
                 <mat-select matNativeControl>
-                  <mat-option *ngFor="let u of ffqclinicianList" [value]="u.lastname" [hidden]="u.assignedClinic != clinicAttributes[0].clinicId">{{ u.role }} {{ u.firstname }} {{ u.lastname }}</mat-option>
+                  <mat-option *ngFor="let u of ffqclinicianList" [value]="u.lastname" [hidden]="u.assignedClinic != clinicAttributes[0].clinicId">{{ u.abbreviation }} {{ u.firstname }} {{ u.lastname }}</mat-option>
                 </mat-select>
             </mat-form-field>
             

@@ -144,7 +144,7 @@ export class ClinicalPortalComponent implements OnInit  {
            var clinic = a.find(n => n.clinicId == clinician.assignedClinic);
            var clinicName
            if(!!clinic){
-              clinicName = clinic.clinicname;
+              clinicName = clinic.clinicName;
            }
            else{
               clinicName = "";
@@ -161,7 +161,7 @@ export class ClinicalPortalComponent implements OnInit  {
             //Code below to get the assigned clinician name for each parent
             var clinician = b.find(n => n.userId == parent.assignedClinician);
             if(!!clinician){
-               var clinicianName = clinician.abbreviation + ". " + clinician.firstname + " " + clinician.lastname;
+               var clinicianName = clinician.abbreviation + " " + clinician.firstname + " " + clinician.lastname;
             }
             this.clinicianNames.push(clinicianName);
           });

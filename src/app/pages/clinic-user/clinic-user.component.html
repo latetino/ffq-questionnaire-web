@@ -61,7 +61,7 @@
                       <th width="20%"> No. of Questionnaires </th>
                   </tr>
                   <!--<tr *ngFor="let u of ffqparentList | searchFilter: p_search; index as i" [hidden]="hideUnassignedParents && !clinicianNames[i] || (filtered && filtered_clinicians.indexOf(clinicianNames[i]) === -1)">
-                      <td><a [routerLink]="['/clinic/user/p', u.parentId]"> {{ u.username }} </a></td>
+                      <td><a [routerLink]="['/clinic/user/p', u.userId]"> {{ u.username }} </a></td>
                       <td> {{ u.firstname }} {{ u.lastname }}</td>
                       <td> </td>
                       <td> {{ clinicianNames[i] }}</td>
@@ -84,7 +84,7 @@
                   class="form-control" readonly name="username" [(ngModel)]="userAttributes[0].username">
                 <br>
                 <label style="font-weight: bold"> Role / Abbreviation </label>
-                <input style="border-width: 0.05cm" placeholder="Role" type="text" class="form-control" name="role" [(ngModel)]="userAttributes[0].role"/>
+                <input style="border-width: 0.05cm" placeholder="Role" type="text" class="form-control" name="abbreviation" [(ngModel)]="userAttributes[0].abbreviation"/>
                 <br>
                 <label style="font-weight: bold"> Name </label>
                 <input style="border-width: 0.05cm" placeholder="First Name" type="text" class="form-control" name="firstname" [(ngModel)]="userAttributes[0].firstname"/>

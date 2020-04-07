@@ -20,7 +20,7 @@
             <mat-form-field>
                 <mat-label appearance="fill">Filter by Clinic...</mat-label>
                 <mat-select matNativeControl multiple>
-                  <mat-option *ngFor="let c of ffqclinicList" [value]="c.clinicname" (click)="filterByClinic(c.clinicname)">{{ c.clinicname }}</mat-option>
+                  <mat-option *ngFor="let c of ffqclinicList" [value]="c.clinicName" (click)="filterByClinic(c.clinicName)">{{ c.clinicName }}</mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
@@ -31,13 +31,11 @@
                 <th width="15%"> Account Type </th>
                 <th width="60%"> Clinic </th>
             </tr>
-     <!--   <tr *ngFor="let u of ffqclinicianList" [hidden]="(!showParents && u.account_type === 'Parent') || (!showClinicians && u.account_type === 'Clinician') || (!showAdmins && u.account_type === 'Admin')"> --> 
             <tr *ngFor="let u of ffqclinicianList | searchFilter: search; index as i" [hidden]="!showClinicians || (filtered && filtered_clinics.indexOf(clinicNames[u.assignedClinic]) === -1)">
                 <td><a [routerLink]="['/admin/user/c', u.userId]"> {{ u.username }} </a></td>
                 <td> Clinician </td>
                 <td> {{ clinicNames[u.assignedClinic] }} </td>
             </tr>
-   <!--    <tr *ngFor="let u of ffqparentList" [hidden]="(!showParents && u.account_type === 'Parent') || (!showClinicians && u.account_type === 'Clinician') || (!showAdmins && u.account_type === 'Admin')">  -->
             <tr *ngFor="let u of ffqparentList | searchFilter: search; index as i" [hidden]="!showParents || (filtered && filtered_clinics.indexOf(clinicNames[u.assignedClinic]) === -1)">   
                  <td><a [routerLink]="['/admin/user/p', u.userId]"> {{ u.username }} </a></td>
                  <td> Parent </td>

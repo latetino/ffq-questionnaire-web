@@ -9,8 +9,9 @@
       <!-- Update user starts here -->    
 
       <div *ngIf="isUpdate" class="container mt-3">
-        <div align="right">  
-          <button type="submit" class="btn btn-primary col-3 margin" (click)="updateFoodNutrients()"
+        <div align="right">
+          <button mat-raised-button class="delete" style="margin-right: 20px;"> Delete </button>
+          <button mat-raised-button class="update" (click)="updateUser()"
             [disabled]="!myForm.form.valid"> Update User </button>
         </div>
         <div class="container frame-fooditem">
@@ -34,7 +35,7 @@
               <mat-form-field>
                 <mat-label appearance="fill">Choose Clinic...</mat-label>
                 <mat-select matNativeControl [(value)]="clinicNames[userAttributes[0].assignedClinic]" required>
-                  <mat-option *ngFor="let c of ffqclinicList" [value]="c.clinicname">{{ c.clinicname }}</mat-option>
+                  <mat-option *ngFor="let c of ffqclinicList" [value]="c.clinicName">{{ c.clinicName }}</mat-option>
                 </mat-select>
               </mat-form-field>
 
@@ -80,7 +81,7 @@
                 <mat-form-field>
                   <mat-label appearance="fill">Choose Clinic...</mat-label>
                   <mat-select matNativeControl required name="selectedClinic" [(ngModel)]="selectedClinic">
-                    <mat-option *ngFor="let c of ffqclinicList" [value]="c.clinicname" >{{ c.clinicname }}</mat-option>
+                    <mat-option *ngFor="let c of ffqclinicList" [value]="c.clinicName" >{{ c.clinicName }}</mat-option>
                   </mat-select>
                 </mat-form-field>
   
@@ -99,7 +100,7 @@
               <mat-form-field>
                 <mat-label appearance="fill">Choose Clinic...</mat-label>
                 <mat-select matNativeControl required>
-                  <mat-option *ngFor="let c of ffqclinicList" [value]="c.clinicname">{{ c.clinicname }}</mat-option>
+                  <mat-option *ngFor="let c of ffqclinicList" [value]="c.clinicName">{{ c.clinicName }}</mat-option>
                 </mat-select>
               </mat-form-field>
             </div>

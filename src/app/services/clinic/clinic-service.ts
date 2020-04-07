@@ -74,7 +74,7 @@ export class ClinicService {
             item.clinicId,
             item.address,
             item.datebuilt,
-            item.clinicname,
+            item.clinicName,
             item.headclinician,
             item.isactive
           );

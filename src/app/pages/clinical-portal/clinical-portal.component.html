@@ -70,7 +70,7 @@
                 <mat-form-field>
                     <mat-label appearance="fill">Filter by Clinician...</mat-label>
                     <mat-select matNativeControl multiple>
-                      <mat-option *ngFor="let u of ffqclinicianList" (click)="filterByClinician(u.role + ' ' + u.firstname + ' ' + u.lastname)">{{ u.role }} {{ u.firstname }} {{ u.lastname }}</mat-option>
+                      <mat-option *ngFor="let u of ffqclinicianList" (click)="filterByClinician(u.abbreviation + ' ' + u.firstname + ' ' + u.lastname)">{{ u.abbreviation }} {{ u.firstname }} {{ u.lastname }}</mat-option>
                     </mat-select>
                 </mat-form-field>
                 <!--<span style="color:gray; margin-left: 20px; margin-right: 20px; font-size: x-large;"> | </span>

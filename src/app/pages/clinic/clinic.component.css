@@ -83,3 +83,13 @@
       border:2px solid red;
     
     }
+
+    .mat-raised-button{
+      background-color: #6573C3;
+      color: white;
+    }
+      
+    .delete{
+      background-color: red;
+      color: white;
+    }

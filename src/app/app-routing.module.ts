@@ -48,7 +48,7 @@ const routes: Routes = [
     path: 'admin/home', component: AdminPageComponent
   },
   {
-    path: 'admin/users', component: AdminUsersComponent, canActivate: [AuthGuard],
+    path: 'admin/users', component: AdminUsersComponent, canActivate: [AuthGuard]
   },
   {
     path: 'recommend-parental', component:   RecommendParentalComponent  },
@@ -71,7 +71,7 @@ const routes: Routes = [
     path: '', redirectTo: 'login-page', pathMatch: 'full'
   },
   {
-    path: 'questionnaire-id', component: QuestIdInputComponent, canActivate: [AuthGuard]
+    path: 'questionnaire-id', component: QuestIdInputComponent//, canActivate: [AuthGuard]
   },
   {
     path: 'questionnaire/:id', component: QuestionnairePageComponent

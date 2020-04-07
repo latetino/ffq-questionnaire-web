@@ -114,9 +114,20 @@ export class ClinicComponent implements OnInit {
   {
       this.clinicService.getClinic(id).subscribe(data => {  
       
-        this.clinicAttributes.push(data)
+        this.clinicAttributes.push(data);
       });
       this.dataLoaded = Promise.resolve(true);
+  }
+
+  updateClinic()
+  { 
+    console.log(this.clinicAttributes[0]);
+    this.clinicService.updateClinic(<FFQClinicResponse>this.clinicAttributes[0]).subscribe(
+     data => {this.router.navigateByUrl('/admin/clinics');
+     const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
+     dialogRef.componentInstance.title = 'Clinic successfully updated!';}
+     
+    );
   }
 }
 
