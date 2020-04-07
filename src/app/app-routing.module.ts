@@ -13,6 +13,7 @@ import { AuthGuard } from './services/authentication/auth.guard';
 import { RecommendParentalComponent } from './pages/recommend-parental/recommend-parental.component';
 import { TrackerPageComponent } from './pages/tracker-page/tracker-page.component';
 import { TrackerHistoryPageComponent } from './pages/tracker-history-page/tracker-history-page.component';
+import { HistoryParentalComponent } from './pages/history-parental/history-parental.component';
 
 
 
@@ -55,6 +56,9 @@ const routes: Routes = [
   },
   {
     path: 'tracker-history', component: TrackerHistoryPageComponent
+  },
+  {
+    path: 'history-parental', component: HistoryParentalComponent
   }
 ];
 

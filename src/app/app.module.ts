@@ -40,6 +40,7 @@ import { TrackerPageComponent } from './pages/tracker-page/tracker-page.componen
 import { TrackerBlockComponent } from './components/tracker-block/tracker-block.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { TrackerHistoryPageComponent } from './pages/tracker-history-page/tracker-history-page.component';
+import { HistoryParentalComponent } from './pages/history-parental/history-parental.component';
 
 
 
@@ -68,7 +69,8 @@ import { TrackerHistoryPageComponent } from './pages/tracker-history-page/tracke
     RecommendParentalComponent,
     TrackerPageComponent,
     TrackerBlockComponent,
-    TrackerHistoryPageComponent
+    TrackerHistoryPageComponent,
+    HistoryParentalComponent
 
   ],
   imports: [

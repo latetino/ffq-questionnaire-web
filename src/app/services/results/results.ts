@@ -24,6 +24,7 @@ export class ResultsService {
         return res.map(item => {
           return new FFQResultsResponse(
             item.questionnaireId,
+            item.parentId,
             item.patientName,
             item.ageInMonths,
             item.userChoices,
@@ -33,4 +34,21 @@ export class ResultsService {
         });
       }));
     }
+
+    getResultsByUser(userId: string): Observable<FFQResultsResponse[]> {
+      return this.http.get(this.endpoint + '/results/' + userId).pipe(
+        map((res: any) => {
+          return res.map(item => {
+            return new FFQResultsResponse(
+              item.questionnaireId,
+              item.userId,
+              item.patientName,
+              item.ageInMonths,
+              item.userChoices,
+              item.weeklyTotals,
+              item.dailyAverages
+            );
+          });
+        }));
+      }
   }
