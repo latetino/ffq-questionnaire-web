@@ -56,7 +56,7 @@ export class ClinicianService {
             item.role,
             item.firstname,
             item.lastname,
-            item.assignedClinic,
+            item.assignedclinic,
             item.previousclinics
           );
       })
@@ -76,7 +76,7 @@ export class ClinicianService {
             item.role,
             item.firstname,
             item.lastname,
-            item.assignedClinic,
+            item.assignedclinic,
             item.previousclinics
           );
         });

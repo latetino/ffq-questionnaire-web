@@ -57,7 +57,9 @@ export class ClinicService {
             item.clinicId,
             item.address,
             item.dateBuilt,
-            item.clinicname
+            item.clinicname,
+            item.headclinician,
+            item.isactive
           );
       })
     );
@@ -74,7 +76,7 @@ export class ClinicService {
             item.clinicId,
             item.address,
             item.datebuilt,
-            item.clinicName,
+            item.clinicname,
             item.headclinician,
             item.isactive
           );

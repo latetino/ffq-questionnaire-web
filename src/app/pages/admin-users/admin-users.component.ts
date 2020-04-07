@@ -27,6 +27,7 @@ import { FFQClinic } from 'src/app/models/ffqclinic';
 import { SearchPipe } from 'src/app/pipes/searchFilter.pipe';
 import { User } from 'src/app/models/user';
 import { HttpClient } from '@angular/common/http';
+import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 
 @Component({
   templateUrl: './admin-users.component.html',
@@ -38,8 +39,6 @@ export class AdminUsersComponent implements OnInit {
   private showParents: boolean;
   private showClinicians: boolean;
   private showAdmins: boolean;
-  private currentUserSubject: BehaviorSubject<User>;
-  public currentUser: Observable<User>;
 
   search: string;
 
@@ -47,19 +46,16 @@ export class AdminUsersComponent implements OnInit {
     public parentService: ParentService,
     public clinicianService: ClinicianService,
     public clinicService: ClinicService,
-    private httpClient: HttpClient,
+    public authenticationService: AuthenticationService
     
-    ) { 
-      this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
-      this.currentUser = this.currentUserSubject.asObservable();
-    }
+    ) { }
 
 
   ffqclinicianList: FFQClinician[] = [];
   ffqparentList: FFQParent[] = [];
   ffqclinicList: FFQClinic[] = [];
-  //clinicianClinicNames: string[] = [];
-  //parentClinicNames: string[] = [];
+  clinicianClinicNames: string[] = [];
+  parentClinicNames: string[] = [];
   clinicNames: string[] = [];
   public filtered: boolean;
   public filtered_clinics: String[] = [];
@@ -67,7 +63,7 @@ export class AdminUsersComponent implements OnInit {
 
   ngOnInit() {
 
-    console.log(this.currentUserSubject.value);
+    //console.log(this.authenticationService.currentUserValue[0]);
     this.clinicNames.push("");
     this.showParents = true;
     this.showClinicians = true;
@@ -131,6 +127,20 @@ export class AdminUsersComponent implements OnInit {
     var parentList: Observable<FFQParentResponse[]> = this.parentService.getAllParents();
     var clinicList: Observable<FFQClinicResponse[]> = this.clinicService.getAllClinics();
 
+/*
+    clinicianList.subscribe(a => {
+      this.ffqclinicianList = a
+      console.log(this.ffqclinicianList[0]);
+    });
+    parentList.subscribe(a => {
+      this.ffqparentList = a
+    });
+    clinicList.subscribe(a => {
+      this.ffqclinicList = a
+    });
+*/
+
+
     clinicList.subscribe(a => {
       this.ffqclinicList = a;
       
@@ -145,10 +155,11 @@ export class AdminUsersComponent implements OnInit {
          b.forEach(clinician =>  {
           //Code below to get the assigned clinic for each clinician
           var clinicianClinic = a.find(n => n.clinicId == clinician.assignedClinic);
+          
           if(!!clinicianClinic){
             var clinicianClinicName = clinicianClinic.clinicName;
           }
-          //this.clinicianClinicNames.push(clinicianClinicName);
+          this.clinicianClinicNames.push(clinicianClinicName);
 
         });
 
@@ -157,14 +168,15 @@ export class AdminUsersComponent implements OnInit {
           //console.log(a);
           
           c.forEach(parent => {
-            var clinicians = b.find(n => n.username == parent.assignedClinician);
+            var clinicians = b.find(n => n.userId == parent.assignedClinician);
+            
             if(!!clinicians){
               var parentClinic = a.find(n => n.clinicId == clinicians.assignedClinic);
               if(!!parentClinic){
                 var parentClinicName = parentClinic.clinicName;
               }
             }
-            //this.parentClinicNames.push(parentClinicName);
+            this.parentClinicNames.push(parentClinicName);
           });    
           });
        });

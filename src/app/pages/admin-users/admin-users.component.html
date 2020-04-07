@@ -34,12 +34,12 @@
             <tr *ngFor="let u of ffqclinicianList | searchFilter: search; index as i" [hidden]="!showClinicians || (filtered && filtered_clinics.indexOf(clinicNames[u.assignedClinic]) === -1)">
                 <td><a [routerLink]="['/admin/user/c', u.userId]"> {{ u.username }} </a></td>
                 <td> Clinician </td>
-                <td> {{ clinicNames[u.assignedClinic] }} </td>
+                <td> {{ clinicianClinicNames[i] }} </td>
             </tr>
             <tr *ngFor="let u of ffqparentList | searchFilter: search; index as i" [hidden]="!showParents || (filtered && filtered_clinics.indexOf(clinicNames[u.assignedClinic]) === -1)">   
-                 <td><a [routerLink]="['/admin/user/p', u.userId]"> {{ u.username }} </a></td>
-                 <td> Parent </td>
-                 <td> {{ clinicNames[u.assignedClinic] }} </td>
+                <td><a [routerLink]="['/admin/user/p', u.userId]"> {{ u.username }} </a></td>
+                <td> Parent </td>
+                <td> {{ parentClinicNames[i] }} </td>
             </tr>
         </table>
        
