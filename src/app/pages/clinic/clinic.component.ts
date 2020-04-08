@@ -32,6 +32,7 @@ export class ClinicComponent implements OnInit {
   showMsg: boolean = false;
   name_of_clinic: string;
   location: string;
+  allClinicians: FFQClinician[] = [];
 
   constructor(
     public parentService: ParentService,
@@ -112,12 +113,28 @@ export class ClinicComponent implements OnInit {
 
   private getClinicById(id: number)
   {
+
+   // var allClinicians: Observable<FFQClinicianResponse[]> = this.clinicianService.getAllClinicians();
+  //  var allClinicians: Observable<FFQClinicianResponse[]> = this.clinicianService.getAllClinicians();
+  //  var headClinician: FFQClinician;
+   // var headClinicianName: string;
+
       this.clinicService.getClinic(id).subscribe(data => {  
       
+       /* allClinicians.subscribe(b => {
+           b.forEach(clinician => {
+            headClinician = b.find(a => a.userId == data.headclinician);
+            if(!!headClinician)
+            headClinicianName = headClinician.firstname + " " + headClinician.lastname;
+           })
+
+        })*/
+        this.allClinicians.push()
         this.clinicAttributes.push(data);
       });
       this.dataLoaded = Promise.resolve(true);
   }
+
 
   updateClinic()
   { 

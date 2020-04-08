@@ -33,51 +33,52 @@ import { LogoutComponent } from './pages/logout/logout.component';
 
 const routes: Routes = [
   {
-    path: 'admin/fooditem/:id', component: FooditemComponent
+    path: 'admin/fooditem/:id', component: FooditemComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'admin/fooditem', component: FooditemComponent
+    path: 'admin/fooditem', component: FooditemComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'admin/user/:type/:id', component: UserComponent
+    path: 'admin/user/:type/:id', component: UserComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'admin/user/:id', component: UserComponent
+    path: 'admin/user/:id', component: UserComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'admin/home', component: AdminPageComponent
+    path: 'admin/home', component: AdminPageComponent, canActivate: [AuthGuard]
   },
   {
     path: 'admin/users', component: AdminUsersComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'recommend-parental', component:   RecommendParentalComponent  },
-  {
-    path: 'admin/results', component:  QuestResultsComponent
+    path: 'recommend-parental', component:   RecommendParentalComponent
   },
   {
-    path: 'admin/recommend', component:   RecommendComponent
+    path: 'admin/results', component:  QuestResultsComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'admin/clinics', component: AdminClinicsComponent
+    path: 'admin/recommend', component:   RecommendComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'admin/clinic', component: ClinicComponent
+    path: 'admin/clinics', component: AdminClinicsComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'admin/clinic/:id', component: ClinicComponent
+    path: 'admin/clinic', component: ClinicComponent, canActivate: [AuthGuard]
   },
   {
-    path: '', redirectTo: 'login-page', pathMatch: 'full'
+    path: 'admin/clinic/:id', component: ClinicComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'questionnaire-id', component: QuestIdInputComponent//, canActivate: [AuthGuard]
+    path: '', redirectTo: 'login', pathMatch: 'full'
   },
   {
-    path: 'questionnaire/:id', component: QuestionnairePageComponent
+    path: 'questionnaire-id', component: QuestIdInputComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'clinic/home', component: ClinicalPortalComponent
+    path: 'questionnaire/:id', component: QuestionnairePageComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'clinic/home', component: ClinicalPortalComponent, canActivate: [AuthGuard]
   },
   {
     path: 'tracker', component: TrackerPageComponent
@@ -92,16 +93,16 @@ const routes: Routes = [
     path: 'login', component: LoginComponent
   },
   {
-    path: 'clinic/results', component: ClinicQuestResultsComponent
+    path: 'clinic/results', component: ClinicQuestResultsComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'clinic/recommend', component: ClinicRecommendComponent
+    path: 'clinic/recommend', component: ClinicRecommendComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'clinic/user/:type/:id', component: ClinicUserComponent
+    path: 'clinic/user/:type/:id', component: ClinicUserComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'clinic/user', component: ClinicUserComponent
+    path: 'clinic/user', component: ClinicUserComponent, canActivate: [AuthGuard]
   }
   {
     path: 'login', component: LoginComponent

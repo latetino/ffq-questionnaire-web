@@ -1,31 +1,3 @@
-/*import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
-import { AuthenticationService } from './authentication.service';
-
-@Injectable({
-  providedIn: 'root'
-})
-export class AuthGaurdService implements CanActivate {
-
-  constructor(private router: Router,
-    private authService: AuthenticationService) { }
-
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (this.authService.isUserLoggedIn())
-      return true;
-
-    this.router.navigate(['login']);
-    return false;
-
-  }
-
-}*/
-
-
-
-
-
-
 import { Injectable } from '@angular/core';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
@@ -40,14 +12,56 @@ export class AuthGuard implements CanActivate {
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const currentUser = this.authenticationService.currentUserValue;
+        console.log(currentUser);
+        console.log(currentUser[0].usertype);
         if (currentUser) {
             // logged in so return true
+            var urlType = this.getUrlType(state.url);
+            console.log(state.url);
+            console.log(urlType);
+
+            if(currentUser[0].usertype == "admin"){
+
+              if(urlType != "/admin"){
+                this.router.navigate(['/admin/home']);
+              }  
+            }
+            else if(currentUser[0].usertype == "parent"){
+              if(urlType != "/parent"){
+                this.router.navigate(['/parental']);
+              } 
+            }
+            else if(currentUser[0].usertype == "clinician"){
+              if(urlType != "/clinic"){
+                this.router.navigate(['/clinic/home']);
+              }  
+            }
+            
             return true;
         }
 
         // not logged in so redirect to login page with the return url
+
         this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
         return false;
     }
+
+
+
+    private getUrlType(state: string): string{
+        var urlType = "/"
+        var i;
+        for (i = 1; i < state.length; i++) {
+          if(state[i] == "/"){
+            i = (state.length)-1;
+            continue;
+          }
+           urlType += state[i];
+        }
+        return urlType;
+
+    }
 }
+
+
 

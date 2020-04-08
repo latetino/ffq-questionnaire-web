@@ -141,7 +141,7 @@ export class UserComponent implements OnInit {
         //console.log("Number of clinicians is: " + numberOfClinicians);
         var newClincianId = (data.length+1).toString();
         var newClincianUsername = "clinician"+numberOfClinicians;
-        this.ffqclinician = new FFQClinician(newClincianId, newClincianUsername, newClincianUsername, "", "", this.clinicnumber, []);
+        this.ffqclinician = new FFQClinician(newClincianId, newClincianUsername, newClincianUsername, "clinician", "", "", "", this.clinicNames.indexOf(this.selectedClinic).toString(), []);
         console.log("LOOK HERE!!! " + this.clinicNames.indexOf(this.selectedClinic).toString());
         console.log(this.ffqclinician);
 
@@ -166,7 +166,7 @@ export class UserComponent implements OnInit {
         var numberOfParents = (data.length+1).toString();
         var newParentId = (data.length+1).toString();
         var newParentUsername = "parent"+numberOfParents;
-        this.ffqParent = new FFQParent(newParentId, newParentUsername, newParentUsername, "", "", "0", []);
+        this.ffqParent = new FFQParent(newParentId, newParentUsername, newParentUsername, "parent", "", "",  this.clinicNames.indexOf(this.selectedClinic).toString(), "", []);
 
         this.parentService.addParent(this.ffqParent).subscribe(data => {
             this.router.navigateByUrl('/admin/users');

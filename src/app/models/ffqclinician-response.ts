@@ -5,22 +5,24 @@ export class FFQClinicianResponse {
   userId: string;
   username: string;
   userpassword: string;
-  role: string;
+  usertype: string;
+  abbreviation: string;
   firstname: string;
   lastname: string;
   assignedClinic: string;
   previousClinics: any;
 
 
-  constructor(userId: string, username: string, userpassword: string, abbreviation: string, firstname: string, lastname: string, assignedClinic: string,  previousClinics: any) {
+  constructor(userId: string, username: string, userpassword: string, usertype:string, abbreviation: string, firstname: string, lastname: string, assignedClinic: string, previousClinics: any) {
     this.userId = userId;
     this.username = username;
     this.userpassword = userpassword;
-    this.role = role;
-    this.firstname  = firstname;
+    this.usertype = usertype;
+    this.abbreviation = abbreviation;
+    this.firstname = firstname;
     this.lastname = lastname;
     this.assignedClinic = assignedClinic;
-    this. previousClinics =  previousClinics;
+    this.previousClinics = previousClinics
   }
 
 }

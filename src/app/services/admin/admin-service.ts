@@ -56,6 +56,7 @@ export class AdminService {
             item.userId,
             item.username,
             item.userpassword,
+            item.usertype,
             item.firstname,
             item.lastname
           );
@@ -73,6 +74,7 @@ export class AdminService {
             item.userId,
             item.username,
             item.userpassword,
+            item.usertype,
             item.firstname,
             item.lastname
           );

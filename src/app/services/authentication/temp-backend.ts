@@ -6,7 +6,7 @@ import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 import { User } from 'src/app/services/authentication/temp-user';
 
 const users: User[] = [{ id: "1", 
-                    ffqadmin: {userId: "ADMIN", username: 'admin', userpassword: "admin123", firstname: 'Cristina', lastname: 'Palacio' }, 
+                    ffqadmin: {userId: "ADMIN", username: 'admin', userpassword: "admin123", usertype: "admin", firstname: 'Cristina', lastname: 'Palacio' }, 
                     userType: "admin" }];
 
 @Injectable()
