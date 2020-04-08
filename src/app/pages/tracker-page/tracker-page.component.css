@@ -41,3 +41,13 @@ mat-button-toggle-group {
 .mat-button-toggle-checked {
   background-color: #6880EE;
 }
+
+.top{
+  color: #d96459;
+}
+.med{
+  color: #588c7e;
+}
+.bot{
+  color: #ffcc5c;
+}
