@@ -20,6 +20,10 @@ export class AuthenticationService {
         return this.currentUserSubject.value;
     }
 
+    public get currentUserId(): string {
+        return this.currentUserValue[0].userId;
+    }
+
     login(username: string, password: string) {
         return this.http.post<any>(`${environment.apiUrl}/users/authenticate`, { username, password })
             .pipe(map(user => {

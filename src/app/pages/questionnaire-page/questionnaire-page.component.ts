@@ -15,6 +15,7 @@ import {ResultsPageComponent} from '../results-page/results-page.component';
 import {FFQResult} from '../../models/FFQResult';
 import {NutrientConstants} from '../../models/NutrientConstants';
 import { Validators, FormControl } from '@angular/forms';
+import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 
 @Component({
   selector: 'app-questionnaire-page',
@@ -34,6 +35,7 @@ export class QuestionnairePageComponent implements OnInit {
     'All open question blocks must be completely filled out before submitting the questionnaire.',
     'Click the submit button when finished.'
   ];
+  userId: string;
   id: string;
   infantage: number;
   questionnaire: QuestionnaireResponse;
@@ -53,10 +55,12 @@ export class QuestionnairePageComponent implements OnInit {
               private httpErrorDialog: MatDialog,
               private successDialog: MatDialog,
               private router: Router,
-              private modalService: NgbModal) {}
+              private modalService: NgbModal,
+              private authenticationService: AuthenticationService) {}
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(params => {
+        this.userId = this.authenticationService.currentUserId;
         this.id = params.get('id');
         this.questService.getQuestionnaireId(this.id).subscribe((data: QuestionnaireResponse) => {
           this.questionnaire = data;
@@ -111,7 +115,7 @@ export class QuestionnairePageComponent implements OnInit {
         }
       }
 
-      this.foodService.calculateNutrientBreakdown(this.id, this.infantage, itemList)
+      this.foodService.calculateNutrientBreakdown(this.userId, this.id, this.infantage, itemList)
         .subscribe( (results) => {
             console.log(results);
             const dailyMap: Map<string, number> = new Map();
