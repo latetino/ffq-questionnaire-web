@@ -32,8 +32,11 @@
               <div class="form-group col-12">
                 
                 <label style="font-weight: bold"> Username </label>
+                <!--<input style="border-color: gray; border-width: 0.05cm" type="text"
+                  class="form-control" readonly name="username" [(ngModel)]="userAttributes[0].username">-->
+
                 <input style="border-color: gray; border-width: 0.05cm" type="text"
-                  class="form-control" readonly name="username" [(ngModel)]="userAttributes[0].username">
+                  class="form-control" name="username" [(ngModel)]="userAttributes[0].username">
                 <br>
                 <label style="font-weight: bold"> Name of Parent </label>
                 <input style="border-width: 0.05cm" placeholder="First Name" type="text" class="form-control"

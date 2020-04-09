@@ -103,7 +103,7 @@ export class UserComponent implements OnInit {
     clinicListObservable.subscribe(clinicList => {
       this.ffqclinicList = clinicList;
       clinicList.forEach(clinic => {
-        this.clinicIds.set(clinic.clinicName, clinic.clinicId);
+        this.clinicIds.set(clinic.clinicname, clinic.clinicId);
       })
       console.log("clinicIdMap is ");
       console.log(this.clinicIds);

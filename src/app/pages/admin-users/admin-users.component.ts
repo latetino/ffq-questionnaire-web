@@ -133,7 +133,7 @@ export class AdminUsersComponent implements OnInit {
       console.log(a);
       a.forEach(clinic =>{
         
-        this.clinicNames.push(clinic.clinicName);
+        this.clinicNames.push(clinic.clinicname);
       });
 
        clinicianList.subscribe(b => {
@@ -147,7 +147,7 @@ export class AdminUsersComponent implements OnInit {
           var clinicianClinic = a.find(n => n.clinicId == clinician.assignedclinic);
           
           if(!!clinicianClinic){
-            var clinicianClinicName = clinicianClinic.clinicName;
+            var clinicianClinicName = clinicianClinic.clinicname;
             this.clinicianClinicNames.push(clinicianClinicName);
           }
        //   this.clinicianClinicNames.push(clinicianClinicName);
@@ -165,7 +165,7 @@ export class AdminUsersComponent implements OnInit {
             if(!!clinicians){
               var parentClinic = a.find(n => n.clinicId == clinicians.assignedclinic);
               if(!!parentClinic){
-                var parentClinicName = parentClinic.clinicName;
+                var parentClinicName = parentClinic.clinicname;
               }
             }
             this.parentClinicNames.push(parentClinicName);

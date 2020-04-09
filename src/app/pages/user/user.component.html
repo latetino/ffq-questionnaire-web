@@ -38,7 +38,7 @@
                 <mat-label appearance="fill">Choose Clinic...</mat-label>
                 <mat-select matNativeControl [(value)]="newClinic" required> 
            <!--     <mat-select matNativeControl [(value)]="userAttributes[0].assignedclinic" required> -->
-                  <mat-option *ngFor="let c of ffqclinicList" [value]="c.clinicName">{{ c.clinicName }}</mat-option>
+                  <mat-option *ngFor="let c of ffqclinicList" [value]="c.clinicname">{{ c.clinicname }}</mat-option>
                 </mat-select>
               </mat-form-field>
 
@@ -54,7 +54,7 @@
                 <mat-label appearance="fill">Choose Clinic...</mat-label>
                 <mat-select matNativeControl [(value)]="newClinic" required> 
            <!--     <mat-select matNativeControl [(value)]="userAttributes[0].assignedclinic" required> -->
-                  <mat-option *ngFor="let c of ffqclinicList" [value]="c.clinicName">{{ c.clinicName }}</mat-option>
+                  <mat-option *ngFor="let c of ffqclinicList" [value]="c.clinicname">{{ c.clinicname }}</mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
@@ -101,7 +101,7 @@
                 <mat-form-field>
                   <mat-label appearance="fill">Choose Clinic...</mat-label>
                   <mat-select matNativeControl required name="selectedClinic" [(ngModel)]="selectedClinic">
-                    <mat-option *ngFor="let c of ffqclinicList" [value]="c.clinicName" >{{ c.clinicName }}</mat-option>
+                    <mat-option *ngFor="let c of ffqclinicList" [value]="c.clinicname" >{{ c.clinicname }}</mat-option>
                   </mat-select>
                 </mat-form-field>
   
@@ -120,7 +120,7 @@
               <mat-form-field>
                 <mat-label appearance="fill">Choose Clinic...</mat-label>
                 <mat-select matNativeControl required>
-                  <mat-option *ngFor="let c of ffqclinicList" [value]="c.clinicName">{{ c.clinicName }}</mat-option>
+                  <mat-option *ngFor="let c of ffqclinicList" [value]="c.clinicname">{{ c.clinicname }}</mat-option>
                 </mat-select>
               </mat-form-field>
             </div>

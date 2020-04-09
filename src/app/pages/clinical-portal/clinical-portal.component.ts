@@ -105,8 +105,7 @@ export class ClinicalPortalComponent implements OnInit  {
 
 
 
-    //this.loadAllUsers();
-
+  
   
   }
 
@@ -165,7 +164,7 @@ export class ClinicalPortalComponent implements OnInit  {
       var clinic = clinicList.find(a => a.clinicId == loggedInUser[0].assignedclinic);
       if(clinic){
         this.clinicId = clinic.clinicId;
-        this.currentClinicName = clinic.clinicName;
+        this.currentClinicName = clinic.clinicname;
         console.log("clinic ID in function");
         console.log(this.clinicId);
       }
