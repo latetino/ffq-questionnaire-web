@@ -20,9 +20,9 @@
             <th width="13.5%"> No. of Clinicians </th>
             <th width="12.5%"> No. of Parents </th>
         </tr>
-        <tr *ngFor="let c of ffqclinicList">
+        <tr *ngFor="let c of ffqclinicList; index as i">
             <td><a [routerLink]="['/admin/clinic/', c.clinicId]"> {{ c.clinicName }} </a></td>
-            <td> </td>
+            <td> {{ headClinicians[i] }}</td>
             <td> {{ c.address }} </td>
             <td> {{ c.datebuilt }} </td>
             <td> {{ (ffqclinicianList | clinicianFilter: c.clinicId).length }} </td>

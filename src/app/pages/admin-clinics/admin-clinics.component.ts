@@ -29,11 +29,14 @@ export class AdminClinicsComponent implements OnInit {
   public ffqclinicList: FFQClinic[] = [];
   public ffqclinicianList: FFQClinician[] = [];
   public ffqparentList: FFQParent[] = [];
+  public headClinicians: string[] =[];
  
 
 
   ngOnInit() {
 
+    this.getAllHeadClinics();
+    
     var clinicList: Observable<FFQClinicResponse[]> = this.clinicService.getAllClinics();
     clinicList.subscribe(a => {
       this.ffqclinicList = a;
@@ -52,5 +55,24 @@ export class AdminClinicsComponent implements OnInit {
       console.log(a);
     });
     
+  }
+
+  private getAllHeadClinics(){
+
+    var allClinics: Observable<FFQClinicResponse[]> = this.clinicService.getAllClinics();
+
+    allClinics.subscribe(clinicList => {
+
+      clinicList.forEach(clinic => {
+        var headClinicianObservable = this.clinicianService.getClinician(clinic.headclinician);
+        headClinicianObservable.subscribe(headClinician => {
+          if(headClinician){
+            var headClinicianName = headClinician.abbreviation + ". " + headClinician.firstname + " " + headClinician.lastname;
+            this.headClinicians.push(headClinicianName);
+          }
+        });
+      });
+    })
+
   }
 }

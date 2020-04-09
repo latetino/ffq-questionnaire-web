@@ -2,7 +2,7 @@
 
 <div class="container_page">
     <div class="container mt-3">
-        <h4>{{TITLE}}</h4>
+        <h4>{{this.currentClinicName}}</h4>
         <div class="buttons">
             <mat-checkbox [checked]="true" (change)="toggleClinicians($event)" style="margin-right: 20px;"> Clinicians </mat-checkbox>
             <mat-checkbox [checked]="true" (change)="toggleParents($event)"> Parents </mat-checkbox>
@@ -34,7 +34,7 @@
                     <th width="43.5%"> Name </th>
                     <th width="15%"> No. of Patients </th>
                 </tr>
-                <tr *ngFor="let u of ffqclinicianList | searchFilter: c_search; index as i" [hidden]="hideUnassignedClinicians && (!u.firstname || !u.lastname)">
+                <tr *ngFor="let u of clinicianList | searchFilter: c_search; index as i" [hidden]="hideUnassignedClinicians && (!u.firstname || !u.lastname)">
                     <!--<td align="center"><mat-checkbox [checked]="toggleAllClinicians"></mat-checkbox></td>-->
                     <td><a [routerLink]="['/clinic/user/c', u.userId]"> {{ u.username }} </a></td>
                     <td> {{ u.abbreviation }} </td>
@@ -85,11 +85,11 @@
                     <th width="15%"> No. of Children </th>
                     <th width="17.5%"> Assigned Clinician </th>
                 </tr>
-                <tr *ngFor="let u of ffqparentList | searchFilter: p_search; index as i" [hidden]="hideUnassignedParents && !clinicianNames[i] || (filtered && filtered_clinicians.indexOf(clinicianNames[i]) === -1)">
+                <tr *ngFor="let u of parentList | searchFilter: p_search; index as i" [hidden]="hideUnassignedParents && !clinicianNames[i] || (filtered && filtered_clinicians.indexOf(clinicianNames[i]) === -1)">
                     <!--<td align="center"><mat-checkbox [checked]="toggleAllParents"></mat-checkbox></td>-->
                     <td><a [routerLink]="['/clinic/user/p', u.userId]"> {{ u.username }} </a></td>
                     <td> {{ u.firstname }} {{ u.lastname }}</td>
-                    <td> </td>
+                    <td> {{ numberOfChildren[i] }}</td>
                     <td> {{ clinicianNames[i] }}</td>
                 </tr>
             </table>

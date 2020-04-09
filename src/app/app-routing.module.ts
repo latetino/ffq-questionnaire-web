@@ -69,7 +69,7 @@ const routes: Routes = [
     path: 'admin/clinic/:id', component: ClinicComponent, canActivate: [AuthGuard]
   },
   {
-    path: '', redirectTo: 'login', pathMatch: 'full'
+    path: '', redirectTo: 'admin/home', pathMatch: 'full'
   },
   {
     path: 'questionnaire-id', component: QuestIdInputComponent, canActivate: [AuthGuard]
@@ -78,7 +78,10 @@ const routes: Routes = [
     path: 'questionnaire/:id', component: QuestionnairePageComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'clinic/home', component: ClinicalPortalComponent, canActivate: [AuthGuard]
+    path: 'clinic', component: ClinicalPortalComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'clinic/:id', component: ClinicalPortalComponent, canActivate: [AuthGuard]
   },
   {
     path: 'tracker', component: TrackerPageComponent
@@ -105,7 +108,7 @@ const routes: Routes = [
     path: 'clinic/user', component: ClinicUserComponent, canActivate: [AuthGuard]
   }
   {
-    path: 'login', component: LoginComponent
+    path: 'login', component: LoginComponent//, canActivate: [AuthGuard]
   },
   {
     path: '*', redirectTo: 'login'

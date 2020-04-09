@@ -127,24 +127,12 @@ export class AdminUsersComponent implements OnInit {
     var parentList: Observable<FFQParentResponse[]> = this.parentService.getAllParents();
     var clinicList: Observable<FFQClinicResponse[]> = this.clinicService.getAllClinics();
 
-/*
-    clinicianList.subscribe(a => {
-      this.ffqclinicianList = a
-      console.log(this.ffqclinicianList[0]);
-    });
-    parentList.subscribe(a => {
-      this.ffqparentList = a
-    });
-    clinicList.subscribe(a => {
-      this.ffqclinicList = a
-    });
-*/
-
 
     clinicList.subscribe(a => {
       this.ffqclinicList = a;
-      
+      console.log(a);
       a.forEach(clinic =>{
+        
         this.clinicNames.push(clinic.clinicName);
       });
 
@@ -154,14 +142,18 @@ export class AdminUsersComponent implements OnInit {
 
          b.forEach(clinician =>  {
           //Code below to get the assigned clinic for each clinician
+          console.log(clinician);
+          
           var clinicianClinic = a.find(n => n.clinicId == clinician.assignedClinic);
           
           if(!!clinicianClinic){
             var clinicianClinicName = clinicianClinic.clinicName;
+            this.clinicianClinicNames.push(clinicianClinicName);
           }
-          this.clinicianClinicNames.push(clinicianClinicName);
+       //   this.clinicianClinicNames.push(clinicianClinicName);
 
         });
+        console.log(this.clinicianClinicNames);
 
           parentList.subscribe(c => {
           this.ffqparentList = c;

@@ -30,6 +30,9 @@ import { SearchPipe } from 'src/app/pipes/searchFilter.pipe';
 import { AllUsers } from 'src/app/models/all-users';
 import { User } from 'src/app/models/user';
 import { AdminService } from 'src/app/services/admin/admin-service';
+import { MatDialog } from '@angular/material';
+import { Router, ActivatedRoute } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 
 
 @Component({
@@ -46,17 +49,23 @@ export class ClinicalPortalComponent implements OnInit  {
   private showParents: boolean;
   private hideUnassignedParents: boolean;
   private hideUnassignedClinicians: boolean;
+  //private authenticationService: AuthenticationService;
   p_search: string;
   c_search: string;
-  
 
 
   constructor(
     public parentService: ParentService,
     public clinicianService: ClinicianService,
     public clinicService: ClinicService,
-    public adminService: AdminService
-    ) { }
+    public adminService: AdminService,
+    public authenticationService: AuthenticationService,
+    private errorDialog: MatDialog,
+    private router: Router,
+    private route: ActivatedRoute,
+    ) {
+      this.authenticationService = authenticationService;
+     }
 
 
   ffqclinicianList: FFQClinician[] = [];
@@ -67,6 +76,14 @@ export class ClinicalPortalComponent implements OnInit  {
   numberOfPatients: number[] = [];
   public filtered_clinicians: String[] = [];
   public filtered: boolean;
+  private clinicId: string;
+  private clinicianList: FFQClinician[] = [];
+  private parentList: FFQParent[] = [];
+  private numberOfPatientz: number[] = [];
+  private numberOfChildren: number[] = [];
+  private currentClinicName: string;
+
+
 
   public UserList: User[];
   
@@ -78,10 +95,17 @@ export class ClinicalPortalComponent implements OnInit  {
     this.hideUnassignedParents = false;
     this.hideUnassignedClinicians = false;
 
+    
+    /*var clinicId: string = */
+    this.getClinicId();
+    /*var clinicianList: FFQClinician[] = */
+    this.getParents();
+    this.loadData();
+    //this.getNumberOfPatients();
 
-    this.UserList = this.allusrs.generateUserClass();
-    console.log(this.UserList);
-    this.loadAllUsers();
+
+
+    //this.loadAllUsers();
 
   
   }
@@ -128,64 +152,99 @@ export class ClinicalPortalComponent implements OnInit  {
   }
 
 
-  private loadAllUsers() {
-    var clinicianList: Observable<FFQClinicianResponse[]> = this.clinicianService.getAllClinicians();
-    var parentList: Observable<FFQParentResponse[]> = this.parentService.getAllParents();
-    var clinicList: Observable<FFQClinicResponse[]> = this.clinicService.getAllClinics();
-    clinicList.subscribe(a => {
-      this.ffqclinicList = a;
-
-      console.log(a);
-       clinicianList.subscribe(b => {
-         this.ffqclinicianList = b;
-         console.log(a);
-         b.forEach(clinician =>  {
-           //Code below to get the assigned clinic for each clinician
-           var clinic = a.find(n => n.clinicId == clinician.assignedClinic);
-           var clinicName
-           if(!!clinic){
-              clinicName = clinic.clinicName;
-           }
-           else{
-              clinicName = "";
-           }
-           
-           this.clinicNames.push(clinicName);
-
-         });
-         console.log(this.clinicNames);
-          parentList.subscribe(c => {
-          this.ffqparentList = c;
-          console.log(a);
-          c.forEach(parent =>   {
-            //Code below to get the assigned clinician name for each parent
-            var clinician = b.find(n => n.userId == parent.assignedClinician);
-            if(!!clinician){
-               var clinicianName = clinician.abbreviation + " " + clinician.firstname + " " + clinician.lastname;
-            }
-            this.clinicianNames.push(clinicianName);
-          });
-
-          b.forEach(clinician =>  {
-            //Code below to get the number of patients for each clinician
-            var i = 0;
-            var numberOfPatient = c.find(n => n.assignedClinician == clinician.userId);
-            var numberOfPatientName;
-            if(!!numberOfPatient){
-              numberOfPatientName = numberOfPatient.userId;
-              i++;
-              console.log("number of patients for " + clinician.userId + " is " + i);
-            }
-            this.numberOfPatients.push(i);
-          });
-          console.log(this.numberOfPatients);
-          });
-       });
-    });
-    //console.log(this.ffqclinicList);
-   
-
-  }
   
+
+  private getClinicId(){
+
+    var clinicListObervable: Observable<FFQClinicResponse[]> = this.clinicService.getAllClinics();
+    const loggedInUser = this.authenticationService.currentUserValue;
+    var clinicId: string;
+
+    console.log("Logged in user clinic: " + loggedInUser[0].assignedClinic);
+    clinicListObervable.subscribe(clinicList => {
+      var clinic = clinicList.find(a => a.clinicId == loggedInUser[0].assignedClinic);
+      if(clinic){
+        this.clinicId = clinic.clinicId;
+        this.currentClinicName = clinic.clinicName;
+        console.log("clinic ID in function");
+        console.log(this.clinicId);
+      }
+    });
+    
+  }
+
+  loadData(){
+    var clinicianListObservable: Observable<FFQClinicianResponse[]> = this.clinicianService.getAllClinicians();
+    var parentListObservable: Observable<FFQParentResponse[]> = this.parentService.getAllParents();
+
+    clinicianListObservable.subscribe(clinicianList => {
+      parentListObservable.subscribe(parentList => {
+        clinicianList.forEach(clinician => {
+          var count = 0;
+          if(clinician.assignedClinic == this.clinicId){
+            this.clinicianList.push(clinician);
+          }
+        });
+
+        this.getNumberOfPatients();
+        this.getClinicNames(); 
+        });
+      });
+  
+  }   
+
+  getParents(){
+    var parentListObservable: Observable<FFQParentResponse[]> = this.parentService.getAllParents();
+    var parentInClinic: FFQParent[];
+
+    parentListObservable.subscribe(parentList => {
+      parentList.forEach(parent => {
+        if(parent.assignedClinic == this.clinicId){
+          //clinicianInClinic.push(clinician);
+          this.parentList.push(parent);
+        }
+      });
+      console.log("parentList in function");
+      console.log(this.parentList);
+    });
+  }
+
+  getNumberOfPatients(){
+
+    this.clinicianList.forEach(clinician => {
+      var count = 0;
+      this.parentList.forEach(parent => {
+        if(parent.assignedClinician == clinician.userId){
+          count++;
+        }
+      });
+      this.numberOfPatients.push(count);
+      console.log("clinicianNames in function");
+      console.log(this.clinicianNames);
+    });
+  }
+
+
+  getClinicNames(){
+    this.parentList.forEach(parent => {
+      this.numberOfChildren.push(parent.childrenNames.length);
+      var clinicianName;
+      var parentAssignedClinician = parent.assignedClinician;
+      console.log("ParentinASsigned");
+      console.log(parent);
+      if(parentAssignedClinician == ""){
+         console.log(parentAssignedClinician == "");
+         this.clinicianNames.push("");
+      }
+      else{
+        this.clinicianService.getClinician(parentAssignedClinician).subscribe(clinicianForThisParent => {
+          console.log("clinicianForThisParent in function");
+          console.log(clinicianForThisParent);
+          clinicianName = clinicianForThisParent.abbreviation + ". " + clinicianForThisParent.firstname + " " + clinicianForThisParent.lastname;
+          this.clinicianNames.push(clinicianName);  
+        });  
+      }  
+     });
+  }
 }
 

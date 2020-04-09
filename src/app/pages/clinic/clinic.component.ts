@@ -17,6 +17,8 @@ import { FFQClinician } from 'src/app/models/ffqclinician';
 import { FFQClinicResponse } from 'src/app/models/ffqclinic-response';
 import { ClinicService } from 'src/app/services/clinic/clinic-service';
 import { FFQClinic } from 'src/app/models/ffqclinic';
+import { ParentService } from 'src/app/services/parent/parent-service';
+import { FFQParentResponse } from 'src/app/models/ffqparent-response';
 
 
 @Component({
@@ -33,6 +35,7 @@ export class ClinicComponent implements OnInit {
   name_of_clinic: string;
   location: string;
   allClinicians: FFQClinician[] = [];
+  resultObjectList: Object[] = [];
 
   constructor(
     public parentService: ParentService,
@@ -40,7 +43,8 @@ export class ClinicComponent implements OnInit {
     private errorDialog: MatDialog,
     private router: Router,
     private route: ActivatedRoute,
-    public clinicService: ClinicService
+    public clinicService: ClinicService,
+    public parentService: ParentService
 
     ) { }
 
@@ -114,27 +118,16 @@ export class ClinicComponent implements OnInit {
   private getClinicById(id: number)
   {
 
-   // var allClinicians: Observable<FFQClinicianResponse[]> = this.clinicianService.getAllClinicians();
-  //  var allClinicians: Observable<FFQClinicianResponse[]> = this.clinicianService.getAllClinicians();
-  //  var headClinician: FFQClinician;
-   // var headClinicianName: string;
 
       this.clinicService.getClinic(id).subscribe(data => {  
       
-       /* allClinicians.subscribe(b => {
-           b.forEach(clinician => {
-            headClinician = b.find(a => a.userId == data.headclinician);
-            if(!!headClinician)
-            headClinicianName = headClinician.firstname + " " + headClinician.lastname;
-           })
-
-        })*/
-        this.allClinicians.push()
+      
         this.clinicAttributes.push(data);
       });
       this.dataLoaded = Promise.resolve(true);
   }
 
+  
 
   updateClinic()
   { 
