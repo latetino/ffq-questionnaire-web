@@ -12,7 +12,7 @@ export class PatientPipe implements PipeTransform {
       return list;
     }
     return list.filter(function(user){
-      return user.assignedClinician === username;
+      return user.assignedclinician === username;
     });
   }
 }

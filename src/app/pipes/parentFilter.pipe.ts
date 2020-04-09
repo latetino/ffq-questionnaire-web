@@ -12,7 +12,7 @@ export class ParentPipe implements PipeTransform {
       return list;
     }
     return list.filter(function(user){
-      return user.assignedClinic === clinicId;
+      return user.assignedclinic === clinicId;
     });
   }
 

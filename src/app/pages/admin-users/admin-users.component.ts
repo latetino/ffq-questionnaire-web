@@ -144,7 +144,7 @@ export class AdminUsersComponent implements OnInit {
           //Code below to get the assigned clinic for each clinician
           console.log(clinician);
           
-          var clinicianClinic = a.find(n => n.clinicId == clinician.assignedClinic);
+          var clinicianClinic = a.find(n => n.clinicId == clinician.assignedclinic);
           
           if(!!clinicianClinic){
             var clinicianClinicName = clinicianClinic.clinicName;
@@ -160,10 +160,10 @@ export class AdminUsersComponent implements OnInit {
           //console.log(a);
           
           c.forEach(parent => {
-            var clinicians = b.find(n => n.userId == parent.assignedClinician);
+            var clinicians = b.find(n => n.userId == parent.assignedclinic);
             
             if(!!clinicians){
-              var parentClinic = a.find(n => n.clinicId == clinicians.assignedClinic);
+              var parentClinic = a.find(n => n.clinicId == clinicians.assignedclinic);
               if(!!parentClinic){
                 var parentClinicName = parentClinic.clinicName;
               }

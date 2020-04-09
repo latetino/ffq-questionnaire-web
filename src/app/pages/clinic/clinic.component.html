@@ -37,7 +37,7 @@
             <mat-form-field>
                 <mat-label appearance="fill">Choose...</mat-label>
                 <mat-select matNativeControl>
-                  <mat-option *ngFor="let u of ffqclinicianList" [value]="u.lastname" [hidden]="u.assignedClinic != clinicAttributes[0].clinicId">{{ u.abbreviation }} {{ u.firstname }} {{ u.lastname }}</mat-option>
+                  <mat-option *ngFor="let u of ffqclinicianList" [value]="u.lastname" [hidden]="u.assignedclinic != clinicAttributes[0].clinicId">{{ u.abbreviation }} {{ u.firstname }} {{ u.lastname }}</mat-option>
                 </mat-select>
             </mat-form-field>
             

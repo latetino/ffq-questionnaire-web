@@ -160,9 +160,9 @@ export class ClinicalPortalComponent implements OnInit  {
     const loggedInUser = this.authenticationService.currentUserValue;
     var clinicId: string;
 
-    console.log("Logged in user clinic: " + loggedInUser[0].assignedClinic);
+    console.log("Logged in user clinic: " + loggedInUser[0].assignedclinic);
     clinicListObervable.subscribe(clinicList => {
-      var clinic = clinicList.find(a => a.clinicId == loggedInUser[0].assignedClinic);
+      var clinic = clinicList.find(a => a.clinicId == loggedInUser[0].assignedclinic);
       if(clinic){
         this.clinicId = clinic.clinicId;
         this.currentClinicName = clinic.clinicName;
@@ -181,7 +181,7 @@ export class ClinicalPortalComponent implements OnInit  {
       parentListObservable.subscribe(parentList => {
         clinicianList.forEach(clinician => {
           var count = 0;
-          if(clinician.assignedClinic == this.clinicId){
+          if(clinician.assignedclinic == this.clinicId){
             this.clinicianList.push(clinician);
           }
         });
@@ -199,7 +199,7 @@ export class ClinicalPortalComponent implements OnInit  {
 
     parentListObservable.subscribe(parentList => {
       parentList.forEach(parent => {
-        if(parent.assignedClinic == this.clinicId){
+        if(parent.assignedclinic == this.clinicId){
           //clinicianInClinic.push(clinician);
           this.parentList.push(parent);
         }
@@ -214,7 +214,7 @@ export class ClinicalPortalComponent implements OnInit  {
     this.clinicianList.forEach(clinician => {
       var count = 0;
       this.parentList.forEach(parent => {
-        if(parent.assignedClinician == clinician.userId){
+        if(parent.assignedclinician == clinician.userId){
           count++;
         }
       });
@@ -227,9 +227,9 @@ export class ClinicalPortalComponent implements OnInit  {
 
   getClinicNames(){
     this.parentList.forEach(parent => {
-      this.numberOfChildren.push(parent.childrenNames.length);
+      this.numberOfChildren.push(parent.childrennames.length);
       var clinicianName;
-      var parentAssignedClinician = parent.assignedClinician;
+      var parentAssignedClinician = parent.assignedclinician;
       console.log("ParentinASsigned");
       console.log(parent);
       if(parentAssignedClinician == ""){

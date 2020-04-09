@@ -2,6 +2,7 @@ import {FFQItemResponse} from './ffqitem-response';
 import { ObjectUnsubscribedError } from 'rxjs';
 
 export class FFQAdmin {
+  id: string;
   userId: string;
   username: string;
   userpassword: string;
