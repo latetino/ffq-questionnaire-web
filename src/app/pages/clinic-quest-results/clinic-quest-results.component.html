@@ -13,6 +13,9 @@
           <!--Labels for questionnaire results-->
           <div class="row">
             <div class="col-2" style="text-align:center">
+              <label><strong>Parent Name</strong></label>
+            </div>
+            <div class="col-2" style="text-align:center">
               <label><strong>Questionnaire ID</strong></label>
             </div>
             <div class="col-2" style="text-align:center">
@@ -28,6 +31,9 @@
 
           <!--Questionnaire results-->
           <div class="row mb-3">
+            <div class="col-2" style="text-align:center">
+              {{parentNames[i]}}
+            </div> 
             <div class="col-2" style="text-align:center">
               {{result.questionnaireId}}
             </div>

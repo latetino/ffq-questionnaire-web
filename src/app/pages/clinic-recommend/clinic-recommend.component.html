@@ -5,6 +5,7 @@
         <span></span>
         <table class="table table-bordered table-inverse">
         <tr>
+            <th><div align="left"> Parent Name </div></th>
             <th><div align="left"> Questionnaire ID </div></th>
             <th><div align="center"> Patient name </div></th>
             <th><div align="center"> Infant age (in months) </div></th>
@@ -12,6 +13,9 @@
             <th><div align="center"> Food items </div></th>
         </tr>
         <tr *ngFor="let result of results; let i = index">
+            <td >
+                {{parentNames[i]}}
+            </td>
             <td >
                 {{result.questionnaireId}}
             </td>

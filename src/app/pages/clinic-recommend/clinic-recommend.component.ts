@@ -30,6 +30,7 @@ export class ClinicRecommendComponent implements OnInit {
   private clinicId: string;
   private resultList: FFQResultsResponse[] = [];
   private currentClinicName: string;
+  private parentNames: string[] = [];
 
   constructor(
     public resultsService: ResultsService,
@@ -130,6 +131,8 @@ private getResultsList(){
       var resulstsForThisParentObservable = this.resultsService.getResultsByParents(parent.userId);
       resulstsForThisParentObservable.subscribe(resultsForThisParent => {
         resultsForThisParent.forEach(result => {
+          var parentName = parent.firstname + " " + parent.lastname;
+          this.parentNames.push(parentName);
           this.resultList.push(result);
           this.results.push(result);
         });

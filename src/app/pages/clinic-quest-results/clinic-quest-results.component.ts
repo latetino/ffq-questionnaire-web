@@ -29,6 +29,7 @@ export class ClinicQuestResultsComponent implements OnInit {
   parentList: FFQParent[] = [];
   resultList: FFQResultsResponse[] = [];
   resultListObservable: Observable<FFQResultsResponse[]>;
+  parentNames: string[] = [];
 
   constructor(
     public resultsService: ResultsService,
@@ -39,7 +40,7 @@ export class ClinicQuestResultsComponent implements OnInit {
   
   ngOnInit() {
     this.getClinicId();
-    //this.getParentList();
+  
   }
 
   //(Khalid)Changed below code to sort the list in the nutient view page
@@ -127,6 +128,8 @@ private getResultsList(){
       var resulstsForThisParentObservable = this.resultsService.getResultsByParents(parent.userId);
       resulstsForThisParentObservable.subscribe(resultsForThisParent => {
         resultsForThisParent.forEach(result => {
+          var parentName = parent.firstname + " " + parent.lastname;
+          this.parentNames.push(parentName);
           this.resultList.push(result);
         });
         this.loadData();
