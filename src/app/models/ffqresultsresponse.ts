@@ -1,4 +1,5 @@
 export class FFQResultsResponse {
+    parentId: String;
     questionnaireId: String;
     userId: string;
     patientName: string;

@@ -72,16 +72,13 @@ const routes: Routes = [
     path: '', redirectTo: 'admin/home', pathMatch: 'full'
   },
   {
-    path: 'questionnaire-id', component: QuestIdInputComponent, canActivate: [AuthGuard]
+    path: 'questionnaire-id', component: QuestIdInputComponent//, canActivate: [AuthGuard]
   },
   {
-    path: 'questionnaire/:id', component: QuestionnairePageComponent, canActivate: [AuthGuard]
+    path: 'questionnaire/:id', component: QuestionnairePageComponent//, canActivate: [AuthGuard]
   },
   {
-    path: 'clinic', component: ClinicalPortalComponent, canActivate: [AuthGuard]
-  },
-  {
-    path: 'clinic/:id', component: ClinicalPortalComponent, canActivate: [AuthGuard]
+    path: 'clinic/home', component: ClinicalPortalComponent, canActivate: [AuthGuard]
   },
   {
     path: 'tracker', component: TrackerPageComponent

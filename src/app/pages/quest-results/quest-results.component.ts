@@ -63,9 +63,7 @@ export class QuestResultsComponent implements OnInit {
     return 0;
   }
 
-  private returnZero(){
-    return 0;
-  }
+  //p = this.results;
 
   private returnZero(){
     return 0;
