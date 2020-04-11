@@ -13,3 +13,13 @@
     justify-content: center;
     margin-bottom: 10px;
 }
+
+.top{
+    color: #ff6f69;
+}
+.med{
+    color: #96ceb4;
+}
+.bot{
+    color: #ffcc5c;
+}

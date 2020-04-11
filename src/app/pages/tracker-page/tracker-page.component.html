@@ -3,193 +3,52 @@
 <div class="tracker-container">
   <!-- header message -->
   <h2 matDialogTitle>{{TITLE}}</h2><br>
-  <text-card mainMessage="{{MAIN_MESSAGE}}" [bulletedMessages]="BULLETED_INSTRUCTIONS" [instructionsTitle]="INSTRUCTIONS_TITLE"></text-card>
+  <text-card *ngIf="showItems" mainMessage="{{MAIN_MESSAGE}}" [bulletedMessages]="BULLETED_INSTRUCTIONS" [instructionsTitle]="INSTRUCTIONS_TITLE"></text-card>
   <br>
 
-  <!-- tracker cards -->
-  <div class="trackeritem-container">
-    <mat-card class="tracker-card">
-      <div style="float: left">
-        <label><strong>Breastmilk – Formula – Cow’s Milk – Other</strong></label><br>
-        <label *ngIf="showBracketFirst">16 – 24 fl oz / day</label>
-        <label *ngIf="showBracketSecond">10 – 28 fl oz / day</label>
-        <label *ngIf="showBracketThird">8 – 18 fl oz / day</label>
-      </div>
-      <div class="tracker-buttons">
-        <mat-button-toggle-group>
-          <mat-button-toggle value="3"><mat-icon>arrow_upward</mat-icon></mat-button-toggle>
-          <mat-button-toggle value="2"><mat-icon>check_box</mat-icon></mat-button-toggle>
-          <mat-button-toggle value="1"><mat-icon>arrow_downward</mat-icon></mat-button-toggle>
-        </mat-button-toggle-group>
-      </div>
+  <!-- age form -->
+  <div *ngIf="showAgeForm" class="qb-container">
+    <mat-card class="qb-card">
+      <mat-label style="text-align:center" class="qb-row-item"><strong>Infant age</strong></mat-label>
+      <mat-form-field>
+        <input #ageValue matInput value="infantage"  class="qb-row-item" type="number" min="1" max="24"
+          placeholder=" In months " autocomplete="off" required>
+      </mat-form-field>
+      <mat-card-actions>
+        <div class="qb-button">
+          <button mat-raised-button (click)="enterAge(ageValue.value)" color="primary">Enter Age</button>
+        </div>
+      </mat-card-actions>
     </mat-card>
   </div>
 
-  <div class="trackeritem-container">
-    <mat-card class="tracker-card">
-      <div style="float: left">
-        <label><strong>Whole Grains</strong></label><br>
-        <label *ngIf="showBracketFirst">0 fl oz / day</label>
-        <label *ngIf="showBracketSecond">0.1 – 3.5 fl oz / day</label>
-        <label *ngIf="showBracketThird">0.1 – 5.5 fl oz / day</label>
+  <form *ngIf="showItems" [formGroup]="trackerForm" (ngSubmit)="submitTracker()">
+    <!-- tracker cards -->
+    <span formArrayName="responses">
+      <div class="trackeritem-container" *ngFor="let result of foodResults; let $index = index" [formGroupName]="$index">
+        <mat-card class="tracker-card">
+          <div style="float: left">
+            <label><strong>{{ result.foodItemGroupName }}</strong></label><br>
+            <label *ngIf="showBracketFirst">{{ result.firstBracketIntake }}</label>
+            <label *ngIf="showBracketSecond">{{ result.secondBracketIntake }}</label>
+            <label *ngIf="showBracketThird">{{ result.thirdBracketIntake }}</label>
+          </div>
+          <div class="tracker-buttons">
+            <mat-button-toggle-group formControlName="answer">
+              <mat-button-toggle value="Above"><mat-icon class="top">arrow_upward</mat-icon></mat-button-toggle>
+              <mat-button-toggle value="Equal"><mat-icon class="med">check_box</mat-icon></mat-button-toggle>
+              <mat-button-toggle value="Below"><mat-icon class="bot">arrow_downward</mat-icon></mat-button-toggle>
+            </mat-button-toggle-group>
+          </div>
+        </mat-card>
       </div>
-      <div class="tracker-buttons">
-        <mat-button-toggle-group>
-          <mat-button-toggle value="3"><mat-icon>arrow_upward</mat-icon></mat-button-toggle>
-          <mat-button-toggle value="2"><mat-icon>check_box</mat-icon></mat-button-toggle>
-          <mat-button-toggle value="1"><mat-icon>arrow_downward</mat-icon></mat-button-toggle>
-        </mat-button-toggle-group>
-      </div>
-    </mat-card>
-  </div>
+    </span>
 
-  <div class="trackeritem-container">
-    <mat-card class="tracker-card">
-      <div style="float: left">
-        <label><strong>Refined Grains</strong></label><br>
-        <label *ngIf="showBracketFirst">0 fl oz / day</label>
-        <label *ngIf="showBracketSecond">0 – 1.5 fl oz / day</label>
-        <label *ngIf="showBracketThird">0 – 1.8 fl oz / day</label>
-      </div>
-      <div class="tracker-buttons">
-        <mat-button-toggle-group>
-          <mat-button-toggle value="3"><mat-icon>arrow_upward</mat-icon></mat-button-toggle>
-          <mat-button-toggle value="2"><mat-icon>check_box</mat-icon></mat-button-toggle>
-          <mat-button-toggle value="1"><mat-icon>arrow_downward</mat-icon></mat-button-toggle>
-        </mat-button-toggle-group>
-      </div>
-    </mat-card>
-  </div>
+    <!-- submit button -->
+    <div class="footer">
+      <button mat-raised-button color="primary">Submit</button>
+    </div>
 
-  <div class="trackeritem-container">
-    <mat-card class="tracker-card">
-      <div style="float: left">
-        <label><strong>Proteins</strong></label><br>
-        <label *ngIf="showBracketFirst">0 fl oz / day</label>
-        <label *ngIf="showBracketSecond">0.1 – 6 fl oz / day</label>
-        <label *ngIf="showBracketThird">0.1 – 3 fl oz / day</label>
-      </div>
-      <div class="tracker-buttons">
-        <mat-button-toggle-group>
-          <mat-button-toggle value="3"><mat-icon>arrow_upward</mat-icon></mat-button-toggle>
-          <mat-button-toggle value="2"><mat-icon>check_box</mat-icon></mat-button-toggle>
-          <mat-button-toggle value="1"><mat-icon>arrow_downward</mat-icon></mat-button-toggle>
-        </mat-button-toggle-group>
-      </div>
-    </mat-card>
-  </div>
+  </form>
 
-  <div class="trackeritem-container">
-    <mat-card class="tracker-card">
-      <div style="float: left">
-        <label><strong>Vegetables</strong></label><br>
-        <label *ngIf="showBracketFirst">0 fl oz / day</label>
-        <label *ngIf="showBracketSecond">2 or more fl oz / day</label>
-        <label *ngIf="showBracketThird">8 or more fl oz / day</label>
-      </div>
-      <div class="tracker-buttons">
-        <mat-button-toggle-group>
-          <mat-button-toggle value="3"><mat-icon>arrow_upward</mat-icon></mat-button-toggle>
-          <mat-button-toggle value="2"><mat-icon>check_box</mat-icon></mat-button-toggle>
-          <mat-button-toggle value="1"><mat-icon>arrow_downward</mat-icon></mat-button-toggle>
-        </mat-button-toggle-group>
-      </div>
-    </mat-card>
-  </div>
-
-  <div class="trackeritem-container">
-    <mat-card class="tracker-card">
-      <div style="float: left">
-        <label><strong>Fruits</strong></label><br>
-        <label *ngIf="showBracketFirst">0 fl oz / day</label>
-        <label *ngIf="showBracketSecond">2 or more fl oz / day</label>
-        <label *ngIf="showBracketThird">8 or more fl oz / day</label>
-      </div>
-      <div class="tracker-buttons">
-        <mat-button-toggle-group>
-          <mat-button-toggle value="3"><mat-icon>arrow_upward</mat-icon></mat-button-toggle>
-          <mat-button-toggle value="2"><mat-icon>check_box</mat-icon></mat-button-toggle>
-          <mat-button-toggle value="1"><mat-icon>arrow_downward</mat-icon></mat-button-toggle>
-        </mat-button-toggle-group>
-      </div>
-    </mat-card>
-  </div>
-
-  <div class="trackeritem-container">
-    <mat-card class="tracker-card">
-      <div style="float: left">
-        <label><strong>100% Juices</strong></label><br>
-        <label *ngIf="showBracketFirst">0 fl oz / day</label>
-        <label *ngIf="showBracketSecond">0 fl oz / day</label>
-        <label *ngIf="showBracketThird">0 - 4 fl oz / day</label>
-      </div>
-      <div class="tracker-buttons">
-        <mat-button-toggle-group>
-          <mat-button-toggle value="3"><mat-icon>arrow_upward</mat-icon></mat-button-toggle>
-          <mat-button-toggle value="2"><mat-icon>check_box</mat-icon></mat-button-toggle>
-          <mat-button-toggle value="1"><mat-icon>arrow_downward</mat-icon></mat-button-toggle>
-        </mat-button-toggle-group>
-      </div>
-    </mat-card>
-  </div>
-  
-  <div class="trackeritem-container">
-    <mat-card class="tracker-card">
-      <div style="float: left">
-        <label><strong>Sugary Beverages</strong></label><br>
-        <label *ngIf="showBracketFirst">0 fl oz / day</label>
-        <label *ngIf="showBracketSecond">0 fl oz / day</label>
-        <label *ngIf="showBracketThird">0 fl oz / day</label>
-      </div>
-      <div class="tracker-buttons">
-        <mat-button-toggle-group>
-          <mat-button-toggle value="3"><mat-icon>arrow_upward</mat-icon></mat-button-toggle>
-          <mat-button-toggle value="2"><mat-icon>check_box</mat-icon></mat-button-toggle>
-          <mat-button-toggle value="1"><mat-icon>arrow_downward</mat-icon></mat-button-toggle>
-        </mat-button-toggle-group>
-      </div>
-    </mat-card>
-  </div>
-
-  <div class="trackeritem-container">
-    <mat-card class="tracker-card">
-      <div style="float: left">
-        <label><strong>Sweets</strong></label><br>
-        <label *ngIf="showBracketFirst">0 fl oz / day</label>
-        <label *ngIf="showBracketSecond">0 fl oz / day</label>
-        <label *ngIf="showBracketThird">0 fl oz / day</label>
-      </div>
-      <div class="tracker-buttons">
-        <mat-button-toggle-group>
-          <mat-button-toggle value="3"><mat-icon>arrow_upward</mat-icon></mat-button-toggle>
-          <mat-button-toggle value="2"><mat-icon>check_box</mat-icon></mat-button-toggle>
-          <mat-button-toggle value="1"><mat-icon>arrow_downward</mat-icon></mat-button-toggle>
-        </mat-button-toggle-group>
-      </div>
-    </mat-card>
-  </div>
-
-  <div class="trackeritem-container">
-    <mat-card class="tracker-card">
-      <div style="float: left">
-        <label><strong>Salty Snacks</strong></label><br>
-        <label *ngIf="showBracketFirst">0 fl oz / day</label>
-        <label *ngIf="showBracketSecond">0 fl oz / day</label>
-        <label *ngIf="showBracketThird">0 fl oz / day</label>
-      </div>
-      <div class="tracker-buttons">
-        <mat-button-toggle-group>
-          <mat-button-toggle value="3"><mat-icon>arrow_upward</mat-icon></mat-button-toggle>
-          <mat-button-toggle value="2"><mat-icon>check_box</mat-icon></mat-button-toggle>
-          <mat-button-toggle value="1"><mat-icon>arrow_downward</mat-icon></mat-button-toggle>
-        </mat-button-toggle-group>
-      </div>
-    </mat-card>
-  </div>
-  
-  
-  <!-- submit button -->
-  <div class="footer">
-    <button mat-raised-button color="primary">Submit</button>
-  </div>
 </div>

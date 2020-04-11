@@ -6,13 +6,14 @@ import {QuestIdInputComponent} from './pages/quest-id-input-page/quest-id-input.
 import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 import {FooditemComponent} from './pages/fooditem/fooditem.component';
 import { QuestResultsComponent } from './pages/quest-results/quest-results.component';
-import { RecommendComponent } from './pages/parental-header/recommend/recommend.component';
+import { RecommendComponent } from './pages/recommend/recommend.component';
 import { ClinicalPortalComponent} from './pages/clinical-portal/clinical-portal.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { AuthGuard } from './services/authentication/auth.guard';
 import { RecommendParentalComponent } from './pages/recommend-parental/recommend-parental.component';
 import { TrackerPageComponent } from './pages/tracker-page/tracker-page.component';
 import { TrackerHistoryPageComponent } from './pages/tracker-history-page/tracker-history-page.component';
+import { HistoryParentalComponent } from './pages/history-parental/history-parental.component';
 
 
 
@@ -55,7 +56,10 @@ const routes: Routes = [
   },
   {
     path: 'tracker-history', component: TrackerHistoryPageComponent
-  } 
+  },
+  {
+    path: 'history-parental', component: HistoryParentalComponent
+  }
 ];
 
 @NgModule({
