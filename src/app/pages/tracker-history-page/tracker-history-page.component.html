@@ -2,32 +2,24 @@
 
 <div class="tracker-container">
 
-  <div class="trackeritem-container">
+  <div class="trackeritem-container" *ngIf="results.length === 0">
     <mat-card class="tracker-card">
-      <div><label><strong>N weeks</strong></label></div>
+      <h2 matDialogTitle>No responses have been submitted yet.</h2>
+    </mat-card>
+  </div>
+
+  <div *ngFor="let result of results" class="trackeritem-container">
+    <mat-card class="tracker-card">
+      <div><label><strong>{{result.date}} - {{result.age}} Months</strong></label></div>
       <div style="float: left">
-        <tr>Breastmilk – Formula – Cow’s Milk – Other</tr>
-        <tr>Whole Grains</tr>
-        <tr>Refined Grains</tr>
-        <tr>Proteins</tr>
-        <tr>Vegetables</tr>
-        <tr>Fruits</tr>
-        <tr>100% Juices</tr>
-        <tr>Sugary Beverages</tr>
-        <tr>Sweets</tr>
-        <tr>Salty Snacks</tr>
+        <tr *ngFor="let item of result.responses">{{item.food}}</tr>
       </div>
       <div style="float: right">
-        <tr class="top">Above</tr>
-        <tr class="bot">Below</tr>
-        <tr class="med">Equal</tr>
-        <tr class="top">Above</tr>
-        <tr class="bot">Below</tr>
-        <tr class="med">Equal</tr>
-        <tr class="top">Above</tr>
-        <tr class="bot">Below</tr>
-        <tr class="med">Equal</tr>
-        <tr class="top">Above</tr>
+        <tr *ngFor="let item of result.responses" [ngClass]="{
+          'top' : item.response == 'Above',
+          'med' : item.response == 'Equal',
+          'bot' : item.response == 'Below'
+        }">{{item.response}}</tr>
       </div>
     </mat-card>
   </div>
