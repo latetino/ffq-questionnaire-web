@@ -48,12 +48,7 @@ export class UserComponent implements OnInit {
 
     ) { }
 
-  clinicians: FFQClinicianResponse[] = [];
-  parents: FFQParentResponse[] = [];
-
-  nutrientsMap: Map<string,FFQNutrientlist> = new Map<string,FFQNutrientlist>();
-
-  userAttributes: object[] = [];
+  userAttributes: object;
   dataLoaded: Promise<boolean>;
 
   ffqclinician: FFQClinician;
@@ -61,9 +56,9 @@ export class UserComponent implements OnInit {
   amountToAdd: number;
   isParent: boolean;
   isClinician: boolean;
-  newClinic: string;
-  newClinician: FFQClinician;
-  newParent: FFQParent;
+  //newClinic: string;
+  //newClinician: FFQClinician;
+  //newParent: FFQParent;
 
   public ffqclinicList: FFQClinic[] = [];
   clinicNames: string[] = [];
@@ -104,13 +99,8 @@ export class UserComponent implements OnInit {
       this.ffqclinicList = clinicList;
       clinicList.forEach(clinic => {
         this.clinicIds.set(clinic.clinicname, clinic.clinicId);
+        this.clinicNames.push(clinic.clinicname);
       })
-      console.log("clinicIdMap is ");
-      console.log(this.clinicIds);
-      /*for (let i = 0; i < a.length; i++) {
-        this.clinicNames.push(a[i].clinicName);
-        this.clinicIds.set(a[i].clinicName, a[i].clinicId);
-      }*/
 
     });
 
@@ -152,8 +142,7 @@ export class UserComponent implements OnInit {
         //console.log("Number of clinicians is: " + numberOfClinicians);
         var newClincianId = (data.length+1).toString();
         var newClincianUsername = "clinician"+numberOfClinicians;
-        this.ffqclinician = new FFQClinician(newClincianId, newClincianUsername, newClincianUsername, "clinician", "", "", "", this.clinicNames.indexOf(this.selectedClinic).toString(), []);
-        console.log("LOOK HERE!!! " + this.clinicNames.indexOf(this.selectedClinic).toString());
+        this.ffqclinician = new FFQClinician(newClincianId, newClincianUsername, newClincianUsername, "clinician", "", "", "", this.selectedClinic, []);
         console.log(this.ffqclinician);
 
         this.clinicianService.addClinician(this.ffqclinician).subscribe(data => {
@@ -177,7 +166,8 @@ export class UserComponent implements OnInit {
         var numberOfParents = (data.length+1).toString();
         var newParentId = (data.length+1).toString();
         var newParentUsername = "parent"+numberOfParents;
-        this.ffqParent = new FFQParent(newParentId, newParentUsername, newParentUsername, "parent", "", "",  this.clinicNames.indexOf(this.selectedClinic).toString(), "", []);
+        this.ffqParent = new FFQParent(newParentId, newParentUsername, newParentUsername, "parent", "", "",  this.selectedClinic, "", []);
+        console.log(this.ffqParent);
 
         this.parentService.addParent(this.ffqParent).subscribe(data => {
             this.router.navigateByUrl('/admin/users');
@@ -222,8 +212,9 @@ export class UserComponent implements OnInit {
   {
     this.isParent = true;
     this.parentService.getParent(id).subscribe(data => {  
-       //this.userAttributes.push(data)
-       this.newParent = data;
+       this.userAttributes = data;
+       //this.newParent = data;
+
     });
     this.dataLoaded = Promise.resolve(true); 
   }
@@ -232,8 +223,9 @@ export class UserComponent implements OnInit {
   {
     this.isClinician = true;
     this.clinicianService.getClinician(id).subscribe(data => {  
-      //this.userAttributes.push(data)
-      this.newClinician = data;
+      this.userAttributes = data;
+      //this.newClinician = data;
+      //console.log(this.userAttributes);
     });
     this.dataLoaded = Promise.resolve(true); 
   }
@@ -253,9 +245,9 @@ export class UserComponent implements OnInit {
   updateParent()
   { 
 
-    this.newParent.assignedclinic = this.clinicIds.get(this.newClinic);
+    //this.newParent.assignedclinic = this.clinicIds.get(this.newClinic);
 
-    this.parentService.updateParent(this.newParent).subscribe(
+    this.parentService.updateParent(<FFQParentResponse>this.userAttributes).subscribe(
      data => {this.router.navigateByUrl('/admin/users');
      const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
      dialogRef.componentInstance.title = 'Parent successfully updated!';}
@@ -267,12 +259,12 @@ export class UserComponent implements OnInit {
   { 
 
  
-    console.log("new clinic");
-    console.log(this.newClinic);
-    this.newClinician.assignedclinic = this.clinicIds.get(this.newClinic);
-    console.log(this.newClinician);
+    //console.log("new clinic");
+    //console.log(this.newClinic);
+    //this.newClinician.assignedclinic = this.clinicIds.get(this.newClinic);
+    //console.log(this.newClinician);
  
-    this.clinicianService.updateClinician(this.newClinician)
+    this.clinicianService.updateClinician(<FFQClinicianResponse>this.userAttributes)
       .subscribe( data => { 
         console.log("data is");
         console.log(data);

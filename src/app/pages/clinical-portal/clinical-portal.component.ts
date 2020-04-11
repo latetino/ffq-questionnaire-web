@@ -44,7 +44,6 @@ import { AuthenticationService } from 'src/app/services/authentication/authentic
 
 export class ClinicalPortalComponent implements OnInit  {
 
-  TITLE = 'FIU Clinic';
   private showClinicians: boolean;
   private showParents: boolean;
   private hideUnassignedParents: boolean;
@@ -94,6 +93,8 @@ export class ClinicalPortalComponent implements OnInit  {
     this.showParents = true;
     this.hideUnassignedParents = false;
     this.hideUnassignedClinicians = false;
+
+    this.clinicianNames.push("");
 
     
     /*var clinicId: string = */
@@ -165,8 +166,8 @@ export class ClinicalPortalComponent implements OnInit  {
       if(clinic){
         this.clinicId = clinic.clinicId;
         this.currentClinicName = clinic.clinicname;
-        console.log("clinic ID in function");
-        console.log(this.clinicId);
+        //console.log("clinic ID in function");
+        //console.log(this.clinicId);
       }
     });
     
@@ -186,7 +187,7 @@ export class ClinicalPortalComponent implements OnInit  {
         });
 
         this.getNumberOfPatients();
-        this.getClinicNames(); 
+        this.getClinicianNames(); 
         });
       });
   
@@ -203,8 +204,8 @@ export class ClinicalPortalComponent implements OnInit  {
           this.parentList.push(parent);
         }
       });
-      console.log("parentList in function");
-      console.log(this.parentList);
+      //console.log("parentList in function");
+      //console.log(this.parentList);
     });
   }
 
@@ -224,26 +225,14 @@ export class ClinicalPortalComponent implements OnInit  {
   }
 
 
-  getClinicNames(){
-    this.parentList.forEach(parent => {
-      this.numberOfChildren.push(parent.childrennames.length);
-      var clinicianName;
-      var parentAssignedClinician = parent.assignedclinician;
-      console.log("ParentinASsigned");
-      console.log(parent);
-      if(parentAssignedClinician == ""){
-         console.log(parentAssignedClinician == "");
-         this.clinicianNames.push("");
+  getClinicianNames(){
+    var clinicianList: Observable<FFQClinicianResponse[]> = this.clinicianService.getAllClinicians();
+      clinicianList.subscribe(a => {
+      this.ffqclinicianList = a;
+      for (let i = 0; i < a.length; i++) {
+        this.clinicianNames.push(a[i].abbreviation + " " + a[i].firstname + " " + a[i].lastname);
       }
-      else{
-        this.clinicianService.getClinician(parentAssignedClinician).subscribe(clinicianForThisParent => {
-          console.log("clinicianForThisParent in function");
-          console.log(clinicianForThisParent);
-          clinicianName = clinicianForThisParent.abbreviation + ". " + clinicianForThisParent.firstname + " " + clinicianForThisParent.lastname;
-          this.clinicianNames.push(clinicianName);  
-        });  
-      }  
-     });
+    });
   }
 }
 

@@ -63,10 +63,12 @@ export class ClinicComponent implements OnInit {
   clinic: number;
 
   public ffqclinicianList: FFQClinician[] = [];
-  clinicNames: string[] = [];
+  clinicianNames: string[] = [];
 
     
   ngOnInit() {
+
+    this.clinicianNames.push("");
 
     const UserID = this.route.snapshot.paramMap.get('id');
     if (UserID == "new"){
@@ -86,7 +88,7 @@ export class ClinicComponent implements OnInit {
       clinicianList.subscribe(a => {
       this.ffqclinicianList = a;
       for (let i = 0; i < a.length; i++) {
-        this.clinicNames.push(a[i].lastname);
+        this.clinicianNames.push(a[i].abbreviation + " " + a[i].firstname + " " + a[i].lastname);
       }
     });
 
@@ -122,7 +124,7 @@ export class ClinicComponent implements OnInit {
       this.clinicService.getClinic(id).subscribe(data => {  
       
       
-        this.clinicAttributes.push(data);
+        this.clinicAttributes = data;
       });
       this.dataLoaded = Promise.resolve(true);
   }
@@ -131,8 +133,7 @@ export class ClinicComponent implements OnInit {
 
   updateClinic()
   { 
-    console.log(this.clinicAttributes[0]);
-    this.clinicService.updateClinic(<FFQClinicResponse>this.clinicAttributes[0]).subscribe(
+    this.clinicService.updateClinic(<FFQClinicResponse>this.clinicAttributes).subscribe(
      data => {this.router.navigateByUrl('/admin/clinics');
      const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
      dialogRef.componentInstance.title = 'Clinic successfully updated!';}

@@ -29,35 +29,41 @@ export class AdminClinicsComponent implements OnInit {
   public ffqclinicList: FFQClinic[] = [];
   public ffqclinicianList: FFQClinician[] = [];
   public ffqparentList: FFQParent[] = [];
-  public headClinicians: string[] =[];
+  public clinicianNames: string[] =[];
  
 
 
   ngOnInit() {
 
-    this.getAllHeadClinics();
+    //this.getAllHeadClinics();
+
+    this.clinicianNames.push("");
     
     var clinicList: Observable<FFQClinicResponse[]> = this.clinicService.getAllClinics();
     clinicList.subscribe(a => {
       this.ffqclinicList = a;
-      console.log(a);
+      //console.log(a);
     });
 
     var clinicianList: Observable<FFQClinicianResponse[]> = this.clinicianService.getAllClinicians();
     clinicianList.subscribe(a => {
       this.ffqclinicianList = a;
-      console.log(a);
+      for(var i = 0; i < a.length; i++)
+      {
+        this.clinicianNames.push(a[i].abbreviation + " " + a[i].firstname + " " + a[i].lastname);
+      }
+      //console.log(a);
     });
 
     var parentList: Observable<FFQParentResponse[]> = this.parentService.getAllParents();
     parentList.subscribe(a => {
       this.ffqparentList = a;
-      console.log(a);
+      //console.log(a);
     });
     
   }
 
-  private getAllHeadClinics(){
+  /*private getAllHeadClinics(){
 
     var allClinics: Observable<FFQClinicResponse[]> = this.clinicService.getAllClinics();
 
@@ -67,12 +73,12 @@ export class AdminClinicsComponent implements OnInit {
         var headClinicianObservable = this.clinicianService.getClinician(clinic.headclinician);
         headClinicianObservable.subscribe(headClinician => {
           if(headClinician){
-            var headClinicianName = headClinician.abbreviation + ". " + headClinician.firstname + " " + headClinician.lastname;
-            this.headClinicians.push(headClinicianName);
+            var headClinicianName = headClinician.abbreviation + " " + headClinician.firstname + " " + headClinician.lastname;
+            //this.headClinicians.push(headClinicianName);
           }
         });
       });
     })
 
-  }
+  }*/
 }

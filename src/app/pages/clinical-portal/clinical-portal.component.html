@@ -70,7 +70,7 @@
                 <mat-form-field>
                     <mat-label appearance="fill">Filter by Clinician...</mat-label>
                     <mat-select matNativeControl multiple>
-                      <mat-option *ngFor="let u of ffqclinicianList" (click)="filterByClinician(u.abbreviation + ' ' + u.firstname + ' ' + u.lastname)">{{ u.abbreviation }} {{ u.firstname }} {{ u.lastname }}</mat-option>
+                      <mat-option *ngFor="let u of ffqclinicianList" [hidden]="u.assignedclinic != clinicId" (click)="filterByClinician(u.abbreviation + ' ' + u.firstname + ' ' + u.lastname)">{{ u.abbreviation }} {{ u.firstname }} {{ u.lastname }}</mat-option>
                     </mat-select>
                 </mat-form-field>
                 <!--<span style="color:gray; margin-left: 20px; margin-right: 20px; font-size: x-large;"> | </span>
@@ -81,16 +81,16 @@
                 <tr>
                     <!--<th width="5%"> Select </th>-->
                     <th width="30%"> Username </th>
-                    <th width="37.5%"> Parent Name </th>
+                    <th width="30%"> Parent Name </th>
                     <th width="15%"> No. of Children </th>
-                    <th width="17.5%"> Assigned Clinician </th>
+                    <th width="25%"> Assigned Clinician </th>
                 </tr>
-                <tr *ngFor="let u of parentList | searchFilter: p_search; index as i" [hidden]="hideUnassignedParents && !clinicianNames[i] || (filtered && filtered_clinicians.indexOf(clinicianNames[i]) === -1)">
+                <tr *ngFor="let u of parentList | searchFilter: p_search; index as i" [hidden]="hideUnassignedParents && !clinicianNames[u.assignedclinician] || (filtered && filtered_clinicians.indexOf(clinicianNames[u.assignedclinician]) === -1)">
                     <!--<td align="center"><mat-checkbox [checked]="toggleAllParents"></mat-checkbox></td>-->
                     <td><a [routerLink]="['/clinic/user/p', u.userId]"> {{ u.username }} </a></td>
                     <td> {{ u.firstname }} {{ u.lastname }}</td>
-                    <td> {{ numberOfChildren[i] }}</td>
-                    <td> {{ clinicianNames[i] }}</td>
+                    <td> {{ u.childrennames.length }}</td>
+                    <td> {{ clinicianNames[u.assignedclinician] }}</td>
                 </tr>
             </table>
 

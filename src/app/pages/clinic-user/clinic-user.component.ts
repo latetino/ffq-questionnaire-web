@@ -9,6 +9,7 @@ import { FFQParent } from 'src/app/models/ffqparent';
 import { FFQParentResponse } from 'src/app/models/ffqparent-response';
 import { FFQClinician } from 'src/app/models/ffqclinician';
 import { FFQClinicianResponse } from 'src/app/models/ffqclinician-response';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-fooditem',
@@ -17,7 +18,9 @@ import { FFQClinicianResponse } from 'src/app/models/ffqclinician-response';
 })
 export class ClinicUserComponent implements OnInit {
 
-  userAttributes: object[] = [];
+  userAttributes: object;
+  public ffqclinicianList: FFQClinician[] = [];
+  clinicianNames: string[] = [];
 
   // for updating user
 
@@ -41,6 +44,17 @@ export class ClinicUserComponent implements OnInit {
     this.isParent = false;
     this.isClinician = false;
 
+    this.clinicianNames.push("");
+
+    var clinicianList: Observable<FFQClinicianResponse[]> = this.clinicianService.getAllClinicians();
+    clinicianList.subscribe(a => {
+      this.ffqclinicianList = a;
+      console.log(a);
+      for (let i = 0; i < a.length; i++) {
+        this.clinicianNames.push(a[i].abbreviation + " " + a[i].firstname + " " + a[i].lastname);
+      }
+    });
+
     const UserID = this.route.snapshot.paramMap.get('id');
     const UserType = this.route.snapshot.paramMap.get('type');
 
@@ -55,14 +69,13 @@ export class ClinicUserComponent implements OnInit {
       this.getClinicianByID(parseInt(UserID));
     }
 
-    console.log(this.userAttributes);
+    //console.log(this.userAttributes);
   }
 
   getParentByID(id: number)
   {
     this.parentService.getParent(id).subscribe(data => {  
-      this.userAttributes.push(data)
-      console.log(this.userAttributes);
+      this.userAttributes = data;
     });
     this.dataLoaded = Promise.resolve(true); 
   }
@@ -70,8 +83,7 @@ export class ClinicUserComponent implements OnInit {
   getClinicianByID(id: number)
   {
     this.clinicianService.getClinician(id).subscribe(data => {  
-      this.userAttributes.push(data)
-      console.log(this.userAttributes);
+      this.userAttributes = data;
     });
     this.dataLoaded = Promise.resolve(true); 
   }
@@ -90,8 +102,8 @@ export class ClinicUserComponent implements OnInit {
 
   updateParent()
   { 
-    console.log(this.userAttributes[0]);
-    this.parentService.updateParent(<FFQParentResponse>this.userAttributes[0]).subscribe(
+    console.log(this.userAttributes);
+    this.parentService.updateParent(<FFQParentResponse>this.userAttributes).subscribe(
      data => {this.router.navigateByUrl('/clinic/home');
      const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
      dialogRef.componentInstance.title = 'Parent successfully updated!';}
@@ -101,8 +113,8 @@ export class ClinicUserComponent implements OnInit {
 
   updateClinician()
   { 
-    console.log(this.userAttributes[0]);
-    this.clinicianService.updateClinician(<FFQClinicianResponse>this.userAttributes[0]).subscribe(
+    console.log(this.userAttributes);
+    this.clinicianService.updateClinician(<FFQClinicianResponse>this.userAttributes).subscribe(
      data => {this.router.navigateByUrl('/clinic/home');
      const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
      dialogRef.componentInstance.title = 'Clinician successfully updated!';}
