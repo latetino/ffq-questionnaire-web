@@ -40,3 +40,8 @@ tr:nth-child(even) {
 .tableDiv {
   padding: 35px;
 }
+
+.mat-raised-button{
+  background-color: #6573C3;
+  color: white;
+}

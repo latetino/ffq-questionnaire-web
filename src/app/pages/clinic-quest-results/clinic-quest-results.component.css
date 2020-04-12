@@ -18,6 +18,11 @@
     color:red;
   }
   
+  .mat-raised-button{
+    background-color: #B64D3E;
+    color: white;
+  }
+
   .quest-results-card {
     width: 60%;
     display: inline-flex;

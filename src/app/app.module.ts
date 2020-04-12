@@ -59,6 +59,7 @@ import { ClinicianPipe } from './pipes/clinicianFilter.pipe';
 import { ParentPipe } from './pipes/parentFilter.pipe';
 import { PatientPipe } from './pipes/patientFilter.pipe';
 import { SearchPipe } from './pipes/searchFilter.pipe';
+import { ResultsPipe } from './pipes/resultsFilter.pipe';
 
 @NgModule({
   declarations: [
@@ -99,7 +100,8 @@ import { SearchPipe } from './pipes/searchFilter.pipe';
     ClinicianPipe,
     ParentPipe,
     PatientPipe,
-    SearchPipe
+    SearchPipe,
+    ResultsPipe
       
   ],
   imports: [

@@ -10,6 +10,7 @@ import { FFQParentResponse } from 'src/app/models/ffqparent-response';
 import { ParentService } from 'src/app/services/parent/parent-service';
 import { FFQParent } from 'src/app/models/ffqparent';
 import { of } from 'rxjs';
+import { ResultsPipe } from 'src/app/pipes/resultsFilter.pipe';
 
 @Component({
   selector: "app-quest-results",
@@ -18,9 +19,7 @@ import { of } from 'rxjs';
 })
 export class ClinicQuestResultsComponent implements OnInit {
   public show: boolean = false;
-  public buttonName: any = "Results";
-  
-  MESSAGE = "No questionnaires have been submitted yet!";
+  search: string;
 
   
   results: FFQResultsResponse[] = [];
@@ -30,6 +29,7 @@ export class ClinicQuestResultsComponent implements OnInit {
   resultList: FFQResultsResponse[] = [];
   resultListObservable: Observable<FFQResultsResponse[]>;
   parentNames: string[] = [];
+  allParentNames: string[] = [];
 
   constructor(
     public resultsService: ResultsService,
@@ -40,6 +40,7 @@ export class ClinicQuestResultsComponent implements OnInit {
   
   ngOnInit() {
     this.getClinicId();
+    this.allParentNames.push("");
   
   }
 
@@ -104,6 +105,7 @@ private getParentList(){
 
   parentListObervable.subscribe(parentList => {
      parentList.forEach(parent => {
+       this.allParentNames.push(parent.firstname + " " + parent.lastname);
        if(parent.assignedclinic == this.clinicId){
          this.parentList.push(parent);
        }
@@ -148,8 +150,6 @@ private getResultsList(){
 
   toggle(index) {
     this.results[index].show = !this.results[index].show;
-    if (this.results[index].show) this.buttonName = "Results";
-    else this.buttonName = "Results ";
   }
     
 }

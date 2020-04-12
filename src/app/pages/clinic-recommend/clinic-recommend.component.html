@@ -5,27 +5,25 @@
         <span></span>
         <table class="table table-bordered table-inverse">
         <tr>
-            <th><div align="left"> Parent Name </div></th>
-            <th><div align="left"> Questionnaire ID </div></th>
+            <th><div align="center"> Parent Name </div></th>
+            <th><div align="center"> Questionnaire ID </div></th>
             <th><div align="center"> Patient name </div></th>
             <th><div align="center"> Infant age (in months) </div></th>
             <th><div align="center"> Nutrients </div></th>
             <th><div align="center"> Food items </div></th>
         </tr>
         <tr *ngFor="let result of results; let i = index">
-            <td >
-                {{parentNames[i]}}
+            <td>
+                <div align="center">{{ parentNames[i] }}</div>
             </td>
-            <td >
-                {{result.questionnaireId}}
+            <td>
+                <div align="center">{{ result.questionnaireId }}</div>
             </td>
-            <td ><div align="center">
-                {{result.patientName}}
-            </div>
+            <td>
+                <div align="center">{{ result.patientName }}</div>
             </td>
-            <td ><div align="center">
-                {{result.ageInMonths}}
-                </div>
+            <td>
+                <div align="center">{{ result.ageInMonths }}</div>
             </td>
             <td width="10%"><div align="center"><a (click)="getNutrientsRecommendations(result.questionnaireId)"><i title="nutrients" class="fa fa-flask"></i></a></div></td>
             <td width="10%"><div align="center"><a (click)="getFoodRecommendations(result.questionnaireId)"><i title="fooditems" class="fa fa-cutlery"></i></a></div></td>

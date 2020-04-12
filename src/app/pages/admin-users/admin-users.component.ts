@@ -16,13 +16,16 @@ import { FFQFoodItemResponse } from 'src/app/models/ffqfooditem-response';
 //test;
 import { FFQClinician } from 'src/app/models/ffqclinician';
 import { FFQParent } from 'src/app/models/ffqparent';
+import { FFQAdmin } from 'src/app/models/ffqadmin';
 import { FFQClinicianResponse } from 'src/app/models/ffqclinician-response';
 import { ParentService } from 'src/app/services/parent/parent-service';
 import { ClinicianService } from 'src/app/services/clinician/clinician-service';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { FFQParentResponse } from 'src/app/models/ffqparent-response';
 import { FFQClinicResponse } from 'src/app/models/ffqclinic-response';
+import { FFQAdminResponse } from 'src/app/models/ffqadmin-response';
 import { ClinicService } from 'src/app/services/clinic/clinic-service';
+import { AdminService } from 'src/app/services/admin/admin-service';
 import { FFQClinic } from 'src/app/models/ffqclinic';
 import { SearchPipe } from 'src/app/pipes/searchFilter.pipe';
 import { User } from 'src/app/models/user';
@@ -46,6 +49,7 @@ export class AdminUsersComponent implements OnInit {
     public parentService: ParentService,
     public clinicianService: ClinicianService,
     public clinicService: ClinicService,
+    public adminService: AdminService,
     public authenticationService: AuthenticationService
     
     ) { }
@@ -54,6 +58,7 @@ export class AdminUsersComponent implements OnInit {
   ffqclinicianList: FFQClinician[] = [];
   ffqparentList: FFQParent[] = [];
   ffqclinicList: FFQClinic[] = [];
+  ffqadminList: FFQAdmin[] = [];
   clinicianClinicNames: string[] = [];
   parentClinicNames: string[] = [];
   clinicNames: string[] = [];
@@ -126,6 +131,7 @@ export class AdminUsersComponent implements OnInit {
     var clinicianList: Observable<FFQClinicianResponse[]> = this.clinicianService.getAllClinicians();
     var parentList: Observable<FFQParentResponse[]> = this.parentService.getAllParents();
     var clinicList: Observable<FFQClinicResponse[]> = this.clinicService.getAllClinics();
+    var adminList: Observable<FFQAdminResponse[]> = this.adminService.getAllUsers();
 
 
     clinicList.subscribe(a => {
@@ -174,6 +180,8 @@ export class AdminUsersComponent implements OnInit {
        });
     });
 
+    adminList.subscribe(a => {
+      this.ffqadminList = a;
+    });
   }
-
 }
