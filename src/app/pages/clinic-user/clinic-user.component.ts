@@ -10,6 +10,8 @@ import { FFQParentResponse } from 'src/app/models/ffqparent-response';
 import { FFQClinician } from 'src/app/models/ffqclinician';
 import { FFQClinicianResponse } from 'src/app/models/ffqclinician-response';
 import { Observable } from 'rxjs';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { DeletePopupComponent } from "src/app/components/delete-popup/delete-popup.component";
 
 @Component({
   selector: 'app-fooditem',
@@ -33,7 +35,8 @@ export class ClinicUserComponent implements OnInit {
     public clinicianService: ClinicianService,
     private router: Router,
     private errorDialog: MatDialog,
-    ) { }
+    private modalService: NgbModal
+    ){}
 
   dataLoaded: Promise<boolean>;
 
@@ -120,5 +123,28 @@ export class ClinicUserComponent implements OnInit {
      dialogRef.componentInstance.title = 'Clinician successfully updated!';}
      
     );
+  }
+
+  deleteUser(){
+    if(this.isParent)
+    {
+      this.deleteParent();
+    }
+    else
+    {
+      this.deleteClinician();
+    }
+  }
+
+  deleteParent(){
+    const confirmDelete = this.modalService.open(DeletePopupComponent);
+    confirmDelete.componentInstance.service = "Parent";
+    confirmDelete.componentInstance.attributes = this.userAttributes;
+  }
+
+  deleteClinician(){ 
+    const confirmDelete = this.modalService.open(DeletePopupComponent);
+    confirmDelete.componentInstance.service = "Clinician";
+    confirmDelete.componentInstance.attributes = this.userAttributes;
   }
 }

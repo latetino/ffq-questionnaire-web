@@ -24,7 +24,8 @@ import{ ReactiveFormsModule} from '@angular/forms';
 import { AdminHeaderComponent } from './pages/admin-header/admin-header.component';
 import { QuestResultsComponent } from './pages/quest-results/quest-results.component';
 import { RecommendComponent } from './pages/recommend/recommend.component';
-import {PopupComponent} from "./components/popup/popup.component";
+import { PopupComponent } from "./components/popup/popup.component";
+import { DeletePopupComponent } from "./components/delete-popup/delete-popup.component";
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { Routes, RouterModule } from '@angular/router';
 import { RecommendModalComponent } from './components/recommend-modal/recommend-modal.component';
@@ -101,7 +102,8 @@ import { ResultsPipe } from './pipes/resultsFilter.pipe';
     ParentPipe,
     PatientPipe,
     SearchPipe,
-    ResultsPipe
+    ResultsPipe,
+    DeletePopupComponent
       
   ],
   imports: [
@@ -136,6 +138,13 @@ import { ResultsPipe } from './pipes/resultsFilter.pipe';
     //fakeBackendProvider
   ],*/
   bootstrap: [AppComponent],
-  entryComponents: [ErrorDialogPopupComponent, ResultsPageComponent,PopupComponent,RecommendModalComponent,FoodRecommendModalComponent]
+  entryComponents: [
+    ErrorDialogPopupComponent,
+    ResultsPageComponent,
+    PopupComponent,
+    RecommendModalComponent,
+    FoodRecommendModalComponent,
+    DeletePopupComponent
+  ]
 })
 export class AppModule { }

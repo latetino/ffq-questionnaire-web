@@ -19,6 +19,8 @@ import { ClinicService } from 'src/app/services/clinic/clinic-service';
 import { FFQClinic } from 'src/app/models/ffqclinic';
 import { ParentService } from 'src/app/services/parent/parent-service';
 import { FFQParentResponse } from 'src/app/models/ffqparent-response';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { DeletePopupComponent } from "src/app/components/delete-popup/delete-popup.component";
 
 
 @Component({
@@ -44,7 +46,8 @@ export class ClinicComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     public clinicService: ClinicService,
-    public parentService: ParentService
+    public parentService: ParentService,
+    private modalService: NgbModal
 
     ) { }
 
@@ -142,15 +145,9 @@ export class ClinicComponent implements OnInit {
   }
 
   deleteClinic(){
-    var clinicName = (<FFQClinicResponse>this.clinicAttributes).clinicname;
-    this.clinicService.deleteItem((<FFQClinicResponse>this.clinicAttributes).clinicId).subscribe( clinic => { 
-      console.log("data is");
-      console.log(clinic);
-      this.router.navigateByUrl('/admin/clinics');
-      const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
-      dialogRef.componentInstance.title = clinicName + ' removed';
-    });
-
+    const confirmDelete = this.modalService.open(DeletePopupComponent);
+    confirmDelete.componentInstance.service = "Clinic";
+    confirmDelete.componentInstance.attributes = this.clinicAttributes;
   }
 }
 

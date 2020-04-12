@@ -20,7 +20,8 @@ import { FFQParentResponse } from 'src/app/models/ffqparent-response';
 import { FFQClinicResponse } from 'src/app/models/ffqclinic-response';
 import { ClinicService } from 'src/app/services/clinic/clinic-service';
 import { FFQClinic } from 'src/app/models/ffqclinic';
-
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { DeletePopupComponent } from "src/app/components/delete-popup/delete-popup.component";
 
 @Component({
   selector: 'app-fooditem',
@@ -44,7 +45,8 @@ export class UserComponent implements OnInit {
     private errorDialog: MatDialog,
     private router: Router,
     private route: ActivatedRoute,
-    public clinicService: ClinicService
+    public clinicService: ClinicService,
+    private modalService: NgbModal
 
     ) { }
 
@@ -287,25 +289,15 @@ export class UserComponent implements OnInit {
   }
 
   deleteParent(){
-    var userName = (<FFQClinicianResponse>this.userAttributes).username;
-    this.parentService.deleteItem((<FFQClinicianResponse>this.userAttributes).userId).subscribe( user => { 
-      console.log("data is");
-      console.log(user);
-      this.router.navigateByUrl('/admin/users');
-      const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
-      dialogRef.componentInstance.title = userName + ' removed';
-    });
+    const confirmDelete = this.modalService.open(DeletePopupComponent);
+    confirmDelete.componentInstance.service = "Parent";
+    confirmDelete.componentInstance.attributes = this.userAttributes;
   }
 
-  deleteClinician(){ 
-    var userName = (<FFQClinicianResponse>this.userAttributes).username;
-    this.clinicianService.deleteItem((<FFQClinicianResponse>this.userAttributes).userId).subscribe( user => { 
-      console.log("data is");
-      console.log(user);
-      this.router.navigateByUrl('/admin/users');
-      const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
-      dialogRef.componentInstance.title = userName + ' removed';
-    });
+  deleteClinician(){
+    const confirmDelete = this.modalService.open(DeletePopupComponent);
+    confirmDelete.componentInstance.service = "Clinician";
+    confirmDelete.componentInstance.attributes = this.userAttributes;
   }
 }
 

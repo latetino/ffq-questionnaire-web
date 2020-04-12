@@ -41,6 +41,11 @@
                 <td> Parent </td>
                 <td> {{ clinicNames[u.assignedclinic] }} </td>
             </tr>
+            <tr *ngFor="let u of ffqadminList | searchFilter: search; index as i" [hidden]="!showAdmins">   
+                <td> {{ u.username }} </td>
+                <td> Admin </td>
+                <td> <!--{{ clinicNames[u.assignedclinic] }}--> </td>
+            </tr>
         </table>
        
     </div>
