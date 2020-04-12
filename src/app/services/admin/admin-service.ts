@@ -87,9 +87,9 @@ export class AdminService {
 
 
   /*DELETE: delete food item from the database */
-  deleteItem(username: string): Observable <any>{
-    console.log("here" + username);
-    return this.http.delete(this.endpoint + "/delete?username=" + username,  { responseType: 'text' })  
+  deleteItem(userId: string): Observable <any>{
+    console.log("here" + userId);
+    return this.http.delete(this.endpoint + "/delete?userId=" + userId,  { responseType: 'text' })  
   }
 
 

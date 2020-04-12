@@ -86,9 +86,9 @@ export class ClinicService {
   }
 
   /*DELETE: delete food item from the database */
-  deleteItem(username: string): Observable <any>{
-    console.log("here" + username);
-    return this.http.delete(this.endpoint + "/delete?username=" + username,  { responseType: 'text' })  
+  deleteItem(clinicId: string): Observable <any>{
+    console.log("here" + clinicId);
+    return this.http.delete(this.endpoint + "/delete?clinicId=" + clinicId,  { responseType: 'text' })  
   }
 
 

@@ -113,6 +113,7 @@ private getParentList(){
      })
      this.getResultsList();
 
+     console.log("Parent List")
      console.log(this.parentList);
   });
 
@@ -136,6 +137,8 @@ private getResultsList(){
           this.resultList.push(result);
           this.results.push(result);
         });
+        console.log("Result")
+        console.log(this.results);
       //  this.loadData();
       })
   });

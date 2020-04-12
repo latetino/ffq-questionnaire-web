@@ -10,7 +10,7 @@
 
       <div *ngIf="isUpdate" class="container mt-3">
         <div align="right">
-          <button mat-raised-button class="delete" style="margin-right: 20px;"> Delete </button>
+          <button mat-raised-button class="delete" style="margin-right: 20px;" (click)="deleteUser()"> Delete </button>
           <button mat-raised-button class="update" (click)="updateUser()"
             [disabled]="!myForm.form.valid"> Update User </button>
         </div>

@@ -140,6 +140,18 @@ export class ClinicComponent implements OnInit {
      
     );
   }
+
+  deleteClinic(){
+    var clinicName = (<FFQClinicResponse>this.clinicAttributes).clinicname;
+    this.clinicService.deleteItem((<FFQClinicResponse>this.clinicAttributes).clinicId).subscribe( clinic => { 
+      console.log("data is");
+      console.log(clinic);
+      this.router.navigateByUrl('/admin/clinics');
+      const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
+      dialogRef.componentInstance.title = clinicName + ' removed';
+    });
+
+  }
 }
 
 

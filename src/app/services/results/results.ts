@@ -23,7 +23,6 @@ export class ResultsService {
       map((res: any) => {
         return res.map(item => {
           return new FFQResultsResponse(
-            item.parentId,
             item.questionnaireId,
             item.parentId,
             item.patientName,
@@ -58,8 +57,8 @@ export class ResultsService {
         map((res: any) => {
           return res.map(item => {
             return new FFQResultsResponse(
-              item.parentId,
               item.questionnaireId,
+              item.parentId,
               item.patientName,
               item.ageInMonths,
               item.userChoices,

@@ -275,8 +275,37 @@ export class UserComponent implements OnInit {
   }
 
   
+  deleteUser(){
+    if(this.isParent)
+    {
+      this.deleteParent();
+    }
+    else
+    {
+      this.deleteClinician();
+    }
+  }
+
+  deleteParent(){
+    var userName = (<FFQClinicianResponse>this.userAttributes).username;
+    this.parentService.deleteItem((<FFQClinicianResponse>this.userAttributes).userId).subscribe( user => { 
+      console.log("data is");
+      console.log(user);
+      this.router.navigateByUrl('/admin/users');
+      const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
+      dialogRef.componentInstance.title = userName + ' removed';
+    });
+  }
+
+  deleteClinician(){ 
+    var userName = (<FFQClinicianResponse>this.userAttributes).username;
+    this.clinicianService.deleteItem((<FFQClinicianResponse>this.userAttributes).userId).subscribe( user => { 
+      console.log("data is");
+      console.log(user);
+      this.router.navigateByUrl('/admin/users');
+      const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
+      dialogRef.componentInstance.title = userName + ' removed';
+    });
+  }
 }
-
-
-
 
