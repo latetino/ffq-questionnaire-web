@@ -150,6 +150,5 @@ private getResultsList(){
 
   toggle(index) {
     this.results[index].show = !this.results[index].show;
-  }
-    
+  }    
 }

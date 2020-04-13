@@ -21,4 +21,10 @@ h2 {
     color: blue;
     cursor: pointer;
   }
+
+  .mat-raised-button{
+    background-color: #6573C3;
+    color: white;
+    width: 200px;
+  }
   

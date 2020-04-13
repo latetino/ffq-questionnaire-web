@@ -1,5 +1,7 @@
 <div class="modal-header">
-    <h4 class="modal-title">Delete</h4>
+    <div *ngIf="isClinician"><h4 class="modal-title">Delete Clinician</h4></div>
+    <div *ngIf="isParent"><h4 class="modal-title">Delete Parent</h4></div>
+    <div *ngIf="isClinic"><h4 class="modal-title">Delete Clinic</h4></div>
     <button type="button" class="close" aria-label="Close" (click)="onDismiss('Cross click')">
         <span aria-hidden="true"><i class="fa fa-times" aria-hidden="true"></i></span>
     </button>

@@ -47,7 +47,6 @@ export class DeletePopupComponent implements OnInit{
     onClose(): void {
         if(this.isClinician)
         {
-
             var userName = (<FFQClinicianResponse>this.attributes).username;
             this.clinicianService.deleteItem((<FFQClinicianResponse>this.attributes).userId).subscribe( user => { 
             this.router.navigateByUrl('/admin/users');
