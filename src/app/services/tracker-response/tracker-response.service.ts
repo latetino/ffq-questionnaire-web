@@ -13,7 +13,7 @@ export class TrackerResponseService {
   constructor(private http: HttpClient) { }
 
   submitTracker(results: TrackerResultsResponse): Observable<any> {
-    return this.http.put(this.endpoint + '/tracker', results);
+    return this.http.post(this.endpoint + '/tracker', results);
   }
 
 }
