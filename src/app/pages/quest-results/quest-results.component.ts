@@ -15,11 +15,11 @@ import { NutrientConstants } from 'src/app/models/NutrientConstants';
 })
 export class QuestResultsComponent implements OnInit {
   public show: boolean = false;
-  
+
   results: FFQResultsResponse[] = [];
 
   constructor(public resultsService: ResultsService) {}
-  
+
   ngOnInit() {
     this.getAllResults();
   }
@@ -48,18 +48,12 @@ export class QuestResultsComponent implements OnInit {
        })
 
        console.log(m);
-       this.results = m;
+       this.results = m.reverse();
     }
 
    )
 
  }
-
-  private returnZero(){
-    return 0;
-  }
-
-  //p = this.results;
 
   private returnZero(){
     return 0;

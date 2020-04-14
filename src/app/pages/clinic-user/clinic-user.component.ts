@@ -41,7 +41,7 @@ export class ClinicUserComponent implements OnInit {
   dataLoaded: Promise<boolean>;
 
   ngOnInit() {
-    
+
     // updating user
 
     this.isParent = false;
@@ -64,31 +64,31 @@ export class ClinicUserComponent implements OnInit {
     if(UserType == "p")
     {
       this.isParent = true;
-      this.getParentByID(parseInt(UserID));
+      this.getParentByID(UserID);
     }
     else
     {
       this.isClinician = true;
-      this.getClinicianByID(parseInt(UserID));
+      this.getClinicianByID(UserID);
     }
 
     //console.log(this.userAttributes);
   }
 
-  getParentByID(id: number)
+  getParentByID(id: string)
   {
-    this.parentService.getParent(id).subscribe(data => {  
+    this.parentService.getParent(id).subscribe(data => {
       this.userAttributes = data;
     });
-    this.dataLoaded = Promise.resolve(true); 
+    this.dataLoaded = Promise.resolve(true);
   }
 
-  getClinicianByID(id: number)
+  getClinicianByID(id: string)
   {
-    this.clinicianService.getClinician(id).subscribe(data => {  
+    this.clinicianService.getClinician(id).subscribe(data => {
       this.userAttributes = data;
     });
-    this.dataLoaded = Promise.resolve(true); 
+    this.dataLoaded = Promise.resolve(true);
   }
 
   updateUser()
@@ -104,24 +104,24 @@ export class ClinicUserComponent implements OnInit {
   }
 
   updateParent()
-  { 
+  {
     console.log(this.userAttributes);
     this.parentService.updateParent(<FFQParentResponse>this.userAttributes).subscribe(
      data => {this.router.navigateByUrl('/clinic/home');
      const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
      dialogRef.componentInstance.title = 'Parent successfully updated!';}
-     
+
     );
   }
 
   updateClinician()
-  { 
+  {
     console.log(this.userAttributes);
     this.clinicianService.updateClinician(<FFQClinicianResponse>this.userAttributes).subscribe(
      data => {this.router.navigateByUrl('/clinic/home');
      const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
      dialogRef.componentInstance.title = 'Clinician successfully updated!';}
-     
+
     );
   }
 
@@ -142,7 +142,7 @@ export class ClinicUserComponent implements OnInit {
     confirmDelete.componentInstance.attributes = this.userAttributes;
   }
 
-  deleteClinician(){ 
+  deleteClinician(){
     const confirmDelete = this.modalService.open(DeletePopupComponent);
     confirmDelete.componentInstance.service = "Clinician";
     confirmDelete.componentInstance.attributes = this.userAttributes;

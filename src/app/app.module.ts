@@ -42,7 +42,6 @@ import { TrackerBlockComponent } from './components/tracker-block/tracker-block.
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { TrackerHistoryPageComponent } from './pages/tracker-history-page/tracker-history-page.component';
 import { HistoryParentalComponent } from './pages/history-parental/history-parental.component';
-import { MatOptionModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { LoginComponent } from './pages/login';
@@ -104,7 +103,7 @@ import { ResultsPipe } from './pipes/resultsFilter.pipe';
     SearchPipe,
     ResultsPipe,
     DeletePopupComponent
-      
+
   ],
   imports: [
     BrowserModule,
@@ -130,13 +129,7 @@ import { ResultsPipe } from './pipes/resultsFilter.pipe';
     NgbModule.forRoot(),
     FlashMessagesModule.forRoot(),
    ],
-   /*
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
 
-    // provider used to create fake backend
-    //fakeBackendProvider
-  ],*/
   bootstrap: [AppComponent],
   entryComponents: [
     ErrorDialogPopupComponent,

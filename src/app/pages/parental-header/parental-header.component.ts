@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 import { User } from 'src/app/services/authentication/temp-user';
@@ -12,9 +12,12 @@ import { User } from 'src/app/services/authentication/temp-user';
 export class ParentalHeaderComponent {
     TITLE = 'Parent Portal';
     currentUser: User;
+    router: Router;
 
-    constructor(private router: Router, private authenticationService: AuthenticationService) {
-        this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+    constructor(router: Router, private authenticationService: AuthenticationService) {
+      this.router = router;
+      this.authenticationService = this.authenticationService;
+        //this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
     }
 
     logout() {

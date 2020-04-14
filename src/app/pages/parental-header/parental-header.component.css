@@ -63,12 +63,12 @@ body, html {
   right: 10px;
   top: 10px;
   padding: 20px 10px;
+}
 
-  
   a {
     text-decoration: none;
   }
-  
+
   .header{
     background-color: #3f51b5;
     width: 100%;
@@ -76,17 +76,17 @@ body, html {
     position: fixed;
     z-index: 9999;
   }
-  
+
   .links{
     padding-top: 22px;
   }
-  
+
   body, html {
     height: 100%;
     margin: 0;
     font-family: Arial;
   }
-  
+
   /* Style tab links */
   .tab-link {
     margin-top: 10px;
@@ -101,7 +101,7 @@ body, html {
     width: 20%;
     text-align:center;
   }
-  
+
   .active{
     background-color: #2C387E;
     color: white;
@@ -111,7 +111,7 @@ body, html {
     color: #2C387E;
     font-weight: bold;
   }
-  
+
   /* Style the tab content (and add height:100% for full page content) */
   .tabcontent {
     color: white;
@@ -126,8 +126,7 @@ body, html {
     top: 10px;
     padding: 20px 10px;
 
-    
+
   }
-  
-  
-  
+
+

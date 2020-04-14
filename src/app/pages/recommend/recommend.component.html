@@ -10,10 +10,7 @@
             <th><div align="center"> Infant Age (in months) </div></th>
             <th><div align="center"> Nutrients </div></th>
             <th><div align="center"> Food Items </div></th>
-<<<<<<< HEAD
-            <th><div align="center"> Food Item Description </div></th>
-=======
->>>>>>> 899260e... minor touchups and cosmetic changes
+            <!-- <th><div align="center"> Food Item Description </div></th> -->
         </tr>
         <tr *ngFor="let result of results; let i = index">
             <td ><div align="center">
@@ -30,7 +27,7 @@
             </td>
             <td width="10%"><div align="center"><a (click)="getNutrientsRecommendations(result.questionnaireId)"><i title="nutrients" class="fa fa-flask"></i></a></div></td>
             <td width="10%"><div align="center"><a (click)="getFoodRecommendations(result.questionnaireId)"><i title="fooditems" class="fa fa-cutlery"></i></a></div></td>
-            <td width="10%"><div align="center"><i title="Food Description"><button class="btn btn-primary"[routerLink]="['/recommend-parental']" routerLinkActive="active">Show Description</button></i></div></td>
+            <!-- <td width="10%"><div align="center"><i title="Food Description"><button class="btn btn-primary"routerLink="/recommend-parental" routerLinkActive="active">Show Description</button></i></div></td> -->
           </tr>
         </table>
 

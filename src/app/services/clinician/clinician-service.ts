@@ -10,7 +10,7 @@ import { ɵangular_packages_forms_forms_q } from '@angular/forms';
 import { Http, Headers, Response, RequestOptions, RequestMethod } from '@angular/http';
 import { FFQFoodItemResponse } from 'src/app/models/ffqfooditem-response';
 import { FFQClinicianResponse } from 'src/app/models/ffqclinician-response';
-//Created by Khalid Alamoudi 
+//Created by Khalid Alamoudi
 
 const httOptions ={ headers: new HttpHeaders({'Content-Type':'aplication/json'})}
 
@@ -23,29 +23,28 @@ const httOptions ={ headers: new HttpHeaders({'Content-Type':'aplication/json'})
 export class ClinicianService {
 
   endpoint = 'http://localhost:9070/ffq/clinicians';
-  
 
-  constructor(private http: HttpClient) { } 
+
+  constructor(private http: HttpClient) { }
 
   addClinician(user : FFQClinicianResponse): Observable<any> {
-    
+
     return this.http.post(this.endpoint + '/createclinician', user, {headers : new HttpHeaders({ 'Content-Type': 'application/json' })}).pipe(
-      tap( 
+      tap(
         data => console.log(data),
         error => console.log(error)
       ));
   }
 
   updateClinician(user : FFQClinicianResponse): Observable<any> {
-    
+
     return this.http.put(this.endpoint + '/updateclinician', user, {headers : new HttpHeaders({ 'Content-Type': 'application/json' })}).pipe(
-      tap( 
+      tap(
         data => console.log(data),
         error => console.log(error)
       ));
   }
 
-    return this.http.get(this.endpoint + '/' + clinicianId).pipe(
   getClinician(userId: string): Observable<FFQClinicianResponse> {
     return this.http.get(this.endpoint + '/' + userId).pipe(
       map((item: any) => {
@@ -64,7 +63,7 @@ export class ClinicianService {
     );
   }
 
- 
+
   getAllClinicians(): Observable<FFQClinicianResponse[]> {
    // getMongoUsers();
     return this.http.get(this.endpoint + '/all').pipe(
@@ -86,16 +85,11 @@ export class ClinicianService {
     );
   }
 
- 
-
-
   /*DELETE: delete food item from the database */
   deleteItem(userId: string): Observable <any>{
     console.log("here" + userId);
-    return this.http.delete(this.endpoint + "/delete?userId=" + userId,  { responseType: 'text' })  
+    return this.http.delete(this.endpoint + "/delete?userId=" + userId,  { responseType: 'text' })
   }
-
-
 }
 
 

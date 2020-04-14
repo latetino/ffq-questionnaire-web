@@ -12,32 +12,32 @@ export class AuthGuard implements CanActivate {
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const currentUser = this.authenticationService.currentUserValue;
-        console.log(currentUser);
-        
+        //console.log(currentUser);
+
         if (currentUser) {
-          console.log(currentUser[0].usertype);
+          //console.log(currentUser[0].usertype);
             // logged in so return true
             var urlType = this.getUrlType(state.url);
-            console.log(state.url);
-            console.log(urlType);
+            //console.log(state.url);
+            //console.log(urlType);
 
             if(currentUser[0].usertype == "admin"){
 
               if(urlType != "/admin"){
                 this.router.navigate(['/admin/home']);
-              }  
+              }
             }
             else if(currentUser[0].usertype == "parent"){
               if(urlType != "/parent"){
-                this.router.navigate(['/parental']);
-              } 
+                this.router.navigate(['parent/home']);
+              }
             }
             else if(currentUser[0].usertype == "clinician"){
               if(urlType != "/clinic"){
                 this.router.navigate(['/clinic/home']);
-              }  
+              }
             }
-            
+
             return true;
         }
 
@@ -55,7 +55,7 @@ export class AuthGuard implements CanActivate {
         for (i = 1; i < state.length; i++) {
           if(state[i] == "/"){
             i = (state.length)-1;
-            continue;
+            break;
           }
            urlType += state[i];
         }

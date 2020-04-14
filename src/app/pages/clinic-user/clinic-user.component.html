@@ -9,14 +9,14 @@
 
       <div class="container mt-3">
         <div align="right">
-          <button mat-raised-button class="delete" (click)="deleteUser()" style="margin-right: 20px;"> Delete </button> 
+          <!-- <button mat-raised-button class="delete" (click)="deleteUser()" style="margin-right: 20px;"> Delete </button> Don't need delete -->
           <button mat-raised-button class="update" (click)="updateUser()"> Update User </button>
         </div>
         <div class="container frame-fooditem">
           <h6> Update User </h6>
           <div class="form-group col-12">
             <label style="font-weight: bold"> Account Type </label>
-            <br>  
+            <br>
             <mat-radio-group aria-label="Select an option">
               <mat-radio-button value="parent" [checked]="isParent" color="warn" [disabled]="true">Parent</mat-radio-button>
               <br>
@@ -30,7 +30,7 @@
             <div class="optional_container" *ngIf="isParent">
               <hr>
               <div class="form-group col-12">
-                
+
                 <label style="font-weight: bold"> Username </label>
                 <!--<input style="border-color: gray; border-width: 0.05cm" type="text"
                   class="form-control" readonly name="username" [(ngModel)]="userAttributes[0].username">-->
@@ -70,18 +70,18 @@
                       <td> {{ clinicianNames[i] }}</td>
                   </tr>
               </table>-->
-    
+
               </div>
             </div>
 
             <!-- Update Parent ends here -->
 
             <!-- Update Clinician starts here -->
-    
+
             <div class="optional_container" *ngIf="isClinician">
               <hr>
               <div class="form-group col-12">
-                
+
                 <label style="font-weight: bold"> Username </label>
                 <input style="border-width: 0.05cm" type="text"
                   class="form-control" name="username" [(ngModel)]="userAttributes.username" required>
@@ -102,7 +102,7 @@
           </div>
 
         </div>
-        
+
       </div>
     </div>
   </div>

@@ -46,7 +46,6 @@ export class ClinicComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     public clinicService: ClinicService,
-    public parentService: ParentService,
     private modalService: NgbModal
 
     ) { }
@@ -58,7 +57,7 @@ export class ClinicComponent implements OnInit {
   nutrientsMap: Map<string,FFQNutrientlist> = new Map<string,FFQNutrientlist>();
 
   //foodNutrientsItem: FFQFoodNutrients[] = [];
-  clinicAttributes: object[] = [];
+  clinicAttributes: object;
   dataLoaded: Promise<boolean>;
 
   ffqclinic: FFQClinic;
@@ -68,14 +67,14 @@ export class ClinicComponent implements OnInit {
   public ffqclinicianList: FFQClinician[] = [];
   clinicianNames: string[] = [];
 
-    
+
   ngOnInit() {
 
     this.clinicianNames.push("");
 
     const UserID = this.route.snapshot.paramMap.get('id');
     if (UserID == "new"){
-    
+
       this.isNew = true;
       this.clinicnumber = this.clinic;
       this.dataLoaded = Promise.resolve(true);
@@ -83,7 +82,7 @@ export class ClinicComponent implements OnInit {
     else
     {
       this.isUpdate = true;
-      this.getClinicById(parseInt(UserID));
+      this.getClinicById(UserID);
     }
 
 
@@ -97,13 +96,13 @@ export class ClinicComponent implements OnInit {
 
   }
 
-  addClinic(form:NgForm){  
+  addClinic(form:NgForm){
 
     var clinicList: Observable<FFQClinicResponse[]> = this.clinicService.getAllClinics();
 
     clinicList.subscribe(data => {
       var newClinicId = (data.length+1).toString();
-      this.ffqclinic = new FFQClinic(newClinicId, this.location, "", this.name_of_clinic);
+      this.ffqclinic = new FFQClinic(newClinicId, this.location, "", this.name_of_clinic, "", false);
       console.log(this.ffqclinic);
 
       this.clinicService.addClinic(this.ffqclinic).subscribe(data => {
@@ -115,32 +114,32 @@ export class ClinicComponent implements OnInit {
       error =>{
           const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
           dialogRef.componentInstance.title = error.error.message;
-      }); 
+      });
 
     });
 }
 
-  private getClinicById(id: number)
+  private getClinicById(id: string)
   {
 
 
-      this.clinicService.getClinic(id).subscribe(data => {  
-      
-      
+      this.clinicService.getClinic(id).subscribe(data => {
+
+
         this.clinicAttributes = data;
       });
       this.dataLoaded = Promise.resolve(true);
   }
 
-  
+
 
   updateClinic()
-  { 
+  {
     this.clinicService.updateClinic(<FFQClinicResponse>this.clinicAttributes).subscribe(
      data => {this.router.navigateByUrl('/admin/clinics');
      const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
      dialogRef.componentInstance.title = 'Clinic successfully updated!';}
-     
+
     );
   }
 

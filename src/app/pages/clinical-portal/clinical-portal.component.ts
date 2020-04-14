@@ -1,23 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { FoodItemService } from '../../services/food-item/food-item.service';
-import { FFQItem } from 'src/app/models/ffqitem';
-import { HttpErrorResponse } from '@angular/common/http';
-import { ErrorDialogPopupComponent } from 'src/app/components/error-dialog-popup/error-dialog-popup.component';
-import { FFQFoodNutrientsResponse } from 'src/app/models/ffqfoodnutrients-response';
-import { PopupComponent } from 'src/app/components/popup/popup.component';
-import { FlashMessagesService } from 'angular2-flash-messages';
-
-import { FFQFoodItem } from 'src/app/models/ffqfooditem';
-import { FFQFoodItemResponse } from 'src/app/models/ffqfooditem-response';
-
-//test
 import { FFQClinician } from 'src/app/models/ffqclinician';
 import { FFQParent } from 'src/app/models/ffqparent';
 import { FFQClinic } from 'src/app/models/ffqclinic';
-import { FFQUserMap } from 'src/app/models/ffqusermap';
 import { ParentService } from 'src/app/services/parent/parent-service';
 import { ClinicianService } from 'src/app/services/clinician/clinician-service';
 import { ClinicService } from 'src/app/services/clinic/clinic-service';
@@ -27,20 +13,15 @@ import { FFQParentResponse } from 'src/app/models/ffqparent-response';
 import { FFQClinicResponse } from 'src/app/models/ffqclinic-response';
 import { PatientPipe } from 'src/app/pipes/patientFilter.pipe';
 import { SearchPipe } from 'src/app/pipes/searchFilter.pipe';
-import { AllUsers } from 'src/app/models/all-users';
 import { User } from 'src/app/models/user';
 import { AdminService } from 'src/app/services/admin/admin-service';
-import { MatDialog } from '@angular/material';
-import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
-
 
 @Component({
   selector: 'app-clinical-portal',
   templateUrl: './clinical-portal.component.html',
   styleUrls: ['./clinical-portal.component.css']
 })
-
 
 export class ClinicalPortalComponent implements OnInit  {
 
@@ -51,7 +32,6 @@ export class ClinicalPortalComponent implements OnInit  {
   //private authenticationService: AuthenticationService;
   p_search: string;
   c_search: string;
-
 
   constructor(
     public parentService: ParentService,
@@ -65,7 +45,6 @@ export class ClinicalPortalComponent implements OnInit  {
     ) {
       this.authenticationService = authenticationService;
      }
-
 
   ffqclinicianList: FFQClinician[] = [];
   ffqparentList: FFQParent[] = [];
@@ -82,13 +61,10 @@ export class ClinicalPortalComponent implements OnInit  {
   private numberOfChildren: number[] = [];
   private currentClinicName: string;
 
-
-
   public UserList: User[];
-  
 
   ngOnInit() {
-   
+
     this.showClinicians = true;
     this.showParents = true;
     this.hideUnassignedParents = false;
@@ -96,18 +72,12 @@ export class ClinicalPortalComponent implements OnInit  {
 
     this.clinicianNames.push("");
 
-    
     /*var clinicId: string = */
     this.getClinicId();
     /*var clinicianList: FFQClinician[] = */
     this.getParents();
     this.loadData();
     //this.getNumberOfPatients();
-
-
-
-  
-  
   }
 
   toggleClinicians($event)
@@ -151,9 +121,6 @@ export class ClinicalPortalComponent implements OnInit  {
     }
   }
 
-
-  
-
   private getClinicId(){
 
     var clinicListObervable: Observable<FFQClinicResponse[]> = this.clinicService.getAllClinics();
@@ -170,7 +137,7 @@ export class ClinicalPortalComponent implements OnInit  {
         //console.log(this.clinicId);
       }
     });
-    
+
   }
 
   loadData(){
@@ -187,11 +154,11 @@ export class ClinicalPortalComponent implements OnInit  {
         });
 
         this.getNumberOfPatients();
-        this.getClinicianNames(); 
+        this.getClinicianNames();
         });
       });
-  
-  }   
+
+  }
 
   getParents(){
     var parentListObservable: Observable<FFQParentResponse[]> = this.parentService.getAllParents();
@@ -223,7 +190,6 @@ export class ClinicalPortalComponent implements OnInit  {
       console.log(this.clinicianNames);
     });
   }
-
 
   getClinicianNames(){
     var clinicianList: Observable<FFQClinicianResponse[]> = this.clinicianService.getAllClinicians();

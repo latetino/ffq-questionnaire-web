@@ -99,7 +99,7 @@ export class ClinicRecommendComponent implements OnInit {
       }
       this.getParentList();
     });
-    
+
   }
 
 private getParentList(){
@@ -117,7 +117,7 @@ private getParentList(){
      console.log(this.parentList);
   });
 
-  
+
 
 }
 
@@ -129,7 +129,7 @@ private getResultsList(){
   this.parentList.forEach(parent => {
       console.log("Parent");
       console.log(parent);
-      var resulstsForThisParentObservable = this.resultsService.getResultsByParents(parent.userId);
+      var resulstsForThisParentObservable = this.resultsService.getResultsByUser(parent.userId);
       resulstsForThisParentObservable.subscribe(resultsForThisParent => {
         resultsForThisParent.forEach(result => {
           var parentName = parent.firstname + " " + parent.lastname;
@@ -138,6 +138,7 @@ private getResultsList(){
           this.results.push(result);
         });
         console.log("Result")
+        //this.results = this.resultList.reverse();
         console.log(this.results);
       //  this.loadData();
       })

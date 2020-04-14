@@ -27,9 +27,6 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { LogoutComponent } from './pages/logout/logout.component';
-//import { AuthGaurdService } from './services/authentication/auth.guard';
-
-
 
 const routes: Routes = [
   {
@@ -51,7 +48,7 @@ const routes: Routes = [
     path: 'admin/users', component: AdminUsersComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'recommend-parental', component:   RecommendParentalComponent
+    path: 'parent/recommend', component:   RecommendParentalComponent, canActivate: [AuthGuard]
   },
   {
     path: 'admin/results', component:  QuestResultsComponent, canActivate: [AuthGuard]
@@ -72,22 +69,22 @@ const routes: Routes = [
     path: '', redirectTo: 'admin/home', pathMatch: 'full'
   },
   {
-    path: 'questionnaire-id', component: QuestIdInputComponent//, canActivate: [AuthGuard]
+    path: 'parent/home', component: QuestIdInputComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'questionnaire/:id', component: QuestionnairePageComponent//, canActivate: [AuthGuard]
+    path: 'parent/questionnaire/:id', component: QuestionnairePageComponent, canActivate: [AuthGuard]
   },
   {
     path: 'clinic/home', component: ClinicalPortalComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'tracker', component: TrackerPageComponent
+    path: 'parent/tracker', component: TrackerPageComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'tracker-history', component: TrackerHistoryPageComponent
+    path: 'parent/tracker-history', component: TrackerHistoryPageComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'history-parental', component: HistoryParentalComponent
+    path: 'parent/history', component: HistoryParentalComponent, canActivate: [AuthGuard]
   },
   {
     path: 'login', component: LoginComponent
@@ -103,17 +100,14 @@ const routes: Routes = [
   },
   {
     path: 'clinic/user', component: ClinicUserComponent, canActivate: [AuthGuard]
-  }
-  {
-    path: 'login', component: LoginComponent//, canActivate: [AuthGuard]
   },
   {
     path: '*', redirectTo: 'login'
   },
-  { 
+  {
     path: 'logout', component: LogoutComponent
   },
-  { 
+  {
     path: 'login-page', component: LoginPageComponent
   }
 ];

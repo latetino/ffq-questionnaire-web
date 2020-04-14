@@ -66,7 +66,7 @@ export class UserComponent implements OnInit {
   clinicNames: string[] = [];
   clinicIds: Map<string, string> = new Map<string, string>();
 
-    
+
   ngOnInit() {
 
     this.createParents = false;
@@ -76,7 +76,7 @@ export class UserComponent implements OnInit {
     this.clinicNames.push("");
 
     const UserType = this.route.snapshot.paramMap.get('type');
-    const UserID = this.route.snapshot.paramMap.get('id'); 
+    const UserID = this.route.snapshot.paramMap.get('id');
 
     if (UserID == "new")
     {
@@ -121,7 +121,7 @@ export class UserComponent implements OnInit {
   }
 
   private addUser()
-  {  
+  {
      if(this.createClinician == true)
      {
         this.addClinician();
@@ -155,7 +155,7 @@ export class UserComponent implements OnInit {
         error =>{
             const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
             dialogRef.componentInstance.title = error.error.message;
-        }); 
+        });
 
       });
   }
@@ -179,22 +179,22 @@ export class UserComponent implements OnInit {
         error =>{
             const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
             dialogRef.componentInstance.title = error.error.message;
-        }); 
+        });
 
       });
   }
-
+/*
   private addParent(form:NgForm){
-  
+
        var parentList: Observable<FFQParentResponse[]> = this.parentService.getAllParents();
- 
+
        parentList.subscribe(data => {
          var numberOfParents = (data.length+1).toString();
          var newParentId = (data.length+1).toString();
          var newParentUsername = "parent"+numberOfParents;
          this.ffqParent = new FFQParent(newParentId, newParentUsername, newParentUsername, "", "", "", []);
          //console.log(this.ffquser);
- 
+
          this.parentService.addParent(this.ffqParent).subscribe(data => {
              this.router.navigateByUrl('/admin/users');
              const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
@@ -203,33 +203,33 @@ export class UserComponent implements OnInit {
          error =>{
              const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
              dialogRef.componentInstance.title = error.error.message;
-         }); 
- 
+         });
+
        });
-    
-   }
+
+   }*/
 
 
   getParentByID(id: string)
   {
     this.isParent = true;
-    this.parentService.getParent(id).subscribe(data => {  
+    this.parentService.getParent(id).subscribe(data => {
        this.userAttributes = data;
        //this.newParent = data;
 
     });
-    this.dataLoaded = Promise.resolve(true); 
+    this.dataLoaded = Promise.resolve(true);
   }
 
   getClinicianByID(id: string)
   {
     this.isClinician = true;
-    this.clinicianService.getClinician(id).subscribe(data => {  
+    this.clinicianService.getClinician(id).subscribe(data => {
       this.userAttributes = data;
       //this.newClinician = data;
       //console.log(this.userAttributes);
     });
-    this.dataLoaded = Promise.resolve(true); 
+    this.dataLoaded = Promise.resolve(true);
   }
 
   updateUser()
@@ -245,7 +245,7 @@ export class UserComponent implements OnInit {
   }
 
   updateParent()
-  { 
+  {
 
     //this.newParent.assignedclinic = this.clinicIds.get(this.newClinic);
 
@@ -253,21 +253,21 @@ export class UserComponent implements OnInit {
      data => {this.router.navigateByUrl('/admin/users');
      const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
      dialogRef.componentInstance.title = 'Parent successfully updated!';}
-     
+
     );
   }
 
   updateClinician()
-  { 
+  {
 
- 
+
     //console.log("new clinic");
     //console.log(this.newClinic);
     //this.newClinician.assignedclinic = this.clinicIds.get(this.newClinic);
     //console.log(this.newClinician);
- 
+
     this.clinicianService.updateClinician(<FFQClinicianResponse>this.userAttributes)
-      .subscribe( data => { 
+      .subscribe( data => {
         console.log("data is");
         console.log(data);
         this.router.navigateByUrl('/admin/users');
@@ -276,7 +276,7 @@ export class UserComponent implements OnInit {
       });
   }
 
-  
+
   deleteUser(){
     if(this.isParent)
     {

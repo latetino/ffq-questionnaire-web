@@ -1,5 +1,4 @@
 export class FFQResultsResponse {
-    parentId: String;
     questionnaireId: String;
     userId: string;
     patientName: string;
@@ -18,11 +17,4 @@ export class FFQResultsResponse {
       this.weeklyTotals = weeklyTotals;
       this.dailyAverages = dailyAverages;
     }
-/*
-    public getWeekly(){
-      return this.weeklyTotals;
-    }
-*/
-  
-
   }

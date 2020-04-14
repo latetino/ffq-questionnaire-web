@@ -21,7 +21,7 @@ export class ClinicQuestResultsComponent implements OnInit {
   public show: boolean = false;
   search: string;
 
-  
+
   results: FFQResultsResponse[] = [];
   clinicId: string;
   currentClinicName: string;
@@ -37,18 +37,18 @@ export class ClinicQuestResultsComponent implements OnInit {
     public parentService: ParentService,
     public authenticationService: AuthenticationService
     ) {}
-  
+
   ngOnInit() {
     this.getClinicId();
     this.allParentNames.push("");
-  
+
   }
 
   //(Khalid)Changed below code to sort the list in the nutient view page
   private loadData() {
-    
+
      const oldListObservable: Observable<FFQResultsResponse[]> = of(this.resultList);
-    
+
      const newList: string[] = NutrientConstants.NUTRIENT_NAMES;
      const newWeeklyMap = new Map<string, number>();
      const newDailyMap = new Map<string, number>();
@@ -67,19 +67,19 @@ export class ClinicQuestResultsComponent implements OnInit {
       //console.log(newWeeklyMap);
 
       oldList.forEach(element => {
-         
+
          element.weeklyTotals = newWeeklyMap;
          element.dailyAverages = newDailyMap;
          //element.dailyAverages = newDailyMap;
 
         })
-        
+
         console.log(oldList);
-        this.results = oldList;
-     });    
-    
+        this.results = oldList.reverse();
+     });
+
   }
-  
+
   private getClinicId(){
 
     var clinicListObervable: Observable<FFQClinicResponse[]> = this.clinicService.getAllClinics();
@@ -97,7 +97,7 @@ export class ClinicQuestResultsComponent implements OnInit {
       }
       this.getParentList();
     });
-    
+
   }
 
 private getParentList(){
@@ -115,7 +115,7 @@ private getParentList(){
      console.log(this.parentList);
   });
 
-  
+
 
 }
 
@@ -127,7 +127,7 @@ private getResultsList(){
   this.parentList.forEach(parent => {
       console.log("Parent");
       console.log(parent);
-      var resulstsForThisParentObservable = this.resultsService.getResultsByParents(parent.userId);
+      var resulstsForThisParentObservable = this.resultsService.getResultsByUser(parent.userId);
       resulstsForThisParentObservable.subscribe(resultsForThisParent => {
         resultsForThisParent.forEach(result => {
           var parentName = parent.firstname + " " + parent.lastname;
@@ -141,7 +141,7 @@ private getResultsList(){
 
 
 
-  
+
   //p = this.results;
 
   private returnZero(){
@@ -150,5 +150,5 @@ private getResultsList(){
 
   toggle(index) {
     this.results[index].show = !this.results[index].show;
-  }    
+  }
 }

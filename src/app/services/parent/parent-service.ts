@@ -10,38 +10,34 @@ import { ɵangular_packages_forms_forms_q } from '@angular/forms';
 import { Http, Headers, Response, RequestOptions, RequestMethod } from '@angular/http';
 import { FFQFoodItemResponse } from 'src/app/models/ffqfooditem-response';
 import { FFQParentResponse } from 'src/app/models/ffqparent-response';
-//const mongoose = require('mongoose');
-//declare var require: any
-//Created by Khalid Alamoudi 
 
+//Created by Khalid Alamoudi
 const httOptions ={ headers: new HttpHeaders({'Content-Type':'aplication/json'})}
 
 @Injectable({
   providedIn: 'root'
 })
 
-
-
 export class ParentService {
 
   endpoint = 'http://localhost:9070/ffq/parents';
-  
 
-  constructor(private http: HttpClient) { } 
+
+  constructor(private http: HttpClient) { }
 
   addParent(user : FFQParentResponse): Observable<any> {
-    
+
     return this.http.post(this.endpoint + '/createparent', user, {headers : new HttpHeaders({ 'Content-Type': 'application/json' })}).pipe(
-      tap( 
+      tap(
         data => console.log(data),
         error => console.log(error)
       ));
   }
 
   updateParent(user : FFQParentResponse): Observable<any> {
-    
+
     return this.http.put(this.endpoint + '/updateparent', user, {headers : new HttpHeaders({ 'Content-Type': 'application/json' })}).pipe(
-      tap( 
+      tap(
         data => console.log(data),
         error => console.log(error)
       ));
@@ -65,7 +61,6 @@ export class ParentService {
     );
   }
 
-  // created by Dariana Gonzalez
   getAllParents(): Observable<FFQParentResponse[]> {
    // getMongoUsers();
     return this.http.get(this.endpoint + '/all').pipe(
@@ -87,13 +82,13 @@ export class ParentService {
     );
   }
 
- 
+
 
 
   /*DELETE: delete food item from the database */
   deleteItem(userId: string): Observable <any>{
     console.log("here" + userId);
-    return this.http.delete(this.endpoint + "/delete?userId=" + userId,  { responseType: 'text' })  
+    return this.http.delete(this.endpoint + "/delete?userId=" + userId,  { responseType: 'text' })
   }
 
 
@@ -101,14 +96,14 @@ export class ParentService {
 
 
 /*export async function getMongoUsers() {  //test function to get users from mongoDB
-  
-  const MongoClient = require('mongodb').MongoClient; 
-  const url = "mongodb://localhost:27017/"; 
+
+  const MongoClient = require('mongodb').MongoClient;
+  const url = "mongodb://localhost:27017/";
   const db = await MongoClient.connect(url);
   const dbo = db.db("ffq_database");
   var user = await dbo.collection("users").find().toArray();    //[{1, Admin}, {2, Khalid}]
   console.log(user);
-  
+
 }*/
 
 
