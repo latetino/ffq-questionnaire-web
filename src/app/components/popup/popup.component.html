@@ -3,7 +3,7 @@
 <div class="modal-header">
     <h4 class="modal-title">Delete Food Item</h4>
     <button type="button" class="close" aria-label="Close" (click)="onDismiss('Cross click')">
-        <span aria-hidden="true">x</span>
+        <span aria-hidden="true"><i class="fa fa-times" aria-hidden="true"></i></span>
     </button>
 </div>
 <div class="modal-body">
@@ -11,6 +11,6 @@
 </div>
 <div class="modal-footer">
     <button class="btn btn-primary" type="button" (click)="onDismiss('Close click')">Cancel</button>
-    <button class="btn btn-warning" type="button" (click)="onClose()">Delete</button>
+    <button class="btn btn-danger" type="button" (click)="onClose()">Delete</button>
 </div>
 

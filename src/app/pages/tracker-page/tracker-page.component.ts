@@ -85,14 +85,14 @@ export class TrackerPageComponent implements OnInit {
         const dialogRef = this.successDialog.open(ErrorDialogPopupComponent);
         dialogRef.componentInstance.title = 'Submitted Successfully';
         dialogRef.componentInstance.message = 'Your submission has been recorded.';
-        this.router.navigate(['/tracker-history']);
+        this.router.navigate(['parent/tracker-history']);
       }, (error: HttpErrorResponse) => {
         const  dialogRef  = this.submissionErrorDialog.open(ErrorDialogPopupComponent);
         dialogRef.componentInstance.title = 'Submission Error';
         dialogRef.componentInstance.message = error.message;
-        this.router.navigate(['/tracker-history']);
+        this.router.navigate(['parent/tracker-history']);
       });
-      
+
     } else {
       const  dialogRef  = this.submissionErrorDialog.open(ErrorDialogPopupComponent);
       dialogRef.componentInstance.title = 'Tracker Incomplete';
@@ -143,5 +143,5 @@ export class TrackerPageComponent implements OnInit {
       }
     }
   }
-  
+
 }

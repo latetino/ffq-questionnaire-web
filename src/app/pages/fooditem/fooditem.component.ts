@@ -22,6 +22,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './fooditem.component.html',
   styleUrls: ['./fooditem.component.css']
 })
+
 export class FooditemComponent implements OnInit {
 
   TITLE = 'FFQR Food Item Portal';
@@ -55,6 +56,7 @@ export class FooditemComponent implements OnInit {
   ffqfoodnutrients: FFQFoodNutrients;
 
   ffgNutrientMap: nutrientMap;
+
 
   ngOnInit() {
 
@@ -119,9 +121,9 @@ export class FooditemComponent implements OnInit {
     //this.foodNutrientsItem[0].nutrientList.nutrientListID = this.foodNutrientsItem[0].foodItem.foodTypes[0].nutrientListID;
     //this.foodNutrientsItem[0].foodItem.nutrientId = this.foodNutrientsItem[0].foodItem.foodTypes[0].nutrientListID;
      this.foodService.addFoodNutrients(FFQFoodNutrients.foodItemToResponse(this.foodNutrientsItem[0])).subscribe(
-     data => {this.router.navigateByUrl('/admin');
+     data => {this.router.navigateByUrl('/admin/home');
      const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
-     dialogRef.componentInstance.title = 'Food item added successfully!';
+     dialogRef.componentInstance.title = 'Food item successfully added!';
     },
     error =>{
       const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
@@ -137,11 +139,12 @@ export class FooditemComponent implements OnInit {
     //this.foodNutrientsItem[0].nutrientList.nutrientListID = this.foodNutrientsItem[0].foodItem.foodTypes[0].nutrientListID;
     //this.foodNutrientsItem[0].foodItem.nutrientId = this.foodNutrientsItem[0].foodItem.foodTypes[0].nutrientListID;
     this.foodService.updateFoodNutrients(FFQFoodNutrients.foodItemToResponse(this.foodNutrientsItem[0])).subscribe(
-     data => {this.router.navigateByUrl('/admin');
+     data => {this.router.navigateByUrl('/admin/home');
      const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
-     dialogRef.componentInstance.title = 'Food item updated successfully!';}
+     dialogRef.componentInstance.title = 'Food item successfully updated!';}
      
     );
+    
     
   }
 

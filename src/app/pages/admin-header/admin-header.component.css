@@ -1,6 +1,6 @@
 h2 {
   text-align: center;
-  color: aliceblue;
+  color: white;
 }
 
 a {
@@ -36,7 +36,7 @@ body, html {
   cursor: pointer;
   padding: 10px 16px;
   font-size: 17px;
-  width: 33.33%;
+  width: 20%;
   text-align:center;
 }
 
@@ -59,3 +59,14 @@ body, html {
 }
 
 
+.login-button {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  padding: 20px 10px;
+  
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background, .mat-accent .mat-pseudo-checkbox-checked, .mat-accent .mat-pseudo-checkbox-indeterminate, .mat-pseudo-checkbox-checked, .mat-pseudo-checkbox-indeterminate{
+  background-color: #2C387E;
+}

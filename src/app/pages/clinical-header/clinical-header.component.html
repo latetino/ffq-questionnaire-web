@@ -1,8 +1,12 @@
-<div class="header">
-  <h2 matDialogTitle>{{TITLE}}</h2>
-  <div align="center"><i style="color: aliceblue" class="fa fa-cog fa-2x" aria-hidden="true"></i></div>  
-    <a class="tab-link" routerLink="/clinical-portal" routerLinkActive="active">Clinician Portal</a>
-    <a class="tab-link" routerLink="/quest-results" routerLinkActive="active">Questionnaire Results</a>
-    <a class="tab-link" routerLink="/recommend" routerLinkActive="active">Recommendations</a>  
-</div>
+<title>Clinician Portal</title>
 
+<div class="header">
+  <h2 matDialogTitle>Clinician Portal</h2>
+  <div class="login-button">
+    <button mat-raised-button (click)="logout()">Log out <i class="fa fa-sign-out" aria-hidden="true"></i></button>
+  </div>
+  <div align="center"><i style="color: white" class="fa fa-plus-square fa-3x" aria-hidden="true"></i></div>  
+    <a class="tab-link" routerLink="/clinic/home" routerLinkActive="active">Home</a>
+    <a class="tab-link" routerLink="/clinic/results" routerLinkActive="active">Questionnaire Results</a>
+    <a class="tab-link" routerLink="/clinic/recommend" routerLinkActive="active">Recommendations</a>  
+</div>

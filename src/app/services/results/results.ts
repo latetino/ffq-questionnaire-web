@@ -14,12 +14,12 @@ const httpOptions = { headers: new HttpHeaders({'Content-Type': 'application/jso
 
 export class ResultsService {
 
-  endpoint = 'http://localhost:9090/ffq';
+  endpoint = 'http://localhost:9090/ffq/results';
 
   constructor(private http: HttpClient) { }
 
   getAllResults(): Observable<FFQResultsResponse[]> {
-    return this.http.get(this.endpoint + '/results/all').pipe(
+    return this.http.get(this.endpoint + '/all').pipe(
       map((res: any) => {
         return res.map(item => {
           return new FFQResultsResponse(
@@ -36,7 +36,7 @@ export class ResultsService {
     }
 
     getResultsByUser(userId: string): Observable<FFQResultsResponse[]> {
-      return this.http.get(this.endpoint + '/results/' + userId).pipe(
+      return this.http.get(this.endpoint + '/parent/' + userId).pipe(
         map((res: any) => {
           return res.map(item => {
             return new FFQResultsResponse(

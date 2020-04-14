@@ -1,11 +1,13 @@
-import { Injectable } from '@angular/core';
+/*import { Injectable } from '@angular/core';
 import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 
 import { User } from 'src/app/services/authentication/temp-user';
 
-const users: User[] = [{ id: 1, username: 'test', password: 'test', firstName: 'Test', lastName: 'User' }];
+const users: User[] = [{ id: "1", 
+                    ffqadmin: {userId: "ADMIN", username: 'admin', userpassword: "admin123", usertype: "admin", firstname: 'Cristina', lastname: 'Palacio' }, 
+                    userType: "admin" }];
 
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
@@ -35,13 +37,16 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
         function authenticate() {
             const { username, password } = body;
-            const user = users.find(x => x.username === username && x.password === password);
+            const user = users.find(x => x.ffqadmin.username === username && x.ffqadmin.userpassword === password)
+    
+                
             if (!user) return error('Username or password is incorrect');
             return ok({
                 id: user.id,
-                username: user.username,
-                firstName: user.firstName,
-                lastName: user.lastName,
+                ffqclinician: user.ffqclinician,
+                ffqparent: user.ffqparent,
+                ffqadmin: user.ffqadmin,
+                userTyoe: user.userType,
                 token: 'fake-jwt-token'
             })
         }
@@ -76,4 +81,4 @@ export let fakeBackendProvider = {
     provide: HTTP_INTERCEPTORS,
     useClass: FakeBackendInterceptor,
     multi: true
-};
+};*/

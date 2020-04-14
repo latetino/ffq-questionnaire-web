@@ -18,7 +18,7 @@ export class FFQItem {
     this.servingOptions = [];
     this.types = [];
     this.hasSugarSetting = false;
-    this.disabled = true;
+    this.disabled = false;
     this.input = new FFQItemInput();
     this.isSubmitted = false;
     this.isPrimary = false;

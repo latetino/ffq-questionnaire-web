@@ -5,16 +5,17 @@
         <span></span>
         <table class="table table-bordered table-inverse">
         <tr>
-            <th><div align="left"> Questionnaire ID </div></th>
-            <th><div align="center"> Patient name </div></th>
-            <th><div align="center"> Infant age (in months) </div></th>
+            <th><div align="center"> Questionnaire ID </div></th>
+            <th><div align="center"> Patient Name </div></th>
+            <th><div align="center"> Infant Age (in months) </div></th>
             <th><div align="center"> Nutrients </div></th>
             <th><div align="center"> Food Items </div></th>
-            <th><div align="center"> Food Item Description </div></th>
+            <!-- <th><div align="center"> Food Item Description </div></th> -->
         </tr>
         <tr *ngFor="let result of results; let i = index">
-            <td >
+            <td ><div align="center">
                 {{result.questionnaireId}}
+                </div>
             </td>
             <td ><div align="center">
                 {{result.patientName}}
@@ -26,7 +27,7 @@
             </td>
             <td width="10%"><div align="center"><a (click)="getNutrientsRecommendations(result.questionnaireId)"><i title="nutrients" class="fa fa-flask"></i></a></div></td>
             <td width="10%"><div align="center"><a (click)="getFoodRecommendations(result.questionnaireId)"><i title="fooditems" class="fa fa-cutlery"></i></a></div></td>
-            <td width="10%"><div align="center"><i title="Food Description"><button class="btn btn-primary"[routerLink]="['/recommend-parental']" routerLinkActive="active">Show Description</button></i></div></td>
+            <!-- <td width="10%"><div align="center"><i title="Food Description"><button class="btn btn-primary"routerLink="/recommend-parental" routerLinkActive="active">Show Description</button></i></div></td> -->
           </tr>
         </table>
 

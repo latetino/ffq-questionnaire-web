@@ -15,10 +15,6 @@ import { NutrientConstants } from 'src/app/models/NutrientConstants';
 })
 export class QuestResultsComponent implements OnInit {
   public show: boolean = false;
-  public buttonName: any = "Results";
-
-  MESSAGE = "No questionnaires have been submitted yet!";
-
 
   results: FFQResultsResponse[] = [];
 
@@ -52,7 +48,7 @@ export class QuestResultsComponent implements OnInit {
        })
 
        console.log(m);
-       this.results = m;
+       this.results = m.reverse();
     }
 
    )
@@ -65,8 +61,6 @@ export class QuestResultsComponent implements OnInit {
 
   toggle(index) {
     this.results[index].show = !this.results[index].show;
-    if (this.results[index].show) this.buttonName = "Results";
-    else this.buttonName = "Results ";
   }
 
 }

@@ -14,56 +14,106 @@ import { RecommendParentalComponent } from './pages/recommend-parental/recommend
 import { TrackerPageComponent } from './pages/tracker-page/tracker-page.component';
 import { TrackerHistoryPageComponent } from './pages/tracker-history-page/tracker-history-page.component';
 import { HistoryParentalComponent } from './pages/history-parental/history-parental.component';
-
-
+import { LoginComponent } from './pages/login';
+import { LoginHeaderComponent } from './pages/login-header';
+import { ClinicQuestResultsComponent } from './pages/clinic-quest-results';
+import { ClinicRecommendComponent } from './pages/clinic-recommend';
+import { AdminUsersComponent } from './pages/admin-users';
+import { UserComponent } from './pages/user/user.component';
+import { ClinicUserComponent } from './pages/clinic-user/clinic-user.component';
+import { AdminClinicsComponent } from './pages/admin-clinics';
+import { ClinicComponent } from './pages/clinic/clinic.component';
+import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { LogoutComponent } from './pages/logout/logout.component';
 
 const routes: Routes = [
   {
-    path: 'admin/fooditem/:id', component: FooditemComponent
+    path: 'admin/fooditem/:id', component: FooditemComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'admin/fooditem', component: FooditemComponent
+    path: 'admin/fooditem', component: FooditemComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'admin', component: AdminPageComponent
+    path: 'admin/user/:type/:id', component: UserComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'quest-results', component:  QuestResultsComponent
+    path: 'admin/user/:id', component: UserComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'recommend', component:   RecommendComponent
+    path: 'admin/home', component: AdminPageComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'recommend-parental', component:   RecommendParentalComponent
+    path: 'admin/users', component: AdminUsersComponent, canActivate: [AuthGuard]
   },
   {
-    path: '', redirectTo: 'questionnaire-id', pathMatch: 'full'
+    path: 'parent/recommend', component:   RecommendParentalComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'questionnaire-id', component: QuestIdInputComponent, canActivate: [AuthGuard]
+    path: 'admin/results', component:  QuestResultsComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'questionnaire/:id', component: QuestionnairePageComponent
+    path: 'admin/recommend', component:   RecommendComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'clinical-portal', component: ClinicalPortalComponent
+    path: 'admin/clinics', component: AdminClinicsComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'login', component: LoginPageComponent
+    path: 'admin/clinic', component: ClinicComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'tracker', component: TrackerPageComponent
+    path: 'admin/clinic/:id', component: ClinicComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'tracker-history', component: TrackerHistoryPageComponent
+    path: '', redirectTo: 'admin/home', pathMatch: 'full'
   },
   {
-    path: 'history-parental', component: HistoryParentalComponent
+    path: 'parent/home', component: QuestIdInputComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'parent/questionnaire/:id', component: QuestionnairePageComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'clinic/home', component: ClinicalPortalComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'parent/tracker', component: TrackerPageComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'parent/tracker-history', component: TrackerHistoryPageComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'parent/history', component: HistoryParentalComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'login', component: LoginComponent
+  },
+  {
+    path: 'clinic/results', component: ClinicQuestResultsComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'clinic/recommend', component: ClinicRecommendComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'clinic/user/:type/:id', component: ClinicUserComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'clinic/user', component: ClinicUserComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: '*', redirectTo: 'login'
+  },
+  {
+    path: 'logout', component: LogoutComponent
+  },
+  {
+    path: 'login-page', component: LoginPageComponent
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })],
+  imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' }),],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

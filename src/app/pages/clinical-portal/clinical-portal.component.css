@@ -4,7 +4,7 @@ h2 {
 }
   
 .container_page{
-  padding-top: 200px;
+  padding-top: 160px;
   margin-bottom: 40px;
 }
   
@@ -22,4 +22,6 @@ a:hover {
   cursor: pointer;
 }
   
-  
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background, .mat-accent .mat-pseudo-checkbox-checked, .mat-accent .mat-pseudo-checkbox-indeterminate, .mat-pseudo-checkbox-checked, .mat-pseudo-checkbox-indeterminate{
+  background-color: #B64D3E;
+}

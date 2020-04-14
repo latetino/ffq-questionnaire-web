@@ -24,7 +24,8 @@ import{ ReactiveFormsModule} from '@angular/forms';
 import { AdminHeaderComponent } from './pages/admin-header/admin-header.component';
 import { QuestResultsComponent } from './pages/quest-results/quest-results.component';
 import { RecommendComponent } from './pages/recommend/recommend.component';
-import {PopupComponent} from "./components/popup/popup.component";
+import { PopupComponent } from "./components/popup/popup.component";
+import { DeletePopupComponent } from "./components/delete-popup/delete-popup.component";
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { Routes, RouterModule } from '@angular/router';
 import { RecommendModalComponent } from './components/recommend-modal/recommend-modal.component';
@@ -33,17 +34,32 @@ import { ClinicalPortalComponent } from './pages/clinical-portal/clinical-portal
 import { ClinicalHeaderComponent } from './pages/clinical-header/clinical-header.component';
 import { ParentalHeaderComponent } from './pages/parental-header/parental-header.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
-import { JwtInterceptor } from './services/authentication/jwt.interceptor';
-import { fakeBackendProvider } from './services/authentication/temp-backend';
+//import { JwtInterceptor } from './services/authentication/jwt.interceptor';
+//import { fakeBackendProvider } from './services/authentication/temp-backend';
 import { RecommendParentalComponent } from './pages/recommend-parental/recommend-parental.component';
 import { TrackerPageComponent } from './pages/tracker-page/tracker-page.component';
 import { TrackerBlockComponent } from './components/tracker-block/tracker-block.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { TrackerHistoryPageComponent } from './pages/tracker-history-page/tracker-history-page.component';
 import { HistoryParentalComponent } from './pages/history-parental/history-parental.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
+import { LoginComponent } from './pages/login';
+import { LoginHeaderComponent } from './pages/login-header';
+import { ClinicQuestResultsComponent } from './pages/clinic-quest-results';
+import { ClinicRecommendComponent } from './pages/clinic-recommend';
 
-
+import { AdminUsersComponent } from './pages/admin-users';
+import { UserComponent } from './pages/user/user.component';
+import { ClinicUserComponent } from './pages/clinic-user/clinic-user.component';
+import { AdminClinicsComponent } from './pages/admin-clinics/';
+import { ClinicComponent } from './pages/clinic/clinic.component';
+import { LogoutComponent } from './pages/logout/logout.component';
+import { ClinicianPipe } from './pipes/clinicianFilter.pipe';
+import { ParentPipe } from './pipes/parentFilter.pipe';
+import { PatientPipe } from './pipes/patientFilter.pipe';
+import { SearchPipe } from './pipes/searchFilter.pipe';
+import { ResultsPipe } from './pipes/resultsFilter.pipe';
 
 @NgModule({
   declarations: [
@@ -70,7 +86,23 @@ import { HistoryParentalComponent } from './pages/history-parental/history-paren
     TrackerPageComponent,
     TrackerBlockComponent,
     TrackerHistoryPageComponent,
-    HistoryParentalComponent
+    HistoryParentalComponent,
+    LoginComponent,
+    LoginHeaderComponent,
+    ClinicQuestResultsComponent,
+    ClinicRecommendComponent,
+    AdminUsersComponent,
+    UserComponent,
+    ClinicUserComponent,
+    AdminClinicsComponent,
+    ClinicComponent,
+    LogoutComponent,
+    ClinicianPipe,
+    ParentPipe,
+    PatientPipe,
+    SearchPipe,
+    ResultsPipe,
+    DeletePopupComponent
 
   ],
   imports: [
@@ -93,16 +125,19 @@ import { HistoryParentalComponent } from './pages/history-parental/history-paren
     NgbModule,
     AngularFontAwesomeModule,
     ReactiveFormsModule,
+    MatCheckboxModule,
     NgbModule.forRoot(),
     FlashMessagesModule.forRoot(),
    ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
 
-    // provider used to create fake backend
-    //fakeBackendProvider
-  ],
   bootstrap: [AppComponent],
-  entryComponents: [ErrorDialogPopupComponent, ResultsPageComponent,PopupComponent,RecommendModalComponent,FoodRecommendModalComponent]
+  entryComponents: [
+    ErrorDialogPopupComponent,
+    ResultsPageComponent,
+    PopupComponent,
+    RecommendModalComponent,
+    FoodRecommendModalComponent,
+    DeletePopupComponent
+  ]
 })
 export class AppModule { }

@@ -12,11 +12,14 @@ import { AuthenticationService } from 'src/app/services/authentication/authentic
   styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent implements OnInit {
+
+    
     loginForm: FormGroup;
     loading = false;
     submitted = false;
     returnUrl: string;
     error = '';
+    userType: string;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -52,7 +55,7 @@ export class LoginPageComponent implements OnInit {
         }
 
         this.loading = true;
-        this.authenticationService.login(this.f.username.value, this.f.password.value)
+        this.authenticationService.login(this.f.username.value, this.f.password.value/*, this.userType*/)
             .pipe(first())
             .subscribe(
                 data => {
