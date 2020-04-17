@@ -60,6 +60,7 @@ import { ParentPipe } from './pipes/parentFilter.pipe';
 import { PatientPipe } from './pipes/patientFilter.pipe';
 import { SearchPipe } from './pipes/searchFilter.pipe';
 import { ResultsPipe } from './pipes/resultsFilter.pipe';
+import { ClinicTrackerHistoryComponent } from './pages/clinic-tracker-history/clinic-tracker-history.component';
 
 @NgModule({
   declarations: [
@@ -102,7 +103,8 @@ import { ResultsPipe } from './pipes/resultsFilter.pipe';
     PatientPipe,
     SearchPipe,
     ResultsPipe,
-    DeletePopupComponent
+    DeletePopupComponent,
+    ClinicTrackerHistoryComponent
 
   ],
   imports: [
