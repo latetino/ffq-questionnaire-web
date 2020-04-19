@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { TrackerResultsResponse } from 'src/app/models/trackerResultsResponse';
+import { TrackerResultsResponse } from 'src/app/models/trackerresultsresponse';
 
 @Injectable({
   providedIn: 'root'

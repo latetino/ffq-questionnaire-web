@@ -24,7 +24,7 @@ export class ResultsService {
         return res.map(item => {
           return new FFQResultsResponse(
             item.questionnaireId,
-            item.parentId,
+            item.userId,
             item.patientName,
             item.ageInMonths,
             item.userChoices,

@@ -12,6 +12,8 @@ export class SearchPipe implements PipeTransform {
       return list;
     }
     return list.filter(function(user){
+      console.log("user in pipe")
+      console.log(user)
       var username = user.username;
       var name = user.firstname + " " + user.lastname;
       var role_and_name = user.abbreviation + " " + user.firstname + " " + user.lastname;

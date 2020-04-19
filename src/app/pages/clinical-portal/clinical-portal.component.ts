@@ -75,8 +75,8 @@ export class ClinicalPortalComponent implements OnInit  {
     /*var clinicId: string = */
     this.getClinicId();
     /*var clinicianList: FFQClinician[] = */
-    this.getParents();
-    this.loadData();
+    // this.getParents();
+    // this.loadData();
     //this.getNumberOfPatients();
   }
 
@@ -136,6 +136,7 @@ export class ClinicalPortalComponent implements OnInit  {
         //console.log("clinic ID in function");
         //console.log(this.clinicId);
       }
+      this.getParents();
     });
 
   }
@@ -173,6 +174,7 @@ export class ClinicalPortalComponent implements OnInit  {
       });
       //console.log("parentList in function");
       //console.log(this.parentList);
+      this.loadData();
     });
   }
 

@@ -11,6 +11,7 @@ import { ParentService } from 'src/app/services/parent/parent-service';
 import { FFQParent } from 'src/app/models/ffqparent';
 import { of } from 'rxjs';
 import { ResultsPipe } from 'src/app/pipes/resultsFilter.pipe';
+import { FFQParentResult } from 'src/app/models/ffqparentresult';
 
 @Component({
   selector: "app-quest-results",
@@ -29,7 +30,9 @@ export class ClinicQuestResultsComponent implements OnInit {
   resultList: FFQResultsResponse[] = [];
   resultListObservable: Observable<FFQResultsResponse[]>;
   parentNames: string[] = [];
-  allParentNames: string[] = [];
+ // allParentNames: string[] = [];
+  resultMap: Map<string, FFQParentResult> = new Map<string, FFQParentResult>();
+  resultInfo: FFQParentResult[] = [];
 
   constructor(
     public resultsService: ResultsService,
@@ -39,43 +42,58 @@ export class ClinicQuestResultsComponent implements OnInit {
     ) {}
 
   ngOnInit() {
+    //this.allParentNames.push("");
     this.getClinicId();
-    this.allParentNames.push("");
-
+   // this.allParentNames.push("");
+   // this.allParentNames = this.allParentNames.reverse();
+    //this.loadData();
   }
 
   //(Khalid)Changed below code to sort the list in the nutient view page
   private loadData() {
 
      const oldListObservable: Observable<FFQResultsResponse[]> = of(this.resultList);
+     //const oldListObservable: Observable<FFQResultsResponse[]> = this.resultsService.getAllResults();
 
      const newList: string[] = NutrientConstants.NUTRIENT_NAMES;
      const newWeeklyMap = new Map<string, number>();
      const newDailyMap = new Map<string, number>();
      const resultList: FFQResultsResponse[] = this.resultList;
 
-     oldListObservable.subscribe(oldList => {
-     // oldList = this.resultList;
-      console.log("oldList");
-      console.log(oldList);
-      const weeklyMap = oldList[0].weeklyTotals;
-      const dailyMap = oldList[0].dailyAverages;
-      newList.forEach(element =>  {
-       newWeeklyMap.set(element, weeklyMap[element]);
-       newDailyMap.set(element, dailyMap[element]);
-       })
-      //console.log(newWeeklyMap);
+     oldListObservable.subscribe(m => {
 
-      oldList.forEach(element => {
+      m.forEach(element => {
+      const newWeeklyMap = new Map<string, number>();
+      const newDailyMap = new Map<string, number>();
 
-         element.weeklyTotals = newWeeklyMap;
-         element.dailyAverages = newDailyMap;
-         //element.dailyAverages = newDailyMap;
+      const weeklyMap = element.weeklyTotals;
+      const dailyMap = element.dailyAverages;
 
-        })
+      newList.forEach(a =>  {
+          newWeeklyMap.set(a, weeklyMap[a]);
+          newDailyMap.set(a, dailyMap[a]);
+      })
 
-        console.log(oldList);
-        this.results = oldList.reverse();
+      element.weeklyTotals = newWeeklyMap;
+      element.dailyAverages = newDailyMap;
+      })
+
+      console.log(m);
+      this.results = m.reverse();
+      this.parentNames = this.parentNames.reverse();
+      for(var i = 0; i < this.parentNames.length; i++){
+       // this.allParentName.set(this.results[i].userId, this.parentNames[i]);
+
+        var object: FFQParentResult = new FFQParentResult(
+          this.results[i],
+          this.parentNames[i]
+        );
+        this.resultInfo.push(object);
+        this.resultMap.set(this.results[i].userId, object);
+      }
+      console.log("resultInfo in function");
+      console.log(this.resultInfo);
+      
      });
 
   }
@@ -105,8 +123,9 @@ private getParentList(){
 
   parentListObervable.subscribe(parentList => {
      parentList.forEach(parent => {
-       this.allParentNames.push(parent.firstname + " " + parent.lastname);
+      // this.allParentNames.push(parent.firstname + " " + parent.lastname);
        if(parent.assignedclinic == this.clinicId){
+       //  this.allParentName.set(parent.userId, parent);
          this.parentList.push(parent);
        }
      })
@@ -119,25 +138,33 @@ private getParentList(){
 
 }
 
+
+
 private getResultsList(){
- // this.getParentList();
-  //var resultList: FFQResultsResponse[];
-  console.log("Parents in Get result");
-  console.log(this.parentList);
-  this.parentList.forEach(parent => {
-      console.log("Parent");
-      console.log(parent);
-      var resulstsForThisParentObservable = this.resultsService.getResultsByUser(parent.userId);
-      resulstsForThisParentObservable.subscribe(resultsForThisParent => {
-        resultsForThisParent.forEach(result => {
-          var parentName = parent.firstname + " " + parent.lastname;
-          this.parentNames.push(parentName);
-          this.resultList.push(result);
-        });
-        this.loadData();
-      })
-  });
-}
+   console.log("Parents in Get result");
+   console.log(this.parentList);
+   
+   var allResultsObservable: Observable<FFQResultsResponse[]> = this.resultsService.getAllResults();
+   allResultsObservable.subscribe((allResults: FFQResultsResponse[]) => {
+    console.log("All REsults in function");
+    console.log(allResults);
+      this.parentList.forEach(parent => { 
+          allResults.forEach(result => {
+              if(result.userId == parent.userId){
+                this.resultList.push(result);
+                var parentName = parent.firstname + " " + parent.lastname;
+                this.parentNames.push(parentName);
+              }
+          });
+          console.log("parentNames for this parent")
+          console.log(this.parentNames);
+      });
+      console.log("results in function");
+      console.log(this.resultList);
+      this.loadData();
+   });
+
+ }
 
 
 
@@ -149,6 +176,7 @@ private getResultsList(){
   }
 
   toggle(index) {
-    this.results[index].show = !this.results[index].show;
+    //this.results[index].show = !this.results[index].show;
+    this.resultInfo[index].ffqresult.show = !this.resultInfo[index].ffqresult.show;
   }
 }

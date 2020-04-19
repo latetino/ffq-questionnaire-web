@@ -8,7 +8,7 @@ import { AuthenticationService } from 'src/app/services/authentication/authentic
 import { formatDate } from '@angular/common';
 import { ErrorDialogPopupComponent } from 'src/app/components/error-dialog-popup/error-dialog-popup.component';
 import { MatDialog } from '@angular/material';
-import { TrackerResultsResponse } from 'src/app/models/trackerResultsResponse';
+import { TrackerResultsResponse } from 'src/app/models/trackerresultsresponse';
 import { TrackerItems } from 'src/app/models/trackeritems';
 import { TrackerResponseService } from 'src/app/services/tracker-response/tracker-response.service';
 import { HttpErrorResponse } from '@angular/common/http';

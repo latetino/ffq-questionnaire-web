@@ -61,6 +61,8 @@ import { PatientPipe } from './pipes/patientFilter.pipe';
 import { SearchPipe } from './pipes/searchFilter.pipe';
 import { ResultsPipe } from './pipes/resultsFilter.pipe';
 import { ClinicTrackerHistoryComponent } from './pages/clinic-tracker-history/clinic-tracker-history.component';
+import { TrackerFilterPipe } from './pipes/tracker-filter.pipe';
+import { RecommendedFilterPipe } from './pipes/recommended-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -104,7 +106,9 @@ import { ClinicTrackerHistoryComponent } from './pages/clinic-tracker-history/cl
     SearchPipe,
     ResultsPipe,
     DeletePopupComponent,
-    ClinicTrackerHistoryComponent
+    ClinicTrackerHistoryComponent,
+    TrackerFilterPipe,
+    RecommendedFilterPipe
 
   ],
   imports: [
