@@ -55,7 +55,8 @@ export class ParentService {
             item.lastname,
             item.assignedclinic,
             item.assignedclinician,
-            item.childrennames
+            item.childrennames,
+            item.isactive
           );
       })
     );
@@ -75,7 +76,8 @@ export class ParentService {
             item.lastname,
             item.assignedclinic,
             item.assignedclinician,
-            item.childrennames
+            item.childrennames,
+            item.isactive
           );
         });
       })

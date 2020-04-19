@@ -65,6 +65,7 @@ export class AdminUsersComponent implements OnInit {
   public filtered: boolean;
   public filtered_clinics: String[] = [];
   checked_users: string[] = [];
+  //isactive: string[] = [];
 
   ngOnInit() {
 
@@ -147,7 +148,7 @@ export class AdminUsersComponent implements OnInit {
          //console.log(a);
 
          b.forEach(clinician =>  {
-          //Code below to get the assigned clinic for each clinician
+          //Code below to get the assigned clinic for each clinician          
           console.log(clinician);
           
           var clinicianClinic = a.find(n => n.clinicId == clinician.assignedclinic);
@@ -166,6 +167,7 @@ export class AdminUsersComponent implements OnInit {
           //console.log(a);
           
           c.forEach(parent => {
+          
             var clinicians = b.find(n => n.userId == parent.assignedclinic);
             
             if(!!clinicians){
@@ -180,8 +182,9 @@ export class AdminUsersComponent implements OnInit {
        });
     });
 
-    adminList.subscribe(a => {
-      this.ffqadminList = a;
+    adminList.subscribe(admin => {
+      
+      this.ffqadminList = admin;
     });
   }
 }

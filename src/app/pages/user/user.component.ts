@@ -144,7 +144,7 @@ export class UserComponent implements OnInit {
         //console.log("Number of clinicians is: " + numberOfClinicians);
         var newClincianId = (data.length+1).toString();
         var newClincianUsername = "clinician"+numberOfClinicians;
-        this.ffqclinician = new FFQClinician(newClincianId, newClincianUsername, newClincianUsername, "clinician", "", "", "", this.selectedClinic, []);
+        this.ffqclinician = new FFQClinician(newClincianId, newClincianUsername, newClincianUsername, "clinician", "", "", "", this.selectedClinic, [], true);
         console.log(this.ffqclinician);
 
         this.clinicianService.addClinician(this.ffqclinician).subscribe(data => {
@@ -168,7 +168,7 @@ export class UserComponent implements OnInit {
         var numberOfParents = (data.length+1).toString();
         var newParentId = (data.length+1).toString();
         var newParentUsername = "parent"+numberOfParents;
-        this.ffqParent = new FFQParent(newParentId, newParentUsername, newParentUsername, "parent", "", "",  this.selectedClinic, "", []);
+        this.ffqParent = new FFQParent(newParentId, newParentUsername, newParentUsername, "parent", "", "",  this.selectedClinic, "", [], true);
         console.log(this.ffqParent);
 
         this.parentService.addParent(this.ffqParent).subscribe(data => {

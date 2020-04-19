@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { TrackerResultsResponse } from 'src/app/models/trackerResultsResponse';
+import { TrackerResultsResponse } from 'src/app/models/trackerresultsresponse';
 import { TrackerResultsService } from 'src/app/services/tracker-results/tracker-results.service';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 import { TrackerItems } from 'src/app/models/trackeritems';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { FFQParentResponse } from 'src/app/models/ffqparent-response';
 import { ParentService } from 'src/app/services/parent/parent-service';
 import { FFQParent } from 'src/app/models/ffqparent';
 import { FFQClinicResponse } from 'src/app/models/ffqclinic-response';
 import { ClinicService } from 'src/app/services/clinic/clinic-service';
+import { FFQParentResult } from 'src/app/models/ffqparentresult';
+import { TrackerParentResultsResponse } from 'src/app/models/ffqparentresulttracker';
 
 @Component({
   templateUrl: './clinic-tracker-history.component.html',
@@ -19,7 +21,12 @@ export class ClinicTrackerHistoryComponent implements OnInit {
   results: TrackerResultsResponse[] = [];
   private parentIds: string[] = [];
   private clinicId: string;
-  allParents: string[] = [];
+  parentNames: string[] = [];
+  parentList: FFQParentResponse[] = [];
+  trackerList: TrackerResultsResponse[] = [];
+  resultMap: Map<string, TrackerParentResultsResponse> = new Map<string, TrackerParentResultsResponse>();
+  resultInfo: TrackerParentResultsResponse[] = [];
+  search: string;
   
   constructor(private trackerResultsService: TrackerResultsService,
               private authenticationService: AuthenticationService,
@@ -28,32 +35,62 @@ export class ClinicTrackerHistoryComponent implements OnInit {
               ) { }
 
   ngOnInit() {
-    this.allParents.push("");
     this.getClinicId();
-    this.getParents();
-    this.getAllResults();
-
     
-    // test items
-    // for(let i = 0; i < 10; i++) {
-    //   this.results[i] = new TrackerResultsResponse("1", i, "4/"+i+"/20", [new TrackerItems("food1", "Above"),
-    //                                                                       new TrackerItems("food2", "Equal"),
-    //                                                                       new TrackerItems("food3", "Below")]);
-    // }
+
   }
 
-  private getAllResults() {
-    this.trackerResultsService.getAllResults().subscribe(results => {
-      results.forEach(result =>
-        {
-          if(this.parentIds.indexOf(result.userId) >= 0)
-          {
-            this.results.push(result);
-          }
-        })
+  private loadData() {
+
+    const trackerObservable: Observable<TrackerResultsResponse[]> = of(this.trackerList);
+
+    trackerObservable.subscribe(tracker => {
       this.results = this.results.reverse();
+      this.parentNames = this.parentNames.reverse();
+
+      console.log("this.results")
+      console.log(this.trackerList)
+      console.log("this.parentNames")
+      console.log(this.parentNames)
+      for(var i = 0; i < this.trackerList.length; i++){
+         var object: TrackerParentResultsResponse = new TrackerParentResultsResponse(
+           this.trackerList[i],
+           this.parentNames[i]
+         );
+         
+         this.resultInfo.push(object);
+         this.resultMap.set(this.trackerList[i].userId, object);
+       }
+       console.log("result Info ")
+       console.log(this.resultInfo)
     });
+  
   };
+
+  private getAllResults(){
+    
+    const allTrackersObservable = this.trackerResultsService.getAllResults();
+    
+
+    allTrackersObservable.subscribe(allTrackers => {
+      console.log("all tracker")
+      console.log(allTrackers)
+        this.parentList.forEach(parent => {
+            allTrackers.forEach(tracker => {
+                if(tracker.userId == parent.userId){
+                  this.trackerList.push(tracker);
+                  var parentName = parent.firstname + " " + parent.lastname;
+                  this.parentNames.push(parentName);
+                }
+            });
+        });
+        console.log("trackerList in getTrackersfunction")
+        console.log(this.trackerList)
+        this.loadData();
+
+    });
+
+  }
 
   private getClinicId(){
 
@@ -69,6 +106,7 @@ export class ClinicTrackerHistoryComponent implements OnInit {
         //console.log("clinic ID in function");
         //console.log(this.clinicId);
       }
+      this.getParents();
     });
 
   }
@@ -79,14 +117,14 @@ export class ClinicTrackerHistoryComponent implements OnInit {
 
     parentListObservable.subscribe(parentList => {
       parentList.forEach(parent => {
-        this.allParents.push(parent.firstname + " " + parent.lastname);
         if(parent.assignedclinic == this.clinicId){
-          //clinicianInClinic.push(clinician);
-          this.parentIds.push(parent.userId);
+          
+          this.parentList.push(parent);
         }
       });
-      //console.log("parentList in function");
-      //console.log(this.parentList);
+      console.log("parentList in function");
+      console.log(this.parentList);
+      this.getAllResults();
     });
   }
 }

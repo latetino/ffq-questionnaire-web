@@ -12,6 +12,8 @@ export class ParentPipe implements PipeTransform {
       return list;
     }
     return list.filter(function(user){
+      console.log("users in pipe")
+      console.log(user)
       return user.assignedclinic === clinicId;
     });
   }

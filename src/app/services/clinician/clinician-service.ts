@@ -57,7 +57,8 @@ export class ClinicianService {
             item.firstname,
             item.lastname,
             item.assignedclinic,
-            item.previousclinics
+            item.previousclinics,
+            item.isactive
           );
       })
     );
@@ -78,7 +79,8 @@ export class ClinicianService {
             item.firstname,
             item.lastname,
             item.assignedclinic,
-            item.previousclinics
+            item.previousclinics,
+            item.isactive
           );
         });
       })

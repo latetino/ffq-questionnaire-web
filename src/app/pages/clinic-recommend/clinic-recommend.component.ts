@@ -15,8 +15,9 @@ import { FFQClinicResponse } from 'src/app/models/ffqclinic-response';
 import { ClinicService } from 'src/app/services/clinic/clinic-service';
 import { ParentService } from 'src/app/services/parent/parent-service';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { FFQParentResponse } from 'src/app/models/ffqparent-response';
+import { FFQParentResult } from 'src/app/models/ffqparentresult';
 
 
 @Component({
@@ -31,6 +32,9 @@ export class ClinicRecommendComponent implements OnInit {
   private resultList: FFQResultsResponse[] = [];
   private currentClinicName: string;
   private parentNames: string[] = [];
+  resultMap: Map<string, FFQParentResult> = new Map<string, FFQParentResult>();
+  resultInfo: FFQParentResult[] = [];
+  search: string;
 
   constructor(
     public resultsService: ResultsService,
@@ -82,6 +86,32 @@ export class ClinicRecommendComponent implements OnInit {
     });
   }*/
 
+  private loadData(){
+
+     const resultListObservable: Observable<FFQResultsResponse[]> = of(this.resultList);
+
+     resultListObservable.subscribe(resultList => {
+
+        this.resultList = resultList.reverse();
+        this.parentNames = this.parentNames.reverse();
+        console.log("results in loadData")
+        console.log(this.resultList)
+        for(var i = 0; i < this.resultList.length; i++){
+          console.log(i)
+        // this.allParentName.set(this.results[i].userId, this.parentNames[i]);
+          var object: FFQParentResult = new FFQParentResult(
+            this.resultList[i],
+            this.parentNames[i]
+          );
+          this.resultInfo.push(object);
+          this.resultMap.set(this.resultList[i].userId, object);
+        }
+        console.log("resultInfo in function");
+        console.log(this.resultInfo);
+    })
+
+  }
+
   private getClinicId(){
 
     var clinicListObervable: Observable<FFQClinicResponse[]> = this.clinicService.getAllClinics();
@@ -102,47 +132,47 @@ export class ClinicRecommendComponent implements OnInit {
 
   }
 
-private getParentList(){
-  var parentListObervable: Observable<FFQParentResponse[]> = this.parentService.getAllParents();
+  private getParentList(){
+    var parentListObervable: Observable<FFQParentResponse[]> = this.parentService.getAllParents();
+  
+    parentListObervable.subscribe(parentList => {
+       parentList.forEach(parent => {
+        // this.allParentNames.push(parent.firstname + " " + parent.lastname);
+         if(parent.assignedclinic == this.clinicId){
+         //  this.allParentName.set(parent.userId, parent);
+           this.parentList.push(parent);
+         }
+       })
+       this.getResultsList();
+  
+       console.log(this.parentList);
+    });
 
-  parentListObervable.subscribe(parentList => {
-     parentList.forEach(parent => {
-       if(parent.assignedclinic == this.clinicId){
-         this.parentList.push(parent);
-       }
-     })
-     this.getResultsList();
-
-     console.log("Parent List")
-     console.log(this.parentList);
-  });
-
-
-
-}
-
+  }
 private getResultsList(){
- // this.getParentList();
-  //var resultList: FFQResultsResponse[];
   console.log("Parents in Get result");
   console.log(this.parentList);
-  this.parentList.forEach(parent => {
-      console.log("Parent");
-      console.log(parent);
-      var resulstsForThisParentObservable = this.resultsService.getResultsByUser(parent.userId);
-      resulstsForThisParentObservable.subscribe(resultsForThisParent => {
-        resultsForThisParent.forEach(result => {
-          var parentName = parent.firstname + " " + parent.lastname;
-          this.parentNames.push(parentName);
-          this.resultList.push(result);
-          this.results.push(result);
-        });
-        console.log("Result")
-        //this.results = this.resultList.reverse();
-        console.log(this.results);
-      //  this.loadData();
-      })
+  
+  var allResultsObservable: Observable<FFQResultsResponse[]> = this.resultsService.getAllResults();
+  allResultsObservable.subscribe((allResults: FFQResultsResponse[]) => {
+   console.log("All REsults in function");
+   console.log(allResults);
+     this.parentList.forEach(parent => { 
+         allResults.forEach(result => {
+             if(result.userId == parent.userId){
+               this.resultList.push(result);
+               var parentName = parent.firstname + " " + parent.lastname;
+               this.parentNames.push(parentName);
+             }
+         });
+         console.log("parentNames for this parent")
+         console.log(this.parentNames);
+     });
+     console.log("results in function");
+     console.log(this.resultList);
+     this.loadData();
   });
+
 }
 
 
