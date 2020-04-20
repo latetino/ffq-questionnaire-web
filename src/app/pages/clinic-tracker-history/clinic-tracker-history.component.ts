@@ -14,10 +14,8 @@ import { TrackerItems } from 'src/app/models/trackeritems';
 import { Observable, of } from 'rxjs';
 import { FFQParentResponse } from 'src/app/models/ffqparent-response';
 import { ParentService } from 'src/app/services/parent/parent-service';
-import { FFQParent } from 'src/app/models/ffqparent';
 import { FFQClinicResponse } from 'src/app/models/ffqclinic-response';
 import { ClinicService } from 'src/app/services/clinic/clinic-service';
-import { FFQParentResult } from 'src/app/models/ffqparentresult';
 import { TrackerParentResultsResponse } from 'src/app/models/ffqparentresulttracker';
 
 @Component({

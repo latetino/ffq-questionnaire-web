@@ -13,7 +13,6 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RecommendModalComponent } from 'src/app/components/recommend-modal/recommend-modal.component';
 import { MatDialog } from '@angular/material';
 import { NutrientsRecommendationsService } from 'src/app/services/nutrients-recommendations/nutrients-recommendations.service';
-import { FFQNutrientsRecommendations } from 'src/app/models/ffqnutrients-recommendations';
 import { ErrorDialogPopupComponent } from 'src/app/components/error-dialog-popup/error-dialog-popup.component';
 import { Router } from '@angular/router';
 import { FoodRecommendModalComponent } from 'src/app/components/food-recommend-modal/food-recommend-modal.component';
