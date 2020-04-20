@@ -1,4 +1,24 @@
+/*
+
+  Added by Javier Romero
+  This is the users page on the admin portal (admin/users). 
+  From here, the admin can create, delete, and assign parents/clinicians to their clinics.
+  Khalid Alamoudi: wrote loadAllUsers() function that populates clinicians/parents lists.
+
+*/
+
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog } from '@angular/material';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { FoodItemService } from '../../services/food-item/food-item.service';
+import { FFQItem } from 'src/app/models/ffqitem';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ErrorDialogPopupComponent } from 'src/app/components/error-dialog-popup/error-dialog-popup.component';
+import { PopupComponent } from 'src/app/components/popup/popup.component';
+import { FlashMessagesService } from 'angular2-flash-messages';
+import { FFQFoodItem } from 'src/app/models/ffqfooditem';
+import { FFQFoodItemResponse } from 'src/app/models/ffqfooditem-response';
 import { FFQClinician } from 'src/app/models/ffqclinician';
 import { FFQParent } from 'src/app/models/ffqparent';
 import { FFQAdmin } from 'src/app/models/ffqadmin';
@@ -50,31 +70,14 @@ export class AdminUsersComponent implements OnInit {
   public filtered: boolean;
   public filtered_clinics: String[] = [];
   checked_users: string[] = [];
-  //isactive: string[] = [];
 
   ngOnInit() {
-
-    //console.log(this.authenticationService.currentUserValue[0]);
     this.clinicNames.push("");
     this.showParents = true;
     this.showClinicians = true;
     this.showAdmins = true;
     this.filtered = false;
     this.loadAllUsers();
-  }
-
-  checkedUsers(username: string)
-  {
-    const index = this.checked_users.indexOf(username);
-    if(index === -1)
-    {
-      this.checked_users.push(username);
-    }
-    else
-    {
-      this.checked_users.splice(index, 1);
-    }
-    console.log(this.checked_users);
   }
   
   toggleParents()
@@ -113,7 +116,7 @@ export class AdminUsersComponent implements OnInit {
     }
   }
 
-    
+  /* Loads all users from the databases and pushes them into their respective lists to be displayed */
   private loadAllUsers() {
     var clinicianList: Observable<FFQClinicianResponse[]> = this.clinicianService.getAllClinicians();
     var parentList: Observable<FFQParentResponse[]> = this.parentService.getAllParents();
@@ -133,7 +136,7 @@ export class AdminUsersComponent implements OnInit {
          this.ffqclinicianList = b;
 
          b.forEach(clinician =>  {       
-          console.log(clinician);
+          //console.log(clinician);
           
           var clinicianClinic = a.find(n => n.clinicId == clinician.assignedclinic);
           
@@ -143,7 +146,7 @@ export class AdminUsersComponent implements OnInit {
           }
 
         });
-        console.log(this.clinicianClinicNames);
+        //console.log(this.clinicianClinicNames);
 
           parentList.subscribe(c => {
           this.ffqparentList = c;

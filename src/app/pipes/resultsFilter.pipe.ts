@@ -1,12 +1,17 @@
+/*
+
+  Added by Javier Romero, edited by Khalid Alamoudi
+  This pipe is used in the questionnaire results page in the clinician portal to filter the number of results based on a keyword.
+  Essentially, this serves as a search function.
+  Results can be searched by questionnaire ID, parent name or patient name.
+
+*/
+
 import { Pipe, PipeTransform } from '@angular/core';
 import { FFQParent } from '../models/ffqparent';
 import { ParentService } from '../services/parent/parent-service';
 import { FFQParentResult } from '../models/ffqparentresult';
 import { TrackerParentResultsResponse } from '../models/ffqparentresulttracker';
-// import { FFQParentResponse } from '../models/ffqparent-response';
-// import { ParentService } from 'src/app/services/parent/parent-service';
-// import { FFQParent } from 'src/app/models/ffqparent';
-// import { Observable } from 'rxjs';
 
 @Pipe({
   name: 'resultsFilter'
@@ -14,14 +19,6 @@ import { TrackerParentResultsResponse } from '../models/ffqparentresulttracker';
 
 
 export class ResultsPipe implements PipeTransform {
-
-   // parentNames: string[] = [];
-  //  parentList: FFQParent[] = [];
-    // ffqparent: FFQParent;
-    //  constructor(
-    //      private parentService: ParentService
-    //  ){}
-    
 
   transform(list: any, resultMap: Map<string, FFQParentResult>, term: any): any {
     if(term === undefined)

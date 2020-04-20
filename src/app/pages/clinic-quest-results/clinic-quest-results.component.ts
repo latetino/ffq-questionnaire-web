@@ -1,7 +1,16 @@
+/*
+
+  Added by Javier Romero
+  This is the questionnaire results page in the clinician portal (clinic/results).
+  From here, a clinician can see all the questionnaire results for their assigned clinic.
+  Khalid Alamoudi: added search functionality to better filter the results.
+
+*/
+
 import { Component, OnInit } from "@angular/core";
 import { ResultsService } from "src/app/services/results/results";
 import { FFQResultsResponse } from "src/app/models/ffqresultsresponse";
-import {Observable} from 'rxjs';
+import { Observable } from 'rxjs';
 import { NutrientConstants } from 'src/app/models/NutrientConstants';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 import { FFQClinicResponse } from 'src/app/models/ffqclinic-response';
@@ -126,21 +135,18 @@ private getParentList(){
 
      console.log(this.parentList);
   });
-
-
-
 }
 
 
   //Function to get all the results for each parent
 private getResultsList(){
-   console.log("Parents in Get result");
-   console.log(this.parentList);
+   //console.log("Parents in Get result");
+   //console.log(this.parentList);
    
    var allResultsObservable: Observable<FFQResultsResponse[]> = this.resultsService.getAllResults();
    allResultsObservable.subscribe((allResults: FFQResultsResponse[]) => {
-    console.log("All REsults in function");
-    console.log(allResults);
+    //console.log("All REsults in function");
+    //console.log(allResults);
       this.parentList.forEach(parent => { 
           allResults.forEach(result => {
               if(result.userId == parent.userId){
@@ -149,20 +155,16 @@ private getResultsList(){
                 this.parentNames.push(parentName);
               }
           });
-          console.log("parentNames for this parent")
-          console.log(this.parentNames);
+          //console.log("parentNames for this parent")
+          //console.log(this.parentNames);
       });
-      console.log("results in function");
-      console.log(this.resultList);
+      //console.log("results in function");
+      //console.log(this.resultList);
       this.loadData();
    });
 
  }
-
-
-
-
-
+ 
   private returnZero(){
     return 0;
   }

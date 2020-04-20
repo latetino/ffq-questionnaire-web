@@ -1,3 +1,11 @@
+/*
+
+  Added by Javier Romero, edited by Khalid Alamoudi
+  This is the home page of the clinician portal (clinic/home).
+  It serves as the users page, where all parents and clinicians of that clinic can be seen and edited.
+
+*/
+
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material';

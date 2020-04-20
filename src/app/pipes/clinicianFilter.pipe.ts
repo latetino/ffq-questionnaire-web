@@ -1,3 +1,10 @@
+/*
+
+  Added by Javier Romero
+  This pipe is used in the clinics page in the admin portal to count the number of clinicians assigned to a certain clinic.
+
+*/
+
 import { Pipe, PipeTransform } from '@angular/core';
 import { FFQClinician } from 'src/app/models/ffqclinician';
 
