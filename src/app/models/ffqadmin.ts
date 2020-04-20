@@ -1,5 +1,4 @@
-import {FFQItemResponse} from './ffqitem-response';
-import { ObjectUnsubscribedError } from 'rxjs';
+//Classed to store admin user data in components
 
 export class FFQAdmin {
   id: string;

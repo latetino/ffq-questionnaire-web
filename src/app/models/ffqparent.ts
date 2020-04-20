@@ -1,5 +1,4 @@
-import {FFQItemResponse} from './ffqitem-response';
-import { ObjectUnsubscribedError } from 'rxjs';
+//Classed to store parent user data in components
 
 export class FFQParent {
   id: string;

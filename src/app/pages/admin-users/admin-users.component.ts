@@ -1,19 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { MatDialog } from '@angular/material';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { FoodItemService } from '../../services/food-item/food-item.service';
-import { FFQItem } from 'src/app/models/ffqitem';
-import { HttpErrorResponse } from '@angular/common/http';
-import { ErrorDialogPopupComponent } from 'src/app/components/error-dialog-popup/error-dialog-popup.component';
-//import { FFQFoodNutrientsResponse } from 'src/app/models/ffqfoodnutrients-response';
-import { PopupComponent } from 'src/app/components/popup/popup.component';
-import { FlashMessagesService } from 'angular2-flash-messages';
-
-import { FFQFoodItem } from 'src/app/models/ffqfooditem';
-import { FFQFoodItemResponse } from 'src/app/models/ffqfooditem-response';
-
-//test;
 import { FFQClinician } from 'src/app/models/ffqclinician';
 import { FFQParent } from 'src/app/models/ffqparent';
 import { FFQAdmin } from 'src/app/models/ffqadmin';
@@ -128,6 +113,7 @@ export class AdminUsersComponent implements OnInit {
     }
   }
 
+    
   private loadAllUsers() {
     var clinicianList: Observable<FFQClinicianResponse[]> = this.clinicianService.getAllClinicians();
     var parentList: Observable<FFQParentResponse[]> = this.parentService.getAllParents();
@@ -145,10 +131,8 @@ export class AdminUsersComponent implements OnInit {
 
        clinicianList.subscribe(b => {
          this.ffqclinicianList = b;
-         //console.log(a);
 
-         b.forEach(clinician =>  {
-          //Code below to get the assigned clinic for each clinician          
+         b.forEach(clinician =>  {       
           console.log(clinician);
           
           var clinicianClinic = a.find(n => n.clinicId == clinician.assignedclinic);
@@ -157,14 +141,12 @@ export class AdminUsersComponent implements OnInit {
             var clinicianClinicName = clinicianClinic.clinicname;
             this.clinicianClinicNames.push(clinicianClinicName);
           }
-       //   this.clinicianClinicNames.push(clinicianClinicName);
 
         });
         console.log(this.clinicianClinicNames);
 
           parentList.subscribe(c => {
           this.ffqparentList = c;
-          //console.log(a);
           
           c.forEach(parent => {
           
