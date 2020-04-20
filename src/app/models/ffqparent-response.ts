@@ -1,3 +1,5 @@
+//Class used to store parent user data from response
+
 import {FFQItemResponse} from './ffqitem-response';
 import { ObjectUnsubscribedError } from 'rxjs';
 

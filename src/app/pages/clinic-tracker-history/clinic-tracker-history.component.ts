@@ -40,6 +40,9 @@ export class ClinicTrackerHistoryComponent implements OnInit {
 
   }
 
+
+    //loadData function serves to store the tracker history and parent names into the FFQTrackerParentResultsResponse object
+    //                  serves to display the tracker history
   private loadData() {
 
     const trackerObservable: Observable<TrackerResultsResponse[]> = of(this.trackerList);
@@ -67,11 +70,11 @@ export class ClinicTrackerHistoryComponent implements OnInit {
   
   };
 
+
+    //Function to get all the results for each parent
   private getAllResults(){
     
     const allTrackersObservable = this.trackerResultsService.getAllResults();
-    
-
     allTrackersObservable.subscribe(allTrackers => {
       console.log("all tracker")
       console.log(allTrackers)
@@ -92,6 +95,7 @@ export class ClinicTrackerHistoryComponent implements OnInit {
 
   }
 
+     //Function used to obtain the clinicId for the currently logged in clinician, in order to later display results based only for this specific clinic    
   private getClinicId(){
 
     var clinicListObervable: Observable<FFQClinicResponse[]> = this.clinicService.getAllClinics();
@@ -111,6 +115,7 @@ export class ClinicTrackerHistoryComponent implements OnInit {
 
   }
 
+    //Function used to filter the parent list to hold only the parents that are assigned to that specific clinic
   getParents()
   {
     var parentListObservable: Observable<FFQParentResponse[]> = this.parentService.getAllParents();

@@ -5,9 +5,6 @@ import {Observable} from 'rxjs';
 import {map, tap} from 'rxjs/operators';
 import {FFQItemCalcRequest} from '../../models/ffqitem-calc-request';
 import { FFQFoodNutrientsResponse } from 'src/app/models/ffqfoodnutrients-response';
-import { FFQFoodItem } from 'src/app/models/ffqfooditem';
-import { ɵangular_packages_forms_forms_q } from '@angular/forms';
-import { Http, Headers, Response, RequestOptions, RequestMethod } from '@angular/http';
 import { FFQFoodItemResponse } from 'src/app/models/ffqfooditem-response';
 //const mongoose = require('mongoose');
 //declare var require: any
@@ -102,15 +99,5 @@ export class FoodItemService {
 
 }
 
-/*export async function getMongoUsers() {  //test function to get users from mongoDB
-  
-  const MongoClient = require('mongodb').MongoClient; 
-  const url = "mongodb://localhost:27017/"; 
-  const db = await MongoClient.connect(url);
-  const dbo = db.db("ffq_database");
-  var user = await dbo.collection("users").find().toArray();    //[{1, Admin}, {2, Khalid}]
-  console.log(user);
-  
-}*/
 
 
