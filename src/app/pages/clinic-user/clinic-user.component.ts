@@ -1,3 +1,12 @@
+/*
+
+  Added by Javier Romero
+  This is the edit user page for the clinician portal (clinic/user).
+  From here, the clinician can edit parents/clinicians that are assigned to the clinic.
+  Parents can also be assigned to an existing clinician here.
+  
+*/
+
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
@@ -125,7 +134,8 @@ export class ClinicUserComponent implements OnInit {
     );
   }
 
-  deleteUser(){
+  deleteUser()
+  {
     if(this.isParent)
     {
       this.deleteParent();
@@ -136,13 +146,15 @@ export class ClinicUserComponent implements OnInit {
     }
   }
 
-  deleteParent(){
+  deleteParent()
+  {
     const confirmDelete = this.modalService.open(DeletePopupComponent);
     confirmDelete.componentInstance.service = "Parent";
     confirmDelete.componentInstance.attributes = this.userAttributes;
   }
 
-  deleteClinician(){
+  deleteClinician()
+  {
     const confirmDelete = this.modalService.open(DeletePopupComponent);
     confirmDelete.componentInstance.service = "Clinician";
     confirmDelete.componentInstance.attributes = this.userAttributes;

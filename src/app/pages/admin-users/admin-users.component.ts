@@ -1,3 +1,12 @@
+/*
+
+  Added by Javier Romero
+  This is the users page on the admin portal (admin/users). 
+  From here, the admin can create, delete, and assign parents/clinicians to their clinics.
+  Khalid Alamoudi: wrote loadAllUsers() function that populates clinicians/parents lists.
+
+*/
+
 import { Component, OnInit } from '@angular/core';
 import { FFQClinician } from 'src/app/models/ffqclinician';
 import { FFQParent } from 'src/app/models/ffqparent';
@@ -50,31 +59,14 @@ export class AdminUsersComponent implements OnInit {
   public filtered: boolean;
   public filtered_clinics: String[] = [];
   checked_users: string[] = [];
-  //isactive: string[] = [];
 
   ngOnInit() {
-
-    //console.log(this.authenticationService.currentUserValue[0]);
     this.clinicNames.push("");
     this.showParents = true;
     this.showClinicians = true;
     this.showAdmins = true;
     this.filtered = false;
     this.loadAllUsers();
-  }
-
-  checkedUsers(username: string)
-  {
-    const index = this.checked_users.indexOf(username);
-    if(index === -1)
-    {
-      this.checked_users.push(username);
-    }
-    else
-    {
-      this.checked_users.splice(index, 1);
-    }
-    console.log(this.checked_users);
   }
   
   toggleParents()
@@ -143,7 +135,7 @@ export class AdminUsersComponent implements OnInit {
           }
 
         });
-        console.log(this.clinicianClinicNames);
+        //console.log(this.clinicianClinicNames);
 
           parentList.subscribe(c => {
           this.ffqparentList = c;

@@ -1,3 +1,11 @@
+/*
+
+  Added by Javier Romero, edited by Khalid Alamoudi
+  This is the recommendations page for the clinician portal (clinic/recommend).
+  From here, the clinician can see all the recommended nutrients for all parents assigned to the clinic.
+
+*/
+
 import { Component, OnInit } from '@angular/core';
 import { ResultsService } from 'src/app/services/results/results';
 import { FFQResultsResponse } from 'src/app/models/ffqresultsresponse';
@@ -85,8 +93,8 @@ export class ClinicRecommendComponent implements OnInit {
 
         this.resultList = resultList.reverse();
         this.parentNames = this.parentNames.reverse();
-        console.log("results in loadData")
-        console.log(this.resultList)
+        //console.log("results in loadData")
+        //console.log(this.resultList)
         for(var i = 0; i < this.resultList.length; i++){
           console.log(i)
           var object: FFQParentResult = new FFQParentResult(
@@ -96,8 +104,8 @@ export class ClinicRecommendComponent implements OnInit {
           this.resultInfo.push(object);
           this.resultMap.set(this.resultList[i].userId, object);
         }
-        console.log("resultInfo in function");
-        console.log(this.resultInfo);
+        //console.log("resultInfo in function");
+        //console.log(this.resultInfo);
     })
 
   }
@@ -115,8 +123,8 @@ export class ClinicRecommendComponent implements OnInit {
       if(clinic){
         this.clinicId = clinic.clinicId;
         this.currentClinicName = clinic.clinicname;
-        console.log("clinic ID in function");
-        console.log(this.clinicId);
+        //console.log("clinic ID in function");
+        //console.log(this.clinicId);
       }
       this.getParentList();
     });

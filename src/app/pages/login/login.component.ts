@@ -1,9 +1,15 @@
+/*
+
+  Added by Javier Romero, David Nader, Khalid Alamoudi
+  This is the login page for the FFQ Project (/login).
+  Upon successful login, the user will be redirected to the appropriate user portal based on their login credentials.
+
+*/
+
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
-
-
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 
 
@@ -14,7 +20,6 @@ import { AuthenticationService } from 'src/app/services/authentication/authentic
 })
 export class LoginComponent implements OnInit {
 
-    
     loginForm: FormGroup;
     loading = false;
     submitted = false;
@@ -47,7 +52,7 @@ export class LoginComponent implements OnInit {
 
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-        console.log(this.returnUrl);
+        //console.log(this.returnUrl);
     }
 
     // convenience getter for easy access to form fields
