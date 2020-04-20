@@ -1,3 +1,12 @@
+/*
+
+  Added by Javier Romero
+  This pipe is used in several pages to filter the number of users based on a keyword.
+  Essentially, this serves as a search function.
+  Users can be searched by username, first and last name, role and name, and last and first name.
+
+*/
+
 import { Pipe, PipeTransform } from '@angular/core';
 import { FFQClinicianResponse } from '../models/ffqclinician-response';
 
@@ -12,8 +21,6 @@ export class SearchPipe implements PipeTransform {
       return list;
     }
     return list.filter(function(user){
-      console.log("user in pipe")
-      console.log(user)
       var username = user.username;
       var name = user.firstname + " " + user.lastname;
       var role_and_name = user.abbreviation + " " + user.firstname + " " + user.lastname;

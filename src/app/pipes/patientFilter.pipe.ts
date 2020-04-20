@@ -1,3 +1,10 @@
+/*
+
+  Added by Javier Romero
+  This pipe is used in the users page in the clinician portal to count the number of patients assigned to a certain clinician.
+
+*/
+
 import { Pipe, PipeTransform } from '@angular/core';
 import { FFQParent } from 'src/app/models/ffqparent';
 

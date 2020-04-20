@@ -1,3 +1,13 @@
+/*
+
+  Added by Javier Romero
+  This is the create/edit user page for the admin portal 
+  (admin/user, which differs from admin/users, which is the list all users page).
+  From here, the admin will create users or edit existing ones.
+  Users can also be deleted from the databases from here.
+
+*/
+
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material';

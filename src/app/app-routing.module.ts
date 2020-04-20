@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {AppComponent} from './app.component';
-import {QuestionnairePageComponent} from './pages/questionnaire-page/questionnaire-page.component';
-import {QuestIdInputComponent} from './pages/quest-id-input-page/quest-id-input.component';
+import { AppComponent } from './app.component';
+import { QuestionnairePageComponent } from './pages/questionnaire-page/questionnaire-page.component';
+import { QuestIdInputComponent } from './pages/quest-id-input-page/quest-id-input.component';
 import { AdminPageComponent } from './pages/admin-page/admin-page.component';
-import {FooditemComponent} from './pages/fooditem/fooditem.component';
+import { FooditemComponent } from './pages/fooditem/fooditem.component';
 import { QuestResultsComponent } from './pages/quest-results/quest-results.component';
 import { RecommendComponent } from './pages/recommend/recommend.component';
 import { ClinicalPortalComponent} from './pages/clinical-portal/clinical-portal.component';
@@ -31,6 +31,21 @@ import { ClinicTrackerHistoryComponent } from './pages/clinic-tracker-history/cl
 
 const routes: Routes = [
   {
+    path: '', redirectTo: 'admin/home', pathMatch: 'full'
+  },
+  {
+    path: '*', redirectTo: 'login'
+  },
+  {
+    path: 'login', component: LoginComponent
+  },
+  {
+    path: 'logout', component: LogoutComponent
+  },
+  {
+    path: 'login-page', component: LoginPageComponent
+  },
+  {
     path: 'admin/fooditem/:id', component: FooditemComponent, canActivate: [AuthGuard]
   },
   {
@@ -49,9 +64,6 @@ const routes: Routes = [
     path: 'admin/users', component: AdminUsersComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'parent/recommend', component:   RecommendParentalComponent, canActivate: [AuthGuard]
-  },
-  {
     path: 'admin/results', component:  QuestResultsComponent, canActivate: [AuthGuard]
   },
   {
@@ -65,30 +77,6 @@ const routes: Routes = [
   },
   {
     path: 'admin/clinic/:id', component: ClinicComponent, canActivate: [AuthGuard]
-  },
-  {
-    path: '', redirectTo: 'admin/home', pathMatch: 'full'
-  },
-  {
-    path: 'parent/home', component: QuestIdInputComponent, canActivate: [AuthGuard]
-  },
-  {
-    path: 'parent/questionnaire/:id', component: QuestionnairePageComponent, canActivate: [AuthGuard]
-  },
-  {
-    path: 'clinic/home', component: ClinicalPortalComponent, canActivate: [AuthGuard]
-  },
-  {
-    path: 'parent/tracker', component: TrackerPageComponent, canActivate: [AuthGuard]
-  },
-  {
-    path: 'parent/tracker-history', component: TrackerHistoryPageComponent, canActivate: [AuthGuard]
-  },
-  {
-    path: 'parent/history', component: HistoryParentalComponent, canActivate: [AuthGuard]
-  },
-  {
-    path: 'login', component: LoginComponent
   },
   {
     path: 'clinic/results', component: ClinicQuestResultsComponent, canActivate: [AuthGuard]
@@ -106,13 +94,25 @@ const routes: Routes = [
     path: 'clinic/tracker-history', component: ClinicTrackerHistoryComponent, canActivate: [AuthGuard]
   },
   {
-    path: '*', redirectTo: 'login'
+    path: 'clinic/home', component: ClinicalPortalComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'logout', component: LogoutComponent
+    path: 'parent/home', component: QuestIdInputComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'login-page', component: LoginPageComponent
+    path: 'parent/questionnaire/:id', component: QuestionnairePageComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'parent/tracker', component: TrackerPageComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'parent/tracker-history', component: TrackerHistoryPageComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'parent/history', component: HistoryParentalComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'parent/recommend', component:   RecommendParentalComponent, canActivate: [AuthGuard]
   }
 ];
 

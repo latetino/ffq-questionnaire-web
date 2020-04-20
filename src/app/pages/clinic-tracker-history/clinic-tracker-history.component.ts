@@ -1,3 +1,11 @@
+/*
+
+  Added by Javier Romero, edited by Khalid Alamoudi
+  This is the tracker history page for the clinic portal (clinic/tracker-history).
+  From here, the clinician can see all the tracking histories for all parents in the clinic.
+
+*/
+
 import { Component, OnInit } from '@angular/core';
 import { TrackerResultsResponse } from 'src/app/models/trackerresultsresponse';
 import { TrackerResultsService } from 'src/app/services/tracker-results/tracker-results.service';
@@ -48,10 +56,10 @@ export class ClinicTrackerHistoryComponent implements OnInit {
       this.results = this.results.reverse();
       this.parentNames = this.parentNames.reverse();
 
-      console.log("this.results")
+      /*console.log("this.results")
       console.log(this.trackerList)
       console.log("this.parentNames")
-      console.log(this.parentNames)
+      console.log(this.parentNames)*/
       for(var i = 0; i < this.trackerList.length; i++){
          var object: TrackerParentResultsResponse = new TrackerParentResultsResponse(
            this.trackerList[i],
@@ -61,8 +69,8 @@ export class ClinicTrackerHistoryComponent implements OnInit {
          this.resultInfo.push(object);
          this.resultMap.set(this.trackerList[i].userId, object);
        }
-       console.log("result Info ")
-       console.log(this.resultInfo)
+       //console.log("result Info ")
+       //console.log(this.resultInfo)
     });
   
   };
@@ -73,8 +81,8 @@ export class ClinicTrackerHistoryComponent implements OnInit {
     
 
     allTrackersObservable.subscribe(allTrackers => {
-      console.log("all tracker")
-      console.log(allTrackers)
+      //console.log("all tracker")
+      //console.log(allTrackers)
         this.parentList.forEach(parent => {
             allTrackers.forEach(tracker => {
                 if(tracker.userId == parent.userId){
@@ -84,8 +92,8 @@ export class ClinicTrackerHistoryComponent implements OnInit {
                 }
             });
         });
-        console.log("trackerList in getTrackersfunction")
-        console.log(this.trackerList)
+        //console.log("trackerList in getTrackersfunction")
+        //console.log(this.trackerList)
         this.loadData();
 
     });
@@ -122,8 +130,8 @@ export class ClinicTrackerHistoryComponent implements OnInit {
           this.parentList.push(parent);
         }
       });
-      console.log("parentList in function");
-      console.log(this.parentList);
+      //console.log("parentList in function");
+      //console.log(this.parentList);
       this.getAllResults();
     });
   }

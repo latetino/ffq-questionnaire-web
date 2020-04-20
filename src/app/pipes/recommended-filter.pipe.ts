@@ -1,3 +1,12 @@
+/*
+
+  Added by Khalid Alamoudi
+  This pipe is used in the recommended page in the clinician portal to filter the number of recommendations based on a keyword.
+  Essentially, this serves as a search function.
+  Recommendations can be searched by questionnaire ID or parent name.
+
+*/
+
 import { Pipe, PipeTransform } from '@angular/core';
 import { FFQParentResult } from '../models/ffqparentresult';
 
@@ -11,14 +20,9 @@ export class RecommendedFilterPipe implements PipeTransform {
     {
       return list;
     }
-    return list.filter(function(result){
-      console.log("result in pipe")
-      console.log(result)
-    
+    return list.filter(function(result){  
       var questId = result.ffqresult.questionnaireId;
       var parentName = resultMap.get(result.ffqresult.userId).parentName;
-      console.log("parentName in pipe")
-      console.log(parentName)
       return questId.toLowerCase().includes(term.toLowerCase())
       || parentName.toLowerCase().includes(term.toLowerCase());
     });

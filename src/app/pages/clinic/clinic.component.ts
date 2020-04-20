@@ -1,3 +1,12 @@
+/*
+
+  Added by Javier Romero
+  This is the create/edit clinics page from the admin portal (admin/clinic).
+  From here, the admin will create a clinic and define its attributes or edit an existing one.
+  Existing clinics can also be deleted here.
+
+*/
+
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
@@ -54,9 +63,6 @@ export class ClinicComponent implements OnInit {
   clinicians: FFQClinicianResponse[] = [];
   parents: FFQParentResponse[] = [];
 
-  nutrientsMap: Map<string,FFQNutrientlist> = new Map<string,FFQNutrientlist>();
-
-  //foodNutrientsItem: FFQFoodNutrients[] = [];
   clinicAttributes: object;
   dataLoaded: Promise<boolean>;
 
@@ -121,12 +127,8 @@ export class ClinicComponent implements OnInit {
 
   private getClinicById(id: string)
   {
-
-
       this.clinicService.getClinic(id).subscribe(data => {
-
-
-        this.clinicAttributes = data;
+       this.clinicAttributes = data;
       });
       this.dataLoaded = Promise.resolve(true);
   }
