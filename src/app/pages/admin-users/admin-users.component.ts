@@ -1,24 +1,13 @@
 /*
 
   Added by Javier Romero
-  This is the users page on the admin portal (admin/users). 
+  This is the users page on the admin portal (admin/users).
   From here, the admin can create, delete, and assign parents/clinicians to their clinics.
   Khalid Alamoudi: wrote loadAllUsers() function that populates clinicians/parents lists.
 
 */
 
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { MatDialog } from '@angular/material';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { FoodItemService } from '../../services/food-item/food-item.service';
-import { FFQItem } from 'src/app/models/ffqitem';
-import { HttpErrorResponse } from '@angular/common/http';
-import { ErrorDialogPopupComponent } from 'src/app/components/error-dialog-popup/error-dialog-popup.component';
-import { PopupComponent } from 'src/app/components/popup/popup.component';
-import { FlashMessagesService } from 'angular2-flash-messages';
-import { FFQFoodItem } from 'src/app/models/ffqfooditem';
-import { FFQFoodItemResponse } from 'src/app/models/ffqfooditem-response';
 import { FFQClinician } from 'src/app/models/ffqclinician';
 import { FFQParent } from 'src/app/models/ffqparent';
 import { FFQAdmin } from 'src/app/models/ffqadmin';
@@ -56,7 +45,7 @@ export class AdminUsersComponent implements OnInit {
     public clinicService: ClinicService,
     public adminService: AdminService,
     public authenticationService: AuthenticationService
-    
+
     ) { }
 
 
@@ -79,7 +68,7 @@ export class AdminUsersComponent implements OnInit {
     this.filtered = false;
     this.loadAllUsers();
   }
-  
+
   toggleParents()
   {
     this.showParents = !this.showParents;
@@ -128,18 +117,18 @@ export class AdminUsersComponent implements OnInit {
       this.ffqclinicList = a;
       console.log(a);
       a.forEach(clinic =>{
-        
+
         this.clinicNames.push(clinic.clinicname);
       });
 
        clinicianList.subscribe(b => {
          this.ffqclinicianList = b;
 
-         b.forEach(clinician =>  {       
+         b.forEach(clinician =>  {
           //console.log(clinician);
-          
+
           var clinicianClinic = a.find(n => n.clinicId == clinician.assignedclinic);
-          
+
           if(!!clinicianClinic){
             var clinicianClinicName = clinicianClinic.clinicname;
             this.clinicianClinicNames.push(clinicianClinicName);
@@ -150,11 +139,11 @@ export class AdminUsersComponent implements OnInit {
 
           parentList.subscribe(c => {
           this.ffqparentList = c;
-          
+
           c.forEach(parent => {
-          
+
             var clinicians = b.find(n => n.userId == parent.assignedclinic);
-            
+
             if(!!clinicians){
               var parentClinic = a.find(n => n.clinicId == clinicians.assignedclinic);
               if(!!parentClinic){
@@ -162,13 +151,13 @@ export class AdminUsersComponent implements OnInit {
               }
             }
             this.parentClinicNames.push(parentClinicName);
-          });    
+          });
           });
        });
     });
 
     adminList.subscribe(admin => {
-      
+
       this.ffqadminList = admin;
     });
   }
