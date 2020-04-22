@@ -33,7 +33,7 @@ export class ClinicTrackerHistoryComponent implements OnInit {
   resultMap: Map<string, TrackerParentResultsResponse> = new Map<string, TrackerParentResultsResponse>();
   resultInfo: TrackerParentResultsResponse[] = [];
   search: string;
-  
+
   constructor(private trackerResultsService: TrackerResultsService,
               private authenticationService: AuthenticationService,
               public parentService: ParentService,
@@ -42,7 +42,7 @@ export class ClinicTrackerHistoryComponent implements OnInit {
 
   ngOnInit() {
     this.getClinicId();
-    
+
 
   }
 
@@ -54,7 +54,7 @@ export class ClinicTrackerHistoryComponent implements OnInit {
     const trackerObservable: Observable<TrackerResultsResponse[]> = of(this.trackerList);
 
     trackerObservable.subscribe(tracker => {
-      this.results = this.results.reverse();
+      this.trackerList = this.trackerList.reverse();
       this.parentNames = this.parentNames.reverse();
 
       /*console.log("this.results")
@@ -66,20 +66,20 @@ export class ClinicTrackerHistoryComponent implements OnInit {
            this.trackerList[i],
            this.parentNames[i]
          );
-         
+
          this.resultInfo.push(object);
          this.resultMap.set(this.trackerList[i].userId, object);
        }
        //console.log("result Info ")
        //console.log(this.resultInfo)
     });
-  
+
   };
 
 
     //Function to get all the results for each parent
   private getAllResults(){
-    
+
     const allTrackersObservable = this.trackerResultsService.getAllResults();
     allTrackersObservable.subscribe(allTrackers => {
       //console.log("all tracker")
@@ -101,7 +101,7 @@ export class ClinicTrackerHistoryComponent implements OnInit {
 
   }
 
-     //Function used to obtain the clinicId for the currently logged in clinician, in order to later display results based only for this specific clinic    
+     //Function used to obtain the clinicId for the currently logged in clinician, in order to later display results based only for this specific clinic
   private getClinicId(){
 
     var clinicListObervable: Observable<FFQClinicResponse[]> = this.clinicService.getAllClinics();
@@ -129,7 +129,7 @@ export class ClinicTrackerHistoryComponent implements OnInit {
     parentListObservable.subscribe(parentList => {
       parentList.forEach(parent => {
         if(parent.assignedclinic == this.clinicId){
-          
+
           this.parentList.push(parent);
         }
       });

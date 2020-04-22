@@ -1,7 +1,7 @@
 /*
 
   Added by Javier Romero
-  This is the create/edit user page for the admin portal 
+  This is the create/edit user page for the admin portal
   (admin/user, which differs from admin/users, which is the list all users page).
   From here, the admin will create users or edit existing ones.
   Users can also be deleted from the databases from here.
@@ -170,7 +170,7 @@ export class UserComponent implements OnInit {
         var numberOfParents = (data.length+1).toString();
         var newParentId = (data.length+1).toString();
         var newParentUsername = "parent"+numberOfParents;
-        this.ffqParent = new FFQParent(newParentId, newParentUsername, newParentUsername, "parent", "", "",  this.selectedClinic, "", [], true);
+        this.ffqParent = new FFQParent(newParentId, newParentUsername, newParentUsername, "parent", "", "",  this.selectedClinic, "", [""], true);
         console.log(this.ffqParent);
 
         this.parentService.addParent(this.ffqParent).subscribe(data => {
