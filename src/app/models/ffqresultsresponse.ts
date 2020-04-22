@@ -1,5 +1,5 @@
 export class FFQResultsResponse {
-    questionnaireId: String;
+    questionnaireId: string;
     userId: string;
     patientName: string;
     ageInMonths: number;

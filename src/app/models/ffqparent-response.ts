@@ -1,3 +1,5 @@
+//Class used to store parent user data from response
+
 import {FFQItemResponse} from './ffqitem-response';
 import { ObjectUnsubscribedError } from 'rxjs';
 
@@ -12,10 +14,11 @@ export class FFQParentResponse {
   assignedclinic: string;
   assignedclinician: string;
   childrennames: any;
+  isactive: boolean;
 
 
   constructor(userId: string, username: string, userpassword: string, usertype:string, firstname: string, 
-              lastname: string, assignedclinic: string, assignedclinician: string, childrennames: any) {
+              lastname: string, assignedclinic: string, assignedclinician: string, childrennames: any, isactive: boolean) {
     this.userId = userId;
     this.username = username;
     this.userpassword = userpassword;
@@ -25,6 +28,7 @@ export class FFQParentResponse {
     this.assignedclinic = assignedclinic;
     this.assignedclinician = assignedclinician;
     this.childrennames = childrennames;
+    this.isactive = isactive;
   }
 
 }

@@ -1,5 +1,4 @@
-import {FFQItemResponse} from './ffqitem-response';
-import { ObjectUnsubscribedError } from 'rxjs';
+//Classed to store clinician user data in components
 
 export class FFQClinician {
   id: string;
@@ -12,10 +11,11 @@ export class FFQClinician {
   lastname: string;
   assignedclinic: string;
   previousclinics: any;
+  isactive: boolean;
 
 
   constructor(userId: string, username: string, userpassword: string, usertype:string, abbreviation: string, firstname: string,
-               lastname: string, assignedclinic: string, previousclinics: any) {
+               lastname: string, assignedclinic: string, previousclinics: any, isactive: boolean) {
     this.userId = userId;
     this.username = username;
     this.userpassword = userpassword;
@@ -24,7 +24,8 @@ export class FFQClinician {
     this.firstname = firstname;
     this.lastname = lastname;
     this.assignedclinic = assignedclinic;
-    this.previousclinics = previousclinics
+    this.previousclinics = previousclinics;
+    this.isactive = isactive;
   }
 
 }

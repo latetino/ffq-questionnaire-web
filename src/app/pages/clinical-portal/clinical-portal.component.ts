@@ -1,3 +1,11 @@
+/*
+
+  Added by Javier Romero, edited by Khalid Alamoudi
+  This is the home page of the clinician portal (clinic/home).
+  It serves as the users page, where all parents and clinicians of that clinic can be seen and edited.
+
+*/
+
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
@@ -29,7 +37,6 @@ export class ClinicalPortalComponent implements OnInit  {
   private showParents: boolean;
   private hideUnassignedParents: boolean;
   private hideUnassignedClinicians: boolean;
-  //private authenticationService: AuthenticationService;
   p_search: string;
   c_search: string;
 
@@ -72,12 +79,7 @@ export class ClinicalPortalComponent implements OnInit  {
 
     this.clinicianNames.push("");
 
-    /*var clinicId: string = */
     this.getClinicId();
-    /*var clinicianList: FFQClinician[] = */
-    this.getParents();
-    this.loadData();
-    //this.getNumberOfPatients();
   }
 
   toggleClinicians($event)
@@ -133,13 +135,14 @@ export class ClinicalPortalComponent implements OnInit  {
       if(clinic){
         this.clinicId = clinic.clinicId;
         this.currentClinicName = clinic.clinicname;
-        //console.log("clinic ID in function");
-        //console.log(this.clinicId);
       }
+      this.getParents();
     });
 
   }
 
+    //loadData function serves to store the result and parent names into the FFQParentResult object
+    //                  serves to display the questionnaire-result data using the specification based on PO's list
   loadData(){
     var clinicianListObservable: Observable<FFQClinicianResponse[]> = this.clinicianService.getAllClinicians();
     var parentListObservable: Observable<FFQParentResponse[]> = this.parentService.getAllParents();
@@ -167,12 +170,10 @@ export class ClinicalPortalComponent implements OnInit  {
     parentListObservable.subscribe(parentList => {
       parentList.forEach(parent => {
         if(parent.assignedclinic == this.clinicId){
-          //clinicianInClinic.push(clinician);
           this.parentList.push(parent);
         }
       });
-      //console.log("parentList in function");
-      //console.log(this.parentList);
+      this.loadData();
     });
   }
 

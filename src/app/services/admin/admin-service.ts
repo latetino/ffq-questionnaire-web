@@ -58,7 +58,8 @@ export class AdminService {
             item.userpassword,
             item.usertype,
             item.firstname,
-            item.lastname
+            item.lastname,
+            item.isactive
           );
       }))
     );
@@ -76,7 +77,8 @@ export class AdminService {
             item.userpassword,
             item.usertype,
             item.firstname,
-            item.lastname
+            item.lastname,
+            item.isactive
           );
         });
       })

@@ -1,6 +1,14 @@
+/*
+
+    Added by Javier Romero
+    Pop-up that prompts the user to confirm deletion of an object in the database.
+    Added to prevent the accidental deletion of clinics,
+    clinicians or parents from the database.
+
+*/
+
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
-//import { FoodItemService } from 'src/app/services/food-item/food-item.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { ErrorDialogPopupComponent } from '../error-dialog-popup/error-dialog-popup.component';
@@ -17,6 +25,8 @@ import { FFQClinicResponse } from 'src/app/models/ffqclinic-response';
 })
 export class DeletePopupComponent implements OnInit{
 
+    // @Input attributes: the object and its attributes to be deleted
+    // @Input service: the type of the object
     @Input() attributes;
     @Input() service;
 
@@ -35,7 +45,6 @@ export class DeletePopupComponent implements OnInit{
     }
 
     constructor(public activeModal: NgbActiveModal,
-        //public foodService: FoodItemService,
         private router: Router,
         private errorDialog: MatDialog,
         public clinicianService: ClinicianService,
@@ -44,6 +53,7 @@ export class DeletePopupComponent implements OnInit{
         
     ) {}
 
+    /* When confirmed deletion, this function does the delete action on the object based on its type */
     onClose(): void {
         if(this.isClinician)
         {

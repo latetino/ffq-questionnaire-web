@@ -1,3 +1,11 @@
+/*
+
+  Added by Javier Romero
+  This page represents the clinics page in the admin portal.
+  From here, you can see a list of all the clinics in the DB and can also edit/delete them.
+
+*/
+
 import { Component, OnInit } from '@angular/core';
 import { FFQClinic } from 'src/app/models/ffqclinic';
 import { FFQParent } from 'src/app/models/ffqparent';
@@ -32,7 +40,7 @@ export class AdminClinicsComponent implements OnInit {
   public clinicianNames: string[] =[];
 
 
-
+  /* Loads all the data necessary to fill out the table in the html component */
   ngOnInit() {
     
     this.clinicianNames.push("");

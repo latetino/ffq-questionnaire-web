@@ -1,14 +1,19 @@
+/*
+
+  Added by Javier Romero
+  This is the create/edit user page for the admin portal
+  (admin/user, which differs from admin/users, which is the list all users page).
+  From here, the admin will create users or edit existing ones.
+  Users can also be deleted from the databases from here.
+
+*/
+
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { ErrorDialogPopupComponent } from 'src/app/components/error-dialog-popup/error-dialog-popup.component';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule, NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs/internal/Subscription';
-import { FFQFoodNutrients } from 'src/app/models/ffqfoodnutrients';
-import { FFQFoodItem } from 'src/app/models/ffqfooditem';
-import { FFQNutrientlist, nutrientMap } from 'src/app/models/ffqnutrientlist';
-import { NutrientConstants } from 'src/app/models/NutrientConstants';
-import { NutrientsService } from 'src/app/services/nutrients/nutrients-service';
 import { FormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { ParentService } from 'src/app/services/parent/parent-service';
@@ -58,9 +63,6 @@ export class UserComponent implements OnInit {
   amountToAdd: number;
   isParent: boolean;
   isClinician: boolean;
-  //newClinic: string;
-  //newClinician: FFQClinician;
-  //newParent: FFQParent;
 
   public ffqclinicList: FFQClinic[] = [];
   clinicNames: string[] = [];
@@ -144,7 +146,7 @@ export class UserComponent implements OnInit {
         //console.log("Number of clinicians is: " + numberOfClinicians);
         var newClincianId = (data.length+1).toString();
         var newClincianUsername = "clinician"+numberOfClinicians;
-        this.ffqclinician = new FFQClinician(newClincianId, newClincianUsername, newClincianUsername, "clinician", "", "", "", this.selectedClinic, []);
+        this.ffqclinician = new FFQClinician(newClincianId, newClincianUsername, newClincianUsername, "clinician", "", "", "", this.selectedClinic, [], true);
         console.log(this.ffqclinician);
 
         this.clinicianService.addClinician(this.ffqclinician).subscribe(data => {
@@ -168,7 +170,7 @@ export class UserComponent implements OnInit {
         var numberOfParents = (data.length+1).toString();
         var newParentId = (data.length+1).toString();
         var newParentUsername = "parent"+numberOfParents;
-        this.ffqParent = new FFQParent(newParentId, newParentUsername, newParentUsername, "parent", "", "",  this.selectedClinic, "", []);
+        this.ffqParent = new FFQParent(newParentId, newParentUsername, newParentUsername, "parent", "", "",  this.selectedClinic, "", [""], true);
         console.log(this.ffqParent);
 
         this.parentService.addParent(this.ffqParent).subscribe(data => {
@@ -183,32 +185,6 @@ export class UserComponent implements OnInit {
 
       });
   }
-/*
-  private addParent(form:NgForm){
-
-       var parentList: Observable<FFQParentResponse[]> = this.parentService.getAllParents();
-
-       parentList.subscribe(data => {
-         var numberOfParents = (data.length+1).toString();
-         var newParentId = (data.length+1).toString();
-         var newParentUsername = "parent"+numberOfParents;
-         this.ffqParent = new FFQParent(newParentId, newParentUsername, newParentUsername, "", "", "", []);
-         //console.log(this.ffquser);
-
-         this.parentService.addParent(this.ffqParent).subscribe(data => {
-             this.router.navigateByUrl('/admin/users');
-             const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
-             dialogRef.componentInstance.title = 'Users were added!';
-         },
-         error =>{
-             const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
-             dialogRef.componentInstance.title = error.error.message;
-         });
-
-       });
-
-   }*/
-
 
   getParentByID(id: string)
   {
@@ -247,7 +223,6 @@ export class UserComponent implements OnInit {
   updateParent()
   {
 
-    //this.newParent.assignedclinic = this.clinicIds.get(this.newClinic);
 
     this.parentService.updateParent(<FFQParentResponse>this.userAttributes).subscribe(
      data => {this.router.navigateByUrl('/admin/users');
@@ -260,11 +235,6 @@ export class UserComponent implements OnInit {
   updateClinician()
   {
 
-
-    //console.log("new clinic");
-    //console.log(this.newClinic);
-    //this.newClinician.assignedclinic = this.clinicIds.get(this.newClinic);
-    //console.log(this.newClinician);
 
     this.clinicianService.updateClinician(<FFQClinicianResponse>this.userAttributes)
       .subscribe( data => {

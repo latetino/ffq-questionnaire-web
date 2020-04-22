@@ -1,11 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { QuestIdInputComponent } from './pages/quest-id-input-page/quest-id-input.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { MatButtonModule, MatCardModule, MatFormFieldModule,
   MatInputModule, MatDialogModule, MatListModule, MatSelectModule,
   MatOptionModule, MatRadioModule, MatIconModule } from '@angular/material';
@@ -13,14 +11,14 @@ import { QuestionnairePageComponent } from './pages/questionnaire-page/questionn
 import { ErrorDialogPopupComponent } from './components/error-dialog-popup/error-dialog-popup.component';
 import { TextCardComponent } from './components/text-card/text-card.component';
 import { QuestionBlockComponent } from './components/question-block/question-block.component';
-import {FormsModule} from '@angular/forms';
-import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ResultsPageComponent } from './pages/results-page/results-page.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { FooditemComponent } from './pages/fooditem/fooditem.component';
-import{ ReactiveFormsModule} from '@angular/forms';
+import { ReactiveFormsModule} from '@angular/forms';
 import { AdminHeaderComponent } from './pages/admin-header/admin-header.component';
 import { QuestResultsComponent } from './pages/quest-results/quest-results.component';
 import { RecommendComponent } from './pages/recommend/recommend.component';
@@ -43,12 +41,10 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { TrackerHistoryPageComponent } from './pages/tracker-history-page/tracker-history-page.component';
 import { HistoryParentalComponent } from './pages/history-parental/history-parental.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-
 import { LoginComponent } from './pages/login';
 import { LoginHeaderComponent } from './pages/login-header';
 import { ClinicQuestResultsComponent } from './pages/clinic-quest-results';
 import { ClinicRecommendComponent } from './pages/clinic-recommend';
-
 import { AdminUsersComponent } from './pages/admin-users';
 import { UserComponent } from './pages/user/user.component';
 import { ClinicUserComponent } from './pages/clinic-user/clinic-user.component';
@@ -60,6 +56,9 @@ import { ParentPipe } from './pipes/parentFilter.pipe';
 import { PatientPipe } from './pipes/patientFilter.pipe';
 import { SearchPipe } from './pipes/searchFilter.pipe';
 import { ResultsPipe } from './pipes/resultsFilter.pipe';
+import { ClinicTrackerHistoryComponent } from './pages/clinic-tracker-history/clinic-tracker-history.component';
+import { TrackerFilterPipe } from './pipes/tracker-filter.pipe';
+import { RecommendedFilterPipe } from './pipes/recommended-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -102,7 +101,10 @@ import { ResultsPipe } from './pipes/resultsFilter.pipe';
     PatientPipe,
     SearchPipe,
     ResultsPipe,
-    DeletePopupComponent
+    DeletePopupComponent,
+    ClinicTrackerHistoryComponent,
+    TrackerFilterPipe,
+    RecommendedFilterPipe
 
   ],
   imports: [

@@ -1,5 +1,4 @@
-import {FFQItemResponse} from './ffqitem-response';
-import { ObjectUnsubscribedError } from 'rxjs';
+//Class used to store clinic data from response
 
 export class FFQClinicResponse {
   id: string;

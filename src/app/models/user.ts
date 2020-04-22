@@ -1,7 +1,4 @@
-import { ObjectUnsubscribedError } from 'rxjs';
-import { FFQClinician } from './ffqclinician';
-import { FFQParent } from './ffqparent';
-import { FFQAdmin } from './ffqadmin';
+//Class used for to user that will be authenticated in the authentication service
 
 export class User {
   id: string;

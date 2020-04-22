@@ -1,14 +1,18 @@
+/*
+
+  Added by Javier Romero
+  This is the create/edit clinics page from the admin portal (admin/clinic).
+  From here, the admin will create a clinic and define its attributes or edit an existing one.
+  Existing clinics can also be deleted here.
+
+*/
+
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { ErrorDialogPopupComponent } from 'src/app/components/error-dialog-popup/error-dialog-popup.component';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule, NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs/internal/Subscription';
-import { FFQFoodNutrients } from 'src/app/models/ffqfoodnutrients';
-import { FFQFoodItem } from 'src/app/models/ffqfooditem';
-import { FFQNutrientlist, nutrientMap } from 'src/app/models/ffqnutrientlist';
-import { NutrientConstants } from 'src/app/models/NutrientConstants';
-import { NutrientsService } from 'src/app/services/nutrients/nutrients-service';
 import { FormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { ClinicianService } from 'src/app/services/clinician/clinician-service';
@@ -54,9 +58,6 @@ export class ClinicComponent implements OnInit {
   clinicians: FFQClinicianResponse[] = [];
   parents: FFQParentResponse[] = [];
 
-  nutrientsMap: Map<string,FFQNutrientlist> = new Map<string,FFQNutrientlist>();
-
-  //foodNutrientsItem: FFQFoodNutrients[] = [];
   clinicAttributes: object;
   dataLoaded: Promise<boolean>;
 
@@ -121,12 +122,8 @@ export class ClinicComponent implements OnInit {
 
   private getClinicById(id: string)
   {
-
-
       this.clinicService.getClinic(id).subscribe(data => {
-
-
-        this.clinicAttributes = data;
+       this.clinicAttributes = data;
       });
       this.dataLoaded = Promise.resolve(true);
   }

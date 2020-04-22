@@ -1,7 +1,16 @@
+/*
+
+  Added by Javier Romero
+  This is the questionnaire results page in the clinician portal (clinic/results).
+  From here, a clinician can see all the questionnaire results for their assigned clinic.
+  Khalid Alamoudi: added search functionality to better filter the results.
+
+*/
+
 import { Component, OnInit } from "@angular/core";
 import { ResultsService } from "src/app/services/results/results";
 import { FFQResultsResponse } from "src/app/models/ffqresultsresponse";
-import {Observable} from 'rxjs';
+import { Observable } from 'rxjs';
 import { NutrientConstants } from 'src/app/models/NutrientConstants';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 import { FFQClinicResponse } from 'src/app/models/ffqclinic-response';
@@ -11,6 +20,7 @@ import { ParentService } from 'src/app/services/parent/parent-service';
 import { FFQParent } from 'src/app/models/ffqparent';
 import { of } from 'rxjs';
 import { ResultsPipe } from 'src/app/pipes/resultsFilter.pipe';
+import { FFQParentResult } from 'src/app/models/ffqparentresult';
 
 @Component({
   selector: "app-quest-results",
@@ -29,7 +39,8 @@ export class ClinicQuestResultsComponent implements OnInit {
   resultList: FFQResultsResponse[] = [];
   resultListObservable: Observable<FFQResultsResponse[]>;
   parentNames: string[] = [];
-  allParentNames: string[] = [];
+  resultMap: Map<string, FFQParentResult> = new Map<string, FFQParentResult>();
+  resultInfo: FFQParentResult[] = [];
 
   constructor(
     public resultsService: ResultsService,
@@ -40,11 +51,10 @@ export class ClinicQuestResultsComponent implements OnInit {
 
   ngOnInit() {
     this.getClinicId();
-    this.allParentNames.push("");
-
   }
 
-  //(Khalid)Changed below code to sort the list in the nutient view page
+  //loadData function serves to store the result and parent names into the FFQParentResult object
+  //                  serves to display the questionnaire-result data using the specification based on PO's list
   private loadData() {
 
      const oldListObservable: Observable<FFQResultsResponse[]> = of(this.resultList);
@@ -54,32 +64,43 @@ export class ClinicQuestResultsComponent implements OnInit {
      const newDailyMap = new Map<string, number>();
      const resultList: FFQResultsResponse[] = this.resultList;
 
-     oldListObservable.subscribe(oldList => {
-     // oldList = this.resultList;
-      console.log("oldList");
-      console.log(oldList);
-      const weeklyMap = oldList[0].weeklyTotals;
-      const dailyMap = oldList[0].dailyAverages;
-      newList.forEach(element =>  {
-       newWeeklyMap.set(element, weeklyMap[element]);
-       newDailyMap.set(element, dailyMap[element]);
-       })
-      //console.log(newWeeklyMap);
+     oldListObservable.subscribe(m => {
 
-      oldList.forEach(element => {
+      m.forEach(element => {
+      const newWeeklyMap = new Map<string, number>();
+      const newDailyMap = new Map<string, number>();
 
-         element.weeklyTotals = newWeeklyMap;
-         element.dailyAverages = newDailyMap;
-         //element.dailyAverages = newDailyMap;
+      const weeklyMap = element.weeklyTotals;
+      const dailyMap = element.dailyAverages;
 
-        })
+      newList.forEach(a =>  {
+          newWeeklyMap.set(a, weeklyMap[a]);
+          newDailyMap.set(a, dailyMap[a]);
+      })
 
-        console.log(oldList);
-        this.results = oldList.reverse();
+      element.weeklyTotals = newWeeklyMap;
+      element.dailyAverages = newDailyMap;
+      })
+
+      console.log(m);
+      this.results = m.reverse();
+      this.parentNames = this.parentNames.reverse();
+      for(var i = 0; i < this.parentNames.length; i++){
+        var object: FFQParentResult = new FFQParentResult(
+          this.results[i],
+          this.parentNames[i]
+        );
+        this.resultInfo.push(object);
+        this.resultMap.set(this.results[i].userId, object);
+      }
+      console.log("resultInfo in function");
+      console.log(this.resultInfo);
+      
      });
 
   }
 
+    //Function used to obtain the clinicId for the currently logged in clinician, in order to later display results based only for this specific clinic
   private getClinicId(){
 
     var clinicListObervable: Observable<FFQClinicResponse[]> = this.clinicService.getAllClinics();
@@ -100,12 +121,12 @@ export class ClinicQuestResultsComponent implements OnInit {
 
   }
 
+  //Function used to filter the parent list to hold only the parents that are assigned to that specific clinic
 private getParentList(){
   var parentListObervable: Observable<FFQParentResponse[]> = this.parentService.getAllParents();
 
   parentListObervable.subscribe(parentList => {
      parentList.forEach(parent => {
-       this.allParentNames.push(parent.firstname + " " + parent.lastname);
        if(parent.assignedclinic == this.clinicId){
          this.parentList.push(parent);
        }
@@ -114,41 +135,42 @@ private getParentList(){
 
      console.log(this.parentList);
   });
-
-
-
 }
 
+
+  //Function to get all the results for each parent
 private getResultsList(){
- // this.getParentList();
-  //var resultList: FFQResultsResponse[];
-  console.log("Parents in Get result");
-  console.log(this.parentList);
-  this.parentList.forEach(parent => {
-      console.log("Parent");
-      console.log(parent);
-      var resulstsForThisParentObservable = this.resultsService.getResultsByUser(parent.userId);
-      resulstsForThisParentObservable.subscribe(resultsForThisParent => {
-        resultsForThisParent.forEach(result => {
-          var parentName = parent.firstname + " " + parent.lastname;
-          this.parentNames.push(parentName);
-          this.resultList.push(result);
-        });
-        this.loadData();
-      })
-  });
-}
+   //console.log("Parents in Get result");
+   //console.log(this.parentList);
+   
+   var allResultsObservable: Observable<FFQResultsResponse[]> = this.resultsService.getAllResults();
+   allResultsObservable.subscribe((allResults: FFQResultsResponse[]) => {
+    //console.log("All REsults in function");
+    //console.log(allResults);
+      this.parentList.forEach(parent => { 
+          allResults.forEach(result => {
+              if(result.userId == parent.userId){
+                this.resultList.push(result);
+                var parentName = parent.firstname + " " + parent.lastname;
+                this.parentNames.push(parentName);
+              }
+          });
+          //console.log("parentNames for this parent")
+          //console.log(this.parentNames);
+      });
+      //console.log("results in function");
+      //console.log(this.resultList);
+      this.loadData();
+   });
 
-
-
-
-  //p = this.results;
-
+ }
+ 
   private returnZero(){
     return 0;
   }
 
+  //function used in HTML in order to display and hide questionnaire results
   toggle(index) {
-    this.results[index].show = !this.results[index].show;
+    this.resultInfo[index].ffqresult.show = !this.resultInfo[index].ffqresult.show;
   }
 }
