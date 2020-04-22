@@ -39,7 +39,6 @@ export class ClinicQuestResultsComponent implements OnInit {
   resultList: FFQResultsResponse[] = [];
   resultListObservable: Observable<FFQResultsResponse[]>;
   parentNames: string[] = [];
- // allParentNames: string[] = [];
   resultMap: Map<string, FFQParentResult> = new Map<string, FFQParentResult>();
   resultInfo: FFQParentResult[] = [];
 
@@ -51,18 +50,14 @@ export class ClinicQuestResultsComponent implements OnInit {
     ) {}
 
   ngOnInit() {
-    //this.allParentNames.push("");
     this.getClinicId();
-   // this.allParentNames.push("");
-   // this.allParentNames = this.allParentNames.reverse();
-    //this.loadData();
   }
 
-  //(Khalid)Changed below code to sort the list in the nutient view page
+  //loadData function serves to store the result and parent names into the FFQParentResult object
+  //                  serves to display the questionnaire-result data using the specification based on PO's list
   private loadData() {
 
      const oldListObservable: Observable<FFQResultsResponse[]> = of(this.resultList);
-     //const oldListObservable: Observable<FFQResultsResponse[]> = this.resultsService.getAllResults();
 
      const newList: string[] = NutrientConstants.NUTRIENT_NAMES;
      const newWeeklyMap = new Map<string, number>();
@@ -91,8 +86,6 @@ export class ClinicQuestResultsComponent implements OnInit {
       this.results = m.reverse();
       this.parentNames = this.parentNames.reverse();
       for(var i = 0; i < this.parentNames.length; i++){
-       // this.allParentName.set(this.results[i].userId, this.parentNames[i]);
-
         var object: FFQParentResult = new FFQParentResult(
           this.results[i],
           this.parentNames[i]
@@ -107,6 +100,7 @@ export class ClinicQuestResultsComponent implements OnInit {
 
   }
 
+    //Function used to obtain the clinicId for the currently logged in clinician, in order to later display results based only for this specific clinic
   private getClinicId(){
 
     var clinicListObervable: Observable<FFQClinicResponse[]> = this.clinicService.getAllClinics();
@@ -127,14 +121,13 @@ export class ClinicQuestResultsComponent implements OnInit {
 
   }
 
+  //Function used to filter the parent list to hold only the parents that are assigned to that specific clinic
 private getParentList(){
   var parentListObervable: Observable<FFQParentResponse[]> = this.parentService.getAllParents();
 
   parentListObervable.subscribe(parentList => {
      parentList.forEach(parent => {
-      // this.allParentNames.push(parent.firstname + " " + parent.lastname);
        if(parent.assignedclinic == this.clinicId){
-       //  this.allParentName.set(parent.userId, parent);
          this.parentList.push(parent);
        }
      })
@@ -144,6 +137,8 @@ private getParentList(){
   });
 }
 
+
+  //Function to get all the results for each parent
 private getResultsList(){
    //console.log("Parents in Get result");
    //console.log(this.parentList);
@@ -169,11 +164,16 @@ private getResultsList(){
    });
 
  }
- 
+
+
+
+
+
   private returnZero(){
     return 0;
   }
 
+  //function used in HTML in order to display and hide questionnaire results
   toggle(index) {
     this.resultInfo[index].ffqresult.show = !this.resultInfo[index].ffqresult.show;
   }

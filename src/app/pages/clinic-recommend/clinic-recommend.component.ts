@@ -13,7 +13,6 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RecommendModalComponent } from 'src/app/components/recommend-modal/recommend-modal.component';
 import { MatDialog } from '@angular/material';
 import { NutrientsRecommendationsService } from 'src/app/services/nutrients-recommendations/nutrients-recommendations.service';
-import { FFQNutrientsRecommendations } from 'src/app/models/ffqnutrients-recommendations';
 import { ErrorDialogPopupComponent } from 'src/app/components/error-dialog-popup/error-dialog-popup.component';
 import { Router } from '@angular/router';
 import { FoodRecommendModalComponent } from 'src/app/components/food-recommend-modal/food-recommend-modal.component';
@@ -84,16 +83,7 @@ export class ClinicRecommendComponent implements OnInit {
     );
   }
 
-
-
-  /*private getAllResults() {
-    this.resultsService.getAllResults().subscribe(data => {
-      data.map(response => {
-        this.results.push(response);
-      });
-    });
-  }*/
-
+  //loadData function serves to store the nutrients and food recommendations for each parent based on their questionnaire results
   private loadData(){
 
      const resultListObservable: Observable<FFQResultsResponse[]> = of(this.resultList);
@@ -105,8 +95,7 @@ export class ClinicRecommendComponent implements OnInit {
         //console.log("results in loadData")
         //console.log(this.resultList)
         for(var i = 0; i < this.resultList.length; i++){
-          //console.log(i)
-        // this.allParentName.set(this.results[i].userId, this.parentNames[i]);
+          console.log(i)
           var object: FFQParentResult = new FFQParentResult(
             this.resultList[i],
             this.parentNames[i]
@@ -120,6 +109,7 @@ export class ClinicRecommendComponent implements OnInit {
 
   }
 
+     //Function used to obtain the clinicId for the currently logged in clinician, in order to later display results based only for this specific clinic
   private getClinicId(){
 
     var clinicListObervable: Observable<FFQClinicResponse[]> = this.clinicService.getAllClinics();
@@ -140,14 +130,13 @@ export class ClinicRecommendComponent implements OnInit {
 
   }
 
+    //Function used to filter the parent list to hold only the parents that are assigned to that specific clinic
   private getParentList(){
     var parentListObervable: Observable<FFQParentResponse[]> = this.parentService.getAllParents();
   
     parentListObervable.subscribe(parentList => {
        parentList.forEach(parent => {
-        // this.allParentNames.push(parent.firstname + " " + parent.lastname);
          if(parent.assignedclinic == this.clinicId){
-         //  this.allParentName.set(parent.userId, parent);
            this.parentList.push(parent);
          }
        })
@@ -157,6 +146,8 @@ export class ClinicRecommendComponent implements OnInit {
     });
 
   }
+
+  //Function to get all the results for each parent
 private getResultsList(){
   console.log("Parents in Get result");
   console.log(this.parentList);
@@ -183,12 +174,13 @@ private getResultsList(){
 
 }
 
-
+    //functions used in HTML to display the nutrient recommendation after clicking on the button 
   onModalRequest(id: string): void {
     const modalRef = this.errorDialog.open(RecommendModalComponent);
     modalRef.componentInstance.id = id;
   }
 
+    //functions used in HTML to display the food recommendation after clicking on the button 
   onModalRequestFood(id: string): void {
     const modalRef = this.errorDialog.open(FoodRecommendModalComponent);
     modalRef.componentInstance.id = id;
