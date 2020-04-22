@@ -34,14 +34,6 @@ export class HistoryParentalComponent implements OnInit {
     else this.buttonName = "Results ";
   }
 
-  // private getResultsByUser(userId: string) {
-  //   var results: Observable<FFQResultsResponse[]> = this.resultsService.getResultsByUser(userId);
-
-  //   results.subscribe((list: FFQResultsResponse[]) => {
-  //     this.results = list;
-  //   });
-  // };
-
   private getResultsByUser(userId: string) {
     const oldList: Observable<FFQResultsResponse[]> = this.resultsService.getResultsByUser(userId);
     const reqList: string[] = NutrientConstants.NUTRIENT_NAMES;

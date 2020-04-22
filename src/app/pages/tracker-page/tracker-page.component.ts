@@ -65,12 +65,14 @@ export class TrackerPageComponent implements OnInit {
   }
 
   public submitTracker() {
+    //check if complete
     let completed = true;
     for(const response of this.trackerForm.controls.responses.value) {
       if(!response.answer) {
         completed = false;
       }
     }
+    //create response object and submit to service
     if(completed) {
       for(let i = 0; i < this.foodResults.length; i++) {
         this.trackerItems.push(new TrackerItems(this.foodResults[i].foodItemGroupName,
@@ -124,22 +126,21 @@ export class TrackerPageComponent implements OnInit {
       this.showAgeForm = false;
       this.showItems = true;
       this.age = age;
-      console.log(age);
 
       if(age <= 12) {
-        this.showBracketFirst = false;
+        this.showBracketFirst = true;
         this.showBracketSecond = false;
-        this.showBracketThird = true;
+        this.showBracketThird = false;
       }
-      if(age >= 6 && age < 12) {
+      else if(age >= 6 && age < 12) {
         this.showBracketFirst = false;
         this.showBracketSecond = true;
         this.showBracketThird = false;
       }
       else {
-        this.showBracketFirst = true;
+        this.showBracketFirst = false;
         this.showBracketSecond = false;
-        this.showBracketThird = false;
+        this.showBracketThird = true;
       }
     }
   }
