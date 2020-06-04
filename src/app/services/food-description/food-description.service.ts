@@ -3,6 +3,7 @@ import {Observable} from 'rxjs';
 import {map, tap} from 'rxjs/operators';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Description } from 'src/app/models/ffqfooddescription';
+import { environment } from 'src/environments/environment';
 
 const httpOptions = { headers: new HttpHeaders({'Content-Type': 'application/json'})};
 
@@ -12,7 +13,7 @@ const httpOptions = { headers: new HttpHeaders({'Content-Type': 'application/jso
 
 export class FoodDescriptionService {
 
-  endpoint = 'http://localhost:9090/ffq';
+  endpoint = environment.foodServiceUrl + '/ffq';
 
   constructor(private http: HttpClient) { }
 

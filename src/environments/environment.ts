@@ -4,8 +4,21 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:4000'
+  thisUrl: 'http://localhost:4200',
+  apiUrl: 'http://localhost:4000',
+  foodServiceUrl: 'http://localhost:9090',
+  questionnaireServiceUrl: 'http://localhost:9080',
+  userServiceUrl: 'http://localhost:9070'
 };
+
+// export const environment = {
+//   production: true,
+//   thisUrl: 'https://ffqquestionnairewestatic.z22.web.core.windows.net',
+//   apiUrl: 'https://ffq-auth.azurewebsites.net',
+//   foodServiceUrl: 'https://ffq-food-item-service.azurewebsites.net',
+//   questionnaireServiceUrl: 'https://ffquestionnaire-service.azurewebsites.net',
+//   userServiceUrl: 'https://ffq-user-service.azurewebsites.net'
+// };
 
 /*
  * For easier debugging in development mode, you can import the following file

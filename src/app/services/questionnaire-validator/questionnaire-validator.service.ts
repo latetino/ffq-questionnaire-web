@@ -5,13 +5,14 @@ import {QuestionnaireResponse} from '../../models/questionnaire-response';
 import {map} from 'rxjs/operators';
 import {FFQItemResponse} from '../../models/ffqitem-response';
 import {Questionnaire} from '../../models/Questionnaire';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuestionnaireValidatorService {
 
-  endpoint = 'http://localhost:9080/ffq';
+  endpoint = environment.questionnaireServiceUrl + '/ffq';
 
   static validateQuestionnaireId(id: string): boolean {
     return id.toLowerCase() === 'valid-001';
