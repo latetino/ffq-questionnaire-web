@@ -6,6 +6,7 @@ import {map, tap} from 'rxjs/operators';
 import {FFQItemCalcRequest} from '../../models/ffqitem-calc-request';
 import { FFQFoodNutrientsResponse } from 'src/app/models/ffqfoodnutrients-response';
 import { FFQFoodItemResponse } from 'src/app/models/ffqfooditem-response';
+import { environment } from 'src/environments/environment';
 //const mongoose = require('mongoose');
 //declare var require: any
 //Modified by Daykel Muro and Dariana Gonzalez on 10/5/2019
@@ -20,7 +21,7 @@ const httOptions ={ headers: new HttpHeaders({'Content-Type':'aplication/json'})
 
 export class FoodItemService {
 
-  endpoint = 'http://localhost:9090/ffq';
+  endpoint = environment.foodServiceUrl + '/ffq';
   
 
   constructor(private http: HttpClient) { } 

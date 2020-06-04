@@ -27,6 +27,8 @@ export class LoginComponent implements OnInit {
     error = '';
     accountList: string[] = ["admins", "clinicians", "parents"];
     dropDownName: string[] = ["Admin", "Clinician", "Parent"];
+    username = '';
+    password = '';
 
 
     //userType: string;
