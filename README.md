@@ -17,3 +17,19 @@ This section will describe the structure of the "src/app/" directory.
 5. /services/: all services which return data from the database
 6. app-routing.module.ts: all URLs are defined and mapped to an angular component here
 7. app.module.ts: all components being used in the app are declared here
+
+# Azure Deployment using ng-deploy
+
+#### Pre reqs
+ - Node v12 and npm v6 installed or docker images and container this app.
+ - Make sure to run `ng build --production` to create a `./dist` folder to use as the deployable artifact for a static website.
+
+#### Config changes for package.json
+ - Update `package.json` `@angular/cli from ~7.3.0 to ~9.0.3` (which is angular 9 LTS)
+ - Run `npm install` to add the new angular cli
+
+#### Deploy
+ - Run `ng add @azure/ng-deploy` to add the azure deploy tools
+ - Follow the command line steps to get azure connected
+ - Run `ng run ffq-questionnaire-web:deploy` when ready to deploy static website to azure storage
+ - Command line will have the url of the site
