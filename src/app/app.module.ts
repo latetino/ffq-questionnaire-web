@@ -59,6 +59,7 @@ import { ResultsPipe } from './pipes/resultsFilter.pipe';
 import { ClinicTrackerHistoryComponent } from './pages/clinic-tracker-history/clinic-tracker-history.component';
 import { TrackerFilterPipe } from './pipes/tracker-filter.pipe';
 import { RecommendedFilterPipe } from './pipes/recommended-filter.pipe';
+import { MatProgressBarModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -130,6 +131,7 @@ import { RecommendedFilterPipe } from './pipes/recommended-filter.pipe';
     MatCheckboxModule,
     NgbModule.forRoot(),
     FlashMessagesModule.forRoot(),
+    MatProgressBarModule,
    ],
 
   bootstrap: [AppComponent],
