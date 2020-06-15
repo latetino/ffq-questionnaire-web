@@ -60,6 +60,8 @@ import { ClinicTrackerHistoryComponent } from './pages/clinic-tracker-history/cl
 import { TrackerFilterPipe } from './pipes/tracker-filter.pipe';
 import { RecommendedFilterPipe } from './pipes/recommended-filter.pipe';
 import { MatProgressBarModule } from '@angular/material';
+import { LoaderComponent } from './components/loader/loader.component';
+import { LoaderInterceptorService } from './services/loader/loader-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -105,7 +107,8 @@ import { MatProgressBarModule } from '@angular/material';
     DeletePopupComponent,
     ClinicTrackerHistoryComponent,
     TrackerFilterPipe,
-    RecommendedFilterPipe
+    RecommendedFilterPipe,
+    LoaderComponent,
 
   ],
   imports: [
@@ -142,6 +145,13 @@ import { MatProgressBarModule } from '@angular/material';
     RecommendModalComponent,
     FoodRecommendModalComponent,
     DeletePopupComponent
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptorService,
+      multi: true
+    }
   ]
 })
 export class AppModule { }
