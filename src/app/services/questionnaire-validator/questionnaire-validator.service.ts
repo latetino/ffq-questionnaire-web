@@ -33,8 +33,9 @@ export class QuestionnaireValidatorService {
   }
 
   submitQuestionnaire(id: string): Observable<any> {
-    return this.http.put(this.endpoint + '/update', {
+    return this.http.post(this.endpoint + '/create', {
       questionnaireID: id,
+      issuerId: "any",
       submitted: true
     });
   }
