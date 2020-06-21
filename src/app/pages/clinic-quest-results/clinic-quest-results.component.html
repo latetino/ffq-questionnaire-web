@@ -17,40 +17,55 @@
           <mat-card-content>
             <!--Labels for questionnaire results-->
             <div class="row">
-              <div class="col-2" style="text-align:center">
+              <div class="col-1" style="text-align:center">
                 <label><strong>Parent Name</strong></label>
               </div>
-              <div class="col-2" style="text-align:center">
+              <div class="col-1" style="text-align:center">
                 <label><strong>Questionnaire ID</strong></label>
               </div>
-              <div class="col-2" style="text-align:center">
+              <div class="col-1" style="text-align:center">
                 <label><strong>Patient Name</strong></label>
               </div>
-              <div class="col-2" style="text-align:center">
+              <div class="col-1" style="text-align:center">
                 <label><strong>Infant Age (in months)</strong></label>
               </div>
-              <div class="col-2" style="text-align:center">
+              <div class="col-1" style="text-align:center">
                 <label><strong>Parent Access</strong></label>
               </div>
+              <div class="col-2" style="text-align:center">
+                <label><strong>Nutrient Recommendations</strong></label>
+              </div>
+              <div class="col-2" style="text-align:center">
+                <label><strong>Food Recommendations</strong></label>
+              </div>
+              
+             
             </div>
 
             <!--Questionnaire results-->
             <div class="row mb-3">
-              <div class="col-2" style="text-align:center">
+              <div class="col-1" style="text-align:center">
                 {{result.parentName}}
               </div> 
-              <div class="col-2" style="text-align:center">
+              <div class="col-1" style="text-align:center">
                 {{result.ffqresult.questionnaireId}}
               </div>
-              <div class="col-2" style="text-align:center">
+              <div class="col-1" style="text-align:center">
                 {{result.ffqresult.patientName}}
               </div>
-              <div class="col-2" style="text-align:center">
+              <div class="col-1" style="text-align:center">
                 {{result.ffqresult.ageInMonths}}
               </div>
-              <div class="col-2" style="text-align:center">
+              <div class="col-1" style="text-align:center">
                 <mat-checkbox></mat-checkbox>
               </div>
+               <div class="col-2" style="text-align:center">
+                <a (click)="getNutrientsRecommendations(result.ffqresult.questionnaireId)"><i title="nutrients" class="fa fa-flask"></i></a>
+               </div>
+               <div class="col-2" style="text-align:center">
+                <a (click)="getFoodRecommendations(result.ffqresult.questionnaireId)"><i title="fooditems" class="fa fa-cutlery"></i></a>
+               </div>
+
               <div class="col-2">
                 <button mat-raised-button [hidden]="result.ffqresult.show" (click)="toggle(i)">
                   <i class="fa fa-plus-square-o"></i> Results

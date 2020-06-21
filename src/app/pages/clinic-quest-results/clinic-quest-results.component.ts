@@ -21,6 +21,15 @@ import { FFQParent } from 'src/app/models/ffqparent';
 import { of } from 'rxjs';
 import { ResultsPipe } from 'src/app/pipes/resultsFilter.pipe';
 import { FFQParentResult } from 'src/app/models/ffqparentresult';
+// ////
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { RecommendModalComponent } from 'src/app/components/recommend-modal/recommend-modal.component';
+import { MatDialog } from '@angular/material';
+import { NutrientsRecommendationsService } from 'src/app/services/nutrients-recommendations/nutrients-recommendations.service';
+import { ErrorDialogPopupComponent } from 'src/app/components/error-dialog-popup/error-dialog-popup.component';
+import { Router } from '@angular/router';
+import { FoodRecommendModalComponent } from 'src/app/components/food-recommend-modal/food-recommend-modal.component';
+import { FoodRecommendationsService } from 'src/app/services/food-recommendation-service/food-recommendations.service';
 
 @Component({
   selector: "app-quest-results",
@@ -41,13 +50,18 @@ export class ClinicQuestResultsComponent implements OnInit {
   parentNames: string[] = [];
   resultMap: Map<string, FFQParentResult> = new Map<string, FFQParentResult>();
   resultInfo: FFQParentResult[] = [];
+//
 
   constructor(
     public resultsService: ResultsService,
     public clinicService: ClinicService,
     public parentService: ParentService,
-    public authenticationService: AuthenticationService
-    ) {}
+    public authenticationService: AuthenticationService,
+    //
+    public nutrientsRecommendationsService: NutrientsRecommendationsService,
+    public foodRecommendationsService: FoodRecommendationsService,
+    private errorDialog: MatDialog,
+    private router: Router,) {}
 
   ngOnInit() {
     this.getClinicId();
@@ -173,4 +187,50 @@ private getResultsList(){
   toggle(index) {
     this.resultInfo[index].ffqresult.show = !this.resultInfo[index].ffqresult.show;
   }
+
+  /////////////////////////////////////////////////////////////////////////////////
+  // (Francis) Same as quest-results.component.ts
+  //            copy/pasted from clinic-recommend.component.ts
+  /////////////////////////////////////////////////////////////////////////////////
+
+  private getNutrientsRecommendations(questionnaireId: string) {
+    this.nutrientsRecommendationsService.getNutrientsRecommendationsByQuestionnaireId(questionnaireId).subscribe(
+      data => {
+        this.onModalRequest(questionnaireId);
+      },
+      error => {
+        const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
+        dialogRef.componentInstance.title = error.error.message;
+        dialogRef.componentInstance.router = this.router;
+      }
+    );
+  }
+
+  private getFoodRecommendations(questionnaireId: string) {
+    this.foodRecommendationsService.getFoodRecommendationsByQuestionnaireId(questionnaireId).subscribe(
+      data => {
+        this.onModalRequestFood(questionnaireId);
+      },
+      error => {
+        const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
+        dialogRef.componentInstance.title = error.error.message;
+        dialogRef.componentInstance.router = this.router;
+      }
+    );
+  }
+
+
+    //functions used in HTML to display the nutrient recommendation after clicking on the button 
+  onModalRequest(id: string): void {
+    const modalRef = this.errorDialog.open(RecommendModalComponent);
+    modalRef.componentInstance.id = id;
+  }
+
+    //functions used in HTML to display the food recommendation after clicking on the button 
+  onModalRequestFood(id: string): void {
+    const modalRef = this.errorDialog.open(FoodRecommendModalComponent);
+    modalRef.componentInstance.id = id;
+  }
+
+
 }
