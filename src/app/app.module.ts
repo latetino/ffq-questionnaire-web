@@ -136,7 +136,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     NgbModule.forRoot(),
     FlashMessagesModule.forRoot(),
     MatProgressBarModule,
-    DragDropModule,
+    DragDropModule
    ],
 
   bootstrap: [AppComponent],
