@@ -21,6 +21,12 @@
             <div class="col-2" style="text-align:center">
               <label><strong>Infant age (In months)</strong></label>
             </div>
+            <div class="col-2" style="text-align:center">
+              <label><strong>Nutrients</strong></label>
+            </div>
+            <div class="col-2" style="text-align:center">
+              <label><strong>Food Items</strong></label>
+            </div>
           </div>
 
           <!--Questionnaire results-->
@@ -34,6 +40,15 @@
             <div class="col-2" style="text-align:center">
               {{result.ageInMonths}}
             </div>
+            <div class="col-2" style="text-align:center; cursor:pointer">
+              <a (click)="getNutrientsRecommendations(result.questionnaireId)"><i title="nutrients" class="fa fa-flask"></i></a>
+            </div>
+            <div class="col-2" style="text-align:center; cursor:pointer">
+              <a (click)="getFoodRecommendations(result.questionnaireId)"><i title="fooditems" class="fa fa-cutlery"></i></a>
+            </div>
+
+
+
             <div class="col-12 offset-10">
               <button class="btn btn-info" (click)="toggle(i)" id="bt">
                 {{buttonName}}
