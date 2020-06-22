@@ -18,6 +18,8 @@ import { FFQFoodNutrientsResponse } from 'src/app/models/ffqfoodnutrients-respon
 import { PopupComponent } from 'src/app/components/popup/popup.component';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { FFQFoodItemResponse } from 'src/app/models/ffqfooditem-response';
+import { moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
 
 @Component({
@@ -86,7 +88,9 @@ export class AdminPageComponent implements OnInit {
     modalRef.componentInstance.service = this.foodService;
 
   }
-
+  onDrop(event: CdkDragDrop<string[]>){
+    moveItemInArray(this.foodItems, event.previousIndex, event.currentIndex);
+  }
 
 }
 

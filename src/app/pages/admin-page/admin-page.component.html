@@ -15,14 +15,13 @@
             </tr>
           </thead>
           <tbody cdkDropList (cdkDropListDropped)="onDrop($event)">
-            <tr *ngFor="let user of users" cdkDrag cdkDragLockAxis="y">
-            </tr>
-            <tr *ngFor="let item of foodItems">
-              <th>
-                <div class="drag-handle">
-                  <ng-container [ngTemplateOutlet]="dragHandleTmpl"> </ng-container>
+
+            <tr *ngFor="let item of foodItems" cdkDrag cdkDragLockAxis="y">
+              <td cdkDragHandle>
+                <div>
+                  <span class="grippy"></span>
                 </div>
-              </th>
+              </td>
               <td width="75%">
                   <a [routerLink]="['/admin/fooditem', item.id]"> {{item.name}} </a>
               </td>
