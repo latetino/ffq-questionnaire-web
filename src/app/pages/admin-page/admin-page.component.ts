@@ -58,6 +58,8 @@ export class AdminPageComponent implements OnInit {
 
   }
 
+
+
   private handleFoodServiceError(error: HttpErrorResponse) {
     console.error('Error occurred.\n' + error.message);
     const dialogRef = this.errorDialog.open(ErrorDialogPopupComponent);
@@ -88,9 +90,17 @@ export class AdminPageComponent implements OnInit {
     modalRef.componentInstance.service = this.foodService;
 
   }
+
+  //added by teriq douglas
   onDrop(event: CdkDragDrop<string[]>){
     moveItemInArray(this.foodItems, event.previousIndex, event.currentIndex);
   }
+
+ /* private updateArray(){
+    this.foodService.getAllFoods().subscribe(data => {
+          data.map(response => {
+            this.foodItems.push(response);
+          });*/
 
 }
 

@@ -13,6 +13,7 @@ export class FFQFoodItemResponse {
   foodTypes: FoodType[];
   nutrientId: string;
   portionSize: string;
+  itemPosition: number;
 
   constructor(name: string, id: string) {
     this.name = name;
@@ -23,7 +24,10 @@ export class FFQFoodItemResponse {
     this.foodTypes = [];
     this.nutrientId = "";
     this.portionSize = "";
+    this.itemPosition = 0;
+
     const foodtype = new FoodType("","");
+    this.itemPosition+1;
     this.foodTypes.push(foodtype);
   }
 }
