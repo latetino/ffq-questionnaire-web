@@ -39,4 +39,11 @@ export class QuestionnaireValidatorService {
       submitted: true
     });
   }
+
+  submitFeedback(id: string, feedback: string): Observable<any> {
+    return this.http.put(this.endpoint + '/update', {
+      questionnaireID: id,
+      feedback: feedback
+    });
+  }
 }

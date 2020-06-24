@@ -28,6 +28,7 @@ import { FoodDescriptionService } from 'src/app/services/food-description/food-d
 })
 export class QuestResultsComponent implements OnInit {
   public show: boolean = false;
+  public showFeedback: boolean = false;
 
   results: FFQResultsResponse[] = [];
 
@@ -81,7 +82,6 @@ export class QuestResultsComponent implements OnInit {
   toggle(index) {
     this.results[index].show = !this.results[index].show;
   }
-
   /////////////////////////////////////////////////////////////////////////////////
   // (Francis) attempting to add Nutrients and Food Items buttons from recommend tab
   //            copy/pasted from recommend.component.ts
