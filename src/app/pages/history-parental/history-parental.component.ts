@@ -25,6 +25,7 @@ import { FoodDescriptionService } from 'src/app/services/food-description/food-d
 })
 export class HistoryParentalComponent implements OnInit {
   public show: boolean = false;
+  public showFeedback: boolean = false;
   public buttonName: any = "Results";
 
   MESSAGE = "No questionnaires have been submitted yet!";
@@ -52,6 +53,10 @@ export class HistoryParentalComponent implements OnInit {
     this.results[index].show = !this.results[index].show;
     if (this.results[index].show) this.buttonName = "Results";
     else this.buttonName = "Results ";
+  }
+
+  toggleFeedback(index) {
+    this.results[index].showFeedback = !this.results[index].showFeedback;
   }
 
   private getResultsByUser(userId: string) {

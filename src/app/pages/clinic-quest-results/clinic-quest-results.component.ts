@@ -8,6 +8,7 @@
 */
 
 import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ResultsService } from "src/app/services/results/results";
 import { FFQResultsResponse } from "src/app/models/ffqresultsresponse";
 import { Observable } from 'rxjs';
@@ -30,6 +31,7 @@ import { ErrorDialogPopupComponent } from 'src/app/components/error-dialog-popup
 import { Router } from '@angular/router';
 import { FoodRecommendModalComponent } from 'src/app/components/food-recommend-modal/food-recommend-modal.component';
 import { FoodRecommendationsService } from 'src/app/services/food-recommendation-service/food-recommendations.service';
+import { QuestionnaireValidatorService } from '../../services/questionnaire-validator/questionnaire-validator.service';
 
 @Component({
   selector: "app-quest-results",
@@ -38,6 +40,10 @@ import { FoodRecommendationsService } from 'src/app/services/food-recommendation
 })
 export class ClinicQuestResultsComponent implements OnInit {
   public show: boolean = false;
+  public showFeedback: boolean = false;
+  feedbackForm: FormGroup;
+  loading = false;
+  submitted = false;
   search: string;
 
 
@@ -57,13 +63,19 @@ export class ClinicQuestResultsComponent implements OnInit {
     public clinicService: ClinicService,
     public parentService: ParentService,
     public authenticationService: AuthenticationService,
+    public questService: QuestionnaireValidatorService,
     //
     public nutrientsRecommendationsService: NutrientsRecommendationsService,
     public foodRecommendationsService: FoodRecommendationsService,
     private errorDialog: MatDialog,
+    private formBuilder: FormBuilder,
     private router: Router,) {}
 
   ngOnInit() {
+    this.feedbackForm = this.formBuilder.group({
+      feedback: ['', Validators.required]
+    });
+
     this.getClinicId();
   }
 
@@ -114,7 +126,24 @@ export class ClinicQuestResultsComponent implements OnInit {
 
   }
 
-    //Function used to obtain the clinicId for the currently logged in clinician, in order to later display results based only for this specific clinic
+  // convenience getter for easy access to form fields
+  get f() { return this.feedbackForm.controls; }
+
+  submitFeedback(qId) {
+    console.log(qId);
+
+    if (this.feedbackForm.invalid) {
+        console.log(this.feedbackForm);
+        return;
+    }
+
+    this.loading = true;
+    this.resultsService.submitFeedback(qId, this.f.feedback.value).subscribe((data: null) => {
+      console.log("testeroo");
+    });
+  }
+
+  //Function used to obtain the clinicId for the currently logged in clinician, in order to later display results based only for this specific clinic
   private getClinicId(){
 
     var clinicListObervable: Observable<FFQClinicResponse[]> = this.clinicService.getAllClinics();
@@ -186,6 +215,11 @@ private getResultsList(){
   //function used in HTML in order to display and hide questionnaire results
   toggle(index) {
     this.resultInfo[index].ffqresult.show = !this.resultInfo[index].ffqresult.show;
+  }
+
+  toggleFeedback(index) {
+    //ffqfeedback
+    this.resultInfo[index].ffqresult.showFeedback = !this.resultInfo[index].ffqresult.showFeedback;
   }
 
   /////////////////////////////////////////////////////////////////////////////////
