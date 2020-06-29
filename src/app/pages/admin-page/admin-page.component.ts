@@ -94,6 +94,12 @@ export class AdminPageComponent implements OnInit {
   //added by teriq douglas
   onDrop(event: CdkDragDrop<string[]>){
     moveItemInArray(this.foodItems, event.previousIndex, event.currentIndex);
+    var temp = this.foodItems[event.previousIndex].itemPosition;
+        this.foodItems[event.previousIndex].itemPosition = this.foodItems[event.currentIndex].itemPosition
+        this.foodItems[event.currentIndex].itemPosition = temp;
+        //this.foodItems[event.currentIndex].itemPosition = event.currentIndex;
+        //this.foodItems[event.previousIndex].itemPosition = event.previousIndex;
+    console.log(this.foodItems);
   }
 
  /* private updateArray(){

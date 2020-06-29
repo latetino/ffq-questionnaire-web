@@ -15,7 +15,7 @@ export class FFQFoodItem {
   portionSize: string;
   itemPosition: number;
 
-  constructor(name: string) {
+  constructor(name: string, itemPosition: number) {
     this.name = name;
     this.servingsList = null;
     this.sugar = new FFQSugar(false,0);
